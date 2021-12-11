@@ -3,17 +3,25 @@ package gameobjects;
 import libraries.StdDraw;
 import libraries.Vector2;
 
-public class Hero
-{
+public class Hero {
+	/**
+	 * Attribut
+	 */
 	private Vector2 position;
 	private Vector2 size;
 	private String imagePath;
 	private double speed;
 	private Vector2 direction;
 
-
-	public Hero(Vector2 position, Vector2 size, double speed, String imagePath)
-	{
+	/**
+	 * Constructeur Hero
+	 * 
+	 * @param position  position du hero
+	 * @param size      taille du hero
+	 * @param speed     vitesse de deplacement
+	 * @param imagePath image du personnage
+	 */
+	public Hero(Vector2 position, Vector2 size, double speed, String imagePath) {
 		this.position = position;
 		this.size = size;
 		this.speed = speed;
@@ -21,21 +29,27 @@ public class Hero
 		this.direction = new Vector2();
 	}
 
-	public void updateGameObject()
-	{
+	/**
+	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
+	 */
+	public void updateGameObject() {
 		move();
 	}
 
-	private void move()
-	{
+	/**
+	 * Methode qui mets en mouvement le personnage
+	 */
+	private void move() {
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
 		direction = new Vector2();
 	}
 
-	public void drawGameObject()
-	{
+	/**
+	 * Methode qui dessine le personnage dans le jeu
+	 */
+	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
 	}
@@ -43,84 +57,73 @@ public class Hero
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.
 	 */
-	public void goUpNext()
-	{
+	public void goUpNext() {
 		getDirection().addY(1);
 	}
 
-	public void goDownNext()
-	{
+	public void goDownNext() {
 		getDirection().addY(-1);
 	}
 
-	public void goLeftNext()
-	{
+	public void goLeftNext() {
 		getDirection().addX(-1);
 	}
 
-	public void goRightNext()
-	{
+	public void goRightNext() {
 		getDirection().addX(1);
 	}
 
-	public Vector2 getNormalizedDirection()
-	{
+	/**
+	 * Methode qui normalise le vecteur direction du personnage
+	 * 
+	 * @return le vexteur normaliser
+	 */
+	public Vector2 getNormalizedDirection() {
 		Vector2 normalizedVector = new Vector2(direction);
 		normalizedVector.euclidianNormalize(speed);
 		return normalizedVector;
 	}
 
-
 	/*
 	 * Getters and Setters
 	 */
-	public Vector2 getPosition()
-	{
+	public Vector2 getPosition() {
 		return position;
 	}
 
-	public void setPosition(Vector2 position)
-	{
+	public void setPosition(Vector2 position) {
 		this.position = position;
 	}
 
-	public Vector2 getSize()
-	{
+	public Vector2 getSize() {
 		return size;
 	}
 
-	public void setSize(Vector2 size)
-	{
+	public void setSize(Vector2 size) {
 		this.size = size;
 	}
 
-	public String getImagePath()
-	{
+	public String getImagePath() {
 		return imagePath;
 	}
 
-	public void setImagePath(String imagePath)
-	{
+	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
 
-	public double getSpeed()
-	{
+	public double getSpeed() {
 		return speed;
 	}
 
-	public void setSpeed(double speed)
-	{
+	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
 
-	public Vector2 getDirection()
-	{
+	public Vector2 getDirection() {
 		return direction;
 	}
 
-	public void setDirection(Vector2 direction)
-	{
+	public void setDirection(Vector2 direction) {
 		this.direction = direction;
 	}
 }

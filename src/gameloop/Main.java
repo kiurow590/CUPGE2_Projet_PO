@@ -9,24 +9,26 @@ import resources.HeroInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
-public class Main
-{
-	public static void main(String[] args)
-	{
+public class Main {
+	public static void main(String[] args) {
 		// Hero, world and display initialisation.
-		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED, ImagePaths.ISAAC);
-		GameWorld world = new GameWorld(isaac);				
+		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,
+				ImagePaths.ISAAC);
+		GameWorld world = new GameWorld(isaac);
 		initializeDisplay();
 
 		// Main loop of the game
-		while (!world.gameOver())
-		{
+		while (!world.gameOver()) {
 			processNextStep(world);
 		}
 	}
 
-	private static void processNextStep(GameWorld world)
-	{
+	/**
+	 * Methode qui affiche la suite de la map
+	 * 
+	 * @param world map actuel
+	 */
+	private static void processNextStep(GameWorld world) {
 		Timer.beginTimer();
 		StdDraw.clear();
 		world.processUserInput();
@@ -36,8 +38,10 @@ public class Main
 		Timer.waitToMaintainConstantFPS();
 	}
 
-	private static void initializeDisplay()
-	{
+	/**
+	 * Initialise le canvas de jeu
+	 */
+	private static void initializeDisplay() {
 		// Set the window's size, in pixels.
 		// It is strongly recommended to keep a square window.
 		StdDraw.setCanvasSize(RoomInfos.NB_TILES * DisplaySettings.PIXEL_PER_TILE,

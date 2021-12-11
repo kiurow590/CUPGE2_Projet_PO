@@ -4,35 +4,50 @@ import gameobjects.Hero;
 import libraries.StdDraw;
 import resources.Controls;
 
-public class GameWorld
-{
+public class GameWorld {
+	/**
+	 * Attributs
+	 */
 	private Room currentRoom;
 	private Hero hero;
 
-	// A world needs a hero
-	public GameWorld(Hero hero)
-	{
+	/**
+	 * Constructeur de monde
+	 * 
+	 * @param hero hero present dans le monde
+	 */
+	public GameWorld(Hero hero) {
 		this.hero = hero;
 		currentRoom = new Room(hero);
 	}
 
-	public void processUserInput()
-	{
+	/**
+	 * Methode qui mets le personnage en mouvement dans le salle
+	 */
+	public void processUserInput() {
 		processKeysForMovement();
 	}
 
-	public boolean gameOver()
-	{
+	/**
+	 * Methode qui retourn si le jeu est fini ou pas
+	 * 
+	 * @return boolean representant le game over
+	 */
+	public boolean gameOver() {
 		return false;
 	}
 
-	public void updateGameObjects()
-	{
+	/**
+	 * Methode qui mets a jour la room
+	 */
+	public void updateGameObjects() {
 		currentRoom.updateRoom();
 	}
 
-	public void drawGameObjects()
-	{
+	/**
+	 * Methode qui dessine la salle
+	 */
+	public void drawGameObjects() {
 		currentRoom.drawRoom();
 	}
 
@@ -40,22 +55,17 @@ public class GameWorld
 	 * Keys processing
 	 */
 
-	private void processKeysForMovement()
-	{
-		if (StdDraw.isKeyPressed(Controls.goUp))
-		{
+	private void processKeysForMovement() {
+		if (StdDraw.isKeyPressed(Controls.goUp)) {
 			hero.goUpNext();
 		}
-		if (StdDraw.isKeyPressed(Controls.goDown))
-		{
+		if (StdDraw.isKeyPressed(Controls.goDown)) {
 			hero.goDownNext();
 		}
-		if (StdDraw.isKeyPressed(Controls.goRight))
-		{
+		if (StdDraw.isKeyPressed(Controls.goRight)) {
 			hero.goRightNext();
 		}
-		if (StdDraw.isKeyPressed(Controls.goLeft))
-		{
+		if (StdDraw.isKeyPressed(Controls.goLeft)) {
 			hero.goLeftNext();
 		}
 	}
