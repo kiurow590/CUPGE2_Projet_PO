@@ -6,124 +6,141 @@ import java.lang.Math;
  * This class represents a pair of double seen as a vector, i.e. with their associated operations.
  * Through the program, these may be used to represent position or size.
  */
-public class Vector2
-{
+public class Vector2 {
+	/**
+	 * Attributs
+	 */
 	private double positionX;
 	private double positionY;
 
-	public Vector2()
-	{
+	/**
+	 * Constructeur de vecteur position a (0,0)
+	 */
+	public Vector2() {
 		this.positionX = 0;
 		this.positionY = 0;
 	}
 
-	public Vector2(double x, double y)
-	{
+	/**
+	 * Constructeur de vecteur position a (x,y)
+	 */
+	public Vector2(double x, double y) {
 		positionX = x;
 		positionY = y;
 	}
 
-	public Vector2(Vector2 v)
-	{
+	/**
+	 * Constructeur qui creer un vecteur a partir d'un autre vecteur
+	 * 
+	 * @param v vecteur
+	 */
+	public Vector2(Vector2 v) {
 		positionX = v.getX();
 		positionY = v.getY();
 	}
 
-	public double getX()
-	{
+	public double getX() {
 		return positionX;
 	}
 
-	public double getY()
-	{
+	public double getY() {
 		return positionY;
 	}
 
-	public boolean equals(Vector2 p)
-	{
+	/**
+	 * methode qui verifie si 2 vecteur sont egaux
+	 * 
+	 * @param p un vecteur
+	 * @return un boolean
+	 */
+	public boolean equals(Vector2 p) {
 		return (this.positionX == p.positionX && this.positionY == p.positionY);
 	}
 
-	public void setX(double x)
-	{
+	public void setX(double x) {
 		this.positionX = x;
 	}
 
-	public void setY(double y)
-	{
+	public void setY(double y) {
 		this.positionY = y;
 	}
 
-	public void addX(double x)
-	{
+	public void addX(double x) {
 		this.positionX += x;
 	}
 
-	public void addY(double y)
-	{
+	public void addY(double y) {
 		this.positionY += y;
 	}
 
-	public Vector2 addVector(Vector2 v)
-	{
+	/**
+	 * Methode qui additionne this vecteur a un 2e vecteur
+	 * 
+	 * @param v un vecteur a ajouter
+	 * @return la somme des deux vecteur sous forme de vecteur
+	 */
+	public Vector2 addVector(Vector2 v) {
 		Vector2 newVector = new Vector2(this);
 		newVector.addX(v.getX());
 		newVector.addY(v.getY());
 		return newVector;
 	}
 
-	public Vector2 subVector(Vector2 v)
-	{
+	public Vector2 subVector(Vector2 v) {
 		return this.addVector(v.reverse());
 	}
 
-	public Vector2 scalarMultiplication(double v)
-	{
+	public Vector2 scalarMultiplication(double v) {
 		return new Vector2(this.getX() * v, this.getY() * v);
 	}
 
-	public Vector2 vectorMultiplication(Vector2 v)
-	{
+	public Vector2 vectorMultiplication(Vector2 v) {
 		return new Vector2(this.getX() * v.getX(), this.getY() * v.getY());
 	}
 
-	public Vector2 reverse()
-	{
+	/**
+	 * Methode qui retourne le vecteur inverse
+	 * 
+	 * @return le vecteur inverse
+	 */
+	public Vector2 reverse() {
 		Vector2 newVector = new Vector2();
 		newVector.setX(-this.getX());
 		newVector.setY(-this.getY());
 		return newVector;
 	}
 
-	public Vector2 absoluteValue()
-	{
+	/**
+	 * methode qui retourne la valeur absolue du vecteur
+	 * 
+	 * @return la valeur absolue du vecteur
+	 */
+
+	public Vector2 absoluteValue() {
 		Vector2 newVector = new Vector2();
 		newVector.setX(Math.abs(getX()));
 		newVector.setY(Math.abs(getY()));
 		return newVector;
 	}
 
-	public String toString()
-	{
+	public String toString() {
 		return "(" + this.getX() + ", " + this.getY() + ")";
 	}
 
-	/*
-	 * The Euclidian norm is the usual distance between the vector seen as a
-	 * position and the position (0,0).
+	/**
+	 * Methode qui calcul la norme du vecteur
+	 * 
+	 * @return un double representant la norme du vecteur
 	 */
-	public double euclidianNorm()
-	{
+	public double euclidianNorm() {
 		double norm = Math.sqrt(this.getX() * this.getX() + this.getY() * this.getY());
 		return norm;
 	}
 
-	public void euclidianNormalize(double newNorm)
-	{
+	public void euclidianNormalize(double newNorm) {
 		double norm = euclidianNorm();
 		// Null vectors remain null.
-		if (Math.abs(norm) < 2 * Double.MIN_VALUE)
-		{
+		if (Math.abs(norm) < 2 * Double.MIN_VALUE) {
 			return;
 		}
 		double scalingFactor = newNorm / norm;
@@ -131,8 +148,13 @@ public class Vector2
 		this.setY(this.getY() * scalingFactor);
 	}
 
-	public double distance(Vector2 vector)
-	{
+	/**
+	 * Methode qui retourne la distance entre 2 vecteurs
+	 * 
+	 * @param vector un deuxieme vecteur
+	 * @return un double representant la distance entre 2 vecteurs
+	 */
+	public double distance(Vector2 vector) {
 		Vector2 diffVector = vector.subVector(this);
 		return diffVector.euclidianNorm();
 	}
