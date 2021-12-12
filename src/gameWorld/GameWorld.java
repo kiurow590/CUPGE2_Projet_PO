@@ -61,15 +61,19 @@ public class GameWorld {
 	private void processKeysForMovement() {
 		if (StdDraw.isKeyPressed(Controls.goUp)) {
 			hero.goUpNext();
+			spider.goUpNext();
 		}
 		if (StdDraw.isKeyPressed(Controls.goDown)) {
 			hero.goDownNext();
+			spider.goDownNext();
 		}
 		if (StdDraw.isKeyPressed(Controls.goRight)) {
 			hero.goRightNext();
+			spider.goRightNext();
 		}
 		if (StdDraw.isKeyPressed(Controls.goLeft)) {
 			hero.goLeftNext();
+			spider.goLeftNext();
 		}
 	}
 }

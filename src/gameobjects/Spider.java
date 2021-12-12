@@ -1,5 +1,7 @@
 package gameobjects;
 
+import java.util.Random;
+
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -61,6 +63,54 @@ public class Spider {
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
+	}
+
+	/**
+	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
+	 */
+	public void updateGameObject() {
+		move();
+	}
+
+	/**
+	 * Methode qui mets en mouvement l'araignee
+	 */
+	private void move() {
+		Vector2 normalizedDirection = getNormalizedDirection();
+		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
+		setPosition(positionAfterMoving);
+		direction = new Vector2();
+		System.out.println(this.position.getX() + "," + this.position.getY());
+	}
+
+	/*
+	 * Moving from key inputs. Direction vector is later normalised.
+	 */
+	public void goUpNext() {
+		getDirection().addY(1);
+	}
+
+	public void goDownNext() {
+		getDirection().addY(-1);
+	}
+
+	public void goLeftNext() {
+		getDirection().addX(-1);
+	}
+
+	public void goRightNext() {
+		getDirection().addX(1);
+	}
+
+	/**
+	 * Methode qui normalise le vecteur direction du personnage
+	 * 
+	 * @return le vexteur normaliser
+	 */
+	public Vector2 getNormalizedDirection() {
+		Vector2 normalizedVector = new Vector2(direction);
+		normalizedVector.euclidianNormalize(speed);
+		return normalizedVector;
 	}
 
 	public Vector2 getPosition() {

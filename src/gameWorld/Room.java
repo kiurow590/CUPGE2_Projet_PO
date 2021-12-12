@@ -30,6 +30,7 @@ public class Room {
 	 */
 	public void updateRoom() {
 		makeHeroPlay();
+		makeMonsterPlay();
 	}
 
 	/**
@@ -37,6 +38,13 @@ public class Room {
 	 */
 	private void makeHeroPlay() {
 		hero.updateGameObject();
+	}
+	
+	/**
+	 * met a jour le monstre
+	 */
+	private void makeMonsterPlay() {
+		spider.updateGameObject();
 	}
 
 	/*
