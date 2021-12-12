@@ -5,10 +5,12 @@ import gameobjects.Spider;
 import libraries.StdDraw;
 import resources.Controls;
 
+/**
+ * 
+ * classqui genere le monde
+ *
+ */
 public class GameWorld {
-	/**
-	 * Attributs
-	 */
 	private Room currentRoom;
 	private Hero hero;
 	private Spider spider;
@@ -24,40 +26,29 @@ public class GameWorld {
 		currentRoom = new Room(hero, spider);
 	}
 
-	/**
-	 * Methode qui mets le personnage en mouvement dans le salle
-	 */
 	public void processUserInput() {
 		processKeysForMovement();
 	}
 
-	/**
-	 * Methode qui retourn si le jeu est fini ou pas
-	 * 
-	 * @return boolean representant le game over
-	 */
 	public boolean gameOver() {
 		return false;
 	}
 
-	/**
-	 * Methode qui mets a jour la room
-	 */
 	public void updateGameObjects() {
 		currentRoom.updateRoom();
 	}
 
-	/**
-	 * Methode qui dessine la salle
-	 */
 	public void drawGameObjects() {
 		currentRoom.drawRoom();
 	}
 
-	/*
-	 * Keys processing
+	/**
+	 * Keys processing. <br/>
+	 * Managed <i>keys</i> : 
+	 * <ul>
+	 * <li>key UP</li>
+	 * </ul>
 	 */
-
 	private void processKeysForMovement() {
 		if (StdDraw.isKeyPressed(Controls.goUp) && hero.getPosition().getY() < 0.9) {
 			hero.goUpNext();
