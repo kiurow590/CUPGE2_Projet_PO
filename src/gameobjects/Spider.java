@@ -16,6 +16,8 @@ public class Spider {
 	private int ptDeVie;
 	private int degatCorpsACorps;
 
+	private int compteur;
+
 	/**
 	 * Constructeur de spider
 	 * 
@@ -25,12 +27,13 @@ public class Spider {
 	 * @param speed     vitesse de la spider
 	 * @param direction direction de deplacement de la spider
 	 */
-	public Spider(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction) {
+	public Spider(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int compteur) {
 		this.position = position;
 		this.size = size;
 		this.imagePath = imagePath;
 		this.speed = speed;
 		this.direction = direction;
+		this.compteur = compteur;
 	}
 
 	/**
@@ -69,13 +72,55 @@ public class Spider {
 	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
 	 */
 	public void updateGameObject() {
-		move();
+		if (this.compteur == 0) {
+			move();
+			this.compteur = 40;
+		} else {
+			this.compteur--;
+		}
+
+	}
+
+	public int getRandomNumber(int min, int max) {
+		return (int) ((Math.random() * (max - min)) + min);
 	}
 
 	/**
 	 * Methode qui mets en mouvement l'araignee
 	 */
 	private void move() {
+		switch ((int) getRandomNumber(0, 4)) {
+		case 0: {
+			if (this.getPosition().getY() < 0.9) {
+				goUpNext();
+			}
+
+			break;
+		}
+		case 1: {
+			if (this.getPosition().getY() > 0.1) {
+				goDownNext();
+			}
+
+			break;
+		}
+		case 2: {
+			if (this.getPosition().getX() < 0.9) {
+				goRightNext();
+			}
+
+			break;
+		}
+		case 3: {
+			if (this.getPosition().getX() > 0.1) {
+				goLeftNext();
+			}
+
+			break;
+		}
+		default:
+			break;
+		}
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
@@ -87,19 +132,19 @@ public class Spider {
 	 * Moving from key inputs. Direction vector is later normalised.
 	 */
 	public void goUpNext() {
-		getDirection().addY(1);
+		getDirection().addY(7);
 	}
 
 	public void goDownNext() {
-		getDirection().addY(-1);
+		getDirection().addY(-7);
 	}
 
 	public void goLeftNext() {
-		getDirection().addX(-1);
+		getDirection().addX(-7);
 	}
 
 	public void goRightNext() {
-		getDirection().addX(1);
+		getDirection().addX(7);
 	}
 
 	/**
@@ -151,6 +196,14 @@ public class Spider {
 
 	public void setDirection(Vector2 direction) {
 		this.direction = direction;
+	}
+
+	public int getCompteur() {
+		return compteur;
+	}
+
+	public void setCompteur(int compteur) {
+		this.compteur = compteur;
 	}
 
 }

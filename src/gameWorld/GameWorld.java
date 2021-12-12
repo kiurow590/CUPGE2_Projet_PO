@@ -59,21 +59,21 @@ public class GameWorld {
 	 */
 
 	private void processKeysForMovement() {
-		if (StdDraw.isKeyPressed(Controls.goUp)) {
+		if (StdDraw.isKeyPressed(Controls.goUp) && hero.getPosition().getY() < 0.9) {
 			hero.goUpNext();
-			spider.goUpNext();
+
 		}
-		if (StdDraw.isKeyPressed(Controls.goDown)) {
+		if (StdDraw.isKeyPressed(Controls.goDown) && hero.getPosition().getY() > 0.1) {
 			hero.goDownNext();
-			spider.goDownNext();
+
 		}
-		if (StdDraw.isKeyPressed(Controls.goRight)) {
+		if (StdDraw.isKeyPressed(Controls.goRight) && hero.getPosition().getX() < 0.9) {
 			hero.goRightNext();
-			spider.goRightNext();
+
 		}
-		if (StdDraw.isKeyPressed(Controls.goLeft)) {
+		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.1 ) {
 			hero.goLeftNext();
-			spider.goLeftNext();
+
 		}
 	}
 }

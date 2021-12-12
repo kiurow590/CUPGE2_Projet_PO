@@ -18,7 +18,7 @@ public class Main {
 				ImagePaths.ISAAC);
 
 		Spider spider = new Spider(new Vector2(0.2, 0.5), RoomInfos.TILE_SIZE.scalarMultiplication(0.4),
-				ImagePaths.SPIDER, 0.1, new Vector2());
+				ImagePaths.SPIDER, 0.01, new Vector2(),40);
 		GameWorld world = new GameWorld(isaac, spider);
 		initializeDisplay();
 
