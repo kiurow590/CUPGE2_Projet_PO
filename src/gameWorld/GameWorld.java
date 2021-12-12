@@ -1,6 +1,7 @@
 package gameWorld;
 
 import gameobjects.Hero;
+import gameobjects.Spider;
 import libraries.StdDraw;
 import resources.Controls;
 
@@ -10,15 +11,17 @@ public class GameWorld {
 	 */
 	private Room currentRoom;
 	private Hero hero;
+	private Spider spider;
 
 	/**
 	 * Constructeur de monde
 	 * 
 	 * @param hero hero present dans le monde
 	 */
-	public GameWorld(Hero hero) {
+	public GameWorld(Hero hero, Spider spider) {
 		this.hero = hero;
-		currentRoom = new Room(hero);
+		this.spider = spider;
+		currentRoom = new Room(hero, spider);
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package gameWorld;
 
 import gameobjects.Hero;
+import gameobjects.Spider;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
@@ -12,13 +13,16 @@ public class Room {
 	 */
 	private Hero hero;
 
+	private Spider spider;
+
 	/**
 	 * Constructeur de room
 	 * 
 	 * @param hero personnage de la room
 	 */
-	public Room(Hero hero) {
+	public Room(Hero hero, Spider spider) {
 		this.hero = hero;
+		this.spider = spider;
 	}
 
 	/*
@@ -27,6 +31,7 @@ public class Room {
 	public void updateRoom() {
 		makeHeroPlay();
 	}
+
 	/**
 	 * met a jour le hero
 	 */
@@ -48,6 +53,7 @@ public class Room {
 			}
 		}
 		hero.drawGameObject();
+		spider.drawGameObject();
 	}
 
 	/**
