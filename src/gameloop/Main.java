@@ -1,6 +1,7 @@
 package gameloop;
 
 import gameWorld.GameWorld;
+import gameobjects.Fly;
 import gameobjects.Hero;
 import gameobjects.Spider;
 import libraries.StdDraw;
@@ -19,7 +20,9 @@ public class Main {
 
 		Spider spider = new Spider(new Vector2(0.2, 0.5), RoomInfos.TILE_SIZE.scalarMultiplication(0.4),
 				ImagePaths.SPIDER, 0.01, new Vector2(),40);
-		GameWorld world = new GameWorld(isaac, spider);
+		
+		Fly fly = new Fly(new Vector2(0.8, 0.8), RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.007, new Vector2(), 2, 1);
+		GameWorld world = new GameWorld(isaac, spider, fly);
 		initializeDisplay();
 
 		// Main loop of the game

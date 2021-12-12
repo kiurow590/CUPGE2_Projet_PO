@@ -1,11 +1,9 @@
 package gameobjects;
 
-import java.util.Random;
-
 import libraries.StdDraw;
 import libraries.Vector2;
 
-public class Spider {
+public class Fly {
 
 	private Vector2 position;
 	private Vector2 size;
@@ -16,33 +14,36 @@ public class Spider {
 	private int ptDeVie;
 	private int degatCorpsACorps;
 
-	private int compteur;
-
 	/**
-	 * Constructeur de spider
+	 * Constructeur de fly
 	 * 
-	 * @param position  position de la spider
-	 * @param size      taille de la spider
-	 * @param imagePath image representant la spider
-	 * @param speed     vitesse de la spider
-	 * @param direction direction de deplacement de la spider
+	 * @param position
+	 * @param size
+	 * @param imagePath
+	 * @param speed
+	 * @param direction
+	 * @param ptDeVie
+	 * @param degatCorpsACorps
 	 */
-	public Spider(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int compteur) {
+	public Fly(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
+			int degatCorpsACorps) {
+		super();
 		this.position = position;
 		this.size = size;
 		this.imagePath = imagePath;
 		this.speed = speed;
 		this.direction = direction;
-		this.compteur = compteur;
+		this.ptDeVie = ptDeVie;
+		this.degatCorpsACorps = degatCorpsACorps;
 	}
 
 	/**
-	 * Methode qui calcul si une araigné est morte
+	 * Methode qui calcul si une mouche est morte
 	 * 
 	 * @return un boolean </br>
 	 *         <ul>
-	 *         <li>true - la spider est morte</li>
-	 *         <li>false - la spider est vivante</li>
+	 *         <li>true - la mouche est morte</li>
+	 *         <li>false - la mouche est vivante</li>
 	 *         </ul>
 	 */
 	public boolean isDead() {
@@ -50,7 +51,7 @@ public class Spider {
 	}
 
 	/**
-	 * Methode qui retire les point de vie d'une araignee
+	 * Methode qui retire les point de vie d'une mouche
 	 * 
 	 * @implNote Methode qui aurait dans le futur un parametre projectile indiquant
 	 *           combien de pv retiré suivant l'attaque reçu
@@ -61,7 +62,7 @@ public class Spider {
 	}
 
 	/**
-	 * Methode qui dessine l araignee dans le jeu
+	 * Methode qui dessine la mouche dans le jeu
 	 */
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
@@ -71,79 +72,44 @@ public class Spider {
 	/**
 	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
 	 */
-	public void updateGameObject() {
-		if (this.compteur == 0) {
-			move();
-			this.compteur = 40;
-		} else {
-			this.compteur--;
-		}
+	public void updateGameObject(Hero e) {
 
-	}
+		move(e);
 
-	public int getRandomNumber(int min, int max) {
-		return (int) ((Math.random() * (max - min)) + min);
 	}
 
 	/**
 	 * Methode qui mets en mouvement l'araignee
 	 */
-	private void move() {
-		switch ((int) getRandomNumber(0, 4)) {
-		case 0: {
-			if (this.getPosition().getY() < 0.9) {
-				goUpNext();
-			}
+	private void move(Hero e) {
 
-			break;
-		}
-		case 1: {
-			if (this.getPosition().getY() > 0.1) {
-				goDownNext();
-			}
+		this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
+				this.getPosition().getY() - e.getPosition().getY()).reverse());
 
-			break;
-		}
-		case 2: {
-			if (this.getPosition().getX() < 0.9) {
-				goRightNext();
-			}
-
-			break;
-		}
-		case 3: {
-			if (this.getPosition().getX() > 0.1) {
-				goLeftNext();
-			}
-
-			break;
-		}
-		default:
-			break;
-		}
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
 		direction = new Vector2();
+		System.out.println(this.position.getX() + "," + this.position.getY());
 	}
 
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.
 	 */
 	public void goUpNext() {
-		getDirection().addY(7);
+		getDirection().addY(1);
 	}
 
 	public void goDownNext() {
-		getDirection().addY(-7);
+		getDirection().addY(-1);
 	}
 
 	public void goLeftNext() {
-		getDirection().addX(-7);
+		getDirection().addX(-1);
 	}
 
 	public void goRightNext() {
-		getDirection().addX(7);
+		getDirection().addX(1);
 	}
 
 	/**
@@ -197,12 +163,20 @@ public class Spider {
 		this.direction = direction;
 	}
 
-	public int getCompteur() {
-		return compteur;
+	public int getPtDeVie() {
+		return ptDeVie;
 	}
 
-	public void setCompteur(int compteur) {
-		this.compteur = compteur;
+	public void setPtDeVie(int ptDeVie) {
+		this.ptDeVie = ptDeVie;
+	}
+
+	public int getDegatCorpsACorps() {
+		return degatCorpsACorps;
+	}
+
+	public void setDegatCorpsACorps(int degatCorpsACorps) {
+		this.degatCorpsACorps = degatCorpsACorps;
 	}
 
 }

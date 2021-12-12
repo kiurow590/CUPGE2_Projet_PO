@@ -1,5 +1,6 @@
 package gameWorld;
 
+import gameobjects.Fly;
 import gameobjects.Hero;
 import gameobjects.Spider;
 import libraries.StdDraw;
@@ -14,15 +15,18 @@ public class Room {
 	private Hero hero;
 
 	private Spider spider;
+	
+	private Fly fly;
 
 	/**
 	 * Constructeur de room
 	 * 
 	 * @param hero personnage de la room
 	 */
-	public Room(Hero hero, Spider spider) {
+	public Room(Hero hero, Spider spider, Fly fly) {
 		this.hero = hero;
 		this.spider = spider;
+		this.fly = fly;
 	}
 
 	/*
@@ -45,6 +49,7 @@ public class Room {
 	 */
 	private void makeMonsterPlay() {
 		spider.updateGameObject();
+		fly.updateGameObject(this.hero);
 	}
 
 	/*
@@ -62,6 +67,7 @@ public class Room {
 		}
 		hero.drawGameObject();
 		spider.drawGameObject();
+		fly.drawGameObject();
 	}
 
 	/**
