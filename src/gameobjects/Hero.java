@@ -44,6 +44,7 @@ public class Hero {
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
 		direction = new Vector2();
+
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package gameWorld;
 
 import gameobjects.Hero;
+import gameobjects.Spider;
 import libraries.StdDraw;
 import resources.Controls;
 
@@ -12,11 +13,17 @@ import resources.Controls;
 public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
+	private Spider spider;
 
-	// A world needs a hero
-	public GameWorld(Hero hero) {
+	/**
+	 * Constructeur de monde
+	 * 
+	 * @param hero hero present dans le monde
+	 */
+	public GameWorld(Hero hero, Spider spider) {
 		this.hero = hero;
-		currentRoom = new Room(hero);
+		this.spider = spider;
+		currentRoom = new Room(hero, spider);
 	}
 
 	public void processUserInput() {
@@ -43,17 +50,21 @@ public class GameWorld {
 	 * </ul>
 	 */
 	private void processKeysForMovement() {
-		if (StdDraw.isKeyPressed(Controls.goUp)) {
+		if (StdDraw.isKeyPressed(Controls.goUp) && hero.getPosition().getY() < 0.9) {
 			hero.goUpNext();
+
 		}
-		if (StdDraw.isKeyPressed(Controls.goDown)) {
+		if (StdDraw.isKeyPressed(Controls.goDown) && hero.getPosition().getY() > 0.1) {
 			hero.goDownNext();
+
 		}
-		if (StdDraw.isKeyPressed(Controls.goRight)) {
+		if (StdDraw.isKeyPressed(Controls.goRight) && hero.getPosition().getX() < 0.9) {
 			hero.goRightNext();
+
 		}
-		if (StdDraw.isKeyPressed(Controls.goLeft)) {
+		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.1 ) {
 			hero.goLeftNext();
+
 		}
 	}
 }

@@ -2,8 +2,10 @@ package gameloop;
 
 import gameWorld.GameWorld;
 import gameobjects.Hero;
+import gameobjects.Spider;
 import libraries.StdDraw;
 import libraries.Timer;
+import libraries.Vector2;
 import resources.DisplaySettings;
 import resources.HeroInfos;
 import resources.ImagePaths;
@@ -14,7 +16,10 @@ public class Main {
 		// Hero, world and display initialisation.
 		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,
 				ImagePaths.ISAAC);
-		GameWorld world = new GameWorld(isaac);
+
+		Spider spider = new Spider(new Vector2(0.2, 0.5), RoomInfos.TILE_SIZE.scalarMultiplication(0.4),
+				ImagePaths.SPIDER, 0.01, new Vector2(),40);
+		GameWorld world = new GameWorld(isaac, spider);
 		initializeDisplay();
 
 		// Main loop of the game
