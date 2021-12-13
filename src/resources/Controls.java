@@ -8,4 +8,5 @@ public class Controls
 	public static int goDown = Keybinding.keycodeOf('s');
 	public static int goRight = Keybinding.keycodeOf('d');
 	public static int goLeft = Keybinding.keycodeOf('q');
+	public static int invincible = Keybinding.keycodeOf('i');
 }

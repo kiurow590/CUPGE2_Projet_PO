@@ -1,5 +1,6 @@
 package gameWorld;
 
+import gameobjects.Fly;
 import gameobjects.Hero;
 import gameobjects.Spider;
 import libraries.StdDraw;
@@ -14,16 +15,18 @@ public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
 	private Spider spider;
+	private Fly fly;
 
 	/**
 	 * Constructeur de monde
 	 * 
 	 * @param hero hero present dans le monde
 	 */
-	public GameWorld(Hero hero, Spider spider) {
+	public GameWorld(Hero hero, Spider spider, Fly fly) {
 		this.hero = hero;
 		this.spider = spider;
-		currentRoom = new Room(hero, spider);
+		this.fly = fly;
+		currentRoom = new Room(hero, spider, fly);
 	}
 
 	public void processUserInput() {
@@ -31,7 +34,7 @@ public class GameWorld {
 	}
 
 	public boolean gameOver() {
-		return false;
+		return hero.getpV() <= 0;
 	}
 
 	public void updateGameObjects() {
@@ -44,7 +47,7 @@ public class GameWorld {
 
 	/**
 	 * Keys processing. <br/>
-	 * Managed <i>keys</i> : 
+	 * Managed <i>keys</i> :
 	 * <ul>
 	 * <li>key UP</li>
 	 * </ul>
@@ -62,8 +65,13 @@ public class GameWorld {
 			hero.goRightNext();
 
 		}
-		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.1 ) {
+		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.1) {
 			hero.goLeftNext();
+
+		}
+
+		if (StdDraw.isKeyPressed(Controls.invincible)) {
+			hero.modeInvincible();
 
 		}
 	}
