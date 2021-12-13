@@ -1,10 +1,16 @@
 package gameWorld;
 
+import java.util.ArrayList;
+
 import gameobjects.Fly;
 import gameobjects.Hero;
+import gameobjects.Larme;
 import gameobjects.Spider;
 import libraries.StdDraw;
+import libraries.Vector2;
 import resources.Controls;
+import resources.ImagePaths;
+import resources.RoomInfos;
 
 /**
  * 
@@ -31,6 +37,7 @@ public class GameWorld {
 
 	public void processUserInput() {
 		processKeysForMovement();
+		processTire();
 	}
 
 	public boolean gameOver() {
@@ -74,5 +81,40 @@ public class GameWorld {
 			hero.modeInvincible();
 
 		}
+
 	}
+
+	public void processTire() {
+		if (StdDraw.isKeyPressed(Controls.hitUp)) {
+			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.02, new Vector2(0, 1), 5);
+
+			hero.getLstLarme().add(e);
+			System.out.println("Tire");
+
+		}
+		if (StdDraw.isKeyPressed(Controls.hitDown)) {
+			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.02, new Vector2(0, -1), 5);
+
+			hero.getLstLarme().add(e);
+			System.out.println("Tire");
+
+		}
+		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
+			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.02, new Vector2(-1, 0), 5);
+
+			hero.getLstLarme().add(e);
+			System.out.println("Tire");
+		}
+		if (StdDraw.isKeyPressed(Controls.hitRight)) {
+			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.02, new Vector2(1, 0), 5);
+
+			hero.getLstLarme().add(e);
+			System.out.println("Tire");
+		}
+	}
+
 }

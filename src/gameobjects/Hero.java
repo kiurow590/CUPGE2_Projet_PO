@@ -1,5 +1,8 @@
 package gameobjects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -12,6 +15,8 @@ public class Hero {
 	private String imagePath;
 	private double speed;
 	private Vector2 direction;
+	
+	private List lstLarme;
 
 	private boolean estInvincible;
 	private int compteurInvincible;
@@ -38,6 +43,8 @@ public class Hero {
 		this.compteurInvincible = compteurInvincible;
 
 		this.pV = pv;
+		
+		lstLarme = new ArrayList<Larme>();
 	}
 
 	/**
@@ -181,6 +188,14 @@ public class Hero {
 
 	public void setpV(int pV) {
 		this.pV = pV;
+	}
+
+	public List<Larme> getLstLarme() {
+		return lstLarme;
+	}
+
+	public void setLstLarme(ArrayList<Larme> lstLarme) {
+		this.lstLarme = lstLarme;
 	}
 
 }

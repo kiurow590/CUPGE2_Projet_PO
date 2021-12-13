@@ -44,21 +44,15 @@ public class Room {
 	}
 
 	public void collisionReport() {
-		System.out.println(Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
-				this.spider.getPosition(), this.spider.getSize()));
 
-		System.out.println(Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
-				this.fly.getPosition(), this.fly.getSize()));
 		System.out.println(this.compteurInvincibiliteHero);
 		if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
 				this.hero.getSize(), this.spider.getPosition(), this.spider.getSize())) {
 			this.hero.retirePV(this.spider.getDegatCorpsACorps());
-			System.out.println(this.hero.getpV());
 			this.compteurInvincibiliteHero = 50;
 		} else if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
 				this.hero.getSize(), this.fly.getPosition(), this.fly.getSize())) {
 			this.hero.retirePV(this.fly.getDegatCorpsACorps());
-			System.out.println(this.hero.getpV());
 			this.compteurInvincibiliteHero = 50;
 		} else if (this.compteurInvincibiliteHero != 0) {
 			this.compteurInvincibiliteHero--;
