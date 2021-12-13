@@ -57,6 +57,20 @@ public class Room {
 		} else if (this.compteurInvincibiliteHero != 0) {
 			this.compteurInvincibiliteHero--;
 		}
+
+		for (int i = 0; i < hero.getLstLarme().size(); i++) {
+			if (Physics.rectangleCollision(this.hero.getLstLarme().get(i).getPosition(),
+					this.hero.getLstLarme().get(i).getSize(), this.spider.getPosition(), this.spider.getSize())) {
+				this.spider.retirePV(this.hero.getLstLarme().get(i).getDegats());
+				this.hero.getLstLarme().remove(i);
+
+			} else if (Physics.rectangleCollision(this.hero.getLstLarme().get(i).getPosition(),
+					this.hero.getLstLarme().get(i).getSize(), this.fly.getPosition(), this.fly.getSize())) {
+				this.fly.retirePV(this.hero.getLstLarme().get(i).getDegats());
+				this.hero.getLstLarme().remove(i);
+			}
+
+		}
 	}
 
 	/**
@@ -92,13 +106,13 @@ public class Room {
 		fly.drawGameObject();
 		for (int i = 0; i < hero.getLstLarme().size(); i++) {
 			if (hero.getLstLarme().get(i).getPortee() > 0) {
-			hero.getLstLarme().get(i).updateGameObject();
-			System.out.println("Portee : "+hero.getLstLarme().get(i).getPortee());
-			hero.getLstLarme().get(i).drawGameObject();
-			}else  {
+				hero.getLstLarme().get(i).updateGameObject();
+				System.out.println("Portee : " + hero.getLstLarme().get(i).getPortee());
+				hero.getLstLarme().get(i).drawGameObject();
+			} else {
 				hero.getLstLarme().remove(i);
 			}
-			
+
 		}
 	}
 

@@ -25,13 +25,14 @@ public class Fly extends Monstre {
 
 	/**
 	 * Methode qui retire les point de vie d'une mouche
+	 * @param i 
 	 * 
 	 * @implNote Methode qui aurait dans le futur un parametre projectile indiquant
 	 *           combien de pv retiré suivant l'attaque reçu
 	 */
-	public void retirePV() {
+	public void retirePV(int i) {
 		// TODO: rajouter parametre pour retirer n PV
-		setPtDeVie(super.getPtDeVie() - 1);
+		setPtDeVie(super.getPtDeVie() - i);
 	}
 
 	/**

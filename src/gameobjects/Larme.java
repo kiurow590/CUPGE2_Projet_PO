@@ -11,6 +11,7 @@ public class Larme {
 	private double speed;
 	private Vector2 direction;
 	private int portee;
+	private int degats;
 
 	/**
 	 * 
@@ -21,7 +22,7 @@ public class Larme {
 	 * @param direction
 	 * @param portee
 	 */
-	public Larme(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee) {
+	public Larme(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee, int degats) {
 		super();
 		this.position = position;
 		this.size = size;
@@ -29,6 +30,7 @@ public class Larme {
 		this.speed = speed;
 		this.direction = direction;
 		this.portee = portee;
+		this.degats = degats;
 	}
 
 	/**
@@ -138,4 +140,13 @@ public class Larme {
 		this.portee = portee;
 	}
 
+	public int getDegats() {
+		return degats;
+	}
+
+	public void setDegats(int degats) {
+		this.degats = degats;
+	}
+
+	
 }

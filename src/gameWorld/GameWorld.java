@@ -87,7 +87,7 @@ public class GameWorld {
 	public void processTire() {
 		if (StdDraw.isKeyPressed(Controls.hitUp)) {
 			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
-					0.01, new Vector2(0, 1), 40);
+					0.01, new Vector2(0, 1), 40, 1);
 
 			hero.creeLarme(e);
 			System.out.println("Tire");
@@ -95,7 +95,7 @@ public class GameWorld {
 		}
 		if (StdDraw.isKeyPressed(Controls.hitDown)) {
 			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
-					0.01, new Vector2(0, -1), 40);
+					0.01, new Vector2(0, -1), 40, 1);
 
 			hero.creeLarme(e);
 			System.out.println("Tire");
@@ -103,7 +103,7 @@ public class GameWorld {
 		}
 		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
 			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
-					0.01, new Vector2(-1, 0), 40);
+					0.01, new Vector2(-1, 0), 40, 1);
 
 			hero.creeLarme(e);
 			System.out.println("Tire");
@@ -111,7 +111,7 @@ public class GameWorld {
 		if (StdDraw.isKeyPressed(Controls.hitRight)) {
 
 			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
-					0.01, new Vector2(1, 0), 40);
+					0.01, new Vector2(1, 0), 40, 1);
 
 			hero.creeLarme(e);
 			System.out.println("Tire");
