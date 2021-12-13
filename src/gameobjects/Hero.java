@@ -15,11 +15,12 @@ public class Hero {
 	private String imagePath;
 	private double speed;
 	private Vector2 direction;
-	
-	private List lstLarme;
+
+	private List<Larme> lstLarme;
 
 	private boolean estInvincible;
 	private int compteurInvincible;
+	private int compteurTir;
 
 	private int pV;
 
@@ -41,9 +42,9 @@ public class Hero {
 		this.estInvincible = false;
 
 		this.compteurInvincible = compteurInvincible;
-
+		this.compteurTir = 20;
 		this.pV = pv;
-		
+
 		lstLarme = new ArrayList<Larme>();
 	}
 
@@ -52,6 +53,10 @@ public class Hero {
 	 */
 	public void updateGameObject() {
 		move();
+		if (this.compteurTir > 0) {
+			this.compteurTir--;
+		}
+
 	}
 
 	public void retirePV(int i) {
@@ -63,6 +68,14 @@ public class Hero {
 
 	public void addPV(int i) {
 		this.pV += i;
+	}
+
+	public void creeLarme(Larme e) {
+		if (this.compteurTir <= 0) {
+			this.lstLarme.add(e);
+			this.compteurTir = 20;
+		}
+
 	}
 
 	/**

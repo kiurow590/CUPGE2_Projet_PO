@@ -90,6 +90,16 @@ public class Room {
 		hero.drawGameObject();
 		spider.drawGameObject();
 		fly.drawGameObject();
+		for (int i = 0; i < hero.getLstLarme().size(); i++) {
+			if (hero.getLstLarme().get(i).getPortee() > 0) {
+			hero.getLstLarme().get(i).updateGameObject();
+			System.out.println("Portee : "+hero.getLstLarme().get(i).getPortee());
+			hero.getLstLarme().get(i).drawGameObject();
+			}else  {
+				hero.getLstLarme().remove(i);
+			}
+			
+		}
 	}
 
 	/**

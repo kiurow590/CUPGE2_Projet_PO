@@ -35,8 +35,10 @@ public class Larme {
 	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
 	 */
 	public void updateGameObject() {
-		move();
-		this.portee--;
+		if (this.portee > 0) {
+			move();
+		}
+
 	}
 
 	/**
@@ -46,7 +48,7 @@ public class Larme {
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
-		direction = new Vector2();
+		this.portee--;
 
 	}
 
