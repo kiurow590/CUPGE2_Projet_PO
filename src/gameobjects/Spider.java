@@ -1,21 +1,12 @@
 package gameobjects;
 
-import java.util.Random;
 
 import libraries.StdDraw;
 import libraries.Vector2;
 
-public class Spider {
+public class Spider extends Monstre {
 
-	private Vector2 position;
-	private Vector2 size;
 	private String imagePath;
-	private double speed;
-	private Vector2 direction;
-	// caracteristique ajout
-	private int ptDeVie;
-	private int degatCorpsACorps;
-
 	private int compteur;
 
 	/**
@@ -27,27 +18,11 @@ public class Spider {
 	 * @param speed     vitesse de la spider
 	 * @param direction direction de deplacement de la spider
 	 */
-	public Spider(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int compteur) {
-		this.position = position;
-		this.size = size;
+	public Spider(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
+			int degatCorpsACorps, int compteur) {
+		super(position, size, speed, direction, ptDeVie, degatCorpsACorps);
 		this.imagePath = imagePath;
-		this.speed = speed;
-		this.direction = direction;
 		this.compteur = compteur;
-		this.degatCorpsACorps = 1;
-	}
-
-	/**
-	 * Methode qui calcul si une araigné est morte
-	 * 
-	 * @return un boolean </br>
-	 *         <ul>
-	 *         <li>true - la spider est morte</li>
-	 *         <li>false - la spider est vivante</li>
-	 *         </ul>
-	 */
-	public boolean isDead() {
-		return this.ptDeVie <= 0;
 	}
 
 	/**
@@ -58,7 +33,7 @@ public class Spider {
 	 */
 	public void retirePV() {
 		// TODO: rajouter parametre pour retirer n PV
-		this.ptDeVie -= 1;
+		setPtDeVie(super.getPtDeVie() - 1);
 	}
 
 	/**
@@ -82,96 +57,24 @@ public class Spider {
 
 	}
 
-	public int getRandomNumber(int min, int max) {
-		return (int) ((Math.random() * (max - min)) + min);
-	}
-
 	/**
 	 * Methode qui mets en mouvement l'araignee
 	 */
 	private void move() {
-		switch ((int) getRandomNumber(0, 4)) {
-		case 0: {
-			if (this.getPosition().getY() < 0.9) {
-				goUpNext();
-			}
-
-			break;
-		}
-		case 1: {
-			if (this.getPosition().getY() > 0.1) {
-				goDownNext();
-			}
-
-			break;
-		}
-		case 2: {
-			if (this.getPosition().getX() < 0.9) {
-				goRightNext();
-			}
-
-			break;
-		}
-		case 3: {
-			if (this.getPosition().getX() > 0.1) {
-				goLeftNext();
-			}
-
-			break;
-		}
-		default:
-			break;
+		double i = Math.random();
+		if (i >= 0 && i < 0.25) {
+			goUpNext();
+		} else if (i >= 0.25 && i < 0.5) {
+			goDownNext();
+		} else if (i >= 0.5 && i < 0.75) {
+			goLeftNext();
+		} else if (i >= 0.75 && i < 1) {
+			goRightNext();
 		}
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
-		direction = new Vector2();
-	}
-
-	/*
-	 * Moving from key inputs. Direction vector is later normalised.
-	 */
-	public void goUpNext() {
-		getDirection().addY(7);
-	}
-
-	public void goDownNext() {
-		getDirection().addY(-7);
-	}
-
-	public void goLeftNext() {
-		getDirection().addX(-7);
-	}
-
-	public void goRightNext() {
-		getDirection().addX(7);
-	}
-
-	/**
-	 * Methode qui normalise le vecteur direction du personnage
-	 * 
-	 * @return le vexteur normaliser
-	 */
-	public Vector2 getNormalizedDirection() {
-		Vector2 normalizedVector = new Vector2(direction);
-		normalizedVector.euclidianNormalize(speed);
-		return normalizedVector;
-	}
-
-	public Vector2 getPosition() {
-		return position;
-	}
-
-	public void setPosition(Vector2 position) {
-		this.position = position;
-	}
-
-	public Vector2 getSize() {
-		return size;
-	}
-
-	public void setSize(Vector2 size) {
-		this.size = size;
+		super.setDirection(new Vector2());
 	}
 
 	public String getImagePath() {
@@ -182,22 +85,6 @@ public class Spider {
 		this.imagePath = imagePath;
 	}
 
-	public double getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
-
-	public Vector2 getDirection() {
-		return direction;
-	}
-
-	public void setDirection(Vector2 direction) {
-		this.direction = direction;
-	}
-
 	public int getCompteur() {
 		return compteur;
 	}
@@ -206,21 +93,4 @@ public class Spider {
 		this.compteur = compteur;
 	}
 
-	public int getPtDeVie() {
-		return ptDeVie;
-	}
-
-	public void setPtDeVie(int ptDeVie) {
-		this.ptDeVie = ptDeVie;
-	}
-
-	public int getDegatCorpsACorps() {
-		return degatCorpsACorps;
-	}
-
-	public void setDegatCorpsACorps(int degatCorpsACorps) {
-		this.degatCorpsACorps = degatCorpsACorps;
-	}
-
-	
 }

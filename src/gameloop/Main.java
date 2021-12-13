@@ -19,7 +19,7 @@ public class Main {
 				ImagePaths.ISAAC, 5, 6);
 
 		Spider spider = new Spider(new Vector2(0.2, 0.5), RoomInfos.TILE_SIZE.scalarMultiplication(0.4),
-				ImagePaths.SPIDER, 0.01, new Vector2(), 40);
+				ImagePaths.SPIDER, 0.01, new Vector2(), 5, 1, 40);
 
 		Fly fly = new Fly(new Vector2(0.8, 0.8), RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.007,
 				new Vector2(), 2, 1);
