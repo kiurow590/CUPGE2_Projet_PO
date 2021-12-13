@@ -48,7 +48,10 @@ public class Hero {
 	}
 
 	public void retirePV(int i) {
-		this.pV -= i;
+		if (!this.estInvincible) {
+			this.pV -= i;
+		}
+
 	}
 
 	public void addPV(int i) {
