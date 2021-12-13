@@ -34,7 +34,7 @@ public class GameWorld {
 	}
 
 	public boolean gameOver() {
-		return false;
+		return hero.getpV() <= 0;
 	}
 
 	public void updateGameObjects() {
@@ -67,6 +67,11 @@ public class GameWorld {
 		}
 		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.1) {
 			hero.goLeftNext();
+
+		}
+
+		if (StdDraw.isKeyPressed(Controls.invincible)) {
+			hero.modeInvincible();
 
 		}
 	}

@@ -34,6 +34,7 @@ public class Spider {
 		this.speed = speed;
 		this.direction = direction;
 		this.compteur = compteur;
+		this.degatCorpsACorps = 1;
 	}
 
 	/**
@@ -205,4 +206,21 @@ public class Spider {
 		this.compteur = compteur;
 	}
 
+	public int getPtDeVie() {
+		return ptDeVie;
+	}
+
+	public void setPtDeVie(int ptDeVie) {
+		this.ptDeVie = ptDeVie;
+	}
+
+	public int getDegatCorpsACorps() {
+		return degatCorpsACorps;
+	}
+
+	public void setDegatCorpsACorps(int degatCorpsACorps) {
+		this.degatCorpsACorps = degatCorpsACorps;
+	}
+
+	
 }

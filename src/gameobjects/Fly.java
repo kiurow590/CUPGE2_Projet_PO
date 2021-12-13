@@ -90,7 +90,6 @@ public class Fly {
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
 		direction = new Vector2();
-		System.out.println(this.position.getX() + "," + this.position.getY());
 	}
 
 	/*

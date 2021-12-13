@@ -13,6 +13,11 @@ public class Hero {
 	private double speed;
 	private Vector2 direction;
 
+	private boolean estInvincible;
+	private int compteurInvincible;
+
+	private int pV;
+
 	/**
 	 * Constructeur Hero
 	 * 
@@ -21,12 +26,18 @@ public class Hero {
 	 * @param speed     vitesse de deplacement
 	 * @param imagePath image du personnage
 	 */
-	public Hero(Vector2 position, Vector2 size, double speed, String imagePath) {
+	public Hero(Vector2 position, Vector2 size, double speed, String imagePath, int compteurInvincible, int pv) {
 		this.position = position;
 		this.size = size;
 		this.speed = speed;
 		this.imagePath = imagePath;
 		this.direction = new Vector2();
+
+		this.estInvincible = false;
+
+		this.compteurInvincible = compteurInvincible;
+
+		this.pV = pv;
 	}
 
 	/**
@@ -34,6 +45,14 @@ public class Hero {
 	 */
 	public void updateGameObject() {
 		move();
+	}
+
+	public void retirePV(int i) {
+		this.pV -= i;
+	}
+
+	public void addPV(int i) {
+		this.pV += i;
 	}
 
 	/**
@@ -53,6 +72,23 @@ public class Hero {
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
+	}
+
+	/**
+	 * Passe le hero en mode invincible ou pas
+	 */
+	public void modeInvincible() {
+		if (!this.estInvincible && this.compteurInvincible == 0) {
+			setEstInvincible(true);
+			System.out.println("Dobby est invincible");
+			this.compteurInvincible = 5;
+		} else if (this.estInvincible && this.compteurInvincible == 0) {
+			setEstInvincible(false);
+			this.compteurInvincible = 5;
+			System.out.println("Dobby est une merde");
+		} else {
+			this.compteurInvincible--;
+		}
 	}
 
 	/*
@@ -127,4 +163,21 @@ public class Hero {
 	public void setDirection(Vector2 direction) {
 		this.direction = direction;
 	}
+
+	public boolean isEstInvincible() {
+		return estInvincible;
+	}
+
+	public void setEstInvincible(boolean estInvincible) {
+		this.estInvincible = estInvincible;
+	}
+
+	public int getpV() {
+		return pV;
+	}
+
+	public void setpV(int pV) {
+		this.pV = pV;
+	}
+
 }

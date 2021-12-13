@@ -3,6 +3,7 @@ package gameWorld;
 import gameobjects.Fly;
 import gameobjects.Hero;
 import gameobjects.Spider;
+import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
@@ -15,8 +16,10 @@ public class Room {
 	private Hero hero;
 
 	private Spider spider;
-	
+
 	private Fly fly;
+
+	private int compteurInvincibiliteHero;
 
 	/**
 	 * Constructeur de room
@@ -27,6 +30,7 @@ public class Room {
 		this.hero = hero;
 		this.spider = spider;
 		this.fly = fly;
+		this.compteurInvincibiliteHero = 10;
 	}
 
 	/*
@@ -35,6 +39,30 @@ public class Room {
 	public void updateRoom() {
 		makeHeroPlay();
 		makeMonsterPlay();
+		collisionReport();
+
+	}
+
+	public void collisionReport() {
+		System.out.println(Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
+				this.spider.getPosition(), this.spider.getSize()));
+
+		System.out.println(Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
+				this.fly.getPosition(), this.fly.getSize()));
+		System.out.println(this.compteurInvincibiliteHero);
+		if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
+				this.hero.getSize(), this.spider.getPosition(), this.spider.getSize())) {
+			this.hero.retirePV(this.spider.getDegatCorpsACorps());
+			System.out.println(this.hero.getpV());
+			this.compteurInvincibiliteHero = 50;
+		} else if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
+				this.hero.getSize(), this.fly.getPosition(), this.fly.getSize())) {
+			this.hero.retirePV(this.fly.getDegatCorpsACorps());
+			System.out.println(this.hero.getpV());
+			this.compteurInvincibiliteHero = 50;
+		} else if (this.compteurInvincibiliteHero != 0) {
+			this.compteurInvincibiliteHero--;
+		}
 	}
 
 	/**
@@ -43,7 +71,7 @@ public class Room {
 	private void makeHeroPlay() {
 		hero.updateGameObject();
 	}
-	
+
 	/**
 	 * met a jour le monstre
 	 */
