@@ -40,6 +40,7 @@ public class Room {
 		makeHeroPlay();
 		makeMonsterPlay();
 		collisionReport();
+		//ok
 
 	}
 
