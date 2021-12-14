@@ -35,7 +35,7 @@ public abstract class Monstre {
 	public boolean isDead() {
 		return this.ptDeVie <= 0;
 	}
-	
+
 	/**
 	 * Methode qui normalise le vecteur direction du personnage
 	 * 
@@ -46,6 +46,24 @@ public abstract class Monstre {
 		normalizedVector.euclidianNormalize(speed);
 		return normalizedVector;
 	}
+
+	/**
+	 * Methode qui retire les point de vie d'un monstre
+	 * 
+	 * @param i
+	 * 
+	 */
+	public abstract void retirePV(int i);
+
+	/**
+	 * Methode qui dessine la mouche dans le jeu
+	 */
+	public abstract void drawGameObject();
+
+	/**
+	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
+	 */
+	public abstract void updateGameObject(Hero e);
 
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.

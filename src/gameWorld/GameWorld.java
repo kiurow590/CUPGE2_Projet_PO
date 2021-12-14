@@ -1,6 +1,7 @@
 package gameWorld;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import gameobjects.Fly;
 import gameobjects.Hero;
@@ -11,6 +12,7 @@ import libraries.Vector2;
 import resources.Controls;
 import resources.ImagePaths;
 import resources.RoomInfos;
+import gameobjects.*;
 
 /**
  * 
@@ -23,6 +25,8 @@ public class GameWorld {
 	private Spider spider;
 	private Fly fly;
 
+	private List<Monstre> lsMonster;
+
 	/**
 	 * Constructeur de monde
 	 * 
@@ -32,7 +36,10 @@ public class GameWorld {
 		this.hero = hero;
 		this.spider = spider;
 		this.fly = fly;
-		currentRoom = new Room(hero, spider, fly);
+		this.lsMonster = new ArrayList<Monstre>();
+		this.lsMonster.add(spider);
+		this.lsMonster.add(fly);
+		currentRoom = new Room(hero, this.lsMonster);
 	}
 
 	public void processUserInput() {
@@ -79,7 +86,6 @@ public class GameWorld {
 
 		if (StdDraw.isKeyPressed(Controls.invincible)) {
 			hero.modeInvincible();
-
 		}
 
 	}

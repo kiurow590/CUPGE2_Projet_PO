@@ -23,29 +23,19 @@ public class Fly extends Monstre {
 		this.imagePath = imagePath;
 	}
 
-	/**
-	 * Methode qui retire les point de vie d'une mouche
-	 * @param i 
-	 * 
-	 * @implNote Methode qui aurait dans le futur un parametre projectile indiquant
-	 *           combien de pv retiré suivant l'attaque reçu
-	 */
+	@Override
 	public void retirePV(int i) {
 		// TODO: rajouter parametre pour retirer n PV
 		setPtDeVie(super.getPtDeVie() - i);
 	}
 
-	/**
-	 * Methode qui dessine la mouche dans le jeu
-	 */
+	@Override
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
 	}
 
-	/**
-	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
-	 */
+	@Override
 	public void updateGameObject(Hero e) {
 
 		move(e);

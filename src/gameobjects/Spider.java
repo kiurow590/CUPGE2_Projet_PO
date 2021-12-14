@@ -1,6 +1,5 @@
 package gameobjects;
 
-
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -25,29 +24,20 @@ public class Spider extends Monstre {
 		this.compteur = compteur;
 	}
 
-	/**
-	 * Methode qui retire les point de vie d'une araignee
-	 * 
-	 * @implNote Methode qui aurait dans le futur un parametre projectile indiquant
-	 *           combien de pv retiré suivant l'attaque reçu
-	 */
+	@Override
 	public void retirePV(int i) {
 		// TODO: rajouter parametre pour retirer n PV
 		setPtDeVie(super.getPtDeVie() - i);
 	}
 
-	/**
-	 * Methode qui dessine l araignee dans le jeu
-	 */
+	@Override
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
 	}
 
-	/**
-	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
-	 */
-	public void updateGameObject() {
+	@Override
+	public void updateGameObject(Hero e) {
 		if (this.compteur == 0) {
 			move();
 			this.compteur = 40;

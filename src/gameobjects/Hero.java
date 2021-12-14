@@ -55,8 +55,12 @@ public class Hero {
 		move();
 		if (this.compteurTir > 0) {
 			this.compteurTir--;
-		}
 
+		}
+		if (this.compteurInvincible > 0) {
+			this.compteurInvincible--;
+
+		}
 	}
 
 	public void retirePV(int i) {
@@ -103,15 +107,12 @@ public class Hero {
 	public void modeInvincible() {
 		if (!this.estInvincible && this.compteurInvincible == 0) {
 			setEstInvincible(true);
-			System.out.println("Dobby est invincible");
-			this.compteurInvincible = 5;
+			this.compteurInvincible = 10;
 		} else if (this.estInvincible && this.compteurInvincible == 0) {
 			setEstInvincible(false);
-			this.compteurInvincible = 5;
-			System.out.println("Dobby est une merde");
-		} else {
-			this.compteurInvincible--;
+			this.compteurInvincible = 10;
 		}
+
 	}
 
 	/*
