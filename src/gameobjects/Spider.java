@@ -1,5 +1,7 @@
 package gameobjects;
 
+import java.util.List;
+
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -70,7 +72,7 @@ public class Spider extends Monstre {
 	/**
 	 * GETTERS / SETTERS
 	 */
-	
+
 	public String getImagePath() {
 		return imagePath;
 	}

@@ -1,5 +1,7 @@
 package gameobjects;
 
+import java.util.List;
+
 import libraries.Vector2;
 
 public abstract class Monstre {
@@ -72,6 +74,7 @@ public abstract class Monstre {
 
 	/**
 	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
+	 * @param lsMonster 
 	 */
 	public abstract void updateGameObject(Hero e);
 
