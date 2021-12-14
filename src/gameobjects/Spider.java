@@ -67,6 +67,10 @@ public class Spider extends Monstre {
 		super.setDirection(new Vector2());
 	}
 
+	/**
+	 * GETTERS / SETTERS
+	 */
+	
 	public String getImagePath() {
 		return imagePath;
 	}

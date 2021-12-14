@@ -25,12 +25,21 @@ public class Hero {
 	private int pV;
 
 	/**
-	 * Constructeur Hero
+	 * Constructeur de personnage
 	 * 
-	 * @param position  position du hero
-	 * @param size      taille du hero
-	 * @param speed     vitesse de deplacement
-	 * @param imagePath image du personnage
+	 * @param position           position initiale du personnage
+	 * @param size               taille du personnage
+	 * @param speed              vitesse du personnage
+	 * @param imagePath          Image du personnage
+	 * @param compteurInvincible compteur d'invincibilité du personnage :
+	 *                           <ul>
+	 *                           <li>sois le perso est toucher --> le temps ou le
+	 *                           perso est invulneralble</li>
+	 *                           <li>sois le perso est invincible --> le temps que
+	 *                           l'on doit attendre pour pouvoir reappuyer sur la
+	 *                           touche</li>
+	 *                           </ul>
+	 * @param pv                 pv du perso
 	 */
 	public Hero(Vector2 position, Vector2 size, double speed, String imagePath, int compteurInvincible, int pv) {
 		this.position = position;
@@ -63,6 +72,11 @@ public class Hero {
 		}
 	}
 
+	/**
+	 * Methode qui retire des pv au personnage
+	 * 
+	 * @param i valeur de pv retiré
+	 */
 	public void retirePV(int i) {
 		if (!this.estInvincible) {
 			this.pV -= i;
@@ -70,10 +84,21 @@ public class Hero {
 
 	}
 
+	/**
+	 * Methode qui ajoute des PV au personnage
+	 * 
+	 * @param i la valeur de pv a rajouter
+	 */
 	public void addPV(int i) {
 		this.pV += i;
 	}
 
+	/**
+	 * Methode qui creer une larme et qui la stock dans la liste de larme du
+	 * personnage
+	 * 
+	 * @param e larme
+	 */
 	public void creeLarme(Larme e) {
 		if (this.compteurTir <= 0) {
 			this.lstLarme.add(e);
@@ -148,6 +173,7 @@ public class Hero {
 	/*
 	 * Getters and Setters
 	 */
+	
 	public Vector2 getPosition() {
 		return position;
 	}

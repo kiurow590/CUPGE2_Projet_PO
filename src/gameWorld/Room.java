@@ -37,14 +37,18 @@ public class Room {
 		initMonster();
 	}
 
+	/**
+	 * Methode qui initialise le nb de monstre au demarrage de la room
+	 */
 	private void initMonster() {
 		for (int i = 0; i < 4; i++) {
 			if (Math.random() < 0.5) {
-				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random()), new Vector2(0.05, 0.05),
-						ImagePaths.SPIDER, 0.02, new Vector2(), 5, 1, 40));
+				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random()),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.SPIDER, 0.02, new Vector2(), 5, 1,
+						40));
 			} else {
-				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random()), new Vector2(0.05, 0.05),
-						ImagePaths.FLY, 0.005, new Vector2(), 5, 1));
+				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random()),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.005, new Vector2(), 5, 1));
 
 			}
 		}
@@ -61,6 +65,9 @@ public class Room {
 
 	}
 
+	/**
+	 * Methode qui retire des listes tous les monstre qui sont supposer mort
+	 */
 	public void rammasseMonstreMort() {
 		for (int i = 0; i < this.lsMonster.size(); i++) {
 			if (this.lsMonster.get(i).getPtDeVie() <= 0) {
@@ -71,6 +78,9 @@ public class Room {
 
 	}
 
+	/**
+	 * Methode qui gere les collision entre differente entité
+	 */
 	public void collisionReport() {
 
 		for (int i = 0; i < this.lsMonster.size(); i++) {
@@ -95,7 +105,6 @@ public class Room {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-				
 
 			}
 

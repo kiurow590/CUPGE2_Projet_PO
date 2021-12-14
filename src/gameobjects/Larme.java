@@ -14,15 +14,25 @@ public class Larme {
 	private int degats;
 
 	/**
+	 * Constructeur de larme
 	 * 
-	 * @param position
-	 * @param size
-	 * @param imagePath
-	 * @param speed
-	 * @param direction
-	 * @param portee
+	 * @param position  position initiale de la larme
+	 * @param size      taille de la larme
+	 * @param imagePath image representant la larme
+	 * @param speed     vitesse de la larme
+	 * @param direction direction de la larme --> 4 cas de figure :
+	 *                  <ul>
+	 *                  <li>(1,0) --> la larme sera en mouvement vers la gauche</li>
+	 *                  <li>(-1,0) --> la larme sera en mouvement vers la droite
+	 *                  </li>
+	 *                  <li>(0,1) --> la larme sera en mouvement vers le haut</li>
+	 *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
+	 *                  </ul>
+	 * @param portee    porté de la larme --> la distance max quelle peut parcourir
+	 * @param degats    les degats que la larme engendre
 	 */
-	public Larme(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee, int degats) {
+	public Larme(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee,
+			int degats) {
 		super();
 		this.position = position;
 		this.size = size;
@@ -44,7 +54,7 @@ public class Larme {
 	}
 
 	/**
-	 * Methode qui mets en mouvement le personnage
+	 * Methode qui mets en mouvement de la larme
 	 */
 	private void move() {
 		Vector2 normalizedDirection = getNormalizedDirection();
@@ -55,7 +65,7 @@ public class Larme {
 	}
 
 	/**
-	 * Methode qui dessine le personnage dans le jeu
+	 * Methode qui dessine la larme dans le jeu
 	 */
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
@@ -63,9 +73,9 @@ public class Larme {
 	}
 
 	/**
-	 * Methode qui normalise le vecteur direction du personnage
+	 * Methode qui normalise le vecteur direction de la larme
 	 * 
-	 * @return le vexteur normaliser
+	 * @return le vecteur normaliser
 	 */
 	public Vector2 getNormalizedDirection() {
 		Vector2 normalizedVector = new Vector2(direction);
@@ -91,6 +101,10 @@ public class Larme {
 	public void goRightNext() {
 		getDirection().addX(1);
 	}
+	
+	/**
+	 * GETTERS / SETTERS
+	 */
 
 	public Vector2 getPosition() {
 		return position;
@@ -148,5 +162,4 @@ public class Larme {
 		this.degats = degats;
 	}
 
-	
 }

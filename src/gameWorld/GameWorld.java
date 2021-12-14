@@ -23,7 +23,6 @@ public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
 
-
 	/**
 	 * Constructeur de monde
 	 * 
@@ -34,28 +33,50 @@ public class GameWorld {
 		currentRoom = new Room(hero);
 	}
 
+	/**
+	 * Methode qui gere les entree de l'utilisateur
+	 */
 	public void processUserInput() {
 		processKeysForMovement();
 		processTire();
 	}
 
+	/**
+	 * Methode qui gere si le jeu est perdu ou pas
+	 * 
+	 * @return </br>
+	 * 
+	 *         <ul>
+	 *         <li>true -> la partie est perdu</li>
+	 *         <li>false -> la partie est pas encore perdu ou gagner</li>
+	 *         </ul>
+	 */
 	public boolean gameOver() {
 		return hero.getpV() <= 0;
 	}
 
+	/**
+	 * Methode mettant a jour la room
+	 */
 	public void updateGameObjects() {
 		currentRoom.updateRoom();
 	}
 
+	/**
+	 * Methode dessinant la room
+	 */
 	public void drawGameObjects() {
 		currentRoom.drawRoom();
 	}
 
 	/**
-	 * Keys processing. <br/>
+	 * Methode qui gère les entre pour mettre en mouvement le personnage <br/>
 	 * Managed <i>keys</i> :
 	 * <ul>
 	 * <li>key UP</li>
+	 * <li>key Down</li>
+	 * <li>key Left</li>
+	 * <li>key Right</li>
 	 * </ul>
 	 */
 	private void processKeysForMovement() {
@@ -82,13 +103,22 @@ public class GameWorld {
 
 	}
 
+	/**
+	 * Methode qui gère les entre pour mettre tiré une larme <br/>
+	 * Managed <i>keys</i> :
+	 * <ul>
+	 * <li>key UP</li>
+	 * <li>key Down</li>
+	 * <li>key Left</li>
+	 * <li>key Right</li>
+	 * </ul>
+	 */
 	public void processTire() {
 		if (StdDraw.isKeyPressed(Controls.hitUp)) {
 			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
 					0.01, new Vector2(0, 1), 40, 1);
 
 			hero.creeLarme(e);
-			System.out.println("Tire");
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitDown)) {
@@ -96,7 +126,6 @@ public class GameWorld {
 					0.01, new Vector2(0, -1), 40, 1);
 
 			hero.creeLarme(e);
-			System.out.println("Tire");
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
@@ -104,7 +133,6 @@ public class GameWorld {
 					0.01, new Vector2(-1, 0), 40, 1);
 
 			hero.creeLarme(e);
-			System.out.println("Tire");
 		}
 		if (StdDraw.isKeyPressed(Controls.hitRight)) {
 
@@ -112,7 +140,6 @@ public class GameWorld {
 					0.01, new Vector2(1, 0), 40, 1);
 
 			hero.creeLarme(e);
-			System.out.println("Tire");
 		}
 	}
 

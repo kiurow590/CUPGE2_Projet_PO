@@ -13,6 +13,16 @@ public abstract class Monstre {
 	private int ptDeVie;
 	private int degatCorpsACorps;
 
+	/**
+	 * Constructeur de monstre
+	 * 
+	 * @param position         position initiale du monstre
+	 * @param size             taille du monstre
+	 * @param speed            vitesse du monstre
+	 * @param direction        direction initale du monstre --> souvent null
+	 * @param ptDeVie          point de vie du monstre
+	 * @param degatCorpsACorps degats du monstre au corps a corps
+	 */
 	public Monstre(Vector2 position, Vector2 size, double speed, Vector2 direction, int ptDeVie, int degatCorpsACorps) {
 		this.position = position;
 		this.size = size;
@@ -84,6 +94,11 @@ public abstract class Monstre {
 		getDirection().addX(1);
 	}
 
+	
+	/**
+	 * GETTERS / SETTERS
+	 */
+	
 	public Vector2 getPosition() {
 		return position;
 	}

@@ -9,13 +9,14 @@ public class Fly extends Monstre {
 	/**
 	 * Constructeur de fly
 	 * 
-	 * @param position
-	 * @param size
-	 * @param imagePath
-	 * @param speed
-	 * @param direction
-	 * @param ptDeVie
-	 * @param degatCorpsACorps
+	 * @param position         position initiale de lu monstre
+	 * @param size             taille du monstre
+	 * @param imagePath        image du montre
+	 * @param speed            vitesse du monstre
+	 * @param direction        direction initiale du montre // souvent mise a null a
+	 *                         l'init
+	 * @param ptDeVie          point de vie du monstre
+	 * @param degatCorpsACorps degat au corps a corps du montre
 	 */
 	public Fly(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
 			int degatCorpsACorps) {
@@ -43,9 +44,8 @@ public class Fly extends Monstre {
 	}
 
 	/**
-	 * Methode qui mets en mouvement l'araignee
+	 * Methode qui mets en mouvement le monstre
 	 */
-
 	public void move(Hero e) {
 
 		this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
@@ -56,6 +56,10 @@ public class Fly extends Monstre {
 		setPosition(positionAfterMoving);
 		super.setDirection(new Vector2());
 	}
+	
+	/**
+	 * GETTERS / SETTERS
+	 */
 
 	public String getImagePath() {
 		return imagePath;
