@@ -1,5 +1,6 @@
 package gameWorld;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gameobjects.Fly;
@@ -9,6 +10,7 @@ import gameobjects.Spider;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.ImagePaths;
 import resources.RoomInfos;
 
 public class Room {
@@ -27,10 +29,25 @@ public class Room {
 	 * 
 	 * @param hero personnage de la room
 	 */
-	public Room(Hero hero, List<Monstre> lsMonster) {
+	public Room(Hero hero) {
 		this.hero = hero;
-		this.lsMonster = lsMonster;
+		this.lsMonster = new ArrayList<Monstre>();
 		this.compteurInvincibiliteHero = 10;
+
+		initMonster();
+	}
+
+	private void initMonster() {
+		for (int i = 0; i < 4; i++) {
+			if (Math.random() < 0.5) {
+				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random()), new Vector2(0.05, 0.05),
+						ImagePaths.SPIDER, 0.02, new Vector2(), 5, 1, 40));
+			} else {
+				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random()), new Vector2(0.05, 0.05),
+						ImagePaths.FLY, 0.005, new Vector2(), 5, 1));
+
+			}
+		}
 	}
 
 	/*
@@ -72,11 +89,21 @@ public class Room {
 							this.hero.getLstLarme().get(j).getSize(), this.lsMonster.get(j).getPosition(),
 							this.lsMonster.get(j).getSize())) {
 						this.lsMonster.get(j).retirePV(this.hero.getLstLarme().get(j).getDegats());
-						this.hero.getLstLarme().remove(j);
+						this.hero.getLstLarme().get(i).setPortee(0);
 
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
+				}
+				
+
+			}
+
+			for (int k = 0; k < hero.getLstLarme().size(); k++) {
+
+				if (this.hero.getLstLarme().get(k).getPortee() <= 0) {
+					this.hero.getLstLarme().remove(k);
+
 				}
 
 			}

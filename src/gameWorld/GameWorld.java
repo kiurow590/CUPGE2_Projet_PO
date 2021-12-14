@@ -22,24 +22,16 @@ import gameobjects.*;
 public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
-	private Spider spider;
-	private Fly fly;
 
-	private List<Monstre> lsMonster;
 
 	/**
 	 * Constructeur de monde
 	 * 
 	 * @param hero hero present dans le monde
 	 */
-	public GameWorld(Hero hero, Spider spider, Fly fly) {
+	public GameWorld(Hero hero) {
 		this.hero = hero;
-		this.spider = spider;
-		this.fly = fly;
-		this.lsMonster = new ArrayList<Monstre>();
-		this.lsMonster.add(spider);
-		this.lsMonster.add(fly);
-		currentRoom = new Room(hero, this.lsMonster);
+		currentRoom = new Room(hero);
 	}
 
 	public void processUserInput() {
