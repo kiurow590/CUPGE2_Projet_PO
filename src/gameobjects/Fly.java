@@ -1,10 +1,18 @@
 package gameobjects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.ImagePaths;
+import resources.RoomInfos;
 
 public class Fly extends Monstre {
 	private String imagePath;
+	private List<FlyProjectile> lstProjectile;
+
+	private int compteurTir;
 
 	/**
 	 * Constructeur de fly
@@ -22,6 +30,8 @@ public class Fly extends Monstre {
 			int degatCorpsACorps) {
 		super(position, size, speed, direction, ptDeVie, degatCorpsACorps);
 		this.imagePath = imagePath;
+		this.compteurTir = 50;
+		lstProjectile = new ArrayList<FlyProjectile>();
 	}
 
 	@Override
@@ -40,6 +50,25 @@ public class Fly extends Monstre {
 	public void updateGameObject(Hero e) {
 
 		move(e);
+		if (this.compteurTir > 0) {
+			this.compteurTir--;
+
+		} else {
+
+		}
+	}
+
+	/**
+	 * Methode qui creer une larme et qui la stock dans la liste de larme du
+	 * personnage
+	 * 
+	 * @param e larme
+	 */
+	public void creeLarme(FlyProjectile e) {
+		if (this.compteurTir <= 0) {
+			this.lstProjectile.add(e);
+			this.compteurTir = 50;
+		}
 
 	}
 
@@ -56,7 +85,7 @@ public class Fly extends Monstre {
 		setPosition(positionAfterMoving);
 		super.setDirection(new Vector2());
 	}
-	
+
 	/**
 	 * GETTERS / SETTERS
 	 */
@@ -67,6 +96,22 @@ public class Fly extends Monstre {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public List<FlyProjectile> getLstProjectile() {
+		return lstProjectile;
+	}
+
+	public void setLstProjectile(List<FlyProjectile> lstProjectile) {
+		this.lstProjectile = lstProjectile;
+	}
+
+	public int getCompteurTir() {
+		return compteurTir;
+	}
+
+	public void setCompteurTir(int compteurTir) {
+		this.compteurTir = compteurTir;
 	}
 
 }

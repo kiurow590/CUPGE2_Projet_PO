@@ -63,6 +63,7 @@ public class Room {
 		collisionReport();
 		rammasseMonstreMort();
 		nettoyageLarme();
+		nettoyageProj();
 	}
 
 	/**
@@ -87,6 +88,24 @@ public class Room {
 			if (this.hero.getLstLarme().get(k).getPortee() <= 0) {
 				this.hero.getLstLarme().remove(k);
 
+			}
+
+		}
+	}
+
+	/**
+	 * Methode qui nettoie de l'afficheage les larme
+	 */
+	public void nettoyageProj() {
+		for (int k = 0; k < this.lsMonster.size(); k++) {
+			if (this.lsMonster.get(k) instanceof Fly) {
+				Fly f = (Fly) this.lsMonster.get(k);
+				for (int i = 0; i < f.getLstProjectile().size(); i++) {
+					if (f.getLstProjectile().get(i).getPortee() <= 0) {
+						f.getLstProjectile().remove(i);
+
+					}
+				}
 			}
 
 		}
