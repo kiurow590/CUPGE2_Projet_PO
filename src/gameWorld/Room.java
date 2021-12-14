@@ -176,6 +176,18 @@ public class Room {
 		hero.drawGameObject();
 		for (int i = 0; i < this.lsMonster.size(); i++) {
 			this.lsMonster.get(i).drawGameObject();
+			if (this.lsMonster.get(i) instanceof Fly) {
+				Fly f = (Fly) this.lsMonster.get(i);
+				for (int j = 0; j < f.getLstProjectile().size(); j++) {
+					if (f.getLstProjectile().get(j).getPortee() > 0) {
+						f.getLstProjectile().get(j).updateGameObject();
+						f.getLstProjectile().get(j).drawGameObject();
+					} else {
+						f.getLstProjectile().remove(j);
+					}
+				}
+			}
+
 		}
 
 		for (int i = 0; i < hero.getLstLarme().size(); i++) {
@@ -188,6 +200,7 @@ public class Room {
 			}
 
 		}
+
 	}
 
 	/**
