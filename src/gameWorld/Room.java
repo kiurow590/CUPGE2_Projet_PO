@@ -62,7 +62,7 @@ public class Room {
 		makeMonsterPlay();
 		collisionReport();
 		rammasseMonstreMort();
-
+		nettoyageLarme();
 	}
 
 	/**
@@ -70,12 +70,26 @@ public class Room {
 	 */
 	public void rammasseMonstreMort() {
 		for (int i = 0; i < this.lsMonster.size(); i++) {
-			if (this.lsMonster.get(i).getPtDeVie() <= 0) {
+			if (this.lsMonster.get(i).isDead()) {
 
 				this.lsMonster.remove(i);
 			}
 		}
 
+	}
+
+	/**
+	 * Methode qui nettoie de l'afficheage les larme
+	 */
+	public void nettoyageLarme() {
+		for (int k = 0; k < hero.getLstLarme().size(); k++) {
+
+			if (this.hero.getLstLarme().get(k).getPortee() <= 0) {
+				this.hero.getLstLarme().remove(k);
+
+			}
+
+		}
 	}
 
 	/**
@@ -89,34 +103,23 @@ public class Room {
 					this.hero.getSize(), this.lsMonster.get(i).getPosition(), this.lsMonster.get(i).getSize())) {
 				this.hero.retirePV(this.lsMonster.get(i).getDegatCorpsACorps());
 				this.compteurInvincibiliteHero = 50;
-			} else if (this.compteurInvincibiliteHero != 0) {
+			} else if (this.compteurInvincibiliteHero > 0) {
 				this.compteurInvincibiliteHero--;
 			}
 
 			for (int j = 0; j < hero.getLstLarme().size(); j++) {
 				try {
 					if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
-							this.hero.getLstLarme().get(j).getSize(), this.lsMonster.get(j).getPosition(),
-							this.lsMonster.get(j).getSize())) {
-						this.lsMonster.get(j).retirePV(this.hero.getLstLarme().get(j).getDegats());
-						this.hero.getLstLarme().get(i).setPortee(0);
-
+							this.hero.getLstLarme().get(j).getSize(), this.lsMonster.get(i).getPosition(),
+							this.lsMonster.get(i).getSize())) {
+						this.lsMonster.get(i).retirePV(this.hero.getLstLarme().get(j).getDegats());
+						this.hero.getLstLarme().get(j).setPortee(0);
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
 
 			}
-
-			for (int k = 0; k < hero.getLstLarme().size(); k++) {
-
-				if (this.hero.getLstLarme().get(k).getPortee() <= 0) {
-					this.hero.getLstLarme().remove(k);
-
-				}
-
-			}
-
 		}
 
 	}
