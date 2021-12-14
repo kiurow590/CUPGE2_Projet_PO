@@ -85,6 +85,8 @@ public class FlyProjectile {
 		normalizedVector.euclidianNormalize(speed);
 		return normalizedVector;
 	}
+	
+	
 
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.

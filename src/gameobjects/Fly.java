@@ -55,8 +55,10 @@ public class Fly extends Monstre {
 
 		} else {
 
-			creeLarme(new FlyProjectile(getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.TEAR,
-					0.01, new Vector2(1, 0), 5, 1));
+			creeLarme(new FlyProjectile(getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.01, new Vector2(e.getPosition().getX() - getPosition().getX(),
+							e.getPosition().getY() - getPosition().getY()),
+					30, 1));
 			this.compteurTir = 50;
 		}
 	}

@@ -139,6 +139,17 @@ public class Room {
 				}
 
 			}
+
+			if (this.lsMonster.get(i) instanceof Fly) {
+				Fly f = (Fly) this.lsMonster.get(i);
+				for (int j = 0; j < f.getLstProjectile().size(); j++) {
+					if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
+							f.getLstProjectile().get(j).getPosition(), f.getLstProjectile().get(j).getSize())) {
+						this.hero.retirePV(f.getLstProjectile().get(j).getDegats());
+						f.getLstProjectile().get(j).setPortee(0);
+					}
+				}
+			}
 		}
 
 	}
