@@ -41,4 +41,7 @@ public class ImagePaths
 
 	public static final String WIN_SCREEN = "images/win.jpg";
 	public static final String LOSE_SCREEN = "images/lose.png";
+	public static final String SOL_coté = "images/sol.PNG";
+	public static final String MUR = "images/mur.PNG";
+	public static final String MUR_angle = "images/angle_Mur.PNG";
 }
