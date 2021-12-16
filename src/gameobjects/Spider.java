@@ -39,9 +39,9 @@ public class Spider extends Monstre {
 	}
 
 	@Override
-	public void updateGameObject(Hero e) {
+	public void updateGameObject(Hero e, List<Monstre> lsMonster) {
 		if (this.compteur == 0) {
-			move();
+			move(lsMonster);
 			this.compteur = 40;
 		} else {
 			this.compteur--;
@@ -52,7 +52,11 @@ public class Spider extends Monstre {
 	/**
 	 * Methode qui mets en mouvement l'araignee
 	 */
-	private void move() {
+	private void move(List<Monstre> lsMonster) {
+		/**
+		 * Methode qui mets en mouvement le monstre
+		 */
+
 		double i = Math.random();
 		if (i >= 0 && i < 0.25) {
 			goUpNext();

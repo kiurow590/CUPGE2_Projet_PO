@@ -47,9 +47,9 @@ public class Fly extends Monstre {
 	}
 
 	@Override
-	public void updateGameObject(Hero e) {
+	public void updateGameObject(Hero e, List<Monstre> lsMonster) {
 
-		move(e);
+		move(e, lsMonster);
 		if (this.compteurTir > 0) {
 			this.compteurTir--;
 
@@ -80,8 +80,10 @@ public class Fly extends Monstre {
 	/**
 	 * Methode qui mets en mouvement le monstre
 	 */
-	public void move(Hero e) {
-
+	public void move(Hero e, List<Monstre> lsMonster) {
+		/**
+		 * Collision entre mob ici !
+		 */
 		this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
 				this.getPosition().getY() - e.getPosition().getY()).reverse());
 

@@ -76,7 +76,7 @@ public abstract class Monstre {
 	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
 	 * @param lsMonster 
 	 */
-	public abstract void updateGameObject(Hero e);
+	public abstract void updateGameObject(Hero e, List<Monstre> lsMonster);
 
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.

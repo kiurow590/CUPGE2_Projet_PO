@@ -167,7 +167,7 @@ public class Room {
 	private void makeMonsterPlay() {
 
 		for (int i = 0; i < this.lsMonster.size(); i++) {
-			this.lsMonster.get(i).updateGameObject(this.hero);
+			this.lsMonster.get(i).updateGameObject(this.hero, lsMonster);
 		}
 	}
 
