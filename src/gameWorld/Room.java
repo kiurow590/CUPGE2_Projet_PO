@@ -122,6 +122,7 @@ public class Room {
 					this.hero.getSize(), this.lsMonster.get(i).getPosition(), this.lsMonster.get(i).getSize())) {
 				this.hero.retirePV(this.lsMonster.get(i).getDegatCorpsACorps());
 				this.compteurInvincibiliteHero = 50;
+				this.lsMonster.get(i).setImmobilus(35);
 			} else if (this.compteurInvincibiliteHero > 0) {
 				this.compteurInvincibiliteHero--;
 			}
@@ -151,6 +152,14 @@ public class Room {
 				}
 			}
 		}
+
+//		for (int i = 0; i < lsMonster.size() - 1; i++) {
+//			for (int j = i + 1; j < lsMonster.size(); j++) {
+//				if() {
+//					
+//				}
+//			}
+//		}
 
 	}
 
@@ -204,7 +213,6 @@ public class Room {
 		for (int i = 0; i < hero.getLstLarme().size(); i++) {
 			if (hero.getLstLarme().get(i).getPortee() > 0) {
 				hero.getLstLarme().get(i).updateGameObject();
-				System.out.println("Portee : " + hero.getLstLarme().get(i).getPortee());
 				hero.getLstLarme().get(i).drawGameObject();
 			} else {
 				hero.getLstLarme().remove(i);

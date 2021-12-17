@@ -15,6 +15,8 @@ public abstract class Monstre {
 	private int ptDeVie;
 	private int degatCorpsACorps;
 
+	private int immobilus;
+
 	/**
 	 * Constructeur de monstre
 	 * 
@@ -33,6 +35,7 @@ public abstract class Monstre {
 		this.direction = direction;
 		this.ptDeVie = ptDeVie;
 		this.degatCorpsACorps = degatCorpsACorps;
+		this.immobilus = 0;
 	}
 
 	/**
@@ -74,7 +77,8 @@ public abstract class Monstre {
 
 	/**
 	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
-	 * @param lsMonster 
+	 * 
+	 * @param lsMonster
 	 */
 	public abstract void updateGameObject(Hero e, List<Monstre> lsMonster);
 
@@ -97,11 +101,10 @@ public abstract class Monstre {
 		getDirection().addX(1);
 	}
 
-	
 	/**
 	 * GETTERS / SETTERS
 	 */
-	
+
 	public Vector2 getPosition() {
 		return position;
 	}
@@ -148,6 +151,14 @@ public abstract class Monstre {
 
 	public void setDegatCorpsACorps(int degatCorpsACorps) {
 		this.degatCorpsACorps = degatCorpsACorps;
+	}
+
+	public int getImmobilus() {
+		return immobilus;
+	}
+
+	public void setImmobilus(int immobilus) {
+		this.immobilus = immobilus;
 	}
 
 }

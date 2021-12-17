@@ -99,7 +99,7 @@ public class GameWorld {
 
 		if (StdDraw.isKeyPressed(Controls.invincible)) {
 			hero.modeInvincible();
-		}
+		} 
 
 	}
 

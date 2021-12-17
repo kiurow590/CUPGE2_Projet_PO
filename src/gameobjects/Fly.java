@@ -3,6 +3,7 @@ package gameobjects;
 import java.util.ArrayList;
 import java.util.List;
 
+import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
@@ -49,7 +50,12 @@ public class Fly extends Monstre {
 	@Override
 	public void updateGameObject(Hero e, List<Monstre> lsMonster) {
 
-		move(e, lsMonster);
+		if (this.getImmobilus() <= 0) {
+			move(e, lsMonster);
+
+		} else {
+			this.setImmobilus(getImmobilus() - 1);
+		}
 		if (this.compteurTir > 0) {
 			this.compteurTir--;
 
@@ -84,6 +90,7 @@ public class Fly extends Monstre {
 		/**
 		 * Collision entre mob ici !
 		 */
+
 		this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
 				this.getPosition().getY() - e.getPosition().getY()).reverse());
 
