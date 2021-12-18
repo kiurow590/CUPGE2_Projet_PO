@@ -117,19 +117,25 @@ public class Room {
 	 */
 	public void collisionReport() {
 
+		// Pour chaque monstre (vivant ou mort)
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 
+			// Retrait des points de vie d'Isaac s'il est touche par un monstre
 			if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
 					this.hero.getSize(), this.lsMonster.get(i).getPosition(), this.lsMonster.get(i).getSize())) {
 				this.hero.retirePV(this.lsMonster.get(i).getDegatCorpsACorps());
 				this.compteurInvincibiliteHero = 50;
 				this.lsMonster.get(i).setImmobilus(35);
+				
+			// Decrementation du compteur d'invicibilite d'Isaac
 			} else if (this.compteurInvincibiliteHero > 0) {
 				this.compteurInvincibiliteHero--;
 			}
 
+			// Gestion des larmes tirees par Isaac
 			for (int j = 0; j < hero.getLstLarme().size(); j++) {
 
+				// Gestion de la collision d'une larme
 				if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
 						this.hero.getLstLarme().get(j).getSize(), this.lsMonster.get(i).getPosition(),
 						this.lsMonster.get(i).getSize())) {
@@ -139,6 +145,7 @@ public class Room {
 
 			}
 
+			// Gestion des projectiles de la mouche
 			if (this.lsMonster.get(i) instanceof Fly) {
 				Fly f = (Fly) this.lsMonster.get(i);
 				for (int j = 0; j < f.getLstProjectile().size(); j++) {
