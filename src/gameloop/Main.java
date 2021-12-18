@@ -24,6 +24,7 @@ public class Main {
 		Fly fly = new Fly(new Vector2(0.8, 0.8), RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.007,
 				new Vector2(), 2, 1);
 		GameWorld world = new GameWorld(isaac, spider, fly);
+		
 		initializeDisplay();
 
 		// Main loop of the game

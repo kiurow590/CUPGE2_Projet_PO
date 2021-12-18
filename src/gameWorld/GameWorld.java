@@ -27,6 +27,7 @@ public class GameWorld {
 		this.spider = spider;
 		this.fly = fly;
 		currentRoom = new Room(hero, spider, fly);
+		
 	}
 
 	public void processUserInput() {
@@ -43,6 +44,7 @@ public class GameWorld {
 
 	public void drawGameObjects() {
 		currentRoom.drawRoom();
+		
 	}
 
 	/**
