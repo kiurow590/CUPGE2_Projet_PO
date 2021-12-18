@@ -26,7 +26,7 @@ public class Main {
 			processNextStep(world);
 		}
 
-		if (isaac.getpV() <= 0) {
+		if (isaac.isDead()) {
 			Timer.beginTimer();
 			StdDraw.clear();
 			StdDraw.picture(0.5, 0.5, ImagePaths.LOSE_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,

@@ -34,25 +34,25 @@ public class Physics {
 
 	public static boolean rectangleCollisionHaut(Vector2 pos1, Vector2 size1, Vector2 pos2, Vector2 size2) {
 		double authorizedOverlap = RoomInfos.TILE_WIDTH / 1000;
-		boolean tooFarAbove = pos1.getY() - (size1.getY() / 2) + authorizedOverlap > pos2.getY() + (size2.getY() / 2);
-		return tooFarAbove;
+		return pos1.getY() - (size1.getY() / 2) + authorizedOverlap > pos2.getY() + (size2.getY() / 2);
+
 	}
 
 	public static boolean rectangleCollisionBas(Vector2 pos1, Vector2 size1, Vector2 pos2, Vector2 size2) {
 		double authorizedOverlap = RoomInfos.TILE_WIDTH / 1000;
-		boolean tooFarBelow = pos1.getY() + (size1.getY() / 2) < authorizedOverlap + pos2.getY() - (size2.getY() / 2);
-		return tooFarBelow;
+		return pos1.getY() + (size1.getY() / 2) < authorizedOverlap + pos2.getY() - (size2.getY() / 2);
+
 	}
 
 	public static boolean rectangleCollisionGauche(Vector2 pos1, Vector2 size1, Vector2 pos2, Vector2 size2) {
 		double authorizedOverlap = RoomInfos.TILE_WIDTH / 1000;
-		boolean tooFarLeft = pos1.getX() + (size1.getX() / 2) < authorizedOverlap + pos2.getX() - (size2.getX() / 2);
-		return tooFarLeft;
+		return pos1.getX() + (size1.getX() / 2) < authorizedOverlap + pos2.getX() - (size2.getX() / 2);
+
 	}
 
 	public static boolean rectangleCollisionDroit(Vector2 pos1, Vector2 size1, Vector2 pos2, Vector2 size2) {
 		double authorizedOverlap = RoomInfos.TILE_WIDTH / 1000;
-		boolean tooFarRight = pos1.getX() - (size1.getX() / 2) + authorizedOverlap > pos2.getX() + (size2.getX() / 2);
-		return tooFarRight;
+		return pos1.getX() - (size1.getX() / 2) + authorizedOverlap > pos2.getX() + (size2.getX() / 2);
+
 	}
 }

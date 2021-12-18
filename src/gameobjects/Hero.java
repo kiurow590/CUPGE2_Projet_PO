@@ -85,6 +85,19 @@ public class Hero {
 	}
 
 	/**
+	 * Methode qui calcul si une mouche est morte
+	 * 
+	 * @return un boolean </br>
+	 *         <ul>
+	 *         <li>true - la mouche est morte</li>
+	 *         <li>false - la mouche est vivante</li>
+	 *         </ul>
+	 */
+	public boolean isDead() {
+		return this.pV <= 0;
+	}
+
+	/**
 	 * Methode qui ajoute des PV au personnage
 	 * 
 	 * @param i la valeur de pv a rajouter
@@ -124,6 +137,8 @@ public class Hero {
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
+		StdDraw.setPenColor();
+		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX()/2, getSize().getY()/2);
 	}
 
 	/**
@@ -173,7 +188,7 @@ public class Hero {
 	/*
 	 * Getters and Setters
 	 */
-	
+
 	public Vector2 getPosition() {
 		return position;
 	}

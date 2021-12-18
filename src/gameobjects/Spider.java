@@ -9,7 +9,6 @@ public class Spider extends Monstre {
 
 	private String imagePath;
 	private int compteur;
-	
 
 	/**
 	 * Constructeur de spider
@@ -25,7 +24,7 @@ public class Spider extends Monstre {
 		super(position, size, speed, direction, ptDeVie, degatCorpsACorps);
 		this.imagePath = imagePath;
 		this.compteur = compteur;
-		
+
 	}
 
 	@Override
@@ -38,6 +37,7 @@ public class Spider extends Monstre {
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
+		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
 	}
 
 	@Override
@@ -94,7 +94,5 @@ public class Spider extends Monstre {
 	public void setCompteur(int compteur) {
 		this.compteur = compteur;
 	}
-	
-	
 
 }

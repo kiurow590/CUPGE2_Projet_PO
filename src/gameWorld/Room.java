@@ -153,14 +153,6 @@ public class Room {
 			}
 		}
 
-//		for (int i = 0; i < lsMonster.size() - 1; i++) {
-//			for (int j = i + 1; j < lsMonster.size(); j++) {
-//				if() {
-//					
-//				}
-//			}
-//		}
-
 	}
 
 	/**
