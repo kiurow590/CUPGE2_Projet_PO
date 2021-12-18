@@ -1,10 +1,18 @@
 package gameWorld;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gameobjects.Fly;
 import gameobjects.Hero;
+import gameobjects.Larme;
 import gameobjects.Spider;
 import libraries.StdDraw;
+import libraries.Vector2;
 import resources.Controls;
+import resources.ImagePaths;
+import resources.RoomInfos;
+import gameobjects.*;
 
 /**
  * 
@@ -14,42 +22,86 @@ import resources.Controls;
 public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
-	private Spider spider;
-	private Fly fly;
 
 	/**
 	 * Constructeur de monde
 	 * 
 	 * @param hero hero present dans le monde
 	 */
-	public GameWorld(Hero hero, Spider spider, Fly fly) {
+	public GameWorld(Hero hero) {
 		this.hero = hero;
-		this.spider = spider;
-		this.fly = fly;
-		currentRoom = new Room(hero, spider, fly);
+		currentRoom = new Room(hero);
 	}
 
+	/**
+	 * Methode qui gere les entree de l'utilisateur
+	 */
 	public void processUserInput() {
 		processKeysForMovement();
+		processTire();
+		cheatCode();
 	}
 
+	private void cheatCode() {
+		if (StdDraw.isKeyPressed(Controls.invincible)) {
+			hero.modeInvincible();
+		}
+		if (StdDraw.isKeyPressed(Controls.vitesse)) {
+			hero.moderapide();
+		}
+
+		if (StdDraw.isKeyPressed(Controls.killMonster)) {
+
+			for (int i = 0; currentRoom.getLsMonster() != null && i < currentRoom.getLsMonster().size(); i++) {
+				currentRoom.getLsMonster().get(i).setPtDeVie(-800);
+
+			}
+
+		}
+
+		if (StdDraw.isKeyPressed(Controls.puissance)) {
+
+			hero.modePuissance();
+
+		}
+	}
+
+	/**
+	 * Methode qui gere si le jeu est perdu ou pas
+	 * 
+	 * @return </br>
+	 * 
+	 *         <ul>
+	 *         <li>true -> la partie est perdu</li>
+	 *         <li>false -> la partie est pas encore perdu ou gagner</li>
+	 *         </ul>
+	 */
 	public boolean gameOver() {
 		return hero.getpV() <= 0;
 	}
 
+	/**
+	 * Methode mettant a jour la room
+	 */
 	public void updateGameObjects() {
 		currentRoom.updateRoom();
 	}
 
+	/**
+	 * Methode dessinant la room
+	 */
 	public void drawGameObjects() {
 		currentRoom.drawRoom();
 	}
 
 	/**
-	 * Keys processing. <br/>
+	 * Methode qui gère les entre pour mettre en mouvement le personnage <br/>
 	 * Managed <i>keys</i> :
 	 * <ul>
 	 * <li>key UP</li>
+	 * <li>key Down</li>
+	 * <li>key Left</li>
+	 * <li>key Right</li>
 	 * </ul>
 	 */
 	private void processKeysForMovement() {
@@ -70,9 +122,46 @@ public class GameWorld {
 
 		}
 
-		if (StdDraw.isKeyPressed(Controls.invincible)) {
-			hero.modeInvincible();
+	}
+
+	/**
+	 * Methode qui gère les entre pour mettre tiré une larme <br/>
+	 * Managed <i>keys</i> :
+	 * <ul>
+	 * <li>key UP</li>
+	 * <li>key Down</li>
+	 * <li>key Left</li>
+	 * <li>key Right</li>
+	 * </ul>
+	 */
+	public void processTire() {
+		if (StdDraw.isKeyPressed(Controls.hitUp)) {
+			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.01, new Vector2(0, 1), 40, 1);
+
+			hero.creeLarme(e);
 
 		}
+		if (StdDraw.isKeyPressed(Controls.hitDown)) {
+			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.01, new Vector2(0, -1), 40, 1);
+
+			hero.creeLarme(e);
+
+		}
+		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
+			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.01, new Vector2(-1, 0), 40, 1);
+
+			hero.creeLarme(e);
+		}
+		if (StdDraw.isKeyPressed(Controls.hitRight)) {
+
+			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					0.01, new Vector2(1, 0), 40, 1);
+
+			hero.creeLarme(e);
+		}
 	}
+
 }

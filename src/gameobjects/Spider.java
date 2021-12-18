@@ -1,5 +1,6 @@
 package gameobjects;
 
+import java.util.List;
 
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -23,33 +24,26 @@ public class Spider extends Monstre {
 		super(position, size, speed, direction, ptDeVie, degatCorpsACorps);
 		this.imagePath = imagePath;
 		this.compteur = compteur;
+
 	}
 
-	/**
-	 * Methode qui retire les point de vie d'une araignee
-	 * 
-	 * @implNote Methode qui aurait dans le futur un parametre projectile indiquant
-	 *           combien de pv retiré suivant l'attaque reçu
-	 */
-	public void retirePV() {
+	@Override
+	public void retirePV(int i) {
 		// TODO: rajouter parametre pour retirer n PV
-		setPtDeVie(super.getPtDeVie() - 1);
+		setPtDeVie(super.getPtDeVie() - i);
 	}
 
-	/**
-	 * Methode qui dessine l araignee dans le jeu
-	 */
+	@Override
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
+		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
 	}
 
-	/**
-	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
-	 */
-	public void updateGameObject() {
+	@Override
+	public void updateGameObject(Hero e, List<Monstre> lsMonster) {
 		if (this.compteur == 0) {
-			move();
+			move(lsMonster);
 			this.compteur = 40;
 		} else {
 			this.compteur--;
@@ -60,15 +54,19 @@ public class Spider extends Monstre {
 	/**
 	 * Methode qui mets en mouvement l'araignee
 	 */
-	private void move() {
+	private void move(List<Monstre> lsMonster) {
+		/**
+		 * Methode qui mets en mouvement le monstre
+		 */
+
 		double i = Math.random();
-		if (i >= 0 && i < 0.25) {
+		if (i >= 0 && i < 0.25 && getPosition().getY() < 0.9) {
 			goUpNext();
-		} else if (i >= 0.25 && i < 0.5) {
+		} else if (i >= 0.25 && i < 0.5 && getPosition().getY() > 0.1) {
 			goDownNext();
-		} else if (i >= 0.5 && i < 0.75) {
+		} else if (i >= 0.5 && i < 0.75 && getPosition().getX() > 0.1) {
 			goLeftNext();
-		} else if (i >= 0.75 && i < 1) {
+		} else if (i >= 0.75 && i < 1 && getPosition().getX() < 0.9) {
 			goRightNext();
 		}
 		Vector2 normalizedDirection = getNormalizedDirection();
@@ -76,6 +74,10 @@ public class Spider extends Monstre {
 		setPosition(positionAfterMoving);
 		super.setDirection(new Vector2());
 	}
+
+	/**
+	 * GETTERS / SETTERS
+	 */
 
 	public String getImagePath() {
 		return imagePath;

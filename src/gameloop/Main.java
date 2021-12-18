@@ -16,22 +16,17 @@ public class Main {
 	public static void main(String[] args) {
 		// Hero, world and display initialisation.
 		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,
-				ImagePaths.ISAAC, 5, 6);
+				ImagePaths.ISAAC, 5, 6, 1);
 
-		Spider spider = new Spider(new Vector2(0.2, 0.5), RoomInfos.TILE_SIZE.scalarMultiplication(0.4),
-				ImagePaths.SPIDER, 0.01, new Vector2(), 5, 1, 40);
-
-		Fly fly = new Fly(new Vector2(0.8, 0.8), RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.007,
-				new Vector2(), 2, 1);
-		GameWorld world = new GameWorld(isaac, spider, fly);
+		GameWorld world = new GameWorld(isaac);
 		initializeDisplay();
-
+ 
 		// Main loop of the game
 		while (!world.gameOver()) {
 			processNextStep(world);
 		}
 
-		if (isaac.getpV() <= 0) {
+		if (isaac.isDead()) {
 			Timer.beginTimer();
 			StdDraw.clear();
 			StdDraw.picture(0.5, 0.5, ImagePaths.LOSE_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,

@@ -1,5 +1,7 @@
 package gameobjects;
 
+import java.util.List;
+
 import libraries.Vector2;
 
 public abstract class Monstre {
@@ -13,6 +15,18 @@ public abstract class Monstre {
 	private int ptDeVie;
 	private int degatCorpsACorps;
 
+	private int immobilus;
+
+	/**
+	 * Constructeur de monstre
+	 * 
+	 * @param position         position initiale du monstre
+	 * @param size             taille du monstre
+	 * @param speed            vitesse du monstre
+	 * @param direction        direction initale du monstre --> souvent null
+	 * @param ptDeVie          point de vie du monstre
+	 * @param degatCorpsACorps degats du monstre au corps a corps
+	 */
 	public Monstre(Vector2 position, Vector2 size, double speed, Vector2 direction, int ptDeVie, int degatCorpsACorps) {
 		this.position = position;
 		this.size = size;
@@ -21,6 +35,7 @@ public abstract class Monstre {
 		this.direction = direction;
 		this.ptDeVie = ptDeVie;
 		this.degatCorpsACorps = degatCorpsACorps;
+		this.immobilus = 0;
 	}
 
 	/**
@@ -35,7 +50,7 @@ public abstract class Monstre {
 	public boolean isDead() {
 		return this.ptDeVie <= 0;
 	}
-	
+
 	/**
 	 * Methode qui normalise le vecteur direction du personnage
 	 * 
@@ -46,6 +61,26 @@ public abstract class Monstre {
 		normalizedVector.euclidianNormalize(speed);
 		return normalizedVector;
 	}
+
+	/**
+	 * Methode qui retire les point de vie d'un monstre
+	 * 
+	 * @param i
+	 * 
+	 */
+	public abstract void retirePV(int i);
+
+	/**
+	 * Methode qui dessine la mouche dans le jeu
+	 */
+	public abstract void drawGameObject();
+
+	/**
+	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
+	 * 
+	 * @param lsMonster
+	 */
+	public abstract void updateGameObject(Hero e, List<Monstre> lsMonster);
 
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.
@@ -65,6 +100,10 @@ public abstract class Monstre {
 	public void goRightNext() {
 		getDirection().addX(1);
 	}
+
+	/**
+	 * GETTERS / SETTERS
+	 */
 
 	public Vector2 getPosition() {
 		return position;
@@ -112,6 +151,14 @@ public abstract class Monstre {
 
 	public void setDegatCorpsACorps(int degatCorpsACorps) {
 		this.degatCorpsACorps = degatCorpsACorps;
+	}
+
+	public int getImmobilus() {
+		return immobilus;
+	}
+
+	public void setImmobilus(int immobilus) {
+		this.immobilus = immobilus;
 	}
 
 }

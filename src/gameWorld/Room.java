@@ -1,11 +1,16 @@
 package gameWorld;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gameobjects.Fly;
 import gameobjects.Hero;
+import gameobjects.Monstre;
 import gameobjects.Spider;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.ImagePaths;
 import resources.RoomInfos;
 
 public class Room {
@@ -15,22 +20,38 @@ public class Room {
 	 */
 	private Hero hero;
 
-	private Spider spider;
-
-	private Fly fly;
-
 	private int compteurInvincibiliteHero;
+
+	private List<Monstre> lsMonster;
 
 	/**
 	 * Constructeur de room
 	 * 
 	 * @param hero personnage de la room
 	 */
-	public Room(Hero hero, Spider spider, Fly fly) {
+	public Room(Hero hero) {
 		this.hero = hero;
-		this.spider = spider;
-		this.fly = fly;
+		this.lsMonster = new ArrayList<Monstre>();
 		this.compteurInvincibiliteHero = 10;
+
+		initMonster();
+	}
+
+	/**
+	 * Methode qui initialise le nb de monstre au demarrage de la room
+	 */
+	private void initMonster() {
+		for (int i = 0; i < 4; i++) {
+			if (Math.random() < 0.5) {
+				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random()),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.SPIDER, 0.02, new Vector2(), 5, 1,
+						40));
+			} else {
+				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random()),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.005, new Vector2(), 5, 1));
+
+			}
+		}
 	}
 
 	/*
@@ -40,29 +61,103 @@ public class Room {
 		makeHeroPlay();
 		makeMonsterPlay();
 		collisionReport();
+		rammasseMonstreMort();
+		nettoyageLarme();
+		nettoyageProj();
+	}
+
+	/**
+	 * Methode qui retire des listes tous les monstre qui sont supposer mort
+	 */
+	public void rammasseMonstreMort() {
+
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
+			if (this.lsMonster.get(i).isDead()) {
+
+				this.lsMonster.remove(i);
+			}
+		}
 
 	}
 
-	public void collisionReport() {
-		System.out.println(Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
-				this.spider.getPosition(), this.spider.getSize()));
+	/**
+	 * Methode qui nettoie de l'afficheage les larme
+	 */
+	public void nettoyageLarme() {
+		for (int k = 0; k < hero.getLstLarme().size(); k++) {
 
-		System.out.println(Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
-				this.fly.getPosition(), this.fly.getSize()));
-		System.out.println(this.compteurInvincibiliteHero);
-		if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
-				this.hero.getSize(), this.spider.getPosition(), this.spider.getSize())) {
-			this.hero.retirePV(this.spider.getDegatCorpsACorps());
-			System.out.println(this.hero.getpV());
-			this.compteurInvincibiliteHero = 50;
-		} else if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
-				this.hero.getSize(), this.fly.getPosition(), this.fly.getSize())) {
-			this.hero.retirePV(this.fly.getDegatCorpsACorps());
-			System.out.println(this.hero.getpV());
-			this.compteurInvincibiliteHero = 50;
-		} else if (this.compteurInvincibiliteHero != 0) {
-			this.compteurInvincibiliteHero--;
+			if (this.hero.getLstLarme().get(k).getPortee() <= 0) {
+				this.hero.getLstLarme().remove(k);
+
+			}
+
 		}
+	}
+
+	/**
+	 * Methode qui nettoie de l'afficheage les larme
+	 */
+	public void nettoyageProj() {
+		for (int k = 0; this.lsMonster != null && k < this.lsMonster.size(); k++) {
+			if (this.lsMonster.get(k) instanceof Fly) {
+				Fly f = (Fly) this.lsMonster.get(k);
+				for (int i = 0; i < f.getLstProjectile().size(); i++) {
+					if (f.getLstProjectile().get(i).getPortee() <= 0) {
+						f.getLstProjectile().remove(i);
+
+					}
+				}
+			}
+
+		}
+	}
+
+	/**
+	 * Methode qui gere les collision entre differente entité
+	 */
+	public void collisionReport() {
+
+		// Pour chaque monstre (vivant ou mort)
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
+
+			// Retrait des points de vie d'Isaac s'il est touche par un monstre
+			if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
+					this.hero.getSize(), this.lsMonster.get(i).getPosition(), this.lsMonster.get(i).getSize())) {
+				this.hero.retirePV(this.lsMonster.get(i).getDegatCorpsACorps());
+				this.compteurInvincibiliteHero = 50;
+				this.lsMonster.get(i).setImmobilus(35);
+				
+			// Decrementation du compteur d'invicibilite d'Isaac
+			} else if (this.compteurInvincibiliteHero > 0) {
+				this.compteurInvincibiliteHero--;
+			}
+
+			// Gestion des larmes tirees par Isaac
+			for (int j = 0; j < hero.getLstLarme().size(); j++) {
+
+				// Gestion de la collision d'une larme
+				if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
+						this.hero.getLstLarme().get(j).getSize(), this.lsMonster.get(i).getPosition(),
+						this.lsMonster.get(i).getSize())) {
+					this.lsMonster.get(i).retirePV(this.hero.getLstLarme().get(j).getDegats());
+					this.hero.getLstLarme().get(j).setPortee(0);
+				}
+
+			}
+
+			// Gestion des projectiles de la mouche
+			if (this.lsMonster.get(i) instanceof Fly) {
+				Fly f = (Fly) this.lsMonster.get(i);
+				for (int j = 0; j < f.getLstProjectile().size(); j++) {
+					if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
+							f.getLstProjectile().get(j).getPosition(), f.getLstProjectile().get(j).getSize())) {
+						this.hero.retirePV(f.getLstProjectile().get(j).getDegats());
+						f.getLstProjectile().get(j).setPortee(0);
+					}
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -76,8 +171,11 @@ public class Room {
 	 * met a jour le monstre
 	 */
 	private void makeMonsterPlay() {
-		spider.updateGameObject();
-		fly.updateGameObject(this.hero);
+
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
+			this.lsMonster.get(i).updateGameObject(this.hero, lsMonster);
+		}
+
 	}
 
 	/*
@@ -94,8 +192,32 @@ public class Room {
 			}
 		}
 		hero.drawGameObject();
-		spider.drawGameObject();
-		fly.drawGameObject();
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
+			this.lsMonster.get(i).drawGameObject();
+			if (this.lsMonster.get(i) instanceof Fly) {
+				Fly f = (Fly) this.lsMonster.get(i);
+				for (int j = 0; j < f.getLstProjectile().size(); j++) {
+					if (f.getLstProjectile().get(j).getPortee() > 0) {
+						f.getLstProjectile().get(j).updateGameObject();
+						f.getLstProjectile().get(j).drawGameObject();
+					} else {
+						f.getLstProjectile().remove(j);
+					}
+				}
+			}
+
+		}
+
+		for (int i = 0; i < hero.getLstLarme().size(); i++) {
+			if (hero.getLstLarme().get(i).getPortee() > 0) {
+				hero.getLstLarme().get(i).updateGameObject();
+				hero.getLstLarme().get(i).drawGameObject();
+			} else {
+				hero.getLstLarme().remove(i);
+			}
+
+		}
+
 	}
 
 	/**
@@ -109,4 +231,13 @@ public class Room {
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
+
+	public List<Monstre> getLsMonster() {
+		return lsMonster;
+	}
+
+	public void setLsMonster(List<Monstre> lsMonster) {
+		this.lsMonster = lsMonster;
+	}
+
 }

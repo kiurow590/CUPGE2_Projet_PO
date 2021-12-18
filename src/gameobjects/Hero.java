@@ -1,5 +1,8 @@
 package gameobjects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -13,20 +16,39 @@ public class Hero {
 	private double speed;
 	private Vector2 direction;
 
+	private List<Larme> lstLarme;
+
+	private int degats;
+
 	private boolean estInvincible;
+	private boolean estRapide;
+	private boolean estPuissant;
 	private int compteurInvincible;
+	private int compteurRapide;
+	private int compteurTir;
+	private int compteurPuissance;
 
 	private int pV;
 
 	/**
-	 * Constructeur Hero
+	 * Constructeur de personnage
 	 * 
-	 * @param position  position du hero
-	 * @param size      taille du hero
-	 * @param speed     vitesse de deplacement
-	 * @param imagePath image du personnage
+	 * @param position           position initiale du personnage
+	 * @param size               taille du personnage
+	 * @param speed              vitesse du personnage
+	 * @param imagePath          Image du personnage
+	 * @param compteurInvincible compteur d'invincibilité du personnage :
+	 *                           <ul>
+	 *                           <li>sois le perso est toucher --> le temps ou le
+	 *                           perso est invulneralble</li>
+	 *                           <li>sois le perso est invincible --> le temps que
+	 *                           l'on doit attendre pour pouvoir reappuyer sur la
+	 *                           touche</li>
+	 *                           </ul>
+	 * @param pv                 pv du perso
 	 */
-	public Hero(Vector2 position, Vector2 size, double speed, String imagePath, int compteurInvincible, int pv) {
+	public Hero(Vector2 position, Vector2 size, double speed, String imagePath, int compteurInvincible, int pv,
+			int degats) {
 		this.position = position;
 		this.size = size;
 		this.speed = speed;
@@ -36,8 +58,18 @@ public class Hero {
 		this.estInvincible = false;
 
 		this.compteurInvincible = compteurInvincible;
-
+		this.compteurTir = 20;
 		this.pV = pv;
+
+		lstLarme = new ArrayList<Larme>();
+
+		this.estRapide = false;
+		this.compteurRapide = 0;
+
+		this.estPuissant = false;
+		this.compteurPuissance = 0;
+
+		this.degats = degats;
 	}
 
 	/**
@@ -45,8 +77,29 @@ public class Hero {
 	 */
 	public void updateGameObject() {
 		move();
+		if (this.compteurTir > 0) {
+			this.compteurTir--;
+
+		}
+		if (this.compteurInvincible > 0) {
+			this.compteurInvincible--;
+
+		}
+		if (this.compteurRapide > 0) {
+			this.compteurRapide--;
+
+		}
+		if (this.compteurPuissance > 0) {
+			this.compteurPuissance--;
+
+		}
 	}
 
+	/**
+	 * Methode qui retire des pv au personnage
+	 * 
+	 * @param i valeur de pv retiré
+	 */
 	public void retirePV(int i) {
 		if (!this.estInvincible) {
 			this.pV -= i;
@@ -54,8 +107,41 @@ public class Hero {
 
 	}
 
+	/**
+	 * Methode qui calcul si une mouche est morte
+	 * 
+	 * @return un boolean </br>
+	 *         <ul>
+	 *         <li>true - la mouche est morte</li>
+	 *         <li>false - la mouche est vivante</li>
+	 *         </ul>
+	 */
+	public boolean isDead() {
+		return this.pV <= 0;
+	}
+
+	/**
+	 * Methode qui ajoute des PV au personnage
+	 * 
+	 * @param i la valeur de pv a rajouter
+	 */
 	public void addPV(int i) {
 		this.pV += i;
+	}
+
+	/**
+	 * Methode qui creer une larme et qui la stock dans la liste de larme du
+	 * personnage
+	 * 
+	 * @param e larme
+	 */
+	public void creeLarme(Larme e) {
+		if (this.compteurTir <= 0) {
+			e.setDegats(degats);
+			this.lstLarme.add(e);
+			this.compteurTir = 20;
+		}
+
 	}
 
 	/**
@@ -75,6 +161,8 @@ public class Hero {
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
+		StdDraw.setPenColor();
+		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
 	}
 
 	/**
@@ -83,15 +171,47 @@ public class Hero {
 	public void modeInvincible() {
 		if (!this.estInvincible && this.compteurInvincible == 0) {
 			setEstInvincible(true);
-			System.out.println("Dobby est invincible");
-			this.compteurInvincible = 5;
+			this.compteurInvincible = 10;
 		} else if (this.estInvincible && this.compteurInvincible == 0) {
 			setEstInvincible(false);
-			this.compteurInvincible = 5;
-			System.out.println("Dobby est une merde");
-		} else {
-			this.compteurInvincible--;
+			this.compteurInvincible = 10;
 		}
+
+	}
+
+	/**
+	 * Passe le hero en mode rapide ou pas
+	 */
+	public void moderapide() {
+		if (!this.estRapide && this.compteurRapide == 0) {
+			setEstRapide(true);
+			this.compteurRapide = 40;
+			this.setSpeed(this.speed * 2);
+		} else if (this.estRapide && this.compteurRapide == 0) {
+			setEstRapide(false);
+			this.compteurRapide = 40;
+			this.setSpeed(this.speed / 2);
+		}
+
+	}
+
+	/**
+	 * Passe le hero en mode puissant ou pas
+	 */
+	public void modePuissance() {
+		if (!this.estPuissant && this.compteurPuissance == 0) {
+			setEstPuissant(true);
+			this.compteurPuissance = 40;
+			this.degats = 5000000;
+			System.out.println("Dobby Pete des cul");
+		} else if (this.estRapide && this.compteurRapide == 0) {
+			setEstPuissant(false);
+			this.compteurPuissance = 40;
+			this.degats = 1;
+			System.out.println("Dobby est une merde");
+
+		}
+
 	}
 
 	/*
@@ -127,6 +247,7 @@ public class Hero {
 	/*
 	 * Getters and Setters
 	 */
+
 	public Vector2 getPosition() {
 		return position;
 	}
@@ -181,6 +302,74 @@ public class Hero {
 
 	public void setpV(int pV) {
 		this.pV = pV;
+	}
+
+	public List<Larme> getLstLarme() {
+		return lstLarme;
+	}
+
+	public void setLstLarme(ArrayList<Larme> lstLarme) {
+		this.lstLarme = lstLarme;
+	}
+
+	public boolean getEstRapide() {
+		return estRapide;
+	}
+
+	public void setEstRapide(boolean estRapide) {
+		this.estRapide = estRapide;
+	}
+
+	public int getCompteurInvincible() {
+		return compteurInvincible;
+	}
+
+	public void setCompteurInvincible(int compteurInvincible) {
+		this.compteurInvincible = compteurInvincible;
+	}
+
+	public int getCompteurTir() {
+		return compteurTir;
+	}
+
+	public void setCompteurTir(int compteurTir) {
+		this.compteurTir = compteurTir;
+	}
+
+	public void setLstLarme(List<Larme> lstLarme) {
+		this.lstLarme = lstLarme;
+	}
+
+	public boolean isEstPuissant() {
+		return estPuissant;
+	}
+
+	public void setEstPuissant(boolean estPuissant) {
+		this.estPuissant = estPuissant;
+	}
+
+	public int getCompteurRapide() {
+		return compteurRapide;
+	}
+
+	public void setCompteurRapide(int compteurRapide) {
+		this.compteurRapide = compteurRapide;
+	}
+
+	public int getCompteurPuissance() {
+		return compteurPuissance;
+	}
+
+	public void setCompteurPuissance(int compteurPuissance) {
+		this.compteurPuissance = compteurPuissance;
+	}
+
+	public int getDegats() {
+		return degats;
+	}
+
+	public void setDegats(int degats) {
+		this.degats = degats;
 	}
 
 }
