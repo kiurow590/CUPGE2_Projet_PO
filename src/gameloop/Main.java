@@ -20,7 +20,7 @@ public class Main {
 
 		GameWorld world = new GameWorld(isaac);
 		initializeDisplay();
-
+ 
 		// Main loop of the game
 		while (!world.gameOver()) {
 			processNextStep(world);
