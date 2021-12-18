@@ -39,6 +39,31 @@ public class GameWorld {
 	public void processUserInput() {
 		processKeysForMovement();
 		processTire();
+		cheatCode();
+	}
+
+	private void cheatCode() {
+		if (StdDraw.isKeyPressed(Controls.invincible)) {
+			hero.modeInvincible();
+		}
+		if (StdDraw.isKeyPressed(Controls.vitesse)) {
+			hero.moderapide();
+		}
+
+		if (StdDraw.isKeyPressed(Controls.killMonster)) {
+
+			for (int i = 0; currentRoom.getLsMonster() != null && i < currentRoom.getLsMonster().size(); i++) {
+				currentRoom.getLsMonster().get(i).setPtDeVie(-800);
+
+			}
+
+		}
+
+		if (StdDraw.isKeyPressed(Controls.puissance)) {
+
+			hero.modePuissance();
+
+		}
 	}
 
 	/**
@@ -96,10 +121,6 @@ public class GameWorld {
 			hero.goLeftNext();
 
 		}
-
-		if (StdDraw.isKeyPressed(Controls.invincible)) {
-			hero.modeInvincible();
-		} 
 
 	}
 

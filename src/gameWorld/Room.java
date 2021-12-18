@@ -70,7 +70,8 @@ public class Room {
 	 * Methode qui retire des listes tous les monstre qui sont supposer mort
 	 */
 	public void rammasseMonstreMort() {
-		for (int i = 0; i < this.lsMonster.size(); i++) {
+
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 			if (this.lsMonster.get(i).isDead()) {
 
 				this.lsMonster.remove(i);
@@ -97,7 +98,7 @@ public class Room {
 	 * Methode qui nettoie de l'afficheage les larme
 	 */
 	public void nettoyageProj() {
-		for (int k = 0; k < this.lsMonster.size(); k++) {
+		for (int k = 0; this.lsMonster != null && k < this.lsMonster.size(); k++) {
 			if (this.lsMonster.get(k) instanceof Fly) {
 				Fly f = (Fly) this.lsMonster.get(k);
 				for (int i = 0; i < f.getLstProjectile().size(); i++) {
@@ -116,7 +117,7 @@ public class Room {
 	 */
 	public void collisionReport() {
 
-		for (int i = 0; i < this.lsMonster.size(); i++) {
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 
 			if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
 					this.hero.getSize(), this.lsMonster.get(i).getPosition(), this.lsMonster.get(i).getSize())) {
@@ -128,15 +129,12 @@ public class Room {
 			}
 
 			for (int j = 0; j < hero.getLstLarme().size(); j++) {
-				try {
-					if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
-							this.hero.getLstLarme().get(j).getSize(), this.lsMonster.get(i).getPosition(),
-							this.lsMonster.get(i).getSize())) {
-						this.lsMonster.get(i).retirePV(this.hero.getLstLarme().get(j).getDegats());
-						this.hero.getLstLarme().get(j).setPortee(0);
-					}
-				} catch (Exception e) {
-					// TODO: handle exception
+
+				if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
+						this.hero.getLstLarme().get(j).getSize(), this.lsMonster.get(i).getPosition(),
+						this.lsMonster.get(i).getSize())) {
+					this.lsMonster.get(i).retirePV(this.hero.getLstLarme().get(j).getDegats());
+					this.hero.getLstLarme().get(j).setPortee(0);
 				}
 
 			}
@@ -167,9 +165,10 @@ public class Room {
 	 */
 	private void makeMonsterPlay() {
 
-		for (int i = 0; i < this.lsMonster.size(); i++) {
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 			this.lsMonster.get(i).updateGameObject(this.hero, lsMonster);
 		}
+
 	}
 
 	/*
@@ -186,7 +185,7 @@ public class Room {
 			}
 		}
 		hero.drawGameObject();
-		for (int i = 0; i < this.lsMonster.size(); i++) {
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 			this.lsMonster.get(i).drawGameObject();
 			if (this.lsMonster.get(i) instanceof Fly) {
 				Fly f = (Fly) this.lsMonster.get(i);
@@ -225,4 +224,13 @@ public class Room {
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
+
+	public List<Monstre> getLsMonster() {
+		return lsMonster;
+	}
+
+	public void setLsMonster(List<Monstre> lsMonster) {
+		this.lsMonster = lsMonster;
+	}
+
 }

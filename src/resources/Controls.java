@@ -9,6 +9,10 @@ public class Controls {
 	public static int goRight = Keybinding.keycodeOf('d');
 	public static int goLeft = Keybinding.keycodeOf('q');
 	public static int invincible = Keybinding.keycodeOf('i');
+	public static int vitesse = Keybinding.keycodeOf('l');
+	public static int killMonster = Keybinding.keycodeOf('k');
+
+	public static int puissance = Keybinding.keycodeOf('p');
 
 	public static int hitUp = Keybinding.keycodeOf(SpecialKeys.UP);
 	public static int hitDown = Keybinding.keycodeOf(SpecialKeys.DOWN);
