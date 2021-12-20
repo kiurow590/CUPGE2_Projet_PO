@@ -53,4 +53,15 @@ public class CoeurSup extends PassifObject {
                 "}";
     }
 
+    @Override
+    public void updateHeroPerf(Hero e) {
+
+        if (super.isEstRamasser() == false) {
+            e.setMaxPV(e.getMaxPV() + 1);
+            super.setEstRamasser(true);
+
+        }
+
+    }
+
 }

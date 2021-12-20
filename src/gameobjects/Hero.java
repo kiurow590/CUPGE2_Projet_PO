@@ -17,7 +17,6 @@ public class Hero {
 	private Vector2 direction;
 
 	private List<Larme> lstLarme;
-	private List<Object> lstEquipement;
 	private int degats;
 
 	private boolean estInvincible;
@@ -30,6 +29,9 @@ public class Hero {
 
 	private int pV;
 	private int maxPV;
+
+	private int stackArgent;
+	private int soldePieceMax;
 
 	/**
 	 * Constructeur de personnage
@@ -72,9 +74,10 @@ public class Hero {
 
 		this.degats = degats;
 
-		this.lstEquipement = new ArrayList<>();
-
 		this.maxPV = 6;
+
+		this.stackArgent = 0;
+		soldePieceMax = 50;
 	}
 
 	/**
@@ -377,14 +380,6 @@ public class Hero {
 		this.degats = degats;
 	}
 
-	public List<Object> getLstEquipement() {
-		return this.lstEquipement;
-	}
-
-	public void setLstEquipement(List<Object> lstEquipement) {
-		this.lstEquipement = lstEquipement;
-	}
-
 	public boolean getEstInvincible() {
 		return this.estInvincible;
 	}
@@ -411,6 +406,31 @@ public class Hero {
 
 	public void setMaxPV(int maxPV) {
 		this.maxPV = maxPV;
+	}
+
+	public int getStackArgent() {
+		return this.stackArgent;
+	}
+
+	public void AjoutStackArgent(int stackArgent) {
+		if (this.stackArgent + stackArgent <= soldePieceMax) {
+			this.stackArgent += stackArgent;
+		}
+
+	}
+
+	public void setStackArgent(int stackArgent) {
+
+		this.stackArgent += stackArgent;
+
+	}
+
+	public int getSoldePieceMax() {
+		return this.soldePieceMax;
+	}
+
+	public void setSoldePieceMax(int soldePieceMax) {
+		this.soldePieceMax = soldePieceMax;
 	}
 
 }

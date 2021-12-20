@@ -68,4 +68,13 @@ public class Piece extends ConsommableObject {
                 "}";
     }
 
+    @Override
+    public void updateHeroPerf(Hero e) {
+
+        if (e.getStackArgent() + value <= e.getSoldePieceMax() && super.isEstRamasser() == false) {
+            e.AjoutStackArgent(value);
+            super.setEstRamasser(true);
+        }
+    }
+
 }

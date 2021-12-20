@@ -52,4 +52,14 @@ public class BloodOfMartyr extends PassifObject {
                 "}";
     }
 
+    @Override
+    public void updateHeroPerf(Hero e) {
+
+        if (super.isEstRamasser() == false) {
+            e.setDegats(e.getDegats() + 1);
+            super.setEstRamasser(true);
+
+        }
+    }
+
 }

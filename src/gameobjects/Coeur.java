@@ -56,4 +56,13 @@ public class Coeur extends ConsommableObject {
                 "}";
     }
 
+    @Override
+    public void updateHeroPerf(Hero e) {
+        if (e.getpV() + value <= e.getMaxPV() && super.isEstRamasser() == false) {
+            e.addPV(value);
+            super.setEstRamasser(true);
+        }
+
+    }
+
 }

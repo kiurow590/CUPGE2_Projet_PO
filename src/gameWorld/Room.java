@@ -108,7 +108,7 @@ public class Room {
 	 */
 	public void affichageObjets() {
 
-		if (this.lsMonster.size() == 0) {
+		if (this.lsMonster.size() == 0 && objet.isEstRamasser() == false) {
 
 			objet.drawGameObject();
 
@@ -174,6 +174,11 @@ public class Room {
 			collisionLarme(this.lsMonster.get(i));
 			collisionProjectileFly(this.lsMonster.get(i));
 
+		}
+
+		if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+				objet.getPosition(), objet.getSize())) {
+			objet.updateHeroPerf(hero);
 		}
 
 	}

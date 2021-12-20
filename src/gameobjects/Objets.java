@@ -1,7 +1,6 @@
 package gameobjects;
 
 import libraries.Vector2;
-import resources.HeroInfos;
 import resources.RoomInfos;
 
 public abstract class Objets {
@@ -55,4 +54,11 @@ public abstract class Objets {
     public void setEstRamasser(boolean estRamasser) {
         this.estRamasser = estRamasser;
     }
+
+    /**
+     * Methode qui gere les performance du hero
+     * 
+     * @param e le hero
+     */
+    public abstract void updateHeroPerf(Hero e);
 }
