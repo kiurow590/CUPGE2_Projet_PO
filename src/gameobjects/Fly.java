@@ -11,7 +11,6 @@ import resources.RoomInfos;
 
 public class Fly extends Monstre {
 	private String imagePath;
-	private List<FlyProjectile> lstProjectile;
 
 	private int compteurTir;
 
@@ -32,12 +31,10 @@ public class Fly extends Monstre {
 		super(position, size, speed, direction, ptDeVie, degatCorpsACorps);
 		this.imagePath = imagePath;
 		this.compteurTir = 50;
-		lstProjectile = new ArrayList<FlyProjectile>();
 	}
 
 	@Override
 	public void retirePV(int i) {
-		// TODO: rajouter parametre pour retirer n PV
 		setPtDeVie(super.getPtDeVie() - i);
 	}
 
@@ -46,7 +43,7 @@ public class Fly extends Monstre {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
 		StdDraw.setPenColor();
-		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX()/2, getSize().getY()/2);
+		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
 	}
 
 	@Override
@@ -79,7 +76,7 @@ public class Fly extends Monstre {
 	 */
 	public void creeLarme(FlyProjectile e) {
 		if (this.compteurTir <= 0) {
-			this.lstProjectile.add(e);
+			super.getLstProjectile().add(e);
 			this.compteurTir = 50;
 		}
 
@@ -112,14 +109,6 @@ public class Fly extends Monstre {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
-	}
-
-	public List<FlyProjectile> getLstProjectile() {
-		return lstProjectile;
-	}
-
-	public void setLstProjectile(List<FlyProjectile> lstProjectile) {
-		this.lstProjectile = lstProjectile;
 	}
 
 	public int getCompteurTir() {

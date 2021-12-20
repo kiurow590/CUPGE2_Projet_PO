@@ -1,5 +1,6 @@
 package gameobjects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import libraries.Vector2;
@@ -14,6 +15,8 @@ public abstract class Monstre {
 	// caracteristique ajout
 	private int ptDeVie;
 	private int degatCorpsACorps;
+
+	private List<FlyProjectile> lstProjectile;
 
 	private int immobilus;
 
@@ -36,6 +39,8 @@ public abstract class Monstre {
 		this.ptDeVie = ptDeVie;
 		this.degatCorpsACorps = degatCorpsACorps;
 		this.immobilus = 0;
+		lstProjectile = new ArrayList<FlyProjectile>();
+
 	}
 
 	/**
@@ -159,6 +164,14 @@ public abstract class Monstre {
 
 	public void setImmobilus(int immobilus) {
 		this.immobilus = immobilus;
+	}
+
+	public List<FlyProjectile> getLstProjectile() {
+		return lstProjectile;
+	}
+
+	public void setLstProjectile(List<FlyProjectile> lstProjectile) {
+		this.lstProjectile = lstProjectile;
 	}
 
 }

@@ -120,44 +120,73 @@ public class Room {
 		// Pour chaque monstre (vivant ou mort)
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 
-			// Retrait des points de vie d'Isaac s'il est touche par un monstre
-			if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
-					this.hero.getSize(), this.lsMonster.get(i).getPosition(), this.lsMonster.get(i).getSize())) {
-				this.hero.retirePV(this.lsMonster.get(i).getDegatCorpsACorps());
-				this.compteurInvincibiliteHero = 50;
-				this.lsMonster.get(i).setImmobilus(35);
-				
-			// Decrementation du compteur d'invicibilite d'Isaac
-			} else if (this.compteurInvincibiliteHero > 0) {
-				this.compteurInvincibiliteHero--;
-			}
+			collisionHero(this.lsMonster.get(i));
+			collisionLarme(this.lsMonster.get(i));
+			collisionProjectileFly(this.lsMonster.get(i));
 
-			// Gestion des larmes tirees par Isaac
-			for (int j = 0; j < hero.getLstLarme().size(); j++) {
-
-				// Gestion de la collision d'une larme
-				if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
-						this.hero.getLstLarme().get(j).getSize(), this.lsMonster.get(i).getPosition(),
-						this.lsMonster.get(i).getSize())) {
-					this.lsMonster.get(i).retirePV(this.hero.getLstLarme().get(j).getDegats());
-					this.hero.getLstLarme().get(j).setPortee(0);
-				}
-
-			}
-
-			// Gestion des projectiles de la mouche
-			if (this.lsMonster.get(i) instanceof Fly) {
-				Fly f = (Fly) this.lsMonster.get(i);
-				for (int j = 0; j < f.getLstProjectile().size(); j++) {
-					if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
-							f.getLstProjectile().get(j).getPosition(), f.getLstProjectile().get(j).getSize())) {
-						this.hero.retirePV(f.getLstProjectile().get(j).getDegats());
-						f.getLstProjectile().get(j).setPortee(0);
-					}
-				}
-			}
 		}
 
+	}
+
+	/**
+	 * Methode qui gere la collision entre monstre et le Hero
+	 * 
+	 * @param monstre monstre avec lequel la colision est possible
+	 */
+	private void collisionHero(Monstre monstre) {
+		// Retrait des points de vie d'Isaac s'il est touche par un monstre
+		if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
+				this.hero.getSize(), monstre.getPosition(), monstre.getSize())) {
+			this.hero.retirePV(monstre.getDegatCorpsACorps());
+			this.compteurInvincibiliteHero = 50;
+			monstre.setImmobilus(35);
+
+			// Decrementation du compteur d'invicibilite d'Isaac
+		} else if (this.compteurInvincibiliteHero > 0) {
+			this.compteurInvincibiliteHero--;
+		}
+
+	}
+
+	/**
+	 * Methode qui gere la collision entre les monstre et les larmes
+	 * 
+	 * @param monstre
+	 */
+	private void collisionLarme(Monstre monstre) {
+		// Gestion des larmes tirees par Isaac
+		for (int j = 0; j < hero.getLstLarme().size(); j++) {
+
+			// Gestion de la collision d'une larme
+			if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
+					this.hero.getLstLarme().get(j).getSize(), monstre.getPosition(),
+					monstre.getSize())) {
+				monstre.retirePV(this.hero.getLstLarme().get(j).getDegats());
+				this.hero.getLstLarme().get(j).setPortee(0);
+			}
+
+		}
+
+	}
+
+	/**
+	 * Methode qui gere la collision entre le hero est les projectile lancer par des
+	 * monstres
+	 * 
+	 * @param monstre
+	 */
+	public void collisionProjectileFly(Monstre monstre) {
+		// Gestion des projectiles de la mouche
+
+		for (int j = 0; !monstre.getLstProjectile().isEmpty()
+				&& j < monstre.getLstProjectile().size(); j++) {
+			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
+					monstre.getLstProjectile().get(j).getPosition(),
+					monstre.getLstProjectile().get(j).getSize())) {
+				this.hero.retirePV(monstre.getLstProjectile().get(j).getDegats());
+				monstre.getLstProjectile().get(j).setPortee(0);
+			}
+		}
 	}
 
 	/**
@@ -192,6 +221,16 @@ public class Room {
 			}
 		}
 		hero.drawGameObject();
+		dessineMonstre();
+		dessineLarme();
+
+	}
+
+	/**
+	 * Methode qui dessine les monstre
+	 */
+	private void dessineMonstre() {
+
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 			this.lsMonster.get(i).drawGameObject();
 			if (this.lsMonster.get(i) instanceof Fly) {
@@ -208,6 +247,12 @@ public class Room {
 
 		}
 
+	}
+
+	/**
+	 * Methode qui dessine les larmes
+	 */
+	private void dessineLarme() {
 		for (int i = 0; i < hero.getLstLarme().size(); i++) {
 			if (hero.getLstLarme().get(i).getPortee() > 0) {
 				hero.getLstLarme().get(i).updateGameObject();
@@ -217,7 +262,6 @@ public class Room {
 			}
 
 		}
-
 	}
 
 	/**
