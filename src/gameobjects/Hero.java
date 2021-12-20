@@ -17,7 +17,7 @@ public class Hero {
 	private Vector2 direction;
 
 	private List<Larme> lstLarme;
-
+	private List<Object> lstEquipement;
 	private int degats;
 
 	private boolean estInvincible;
@@ -70,6 +70,8 @@ public class Hero {
 		this.compteurPuissance = 0;
 
 		this.degats = degats;
+
+		this.lstEquipement = new ArrayList<>();
 	}
 
 	/**
@@ -370,6 +372,34 @@ public class Hero {
 
 	public void setDegats(int degats) {
 		this.degats = degats;
+	}
+
+	public List<Object> getLstEquipement() {
+		return this.lstEquipement;
+	}
+
+	public void setLstEquipement(List<Object> lstEquipement) {
+		this.lstEquipement = lstEquipement;
+	}
+
+	public boolean getEstInvincible() {
+		return this.estInvincible;
+	}
+
+	public boolean isEstRapide() {
+		return this.estRapide;
+	}
+
+	public boolean getEstPuissant() {
+		return this.estPuissant;
+	}
+
+	public int getPV() {
+		return this.pV;
+	}
+
+	public void setPV(int pV) {
+		this.pV = pV;
 	}
 
 }

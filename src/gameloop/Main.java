@@ -1,12 +1,9 @@
 package gameloop;
 
 import gameWorld.GameWorld;
-import gameobjects.Fly;
 import gameobjects.Hero;
-import gameobjects.Spider;
 import libraries.StdDraw;
 import libraries.Timer;
-import libraries.Vector2;
 import resources.DisplaySettings;
 import resources.HeroInfos;
 import resources.ImagePaths;
@@ -20,7 +17,7 @@ public class Main {
 
 		GameWorld world = new GameWorld(isaac);
 		initializeDisplay();
- 
+
 		// Main loop of the game
 		while (!world.gameOver()) {
 			processNextStep(world);
