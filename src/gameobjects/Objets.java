@@ -1,19 +1,19 @@
 package gameobjects;
 
 import libraries.Vector2;
+import resources.HeroInfos;
 import resources.RoomInfos;
 
-public abstract class Object {
+public abstract class Objets {
 
     /**
      * Attribut
      */
     private Vector2 position;
     private Vector2 size;
-
     private boolean estRamasser;
 
-    public Object(Vector2 position) {
+    public Objets(Vector2 position) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
         this.estRamasser = false;

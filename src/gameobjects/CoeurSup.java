@@ -14,8 +14,10 @@ public class CoeurSup extends PassifObject {
 
     public CoeurSup(Vector2 position) {
         super(position);
+
         this.maxValue = 2;
         this.imagePath = ImagePaths.HP_UP;
+
     }
 
     public String getImagePath() {
@@ -36,10 +38,19 @@ public class CoeurSup extends PassifObject {
 
     @Override
     public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
+        StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(),
+                getSize().getY(),
                 0);
         StdDraw.setPenColor();
         StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
+    }
+
+    @Override
+    public String toString() {
+        return "Coeur Sup = {" +
+                " imagePath='" + getImagePath() + "'" +
+                ", maxValue='" + getMaxValue() + "'" +
+                "}";
     }
 
 }

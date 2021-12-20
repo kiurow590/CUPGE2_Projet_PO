@@ -29,6 +29,7 @@ public class Hero {
 	private int compteurPuissance;
 
 	private int pV;
+	private int maxPV;
 
 	/**
 	 * Constructeur de personnage
@@ -72,6 +73,8 @@ public class Hero {
 		this.degats = degats;
 
 		this.lstEquipement = new ArrayList<>();
+
+		this.maxPV = 6;
 	}
 
 	/**
@@ -400,6 +403,14 @@ public class Hero {
 
 	public void setPV(int pV) {
 		this.pV = pV;
+	}
+
+	public int getMaxPV() {
+		return this.maxPV;
+	}
+
+	public void setMaxPV(int maxPV) {
+		this.maxPV = maxPV;
 	}
 
 }

@@ -2,7 +2,7 @@ package gameobjects;
 
 import libraries.Vector2;
 
-public abstract class ConsommableObject extends Object {
+public abstract class ConsommableObject extends Objets {
 
     public ConsommableObject(Vector2 position) {
         super(position);

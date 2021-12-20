@@ -2,6 +2,7 @@ package gameobjects;
 
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.ImagePaths;
 
 public class Coeur extends ConsommableObject {
     /**
@@ -13,10 +14,12 @@ public class Coeur extends ConsommableObject {
     public Coeur(int value, Vector2 position) {
         super(position);
 
-        if (this.value == 1) {
-            // set ImagePath
-        } else if (this.value == 2) {
+        this.value = value;
 
+        if (this.value == 1) {
+            imagePath = ImagePaths.HALF_HEART_HUD;
+        } else if (this.value == 2) {
+            imagePath = ImagePaths.HEART_HUD;
         }
     }
 
@@ -38,9 +41,19 @@ public class Coeur extends ConsommableObject {
 
     @Override
     public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
+        StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(),
+                getSize().getY(),
                 0);
         StdDraw.setPenColor();
         StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
     }
+
+    @Override
+    public String toString() {
+        return "Coeur = {" +
+                " imagePath='" + getImagePath() + "'" +
+                ", value='" + getValue() + "'" +
+                "}";
+    }
+
 }
