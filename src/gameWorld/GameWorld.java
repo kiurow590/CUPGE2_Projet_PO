@@ -30,7 +30,11 @@ public class GameWorld {
 	 */
 	public GameWorld(Hero hero) {
 		this.hero = hero;
-		currentRoom = new Room(hero);
+		this.spider = spider;
+		this.fly = fly;
+		currentRoom = new Room(hero, spider, fly);
+		
+
 	}
 
 	/**
@@ -92,6 +96,7 @@ public class GameWorld {
 	 */
 	public void drawGameObjects() {
 		currentRoom.drawRoom();
+		
 	}
 
 	/**

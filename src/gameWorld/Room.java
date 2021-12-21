@@ -182,13 +182,36 @@ public class Room {
 	 * Drawing
 	 */
 	public void drawRoom() {
+
 		// For every tile, set background color.
-		StdDraw.setPenColor(StdDraw.GRAY);
-		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
+		// StdDraw.setPenColor(StdDraw.BLUE);
+		// on construit les murs sur le coté
+		for (
+
+				int colone = 0; colone < RoomInfos.NB_TILES; colone++) {
+
+			if (colone == 1 | colone == 0.0) {
+				for (double j = 0; j < RoomInfos.NB_TILES; j = j + 0.1) {
+					StdDraw.picture(colone, j, ImagePaths.MUR, 0.1, 0.1, 90);
+				}
+			}
+			// On contruit les mur du haut et du bas de la room
 			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-				Vector2 position = positionFromTileIndex(i, j);
-				StdDraw.filledRectangle(position.getX(), position.getY(), RoomInfos.HALF_TILE_SIZE.getX(),
-						RoomInfos.HALF_TILE_SIZE.getY());
+				if (j == 0.0 | j == 1) {
+					for (double i = 0; i < RoomInfos.NB_TILES; i = i + 0.1) {
+						StdDraw.picture(i, j, ImagePaths.MUR, 0.1, 0.1);
+//			if ((j == 0 && i == 0) || (j == 1 && i == 1)) {
+//						StdDraw.picture(0.9, 0.1, ImagePaths.MUR_angle, 0.1, 0.1, 180);
+//					}
+
+					}
+
+				}
+				//this.geneSol();
+				Vector2 position = positionFromTileIndex(colone, j);
+				// StdDraw.filledRectangle(position.getX(), position.getY(),
+				// RoomInfos.HALF_TILE_SIZE.getX(),
+				// RoomInfos.HALF_TILE_SIZE.getY());
 			}
 		}
 		hero.drawGameObject();
@@ -219,6 +242,28 @@ public class Room {
 		}
 
 	}
+
+	public void geneSol() {
+		// fonction de generation de sol aleatoirement entre plusieur image possible
+		for (double y = 0.1; y < 0.9; y = y + 0.1) {
+			for (double x = 0.1; x < 0.9; x = x + 0.1) {
+				double tempRandom = Math.random() * (4 - 0);
+				String sol = "";
+				if (tempRandom < 1) {
+					sol = ImagePaths.SOL_milieux1;
+				} else if (tempRandom >= 1 && (tempRandom < 2)) {
+					sol = ImagePaths.SOL_milieux2;
+				} else if (tempRandom >= 2 && tempRandom < 3) {
+					sol = ImagePaths.SOL_milieux3;
+				} else if (tempRandom >= 3 && tempRandom < 4) {
+					sol = ImagePaths.SOL_milieux4;
+				}
+				StdDraw.picture(x, y, sol, 0.1, 0.1);
+			}
+		}
+	}
+	
+
 
 	/**
 	 * Convert a tile index to a 0-1 position.

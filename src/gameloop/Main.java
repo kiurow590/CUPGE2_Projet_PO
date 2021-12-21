@@ -18,7 +18,15 @@ public class Main {
 		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,
 				ImagePaths.ISAAC, 5, 6, 1);
 
-		GameWorld world = new GameWorld(isaac);
+
+	
+
+		Spider spider = new Spider(new Vector2(0.2, 0.5), RoomInfos.TILE_SIZE.scalarMultiplication(0.4),
+				ImagePaths.SPIDER, 0.01, new Vector2(), 5, 1, 40);
+
+		Fly fly = new Fly(new Vector2(0.8, 0.8), RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.007,
+				new Vector2(), 2, 1);
+		GameWorld world = new GameWorld(isaac, spider, fly);
 		initializeDisplay();
  
 		// Main loop of the game
