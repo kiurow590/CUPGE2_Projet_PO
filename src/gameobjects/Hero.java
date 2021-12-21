@@ -1,8 +1,5 @@
 package gameobjects;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -16,68 +13,20 @@ public class Hero {
 	private double speed;
 	private Vector2 direction;
 
-	private List<Larme> lstLarme;
-	private int degats;
-
-	private boolean estInvincible;
-	private boolean estRapide;
-	private boolean estPuissant;
-	private int compteurInvincible;
-	private int compteurRapide;
-	private int compteurTir;
-	private int compteurPuissance;
-
-	private int pV;
-	private int maxPV;
-
-	private int stackArgent;
-	private int soldePieceMax;
-
 	/**
-	 * Constructeur de personnage
+	 * Constructeur Hero
 	 * 
-	 * @param position           position initiale du personnage
-	 * @param size               taille du personnage
-	 * @param speed              vitesse du personnage
-	 * @param imagePath          Image du personnage
-	 * @param compteurInvincible compteur d'invincibilité du personnage :
-	 *                           <ul>
-	 *                           <li>sois le perso est toucher --> le temps ou le
-	 *                           perso est invulneralble</li>
-	 *                           <li>sois le perso est invincible --> le temps que
-	 *                           l'on doit attendre pour pouvoir reappuyer sur la
-	 *                           touche</li>
-	 *                           </ul>
-	 * @param pv                 pv du perso
+	 * @param position  position du hero
+	 * @param size      taille du hero
+	 * @param speed     vitesse de deplacement
+	 * @param imagePath image du personnage
 	 */
-	public Hero(Vector2 position, Vector2 size, double speed, String imagePath, int compteurInvincible, int pv,
-			int degats) {
+	public Hero(Vector2 position, Vector2 size, double speed, String imagePath) {
 		this.position = position;
 		this.size = size;
 		this.speed = speed;
 		this.imagePath = imagePath;
 		this.direction = new Vector2();
-
-		this.estInvincible = false;
-
-		this.compteurInvincible = compteurInvincible;
-		this.compteurTir = 20;
-		this.pV = pv;
-
-		lstLarme = new ArrayList<Larme>();
-
-		this.estRapide = false;
-		this.compteurRapide = 0;
-
-		this.estPuissant = false;
-		this.compteurPuissance = 0;
-
-		this.degats = degats;
-
-		this.maxPV = 6;
-
-		this.stackArgent = 0;
-		soldePieceMax = 50;
 	}
 
 	/**
@@ -85,71 +34,6 @@ public class Hero {
 	 */
 	public void updateGameObject() {
 		move();
-		if (this.compteurTir > 0) {
-			this.compteurTir--;
-
-		}
-		if (this.compteurInvincible > 0) {
-			this.compteurInvincible--;
-
-		}
-		if (this.compteurRapide > 0) {
-			this.compteurRapide--;
-
-		}
-		if (this.compteurPuissance > 0) {
-			this.compteurPuissance--;
-
-		}
-	}
-
-	/**
-	 * Methode qui retire des pv au personnage
-	 * 
-	 * @param i valeur de pv retiré
-	 */
-	public void retirePV(int i) {
-		if (!this.estInvincible) {
-			this.pV -= i;
-		}
-
-	}
-
-	/**
-	 * Methode qui calcul si une mouche est morte
-	 * 
-	 * @return un boolean </br>
-	 *         <ul>
-	 *         <li>true - la mouche est morte</li>
-	 *         <li>false - la mouche est vivante</li>
-	 *         </ul>
-	 */
-	public boolean isDead() {
-		return this.pV <= 0;
-	}
-
-	/**
-	 * Methode qui ajoute des PV au personnage
-	 * 
-	 * @param i la valeur de pv a rajouter
-	 */
-	public void addPV(int i) {
-		this.pV += i;
-	}
-
-	/**
-	 * Methode qui creer une larme et qui la stock dans la liste de larme du
-	 * personnage
-	 * 
-	 * @param e larme
-	 */
-	public void creeLarme(Larme e) {
-		if (this.compteurTir <= 0) {
-			e.setDegats(degats);
-			this.lstLarme.add(e);
-			this.compteurTir = 20;
-		}
-
 	}
 
 	/**
@@ -160,7 +44,6 @@ public class Hero {
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
 		direction = new Vector2();
-
 	}
 
 	/**
@@ -169,57 +52,6 @@ public class Hero {
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
 				0);
-		StdDraw.setPenColor();
-		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
-	}
-
-	/**
-	 * Passe le hero en mode invincible ou pas
-	 */
-	public void modeInvincible() {
-		if (!this.estInvincible && this.compteurInvincible == 0) {
-			setEstInvincible(true);
-			this.compteurInvincible = 10;
-		} else if (this.estInvincible && this.compteurInvincible == 0) {
-			setEstInvincible(false);
-			this.compteurInvincible = 10;
-		}
-
-	}
-
-	/**
-	 * Passe le hero en mode rapide ou pas
-	 */
-	public void moderapide() {
-		if (!this.estRapide && this.compteurRapide == 0) {
-			setEstRapide(true);
-			this.compteurRapide = 40;
-			this.setSpeed(this.speed * 2);
-		} else if (this.estRapide && this.compteurRapide == 0) {
-			setEstRapide(false);
-			this.compteurRapide = 40;
-			this.setSpeed(this.speed / 2);
-		}
-
-	}
-
-	/**
-	 * Passe le hero en mode puissant ou pas
-	 */
-	public void modePuissance() {
-		if (!this.estPuissant && this.compteurPuissance == 0) {
-			setEstPuissant(true);
-			this.compteurPuissance = 40;
-			this.degats = 5000000;
-			System.out.println("Dobby Pete des cul");
-		} else if (this.estRapide && this.compteurRapide == 0) {
-			setEstPuissant(false);
-			this.compteurPuissance = 40;
-			this.degats = 1;
-			System.out.println("Dobby est une merde");
-
-		}
-
 	}
 
 	/*
@@ -255,7 +87,6 @@ public class Hero {
 	/*
 	 * Getters and Setters
 	 */
-
 	public Vector2 getPosition() {
 		return position;
 	}
@@ -295,142 +126,4 @@ public class Hero {
 	public void setDirection(Vector2 direction) {
 		this.direction = direction;
 	}
-
-	public boolean isEstInvincible() {
-		return estInvincible;
-	}
-
-	public void setEstInvincible(boolean estInvincible) {
-		this.estInvincible = estInvincible;
-	}
-
-	public int getpV() {
-		return pV;
-	}
-
-	public void setpV(int pV) {
-		this.pV = pV;
-	}
-
-	public List<Larme> getLstLarme() {
-		return lstLarme;
-	}
-
-	public void setLstLarme(ArrayList<Larme> lstLarme) {
-		this.lstLarme = lstLarme;
-	}
-
-	public boolean getEstRapide() {
-		return estRapide;
-	}
-
-	public void setEstRapide(boolean estRapide) {
-		this.estRapide = estRapide;
-	}
-
-	public int getCompteurInvincible() {
-		return compteurInvincible;
-	}
-
-	public void setCompteurInvincible(int compteurInvincible) {
-		this.compteurInvincible = compteurInvincible;
-	}
-
-	public int getCompteurTir() {
-		return compteurTir;
-	}
-
-	public void setCompteurTir(int compteurTir) {
-		this.compteurTir = compteurTir;
-	}
-
-	public void setLstLarme(List<Larme> lstLarme) {
-		this.lstLarme = lstLarme;
-	}
-
-	public boolean isEstPuissant() {
-		return estPuissant;
-	}
-
-	public void setEstPuissant(boolean estPuissant) {
-		this.estPuissant = estPuissant;
-	}
-
-	public int getCompteurRapide() {
-		return compteurRapide;
-	}
-
-	public void setCompteurRapide(int compteurRapide) {
-		this.compteurRapide = compteurRapide;
-	}
-
-	public int getCompteurPuissance() {
-		return compteurPuissance;
-	}
-
-	public void setCompteurPuissance(int compteurPuissance) {
-		this.compteurPuissance = compteurPuissance;
-	}
-
-	public int getDegats() {
-		return degats;
-	}
-
-	public void setDegats(int degats) {
-		this.degats = degats;
-	}
-
-	public boolean getEstInvincible() {
-		return this.estInvincible;
-	}
-
-	public boolean isEstRapide() {
-		return this.estRapide;
-	}
-
-	public boolean getEstPuissant() {
-		return this.estPuissant;
-	}
-
-	public int getPV() {
-		return this.pV;
-	}
-
-	public void setPV(int pV) {
-		this.pV = pV;
-	}
-
-	public int getMaxPV() {
-		return this.maxPV;
-	}
-
-	public void setMaxPV(int maxPV) {
-		this.maxPV = maxPV;
-	}
-
-	public int getStackArgent() {
-		return this.stackArgent;
-	}
-
-	public void AjoutStackArgent(int stackArgent) {
-		if (this.stackArgent + stackArgent <= soldePieceMax) {
-			this.stackArgent += stackArgent;
-		}
-
-	}
-
-	public void setStackArgent(int stackArgent) {
-
-		this.stackArgent += stackArgent;
-
-	}
-
-	public int getSoldePieceMax() {
-		return this.soldePieceMax;
-	}
-
-	public void setSoldePieceMax(int soldePieceMax) {
-		this.soldePieceMax = soldePieceMax;
-	}
-
 }

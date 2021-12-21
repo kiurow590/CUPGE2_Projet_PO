@@ -13,23 +13,13 @@ public class Main {
 	public static void main(String[] args) {
 		// Hero, world and display initialisation.
 		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,
-				ImagePaths.ISAAC, 5, 6, 1);
-
+				ImagePaths.ISAAC);
 		GameWorld world = new GameWorld(isaac);
 		initializeDisplay();
 
 		// Main loop of the game
 		while (!world.gameOver()) {
 			processNextStep(world);
-		}
-
-		if (isaac.isDead()) {
-			Timer.beginTimer();
-			StdDraw.clear();
-			StdDraw.picture(0.5, 0.5, ImagePaths.LOSE_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,
-					RoomInfos.TILE_SIZE.getY() * 9, 0);
-			StdDraw.show();
-			Timer.waitToMaintainConstantFPS();
 		}
 	}
 
