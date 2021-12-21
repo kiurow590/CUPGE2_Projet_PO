@@ -33,6 +33,8 @@ public class Hero {
 	private int stackArgent;
 	private int soldePieceMax;
 
+	private int compteurArgentTriche;
+
 	/**
 	 * Constructeur de personnage
 	 * 
@@ -101,6 +103,10 @@ public class Hero {
 			this.compteurPuissance--;
 
 		}
+		if (this.compteurArgentTriche > 0) {
+			this.compteurArgentTriche--;
+
+		}
 	}
 
 	/**
@@ -111,6 +117,19 @@ public class Hero {
 	public void retirePV(int i) {
 		if (!this.estInvincible) {
 			this.pV -= i;
+			this.compteurInvincible = 50;
+		}
+
+	}
+
+	/**
+	 * Methode qui ajoute dix piece au personnage
+	 * 
+	 */
+	public void addArgentTriche() {
+		if (this.compteurArgentTriche <= 0) {
+			this.stackArgent += 10;
+			this.compteurArgentTriche = 50;
 		}
 
 	}

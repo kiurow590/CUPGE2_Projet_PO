@@ -59,6 +59,11 @@ public class GameWorld {
 			hero.modePuissance();
 
 		}
+		if (StdDraw.isKeyPressed(Controls.addMoney)) {
+
+			hero.addArgentTriche();
+
+		}
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package gameWorld;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,8 @@ public class Room {
 		this.compteurInvincibiliteHero = 10;
 
 		initMonster();
-		initObjectGift();
+		// initObjectGift();
+		this.objet = new BloodOfMartyr(new Vector2());
 
 	}
 
@@ -303,7 +305,28 @@ public class Room {
 		StdDraw.setPenRadius();
 		int pvView = this.hero.getPV();
 		if (pvView % 2 == 0) {
+			double x = 0.1;
+			while (pvView != 0) {
+				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 
+				x += 0.1;
+				pvView -= 2;
+			}
+
+		} else {
+			double x = 0.1;
+			while (pvView != 1) {
+				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
+
+				x += 0.1;
+				pvView -= 2;
+
+			}
+
+			StdDraw.picture(x, 0.9, ImagePaths.HALF_HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+					RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 		}
 	}
 

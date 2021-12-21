@@ -13,10 +13,10 @@ public class BloodOfMartyr extends PassifObject {
     private int Strength;
 
     public BloodOfMartyr(Vector2 position) {
-        super(position);
+        super(new Vector2(0.5, 0.5));
 
         this.Strength = 1;
-        this.imagePath = ImagePaths.BLOOD_OF_THE_MARTYR;
+        this.imagePath = "images/Blood_of_the_Martyr.png";
 
     }
 
