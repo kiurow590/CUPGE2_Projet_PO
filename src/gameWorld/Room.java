@@ -42,7 +42,15 @@ public class Room {
 		this.compteurInvincibiliteHero = 10;
 
 		initMonster();
+		initObjectGift();
 
+	}
+
+	/**
+	 * Methode qui génère une objet random en respectant les probabilité
+	 * d'apparition
+	 */
+	public void initObjectGift() {
 		double objectRandom = Math.random();
 
 		if (objectRandom < 0.35) {
@@ -275,12 +283,28 @@ public class Room {
 						RoomInfos.HALF_TILE_SIZE.getY());
 			}
 		}
+		affichageViePiece();
 		hero.drawGameObject();
 		dessineMonstre();
 		dessineLarme();
 
 		affichageObjets();
 
+	}
+
+	public void affichageViePiece() {
+		// Affichage nb piece
+		StdDraw.picture(0.75, 0.9, ImagePaths.DIME, RoomInfos.TILE_SIZE.scalarMultiplication(0.4).getX(),
+				RoomInfos.TILE_SIZE.scalarMultiplication(0.4).getY());
+		StdDraw.setPenRadius();
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.8, 0.9, ": " + hero.getStackArgent() + "");
+		// ----------------------------------------------------------------
+		StdDraw.setPenRadius();
+		int pvView = this.hero.getPV();
+		if (pvView % 2 == 0) {
+
+		}
 	}
 
 	/**

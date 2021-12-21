@@ -1,18 +1,13 @@
 package gameWorld;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import gameobjects.Fly;
 import gameobjects.Hero;
 import gameobjects.Larme;
-import gameobjects.Spider;
+
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
 import resources.ImagePaths;
 import resources.RoomInfos;
-import gameobjects.*;
 
 /**
  * 

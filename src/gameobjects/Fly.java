@@ -1,9 +1,7 @@
 package gameobjects;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
