@@ -5,6 +5,7 @@ import java.util.List;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
+import resources.MonstreInfo;
 import resources.RoomInfos;
 
 public class Fly extends Monstre {
@@ -24,10 +25,10 @@ public class Fly extends Monstre {
 	 * @param ptDeVie          point de vie du monstre
 	 * @param degatCorpsACorps degat au corps a corps du montre
 	 */
-	public Fly(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
-			int degatCorpsACorps) {
-		super(position, size, speed, direction, ptDeVie, degatCorpsACorps);
-		this.imagePath = imagePath;
+	public Fly(Vector2 position) {
+		super(position, MonstreInfo.FLY_SIZE, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_PV,
+				MonstreInfo.FLY_DAMMAGE);
+		this.imagePath = ImagePaths.FLY;
 		this.compteurTir = 50;
 	}
 

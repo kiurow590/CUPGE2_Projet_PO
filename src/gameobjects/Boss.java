@@ -29,7 +29,7 @@ public class Boss extends Monstre {
      */
     public Boss(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
             int degatCorpsACorps, int compteur) {
-        super(position, size, speed, direction, ptDeVie, degatCorpsACorps);
+        super(position, size, speed, ptDeVie, degatCorpsACorps);
         this.imagePath = ImagePaths.SPIDER;
         this.compteur = compteur;
         lstMonstre = new ArrayList<>();
@@ -90,11 +90,9 @@ public class Boss extends Monstre {
         double randomNumber = Math.random();
 
         if (randomNumber < 0.5) {
-            lstMonstre.add(new Spider(getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.SPIDER,
-                    0.02, new Vector2(), 5, 1, 40));
+            lstMonstre.add(new Spider(getPosition()));
         } else {
-            lstMonstre.add(new Fly(getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.02,
-                    new Vector2(), 3, 1));
+            lstMonstre.add(new Fly(getPosition()));
         }
 
     }
