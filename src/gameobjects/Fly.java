@@ -5,8 +5,8 @@ import java.util.List;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
-import resources.MonstreInfo;
 import resources.RoomInfos;
+import resources.MonstreInfo;
 
 public class Fly extends Monstre {
 	private String imagePath;

@@ -6,7 +6,6 @@ import java.util.List;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
-import resources.RoomInfos;
 
 public class Boss extends Monstre {
 
