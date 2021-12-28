@@ -4,10 +4,15 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import gameobjects.BloodOfMartyr;
+import gameobjects.Coeur;
+import gameobjects.CoeurSup;
 import gameobjects.Fly;
 import gameobjects.Hero;
 import gameobjects.Monstre;
 import gameobjects.Objets;
+import gameobjects.Obstacles;
+import gameobjects.Piece;
 import gameobjects.Spider;
 import libraries.Physics;
 import libraries.StdDraw;
@@ -31,7 +36,7 @@ public class Room {
 	private int compteurInvincibiliteHero;
 
 	private List<Monstre> lsMonster;
-	// private Obstacles obstacle;
+	private Obstacles obstacle;
 
 	private Objets objet;
 
@@ -60,36 +65,7 @@ public class Room {
 		this.bgColor = StdDraw.GRAY;
 
 		// initMonster();
-		/*
-		 * double objectRandom = Math.random();
-		 * 
-		 * if (objectRandom < 0.35) {
-		 * double randomPiece = Math.random();
-		 * if (randomPiece < 0.45) {
-		 * this.objet = new Piece(1, RoomInfos.POSITION_CENTER_OF_ROOM);
-		 * } else if (randomPiece >= 0.45 && randomPiece < 0.8) {
-		 * this.objet = new Piece(5, RoomInfos.POSITION_CENTER_OF_ROOM);
-		 * 
-		 * } else if (randomPiece >= 0.8) {
-		 * this.objet = new Piece(10, RoomInfos.POSITION_CENTER_OF_ROOM);
-		 * 
-		 * }
-		 * } else if (objectRandom >= 0.35 && objectRandom < 0.75) {
-		 * double randomCoeur = Math.random();
-		 * 
-		 * if (randomCoeur < 0.6) {
-		 * this.objet = new Coeur(1, RoomInfos.POSITION_CENTER_OF_ROOM);
-		 * 
-		 * } else if (randomCoeur >= 0.6) {
-		 * this.objet = new Coeur(2, RoomInfos.POSITION_CENTER_OF_ROOM);
-		 * 
-		 * }
-		 * } else if (objectRandom >= 0.75 && objectRandom < 0.875) {
-		 * this.objet = new BloodOfMartyr(new Vector2(5, 5));
-		 * } else if (objectRandom >= 0.875) {
-		 * this.objet = new CoeurSup(new Vector2(5, 5));
-		 * }
-		 */
+		// initObjectGift();
 	}
 
 	/*
@@ -97,9 +73,9 @@ public class Room {
 	 */
 	public void updateRoom() {
 		makeHeroPlay();
-
 		/*
 		 * makeMonsterPlay();
+		 * 
 		 * collisionReport();
 		 * rammasseMonstreMort();
 		 * nettoyageLarme();
@@ -125,15 +101,9 @@ public class Room {
 		hero.drawGameObject();
 		// dessineMonstre();
 		// dessineLarme();
-    // affichageViePiece();
-
+		// affichageViePiece();
 
 		// affichageObjets();
-    
-		initMonster();
-		// initObjectGift();
-		this.objet = new BloodOfMartyr(new Vector2());
-
 	}
 
 	/**
@@ -142,9 +112,35 @@ public class Room {
 	 */
 	public void initObjectGift() {
 		double objectRandom = Math.random();
-    
-  }
 
+		if (objectRandom < 0.35) {
+			double randomPiece = Math.random();
+			if (randomPiece < 0.45) {
+				this.objet = new Piece(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+			} else if (randomPiece >= 0.45 && randomPiece < 0.8) {
+				this.objet = new Piece(5, RoomInfos.POSITION_CENTER_OF_ROOM);
+
+			} else if (randomPiece >= 0.8) {
+				this.objet = new Piece(10, RoomInfos.POSITION_CENTER_OF_ROOM);
+
+			}
+		} else if (objectRandom >= 0.35 && objectRandom < 0.75) {
+			double randomCoeur = Math.random();
+
+			if (randomCoeur < 0.6) {
+				this.objet = new Coeur(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+
+			} else if (randomCoeur >= 0.6) {
+				this.objet = new Coeur(2, RoomInfos.POSITION_CENTER_OF_ROOM);
+
+			}
+		} else if (objectRandom >= 0.75 && objectRandom < 0.875) {
+			this.objet = new BloodOfMartyr(new Vector2(5, 5));
+		} else if (objectRandom >= 0.875) {
+			this.objet = new CoeurSup(new Vector2(5, 5));
+		}
+
+	}
 
 	private void drawWall() {
 
