@@ -22,6 +22,7 @@ import gameobjects.*;
 public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
+
 	/**
 	 * Constructeur de monde
 	 * 
@@ -29,10 +30,8 @@ public class GameWorld {
 	 */
 	public GameWorld(Hero hero) {
 		this.hero = hero;
-		currentRoom = new Room(hero);}
-		
-
-
+		currentRoom = new RoomSpawn(hero);
+	}
 
 	/**
 	 * Methode qui gere les entree de l'utilisateur

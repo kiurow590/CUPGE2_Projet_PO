@@ -1,19 +1,14 @@
 package gameWorld;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import gameobjects.BloodOfMartyr;
-import gameobjects.Coeur;
-import gameobjects.CoeurSup;
 import gameobjects.Fly;
 import gameobjects.Hero;
 import gameobjects.Monstre;
 import gameobjects.Objets;
-import gameobjects.Piece;
 import gameobjects.Spider;
-import gameobjects.Obstacles;
-import gameobjects.Rocher;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -25,7 +20,11 @@ public class Room {
 	/**
 	 * attributs
 	 */
-	private Hero hero;
+	Hero hero;
+
+	String type;
+
+	Color bgColor;
 
 	private int compteurInvincibiliteHero;
 
@@ -53,6 +52,9 @@ public class Room {
 		this.hero = hero;
 		this.lsMonster = new ArrayList<Monstre>();
 		this.compteurInvincibiliteHero = 10;
+		this.type = "DEFAULT_ROOM";
+
+		this.bgColor = StdDraw.GRAY;
 
 		// initMonster();
 		/*
@@ -107,7 +109,7 @@ public class Room {
 	 */
 	public void drawRoom() {
 		// For every tile, set background color.
-		StdDraw.setPenColor(StdDraw.GRAY);
+		StdDraw.setPenColor(this.bgColor);
 		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
 			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
 				Vector2 position = positionFromTileIndex(i, j);
@@ -409,6 +411,10 @@ public class Room {
 
 	public void setLsMonster(List<Monstre> lsMonster) {
 		this.lsMonster = lsMonster;
+	}
+
+	public String getType() {
+		return this.type;
 	}
 
 }
