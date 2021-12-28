@@ -24,7 +24,7 @@ public class Fly extends Monstre {
 	 * @param direction        direction initiale du montre // souvent mise a null a
 	 *                         l'init
 	 * @param ptDeVie          point de vie du monstre
-	 * @param degatCorpsACorps degat au corps a corps du montre
+	 * @param degatCorpsACorps degat au corps a corps du monstre
 	 */
 	public Fly(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
 			int degatCorpsACorps) {

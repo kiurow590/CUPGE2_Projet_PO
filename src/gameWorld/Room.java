@@ -12,6 +12,8 @@ import gameobjects.Monstre;
 import gameobjects.Objets;
 import gameobjects.Piece;
 import gameobjects.Spider;
+import gameobjects.Obstacles;
+import gameobjects.Rocher;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -28,8 +30,18 @@ public class Room {
 	private int compteurInvincibiliteHero;
 
 	private List<Monstre> lsMonster;
+	private Obstacles obstacle;
 
 	private Objets objet;
+	public  Room () {
+		this.hero=null;
+		this.lsMonster=null;
+	}
+	public Room RoomGauche;
+	public Room RoomDroite;
+	public Room RoomHaut;
+	public Room RoomBas;
+	
 
 	/**
 	 * Constructeur de room
@@ -244,6 +256,21 @@ public class Room {
 		}
 	}
 
+	public void collisionObstacle( Monstre monstre) {
+		// Gestion des collision avec les rochers
+		if ( Physics.rectangleCollision(this.hero.getPosition(),
+				this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) {
+			//hero.position=new Vector2(0,0);
+		}
+			for ( int i=0 ; i< lsMonster.size() ; i++ ) {
+				// on evite les mouches car elles non pas de collision avec les rochers
+			if(this.lsMonster.get(i) instanceof Fly==false) { 
+			if ( Physics.rectangleCollision(this.lsMonster.get(i).getPosition(),
+					this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) {
+			}}
+		}
+	}
+	
 	/**
 	 * met a jour le hero
 	 */

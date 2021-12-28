@@ -2,7 +2,7 @@ package gameWorld;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.TreeMap;
 import gameobjects.Fly;
 import gameobjects.Hero;
 import gameobjects.Larme;
@@ -22,7 +22,6 @@ import gameobjects.*;
 public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
-
 	/**
 	 * Constructeur de monde
 	 * 
@@ -30,8 +29,10 @@ public class GameWorld {
 	 */
 	public GameWorld(Hero hero) {
 		this.hero = hero;
-		currentRoom = new Room(hero);
-	}
+		currentRoom = new Room(hero);}
+		
+
+
 
 	/**
 	 * Methode qui gere les entree de l'utilisateur
