@@ -14,5 +14,6 @@ public class RoomMonster extends Room {
         super(hero);
         this.type = MON_TYPE;
         this.bgColor = StdDraw.PINK;
+        this.id = 1;
     }
 }

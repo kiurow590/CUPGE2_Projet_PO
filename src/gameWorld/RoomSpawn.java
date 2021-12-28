@@ -13,6 +13,7 @@ public class RoomSpawn extends Room {
     public RoomSpawn(Hero hero) {
         super(hero);
         this.type = MON_TYPE;
+        this.id = 0;
 
         this.bgColor = StdDraw.GREEN;
     }

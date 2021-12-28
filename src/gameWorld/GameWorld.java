@@ -1,7 +1,9 @@
 package gameWorld;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 import gameobjects.Fly;
 import gameobjects.Hero;
@@ -23,6 +25,8 @@ public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
 
+	Map<Integer, Room> mapDeRoom = new HashMap<>();
+
 	/**
 	 * Constructeur de monde
 	 * 
@@ -30,7 +34,15 @@ public class GameWorld {
 	 */
 	public GameWorld(Hero hero) {
 		this.hero = hero;
-		currentRoom = new RoomSpawn(hero);
+
+		// Generation des rooms
+		Room spawn = new RoomSpawn(hero);
+		Room monster1 = new RoomMonster(hero);
+
+		mapDeRoom.put(spawn.getId(), spawn);
+		mapDeRoom.put(monster1.getId(), monster1);
+
+		currentRoom = spawn;
 	}
 
 	/**

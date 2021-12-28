@@ -1,4 +1,5 @@
 package gameWorld;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,4 +21,3 @@ import resources.RoomInfos;
 public class Room_Boss extends Room {
 
 }
-

@@ -26,6 +26,8 @@ public class Room {
 
 	Color bgColor;
 
+	Integer id;
+
 	private int compteurInvincibiliteHero;
 
 	private List<Monstre> lsMonster;
@@ -49,6 +51,7 @@ public class Room {
 	 * @param hero personnage de la room
 	 */
 	public Room(Hero hero) {
+		this.id = null;
 		this.hero = hero;
 		this.lsMonster = new ArrayList<Monstre>();
 		this.compteurInvincibiliteHero = 10;
@@ -415,6 +418,10 @@ public class Room {
 
 	public String getType() {
 		return this.type;
+	}
+
+	public Integer getId() {
+		return this.id;
 	}
 
 }

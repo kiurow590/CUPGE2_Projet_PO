@@ -11,6 +11,7 @@ public class RoomShop extends Room {
         super(hero);
         this.type = MON_TYPE;
         this.bgColor = StdDraw.BOOK_RED;
+        this.id = 2;
     }
 
 }
