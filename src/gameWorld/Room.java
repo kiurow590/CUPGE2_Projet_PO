@@ -30,18 +30,19 @@ public class Room {
 	private int compteurInvincibiliteHero;
 
 	private List<Monstre> lsMonster;
-	private Obstacles obstacle;
+	// private Obstacles obstacle;
 
 	private Objets objet;
-	public  Room () {
-		this.hero=null;
-		this.lsMonster=null;
+
+	public Room roomGauche;
+	public Room roomDroite;
+	public Room roomHaut;
+	public Room roomBas;
+
+	public Room() {
+		this.hero = null;
+		this.lsMonster = null;
 	}
-	public Room RoomGauche;
-	public Room RoomDroite;
-	public Room RoomHaut;
-	public Room RoomBas;
-	
 
 	/**
 	 * Constructeur de room
@@ -53,36 +54,116 @@ public class Room {
 		this.lsMonster = new ArrayList<Monstre>();
 		this.compteurInvincibiliteHero = 10;
 
-		initMonster();
+		// initMonster();
+		/*
+		 * double objectRandom = Math.random();
+		 * 
+		 * if (objectRandom < 0.35) {
+		 * double randomPiece = Math.random();
+		 * if (randomPiece < 0.45) {
+		 * this.objet = new Piece(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+		 * } else if (randomPiece >= 0.45 && randomPiece < 0.8) {
+		 * this.objet = new Piece(5, RoomInfos.POSITION_CENTER_OF_ROOM);
+		 * 
+		 * } else if (randomPiece >= 0.8) {
+		 * this.objet = new Piece(10, RoomInfos.POSITION_CENTER_OF_ROOM);
+		 * 
+		 * }
+		 * } else if (objectRandom >= 0.35 && objectRandom < 0.75) {
+		 * double randomCoeur = Math.random();
+		 * 
+		 * if (randomCoeur < 0.6) {
+		 * this.objet = new Coeur(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+		 * 
+		 * } else if (randomCoeur >= 0.6) {
+		 * this.objet = new Coeur(2, RoomInfos.POSITION_CENTER_OF_ROOM);
+		 * 
+		 * }
+		 * } else if (objectRandom >= 0.75 && objectRandom < 0.875) {
+		 * this.objet = new BloodOfMartyr(new Vector2(5, 5));
+		 * } else if (objectRandom >= 0.875) {
+		 * this.objet = new CoeurSup(new Vector2(5, 5));
+		 * }
+		 */
+	}
 
-		double objectRandom = Math.random();
+	/*
+	 * Make every entity that compose a room process one step
+	 */
+	public void updateRoom() {
+		makeHeroPlay();
 
-		if (objectRandom < 0.35) {
-			double randomPiece = Math.random();
-			if (randomPiece < 0.45) {
-				this.objet = new Piece(1, RoomInfos.POSITION_CENTER_OF_ROOM);
-			} else if (randomPiece >= 0.45 && randomPiece < 0.8) {
-				this.objet = new Piece(5, RoomInfos.POSITION_CENTER_OF_ROOM);
+		/*
+		 * makeMonsterPlay();
+		 * collisionReport();
+		 * rammasseMonstreMort();
+		 * nettoyageLarme();
+		 * nettoyageProj();
+		 */
+	}
 
-			} else if (randomPiece >= 0.8) {
-				this.objet = new Piece(10, RoomInfos.POSITION_CENTER_OF_ROOM);
-
+	/*
+	 * Drawing
+	 */
+	public void drawRoom() {
+		// For every tile, set background color.
+		StdDraw.setPenColor(StdDraw.GRAY);
+		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
+			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
+				Vector2 position = positionFromTileIndex(i, j);
+				StdDraw.filledRectangle(position.getX(), position.getY(), RoomInfos.HALF_TILE_SIZE.getX(),
+						RoomInfos.HALF_TILE_SIZE.getY());
 			}
-		} else if (objectRandom >= 0.35 && objectRandom < 0.75) {
-			double randomCoeur = Math.random();
-
-			if (randomCoeur < 0.6) {
-				this.objet = new Coeur(1, RoomInfos.POSITION_CENTER_OF_ROOM);
-
-			} else if (randomCoeur >= 0.6) {
-				this.objet = new Coeur(2, RoomInfos.POSITION_CENTER_OF_ROOM);
-
-			}
-		} else if (objectRandom >= 0.75 && objectRandom < 0.875) {
-			this.objet = new BloodOfMartyr(new Vector2(5, 5));
-		} else if (objectRandom >= 0.875) {
-			this.objet = new CoeurSup(new Vector2(5, 5));
 		}
+		this.drawWall();
+
+		hero.drawGameObject();
+		// dessineMonstre();
+		// dessineLarme();
+
+		// affichageObjets();
+
+	}
+
+	private void drawWall() {
+
+		// For every tile, set background color.
+		// StdDraw.setPenColor(StdDraw.BLUE);
+		// on construit les murs sur le coté
+		for (int colone = 0; colone < RoomInfos.NB_TILES; colone++) {
+
+			if (colone == 1 | colone == 0.0) {
+				for (double j = 0; j < RoomInfos.NB_TILES; j = j + 0.1) {
+					StdDraw.picture(colone, j, ImagePaths.WALL, 0.1, 0.1, 90);
+				}
+			}
+			// On contruit les mur du haut et du bas de la room
+			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
+				if (j == 0.0 | j == 1) {
+					for (double i = 0; i < RoomInfos.NB_TILES; i = i + 0.1) {
+						StdDraw.picture(i, j, ImagePaths.WALL, 0.1, 0.1);
+						// if ((j == 0 && i == 0) || (j == 1 && i == 1)) {
+						// StdDraw.picture(0.9, 0.1, ImagePaths.MUR_angle, 0.1, 0.1, 180);
+						// }
+
+					}
+
+				}
+				// this.geneSol();
+				// Vector2 position = positionFromTileIndex(colone, j);
+				// StdDraw.filledRectangle(position.getX(), position.getY(),
+				// RoomInfos.HALF_TILE_SIZE.getX(),
+				// RoomInfos.HALF_TILE_SIZE.getY());
+			}
+		}
+
+	}
+
+	/**
+	 * met a jour le hero
+	 */
+	private void makeHeroPlay() {
+		hero.updateGameObject();
 	}
 
 	/**
@@ -100,19 +181,6 @@ public class Room {
 
 			}
 		}
-	}
-
-	/*
-	 * Make every entity that compose a room process one step
-	 */
-	public void updateRoom() {
-		makeHeroPlay();
-		makeMonsterPlay();
-		collisionReport();
-		rammasseMonstreMort();
-		nettoyageLarme();
-		nettoyageProj();
-
 	}
 
 	/**
@@ -256,27 +324,23 @@ public class Room {
 		}
 	}
 
-	public void collisionObstacle( Monstre monstre) {
-		// Gestion des collision avec les rochers
-		if ( Physics.rectangleCollision(this.hero.getPosition(),
-				this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) {
-			//hero.position=new Vector2(0,0);
-		}
-			for ( int i=0 ; i< lsMonster.size() ; i++ ) {
-				// on evite les mouches car elles non pas de collision avec les rochers
-			if(this.lsMonster.get(i) instanceof Fly==false) { 
-			if ( Physics.rectangleCollision(this.lsMonster.get(i).getPosition(),
-					this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) {
-			}}
-		}
-	}
-	
-	/**
-	 * met a jour le hero
+	/*
+	 * public void collisionObstacle() {
+	 * // Gestion des collision avec les rochers
+	 * if (Physics.rectangleCollision(this.hero.getPosition(),
+	 * this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) {
+	 * // hero.position=new Vector2(0,0);
+	 * }
+	 * for (int i = 0; i < lsMonster.size(); i++) {
+	 * // on evite les mouches car elles non pas de collision avec les rochers
+	 * if (this.lsMonster.get(i) instanceof Fly == false) {
+	 * if (Physics.rectangleCollision(this.lsMonster.get(i).getPosition(),
+	 * this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) {
+	 * }
+	 * }
+	 * }
+	 * }
 	 */
-	private void makeHeroPlay() {
-		hero.updateGameObject();
-	}
 
 	/**
 	 * met a jour le monstre
@@ -286,27 +350,6 @@ public class Room {
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 			this.lsMonster.get(i).updateGameObject(this.hero, lsMonster);
 		}
-
-	}
-
-	/*
-	 * Drawing
-	 */
-	public void drawRoom() {
-		// For every tile, set background color.
-		StdDraw.setPenColor(StdDraw.GRAY);
-		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-				Vector2 position = positionFromTileIndex(i, j);
-				StdDraw.filledRectangle(position.getX(), position.getY(), RoomInfos.HALF_TILE_SIZE.getX(),
-						RoomInfos.HALF_TILE_SIZE.getY());
-			}
-		}
-		hero.drawGameObject();
-		dessineMonstre();
-		dessineLarme();
-
-		affichageObjets();
 
 	}
 

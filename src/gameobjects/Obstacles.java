@@ -1,4 +1,5 @@
 package gameobjects;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,29 +13,30 @@ public class Obstacles {
 	/*
 	 * Attributs Des obstacles
 	 */
-private Vector2 position ; 
-private Vector2 size;
-public Obstacles (Vector2 position , Vector2 size) {
-	this.position=position;
-	this.size=size;
-}
+	private Vector2 position;
+	private Vector2 size;
 
-/*
- * getter et setter 
- */
-public Vector2 getPosition() {
-	return position;
-}
+	public Obstacles(Vector2 position, Vector2 size) {
+		this.position = position;
+		this.size = size;
+	}
 
-public void setPosition(Vector2 position) {
-	this.position = position;
-}
+	/*
+	 * getter et setter
+	 */
+	public Vector2 getPosition() {
+		return position;
+	}
 
-public Vector2 getSize() {
-	return size;
-}
+	public void setPosition(Vector2 position) {
+		this.position = position;
+	}
 
-public void setSize(Vector2 size) {
-	this.size = size;
-}
+	public Vector2 getSize() {
+		return size;
+	}
+
+	public void setSize(Vector2 size) {
+		this.size = size;
+	}
 }
