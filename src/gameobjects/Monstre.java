@@ -30,12 +30,11 @@ public abstract class Monstre {
 	 * @param ptDeVie          point de vie du monstre
 	 * @param degatCorpsACorps degats du monstre au corps a corps
 	 */
-	public Monstre(Vector2 position, Vector2 size, double speed, Vector2 direction, int ptDeVie, int degatCorpsACorps) {
+	public Monstre(Vector2 position, Vector2 size, double speed, int ptDeVie, int degatCorpsACorps) {
 		this.position = position;
 		this.size = size;
-
+		this.direction = new Vector2();
 		this.speed = speed;
-		this.direction = direction;
 		this.ptDeVie = ptDeVie;
 		this.degatCorpsACorps = degatCorpsACorps;
 		this.immobilus = 0;

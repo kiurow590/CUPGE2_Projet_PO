@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import gameobjects.Fly;
+
 import gameobjects.Hero;
 import gameobjects.Larme;
-import gameobjects.Spider;
+
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
 import resources.ImagePaths;
 import resources.RoomInfos;
-import gameobjects.*;
 
 /**
  * 
@@ -74,6 +74,11 @@ public class GameWorld {
 		if (StdDraw.isKeyPressed(Controls.puissance)) {
 
 			hero.modePuissance();
+
+		}
+		if (StdDraw.isKeyPressed(Controls.addMoney)) {
+
+			hero.addArgentTriche();
 
 		}
 	}

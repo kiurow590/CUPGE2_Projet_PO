@@ -10,12 +10,12 @@ public class BloodOfMartyr extends PassifObject {
      * Attribut
      */
     private String imagePath;
-    private int Strength;
+    private int strength;
 
     public BloodOfMartyr(Vector2 position) {
-        super(position);
+        super(new Vector2(0.5, 0.5));
 
-        this.Strength = 1;
+        this.strength = 1;
         this.imagePath = ImagePaths.BLOOD_OF_THE_MARTYR;
 
     }
@@ -29,11 +29,11 @@ public class BloodOfMartyr extends PassifObject {
     }
 
     public int getStrength() {
-        return this.Strength;
+        return this.strength;
     }
 
-    public void setStrength(int Strength) {
-        this.Strength = Strength;
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     @Override

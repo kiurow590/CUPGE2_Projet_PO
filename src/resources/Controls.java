@@ -11,6 +11,7 @@ public class Controls {
 	public static int invincible = Keybinding.keycodeOf('i');
 	public static int vitesse = Keybinding.keycodeOf('l');
 	public static int killMonster = Keybinding.keycodeOf('k');
+	public static int addMoney = Keybinding.keycodeOf('o');
 
 	public static int puissance = Keybinding.keycodeOf('p');
 

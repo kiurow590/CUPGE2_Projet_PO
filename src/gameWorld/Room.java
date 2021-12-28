@@ -125,10 +125,26 @@ public class Room {
 		hero.drawGameObject();
 		// dessineMonstre();
 		// dessineLarme();
+    // affichageViePiece();
+
 
 		// affichageObjets();
+    
+		initMonster();
+		// initObjectGift();
+		this.objet = new BloodOfMartyr(new Vector2());
 
 	}
+
+	/**
+	 * Methode qui génère une objet random en respectant les probabilité
+	 * d'apparition
+	 */
+	public void initObjectGift() {
+		double objectRandom = Math.random();
+    
+  }
+
 
 	private void drawWall() {
 
@@ -177,12 +193,9 @@ public class Room {
 	private void initMonster() {
 		for (int i = 0; i < 4; i++) {
 			if (Math.random() < 0.5) {
-				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random()),
-						RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.SPIDER, 0.02, new Vector2(), 5, 1,
-						40));
+				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random())));
 			} else {
-				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random()),
-						RoomInfos.TILE_SIZE.scalarMultiplication(0.4), ImagePaths.FLY, 0.005, new Vector2(), 5, 1));
+				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
 
 			}
 		}
@@ -356,6 +369,42 @@ public class Room {
 			this.lsMonster.get(i).updateGameObject(this.hero, lsMonster);
 		}
 
+	}
+
+	public void affichageViePiece() {
+		// Affichage nb piece
+		StdDraw.picture(0.75, 0.9, ImagePaths.DIME, RoomInfos.TILE_SIZE.scalarMultiplication(0.4).getX(),
+				RoomInfos.TILE_SIZE.scalarMultiplication(0.4).getY());
+		StdDraw.setPenRadius();
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.8, 0.9, ": " + hero.getStackArgent() + "");
+		// ----------------------------------------------------------------
+		StdDraw.setPenRadius();
+		int pvView = this.hero.getPV();
+		if (pvView % 2 == 0) {
+			double x = 0.1;
+			while (pvView != 0) {
+				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
+
+				x += 0.1;
+				pvView -= 2;
+			}
+
+		} else {
+			double x = 0.1;
+			while (pvView != 1) {
+				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
+
+				x += 0.1;
+				pvView -= 2;
+
+			}
+
+			StdDraw.picture(x, 0.9, ImagePaths.HALF_HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+					RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
+		}
 	}
 
 	/**

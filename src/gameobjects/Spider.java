@@ -4,6 +4,9 @@ import java.util.List;
 
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.DisplaySettings;
+import resources.ImagePaths;
+import resources.MonstreInfo;
 
 public class Spider extends Monstre {
 
@@ -19,11 +22,11 @@ public class Spider extends Monstre {
 	 * @param speed     vitesse de la spider
 	 * @param direction direction de deplacement de la spider
 	 */
-	public Spider(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
-			int degatCorpsACorps, int compteur) {
-		super(position, size, speed, direction, ptDeVie, degatCorpsACorps);
-		this.imagePath = imagePath;
-		this.compteur = compteur;
+	public Spider(Vector2 position) {
+		super(position, MonstreInfo.SPIDER_SIZE, MonstreInfo.SPIDER_SPEED, MonstreInfo.SPIDER_PV,
+				MonstreInfo.SPIDER_DAMMAGE);
+		this.imagePath = ImagePaths.SPIDER;
+		this.compteur = DisplaySettings.FRAME_PER_SECOND;
 
 	}
 
