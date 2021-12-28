@@ -58,7 +58,7 @@ public abstract class Monstre {
 	/**
 	 * Methode qui normalise le vecteur direction du personnage
 	 * 
-	 * @return le vexteur normaliser
+	 * @return le vecteur normaliser
 	 */
 	public Vector2 getNormalizedDirection() {
 		Vector2 normalizedVector = new Vector2(direction);
