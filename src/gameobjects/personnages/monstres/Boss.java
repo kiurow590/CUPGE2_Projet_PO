@@ -1,8 +1,9 @@
-package gameobjects;
+package gameobjects.personnages.monstres;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;

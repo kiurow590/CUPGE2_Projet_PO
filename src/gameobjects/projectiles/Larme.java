@@ -1,9 +1,9 @@
-package gameobjects;
+package gameobjects.projectiles;
 
 import libraries.StdDraw;
 import libraries.Vector2;
 
-public class FlyProjectile {
+public class Larme {
 
 	private Vector2 position;
 	private Vector2 size;
@@ -14,27 +14,24 @@ public class FlyProjectile {
 	private int degats;
 
 	/**
-	 * Constructeur de projectile lancer par les monstre
+	 * Constructeur de larme
 	 * 
-	 * @param position  position initiale
-	 * @param size      taille du projectile
-	 * @param imagePath image du projectile
-	 * @param speed     vitesse de lanccer
-	 * @param direction direction de lancer --> 4 cas de figure :
+	 * @param position  position initiale de la larme
+	 * @param size      taille de la larme
+	 * @param imagePath image representant la larme
+	 * @param speed     vitesse de la larme
+	 * @param direction direction de la larme --> 4 cas de figure :
 	 *                  <ul>
-	 *                  <li>(1,0) --> le projectile sera en mouvement vers la gauche
+	 *                  <li>(1,0) --> la larme sera en mouvement vers la gauche</li>
+	 *                  <li>(-1,0) --> la larme sera en mouvement vers la droite
 	 *                  </li>
-	 *                  <li>(-1,0) --> le projectile sera en mouvement vers la
-	 *                  droite</li>
-	 *                  <li>(0,1) --> le projectile sera en mouvement vers le
-	 *                  haut</li>
-	 *                  <li>(0,-1) --> le projectile sera en mouvement vers la
-	 *                  bas</li>
+	 *                  <li>(0,1) --> la larme sera en mouvement vers le haut</li>
+	 *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
 	 *                  </ul>
-	 * @param portee    porter du lancer
-	 * @param degats    degats du projectile
+	 * @param portee    porté de la larme --> la distance max quelle peut parcourir
+	 * @param degats    les degats que la larme engendre
 	 */
-	public FlyProjectile(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee,
+	public Larme(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee,
 			int degats) {
 		super();
 		this.position = position;
@@ -85,8 +82,6 @@ public class FlyProjectile {
 		normalizedVector.euclidianNormalize(speed);
 		return normalizedVector;
 	}
-	
-	
 
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.
@@ -106,6 +101,10 @@ public class FlyProjectile {
 	public void goRightNext() {
 		getDirection().addX(1);
 	}
+	
+	/**
+	 * GETTERS / SETTERS
+	 */
 
 	public Vector2 getPosition() {
 		return position;
@@ -162,5 +161,5 @@ public class FlyProjectile {
 	public void setDegats(int degats) {
 		this.degats = degats;
 	}
-	
+
 }

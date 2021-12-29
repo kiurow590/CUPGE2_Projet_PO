@@ -3,8 +3,15 @@ package gameWorld;
 import java.util.HashMap;
 import java.util.Map;
 
-import gameobjects.Hero;
-import gameobjects.Larme;
+import gameWorld.rooms.Room;
+import gameWorld.rooms.RoomMonster;
+import gameWorld.rooms.RoomSpawn;
+import gameWorld.rooms.portes.PorteBas;
+import gameWorld.rooms.portes.PorteDroit;
+import gameWorld.rooms.portes.PorteGauche;
+import gameWorld.rooms.portes.PorteHaut;
+import gameobjects.personnages.Hero;
+import gameobjects.projectiles.Larme;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;

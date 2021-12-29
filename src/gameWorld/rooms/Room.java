@@ -1,20 +1,21 @@
-package gameWorld;
+package gameWorld.rooms;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import gameobjects.BloodOfMartyr;
-import gameobjects.Coeur;
-import gameobjects.CoeurSup;
-import gameobjects.Fly;
-import gameobjects.Hero;
-import gameobjects.Monstre;
-import gameobjects.Objets;
-import gameobjects.Obstacles;
-import gameobjects.Piece;
-import gameobjects.Spider;
+import gameWorld.rooms.portes.Porte;
+import gameobjects.objets.GenericObject;
+import gameobjects.objets.consommables.Coeur;
+import gameobjects.objets.consommables.Piece;
+import gameobjects.objets.passifs.BloodOfMartyr;
+import gameobjects.objets.passifs.CoeurSup;
+import gameobjects.obstacles.Obstacles;
+import gameobjects.personnages.Hero;
+import gameobjects.personnages.monstres.Fly;
+import gameobjects.personnages.monstres.Monstre;
+import gameobjects.personnages.monstres.Spider;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -41,7 +42,7 @@ public class Room {
 	private List<Monstre> lsMonster;
 	private Obstacles obstacle;
 
-	private Objets objet;
+	private GenericObject objet;
 
 	/**
 	 * Constructeur de room
@@ -480,11 +481,11 @@ public class Room {
 		this.lstPorte = lstPorte;
 	}
 
-	public Objets getObjet() {
+	public GenericObject getObjet() {
 		return this.objet;
 	}
 
-	public void setObjet(Objets objet) {
+	public void setObjet(GenericObject objet) {
 		this.objet = objet;
 	}
 

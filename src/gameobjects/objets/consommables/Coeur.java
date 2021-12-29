@@ -1,38 +1,27 @@
-package gameobjects;
+package gameobjects.objets.consommables;
 
+import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
-public class Piece extends ConsommableObject {
+public class Coeur extends ConsommableObject {
     /**
      * Attribut
      */
-
     private String imagePath;
     private int value;
 
-    /**
-     * Constructeur de piece
-     * 
-     * @param value
-     * @param position
-     */
-    public Piece(int value, Vector2 position) {
-
+    public Coeur(int value, Vector2 position) {
         super(position);
+
         this.value = value;
 
         if (this.value == 1) {
-            this.imagePath = ImagePaths.COIN;
-        } else if (this.value == 5) {
-            this.imagePath = ImagePaths.NICKEL;
-
-        } else if (this.value == 10) {
-            this.imagePath = ImagePaths.DIME;
-
+            imagePath = ImagePaths.HALF_HEART_HUD;
+        } else if (this.value == 2) {
+            imagePath = ImagePaths.HEART_HUD;
         }
-
     }
 
     public String getImagePath() {
@@ -62,7 +51,7 @@ public class Piece extends ConsommableObject {
 
     @Override
     public String toString() {
-        return "Piece = {" +
+        return "Coeur = {" +
                 " imagePath='" + getImagePath() + "'" +
                 ", value='" + getValue() + "'" +
                 "}";
@@ -70,11 +59,11 @@ public class Piece extends ConsommableObject {
 
     @Override
     public void updateHeroPerf(Hero e) {
-
-        if (e.getStackArgent() + value <= e.getSoldePieceMax() && super.isEstRamasser() == false) {
-            e.AjoutStackArgent(value);
+        if (e.getpV() + value <= e.getMaxPV() && super.isEstRamasser() == false) {
+            e.addPV(value);
             super.setEstRamasser(true);
         }
+
     }
 
 }

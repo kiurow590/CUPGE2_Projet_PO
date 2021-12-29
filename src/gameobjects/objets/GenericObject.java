@@ -1,9 +1,10 @@
-package gameobjects;
+package gameobjects.objets;
 
+import gameobjects.personnages.Hero;
 import libraries.Vector2;
 import resources.RoomInfos;
 
-public abstract class Objets {
+public abstract class GenericObject {
 
     /**
      * Attribut
@@ -12,7 +13,7 @@ public abstract class Objets {
     private Vector2 size;
     private boolean estRamasser;
 
-    public Objets(Vector2 position) {
+    public GenericObject(Vector2 position) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
         this.estRamasser = false;

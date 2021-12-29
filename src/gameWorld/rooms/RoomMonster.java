@@ -1,6 +1,6 @@
-package gameWorld;
+package gameWorld.rooms;
 
-import gameobjects.Hero;
+import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 
 /**

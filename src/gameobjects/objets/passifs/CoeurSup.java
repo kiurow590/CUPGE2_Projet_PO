@@ -1,5 +1,6 @@
-package gameobjects;
+package gameobjects.objets.passifs;
 
+import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;

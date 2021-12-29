@@ -1,12 +1,14 @@
-package gameobjects;
+package gameobjects.personnages.monstres;
 
 import java.util.List;
 
+import gameobjects.personnages.Hero;
+import gameobjects.projectiles.FlyProjectile;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
-import resources.RoomInfos;
 import resources.MonstreInfo;
+import resources.RoomInfos;
 
 public class Fly extends Monstre {
 	private String imagePath;

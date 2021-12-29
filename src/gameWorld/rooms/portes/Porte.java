@@ -1,4 +1,4 @@
-package gameWorld;
+package gameWorld.rooms.portes;
 
 import libraries.StdDraw;
 import libraries.Vector2;

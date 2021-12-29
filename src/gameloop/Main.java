@@ -1,7 +1,7 @@
 package gameloop;
 
 import gameWorld.GameWorld;
-import gameobjects.Hero;
+import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
