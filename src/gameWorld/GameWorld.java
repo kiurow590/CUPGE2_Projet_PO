@@ -41,6 +41,8 @@ public class GameWorld {
 
 		mapDeRoom.put(spawn.getId(), spawn);
 		mapDeRoom.put(monster1.getId(), monster1);
+		mapDeRoom.get(spawn.getId()).getLstPorte().add(new PorteHaut(monster1.getId()));
+		mapDeRoom.get(monster1.getId()).getLstPorte().add(new PorteBas(spawn.getId()));
 
 		currentRoom = spawn;
 	}

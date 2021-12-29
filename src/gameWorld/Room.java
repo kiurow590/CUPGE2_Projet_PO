@@ -34,7 +34,7 @@ public class Room {
 
 	Integer id;
 
-	HashMap<Integer, Integer> lstPorte;
+	List<Porte> lstPorte;
 
 	private int compteurInvincibiliteHero;
 
@@ -42,11 +42,6 @@ public class Room {
 	private Obstacles obstacle;
 
 	private Objets objet;
-
-	public Room roomGauche;
-	public Room roomDroite;
-	public Room roomHaut;
-	public Room roomBas;
 
 	/**
 	 * Constructeur de room
@@ -62,7 +57,7 @@ public class Room {
 
 		this.bgColor = StdDraw.GRAY;
 
-		this.lstPorte = new HashMap<>();
+		this.lstPorte = new ArrayList<>();
 
 		// initMonster();
 		// initObjectGift();
@@ -96,14 +91,24 @@ public class Room {
 						RoomInfos.HALF_TILE_SIZE.getY());
 			}
 		}
+
+		dessinePorte();
 		this.drawWall();
 
 		hero.drawGameObject();
+		dessinePorte();
+
 		// dessineMonstre();
 		// dessineLarme();
 		// affichageViePiece();
 
 		// affichageObjets();
+	}
+
+	private void dessinePorte() {
+		for (int i = 0; i < lstPorte.size(); i++) {
+			lstPorte.get(i).drawGameObject();
+		}
 	}
 
 	/**
@@ -467,6 +472,30 @@ public class Room {
 
 	public Integer getId() {
 		return this.id;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<Porte> getLstPorte() {
+		return this.lstPorte;
+	}
+
+	public void setLstPorte(List<Porte> lstPorte) {
+		this.lstPorte = lstPorte;
+	}
+
+	public Objets getObjet() {
+		return this.objet;
+	}
+
+	public void setObjet(Objets objet) {
+		this.objet = objet;
 	}
 
 }
