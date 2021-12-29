@@ -6,11 +6,11 @@ import libraries.StdDraw;
 /**
  * Room avec des monstres dedans.
  */
-public class RoomMonster extends Room {
+public class MonsterRoom extends Room {
 
     private static final String MON_TYPE = "MONSTER_ROOM";
 
-    public RoomMonster(Hero hero) {
+    public MonsterRoom(Hero hero) {
         super(hero);
         this.type = MON_TYPE;
         this.bgColor = StdDraw.PINK;

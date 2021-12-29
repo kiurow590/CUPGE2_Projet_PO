@@ -6,11 +6,11 @@ import libraries.StdDraw;
 /**
  * Room de depart.
  */
-public class RoomSpawn extends Room {
+public class SpawnRoom extends Room {
 
     private static final String MON_TYPE = "SPAWN_ROOM";
 
-    public RoomSpawn(Hero hero) {
+    public SpawnRoom(Hero hero) {
         super(hero);
         this.type = MON_TYPE;
         this.id = 0;

@@ -8,7 +8,7 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 import resources.RoomInfos;
-public class Rocher extends Obstacles {
+public class Rock extends GenericObstacle {
 	private String imagePaths;
 	/*
 	 * constructeur de rocher 
@@ -16,7 +16,7 @@ public class Rocher extends Obstacles {
 	 * @param size			taille de l'obstacle
 	 * @param imagePaths 	image de l'obstacle
 	 */
-	public Rocher (Vector2 position , Vector2 size) {
+	public Rock (Vector2 position , Vector2 size) {
 		super (position , size);
 		this.imagePaths= resources.ImagePaths.ROCK;
 	}

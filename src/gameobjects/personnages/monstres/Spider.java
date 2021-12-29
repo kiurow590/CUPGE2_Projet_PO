@@ -9,7 +9,7 @@ import resources.DisplaySettings;
 import resources.ImagePaths;
 import resources.MonstreInfo;
 
-public class Spider extends Monstre {
+public class Spider extends Monster {
 
 	private String imagePath;
 	private int compteur;
@@ -45,7 +45,7 @@ public class Spider extends Monstre {
 	}
 
 	@Override
-	public void updateGameObject(Hero e, List<Monstre> lsMonster) {
+	public void updateGameObject(Hero e, List<Monster> lsMonster) {
 		if (this.compteur == 0) {
 			move(lsMonster);
 			this.compteur = 40;
@@ -58,7 +58,7 @@ public class Spider extends Monstre {
 	/**
 	 * Methode qui mets en mouvement l'araignee
 	 */
-	private void move(List<Monstre> lsMonster) {
+	private void move(List<Monster> lsMonster) {
 		/**
 		 * Methode qui mets en mouvement le monstre
 		 */

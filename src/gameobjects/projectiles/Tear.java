@@ -3,7 +3,7 @@ package gameobjects.projectiles;
 import libraries.StdDraw;
 import libraries.Vector2;
 
-public class Larme {
+public class Tear {
 
 	private Vector2 position;
 	private Vector2 size;
@@ -31,7 +31,7 @@ public class Larme {
 	 * @param portee    porté de la larme --> la distance max quelle peut parcourir
 	 * @param degats    les degats que la larme engendre
 	 */
-	public Larme(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee,
+	public Tear(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee,
 			int degats) {
 		super();
 		this.position = position;

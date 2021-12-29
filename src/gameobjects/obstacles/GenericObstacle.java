@@ -9,14 +9,14 @@ import libraries.Vector2;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
-public class Obstacles {
+public class GenericObstacle {
 	/*
 	 * Attributs Des obstacles
 	 */
 	private Vector2 position;
 	private Vector2 size;
 
-	public Obstacles(Vector2 position, Vector2 size) {
+	public GenericObstacle(Vector2 position, Vector2 size) {
 		this.position = position;
 		this.size = size;
 	}

@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gameWorld.rooms.Room;
-import gameWorld.rooms.RoomMonster;
-import gameWorld.rooms.RoomSpawn;
-import gameWorld.rooms.portes.PorteBas;
-import gameWorld.rooms.portes.PorteDroit;
-import gameWorld.rooms.portes.PorteGauche;
-import gameWorld.rooms.portes.PorteHaut;
+import gameWorld.rooms.MonsterRoom;
+import gameWorld.rooms.SpawnRoom;
+import gameWorld.rooms.portes.BottomDoor;
+import gameWorld.rooms.portes.RightDoor;
+import gameWorld.rooms.portes.LeftDoor;
+import gameWorld.rooms.portes.TopDoor;
 import gameobjects.personnages.Hero;
-import gameobjects.projectiles.Larme;
+import gameobjects.projectiles.Tear;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -39,13 +39,13 @@ public class GameWorld {
 		this.hero = hero;
 
 		// Generation des rooms
-		Room spawn = new RoomSpawn(hero);
-		Room monster1 = new RoomMonster(hero);
+		Room spawn = new SpawnRoom(hero);
+		Room monster1 = new MonsterRoom(hero);
 
 		mapDeRoom.put(spawn.getId(), spawn);
 		mapDeRoom.put(monster1.getId(), monster1);
-		mapDeRoom.get(spawn.getId()).getLstPorte().add(new PorteHaut(monster1.getId()));
-		mapDeRoom.get(monster1.getId()).getLstPorte().add(new PorteBas(spawn.getId()));
+		mapDeRoom.get(spawn.getId()).getLstPorte().add(new TopDoor(monster1.getId()));
+		mapDeRoom.get(monster1.getId()).getLstPorte().add(new BottomDoor(spawn.getId()));
 
 		currentRoom = spawn;
 	}
@@ -66,13 +66,13 @@ public class GameWorld {
 			if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
 					currentRoom.getLstPorte().get(i).getPosition(), currentRoom.getLstPorte().get(i).getSize())) {
 
-				if (currentRoom.getLstPorte().get(i) instanceof PorteBas) {
+				if (currentRoom.getLstPorte().get(i) instanceof BottomDoor) {
 					hero.setPosition(new Vector2(0.5, 0.85));
-				} else if (currentRoom.getLstPorte().get(i) instanceof PorteHaut) {
+				} else if (currentRoom.getLstPorte().get(i) instanceof TopDoor) {
 					hero.setPosition(new Vector2(0.5, 0.15));
-				} else if (currentRoom.getLstPorte().get(i) instanceof PorteDroit) {
+				} else if (currentRoom.getLstPorte().get(i) instanceof RightDoor) {
 					hero.setPosition(new Vector2(0.85, 0.5));
-				} else if (currentRoom.getLstPorte().get(i) instanceof PorteGauche) {
+				} else if (currentRoom.getLstPorte().get(i) instanceof LeftDoor) {
 					hero.setPosition(new Vector2(0.15, 0.5));
 				}
 				currentRoom = mapDeRoom.get(currentRoom.getLstPorte().get(i).getIdSalle());
@@ -181,28 +181,28 @@ public class GameWorld {
 	 */
 	public void processTire() {
 		if (StdDraw.isKeyPressed(Controls.hitUp)) {
-			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+			Tear e = new Tear(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
 					0.01, new Vector2(0, 1), 40, 1);
 
 			hero.creeLarme(e);
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitDown)) {
-			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+			Tear e = new Tear(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
 					0.01, new Vector2(0, -1), 40, 1);
 
 			hero.creeLarme(e);
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
-			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+			Tear e = new Tear(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
 					0.01, new Vector2(-1, 0), 40, 1);
 
 			hero.creeLarme(e);
 		}
 		if (StdDraw.isKeyPressed(Controls.hitRight)) {
 
-			Larme e = new Larme(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+			Tear e = new Tear(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
 					0.01, new Vector2(1, 0), 40, 1);
 
 			hero.creeLarme(e);

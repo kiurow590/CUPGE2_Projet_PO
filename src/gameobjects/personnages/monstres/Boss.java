@@ -8,12 +8,12 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
-public class Boss extends Monstre {
+public class Boss extends Monster {
 
     private String imagePath;
     private int compteur;
 
-    private List<Monstre> lstMonstre;
+    private List<Monster> lstMonstre;
 
     /**
      * Constructeur de fly
@@ -51,7 +51,7 @@ public class Boss extends Monstre {
     }
 
     @Override
-    public void updateGameObject(Hero e, List<Monstre> lsMonster) {
+    public void updateGameObject(Hero e, List<Monster> lsMonster) {
         if (this.compteur == 0) {
             move(e, lsMonster);
             this.compteur = 40;
@@ -64,7 +64,7 @@ public class Boss extends Monstre {
     /**
      * Methode qui mets en mouvement l'araignee
      */
-    private void move(Hero e, List<Monstre> lsMonster) {
+    private void move(Hero e, List<Monster> lsMonster) {
         /**
          * Collision entre mob ici !
          */

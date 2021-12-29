@@ -1,27 +1,24 @@
-package gameobjects.objets.consommables;
+package gameobjects.objets.passifs;
 
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
-public class Coeur extends ConsommableObject {
+public class LifeExtension extends PassifObject {
+
     /**
      * Attribut
      */
     private String imagePath;
-    private int value;
+    private int maxValue;
 
-    public Coeur(int value, Vector2 position) {
+    public LifeExtension(Vector2 position) {
         super(position);
 
-        this.value = value;
+        this.maxValue = 2;
+        this.imagePath = ImagePaths.HP_UP;
 
-        if (this.value == 1) {
-            imagePath = ImagePaths.HALF_HEART_HUD;
-        } else if (this.value == 2) {
-            imagePath = ImagePaths.HEART_HUD;
-        }
     }
 
     public String getImagePath() {
@@ -32,12 +29,12 @@ public class Coeur extends ConsommableObject {
         this.imagePath = imagePath;
     }
 
-    public int getValue() {
-        return this.value;
+    public int getMaxValue() {
+        return this.maxValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setMaxValue(int maxValue) {
+        this.maxValue = maxValue;
     }
 
     @Override
@@ -51,17 +48,19 @@ public class Coeur extends ConsommableObject {
 
     @Override
     public String toString() {
-        return "Coeur = {" +
+        return "Coeur Sup = {" +
                 " imagePath='" + getImagePath() + "'" +
-                ", value='" + getValue() + "'" +
+                ", maxValue='" + getMaxValue() + "'" +
                 "}";
     }
 
     @Override
     public void updateHeroPerf(Hero e) {
-        if (e.getpV() + value <= e.getMaxPV() && super.isEstRamasser() == false) {
-            e.addPV(value);
+
+        if (super.isEstRamasser() == false) {
+            e.setMaxPV(e.getMaxPV() + 1);
             super.setEstRamasser(true);
+
         }
 
     }

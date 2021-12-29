@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import gameWorld.rooms.portes.Porte;
+import gameWorld.rooms.portes.Door;
 import gameobjects.objets.GenericObject;
-import gameobjects.objets.consommables.Coeur;
-import gameobjects.objets.consommables.Piece;
+import gameobjects.objets.consommables.Life;
+import gameobjects.objets.consommables.Coin;
 import gameobjects.objets.passifs.BloodOfMartyr;
-import gameobjects.objets.passifs.CoeurSup;
-import gameobjects.obstacles.Obstacles;
+import gameobjects.objets.passifs.LifeExtension;
+import gameobjects.obstacles.GenericObstacle;
 import gameobjects.personnages.Hero;
 import gameobjects.personnages.monstres.Fly;
-import gameobjects.personnages.monstres.Monstre;
+import gameobjects.personnages.monstres.Monster;
 import gameobjects.personnages.monstres.Spider;
 import libraries.Physics;
 import libraries.StdDraw;
@@ -35,12 +35,12 @@ public class Room {
 
 	Integer id;
 
-	List<Porte> lstPorte;
+	List<Door> lstPorte;
 
 	private int compteurInvincibiliteHero;
 
-	private List<Monstre> lsMonster;
-	private Obstacles obstacle;
+	private List<Monster> lsMonster;
+	private GenericObstacle obstacle;
 
 	private GenericObject objet;
 
@@ -52,7 +52,7 @@ public class Room {
 	public Room(Hero hero) {
 		this.id = null;
 		this.hero = hero;
-		this.lsMonster = new ArrayList<Monstre>();
+		this.lsMonster = new ArrayList<Monster>();
 		this.compteurInvincibiliteHero = 10;
 		this.type = "DEFAULT_ROOM";
 
@@ -122,28 +122,28 @@ public class Room {
 		if (objectRandom < 0.35) {
 			double randomPiece = Math.random();
 			if (randomPiece < 0.45) {
-				this.objet = new Piece(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+				this.objet = new Coin(1, RoomInfos.POSITION_CENTER_OF_ROOM);
 			} else if (randomPiece >= 0.45 && randomPiece < 0.8) {
-				this.objet = new Piece(5, RoomInfos.POSITION_CENTER_OF_ROOM);
+				this.objet = new Coin(5, RoomInfos.POSITION_CENTER_OF_ROOM);
 
 			} else if (randomPiece >= 0.8) {
-				this.objet = new Piece(10, RoomInfos.POSITION_CENTER_OF_ROOM);
+				this.objet = new Coin(10, RoomInfos.POSITION_CENTER_OF_ROOM);
 
 			}
 		} else if (objectRandom >= 0.35 && objectRandom < 0.75) {
 			double randomCoeur = Math.random();
 
 			if (randomCoeur < 0.6) {
-				this.objet = new Coeur(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+				this.objet = new Life(1, RoomInfos.POSITION_CENTER_OF_ROOM);
 
 			} else if (randomCoeur >= 0.6) {
-				this.objet = new Coeur(2, RoomInfos.POSITION_CENTER_OF_ROOM);
+				this.objet = new Life(2, RoomInfos.POSITION_CENTER_OF_ROOM);
 
 			}
 		} else if (objectRandom >= 0.75 && objectRandom < 0.875) {
 			this.objet = new BloodOfMartyr(new Vector2(5, 5));
 		} else if (objectRandom >= 0.875) {
-			this.objet = new CoeurSup(new Vector2(5, 5));
+			this.objet = new LifeExtension(new Vector2(5, 5));
 		}
 
 	}
@@ -278,7 +278,7 @@ public class Room {
 	 * 
 	 * @param monstre monstre avec lequel la colision est possible
 	 */
-	private void collisionHero(Monstre monstre) {
+	private void collisionHero(Monster monstre) {
 		// Retrait des points de vie d'Isaac s'il est touche par un monstre
 		if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
 				this.hero.getSize(), monstre.getPosition(), monstre.getSize())) {
@@ -298,7 +298,7 @@ public class Room {
 	 * 
 	 * @param monstre
 	 */
-	private void collisionLarme(Monstre monstre) {
+	private void collisionLarme(Monster monstre) {
 		// Gestion des larmes tirees par Isaac
 		for (int j = 0; j < hero.getLstLarme().size(); j++) {
 
@@ -320,7 +320,7 @@ public class Room {
 	 * 
 	 * @param monstre
 	 */
-	public void collisionProjectileFly(Monstre monstre) {
+	public void collisionProjectileFly(Monster monstre) {
 		// Gestion des projectiles de la mouche
 
 		for (int j = 0; !monstre.getLstProjectile().isEmpty()
@@ -449,11 +449,11 @@ public class Room {
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
 
-	public List<Monstre> getLsMonster() {
+	public List<Monster> getLsMonster() {
 		return lsMonster;
 	}
 
-	public void setLsMonster(List<Monstre> lsMonster) {
+	public void setLsMonster(List<Monster> lsMonster) {
 		this.lsMonster = lsMonster;
 	}
 
@@ -473,11 +473,11 @@ public class Room {
 		this.id = id;
 	}
 
-	public List<Porte> getLstPorte() {
+	public List<Door> getLstPorte() {
 		return this.lstPorte;
 	}
 
-	public void setLstPorte(List<Porte> lstPorte) {
+	public void setLstPorte(List<Door> lstPorte) {
 		this.lstPorte = lstPorte;
 	}
 

@@ -10,14 +10,14 @@ import resources.RoomInfos;
  * 
  *         Class Porte pour se deplacer entre les salles.
  */
-public abstract class Porte {
+public abstract class Door {
 
     private Vector2 position;
     private Vector2 size;
     private int idSalle;
     private int rotation;
 
-    public Porte(Vector2 position, int idSalle, int rotation) {
+    public Door(Vector2 position, int idSalle, int rotation) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.7);
         this.idSalle = idSalle;

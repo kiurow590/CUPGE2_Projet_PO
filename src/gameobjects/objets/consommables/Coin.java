@@ -1,23 +1,38 @@
-package gameobjects.objets.passifs;
+package gameobjects.objets.consommables;
 
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
-public class CoeurSup extends PassifObject {
-
+public class Coin extends ConsommableObject {
     /**
      * Attribut
      */
+
     private String imagePath;
-    private int maxValue;
+    private int value;
 
-    public CoeurSup(Vector2 position) {
+    /**
+     * Constructeur de piece
+     * 
+     * @param value
+     * @param position
+     */
+    public Coin(int value, Vector2 position) {
+
         super(position);
+        this.value = value;
 
-        this.maxValue = 2;
-        this.imagePath = ImagePaths.HP_UP;
+        if (this.value == 1) {
+            this.imagePath = ImagePaths.COIN;
+        } else if (this.value == 5) {
+            this.imagePath = ImagePaths.NICKEL;
+
+        } else if (this.value == 10) {
+            this.imagePath = ImagePaths.DIME;
+
+        }
 
     }
 
@@ -29,12 +44,12 @@ public class CoeurSup extends PassifObject {
         this.imagePath = imagePath;
     }
 
-    public int getMaxValue() {
-        return this.maxValue;
+    public int getValue() {
+        return this.value;
     }
 
-    public void setMaxValue(int maxValue) {
-        this.maxValue = maxValue;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     @Override
@@ -48,21 +63,19 @@ public class CoeurSup extends PassifObject {
 
     @Override
     public String toString() {
-        return "Coeur Sup = {" +
+        return "Piece = {" +
                 " imagePath='" + getImagePath() + "'" +
-                ", maxValue='" + getMaxValue() + "'" +
+                ", value='" + getValue() + "'" +
                 "}";
     }
 
     @Override
     public void updateHeroPerf(Hero e) {
 
-        if (super.isEstRamasser() == false) {
-            e.setMaxPV(e.getMaxPV() + 1);
+        if (e.getStackArgent() + value <= e.getSoldePieceMax() && super.isEstRamasser() == false) {
+            e.AjoutStackArgent(value);
             super.setEstRamasser(true);
-
         }
-
     }
 
 }

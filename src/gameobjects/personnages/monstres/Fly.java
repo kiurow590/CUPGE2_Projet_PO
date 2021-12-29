@@ -10,7 +10,7 @@ import resources.ImagePaths;
 import resources.MonstreInfo;
 import resources.RoomInfos;
 
-public class Fly extends Monstre {
+public class Fly extends Monster {
 	private String imagePath;
 
 	private int compteurTir;
@@ -48,7 +48,7 @@ public class Fly extends Monstre {
 	}
 
 	@Override
-	public void updateGameObject(Hero e, List<Monstre> lsMonster) {
+	public void updateGameObject(Hero e, List<Monster> lsMonster) {
 
 		if (this.getImmobilus() <= 0) {
 			move(e, lsMonster);
@@ -86,7 +86,7 @@ public class Fly extends Monstre {
 	/**
 	 * Methode qui mets en mouvement le monstre
 	 */
-	public void move(Hero e, List<Monstre> lsMonster) {
+	public void move(Hero e, List<Monster> lsMonster) {
 		/**
 		 * Collision entre mob ici !
 		 */

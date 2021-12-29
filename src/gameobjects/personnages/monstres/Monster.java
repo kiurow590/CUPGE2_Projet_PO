@@ -7,7 +7,7 @@ import gameobjects.personnages.Hero;
 import gameobjects.projectiles.FlyProjectile;
 import libraries.Vector2;
 
-public abstract class Monstre {
+public abstract class Monster {
 
 	private Vector2 position;
 	private Vector2 size;
@@ -32,7 +32,7 @@ public abstract class Monstre {
 	 * @param ptDeVie          point de vie du monstre
 	 * @param degatCorpsACorps degats du monstre au corps a corps
 	 */
-	public Monstre(Vector2 position, Vector2 size, double speed, int ptDeVie, int degatCorpsACorps) {
+	public Monster(Vector2 position, Vector2 size, double speed, int ptDeVie, int degatCorpsACorps) {
 		this.position = position;
 		this.size = size;
 		this.direction = new Vector2();
@@ -86,7 +86,7 @@ public abstract class Monstre {
 	 * 
 	 * @param lsMonster
 	 */
-	public abstract void updateGameObject(Hero e, List<Monstre> lsMonster);
+	public abstract void updateGameObject(Hero e, List<Monster> lsMonster);
 
 	/*
 	 * Moving from key inputs. Direction vector is later normalised.

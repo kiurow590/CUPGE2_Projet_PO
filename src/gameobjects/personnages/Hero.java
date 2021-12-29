@@ -3,7 +3,7 @@ package gameobjects.personnages;
 import java.util.ArrayList;
 import java.util.List;
 
-import gameobjects.projectiles.Larme;
+import gameobjects.projectiles.Tear;
 import libraries.StdDraw;
 import libraries.Vector2;
 
@@ -17,7 +17,7 @@ public class Hero {
 	private double speed;
 	private Vector2 direction;
 
-	private List<Larme> lstLarme;
+	private List<Tear> lstLarme;
 	private int degats;
 
 	private boolean estInvincible;
@@ -67,7 +67,7 @@ public class Hero {
 		this.compteurTir = 20;
 		this.pV = pv;
 
-		lstLarme = new ArrayList<Larme>();
+		lstLarme = new ArrayList<Tear>();
 
 		this.estRapide = false;
 		this.compteurRapide = 0;
@@ -163,7 +163,7 @@ public class Hero {
 	 * 
 	 * @param e larme
 	 */
-	public void creeLarme(Larme e) {
+	public void creeLarme(Tear e) {
 		if (this.compteurTir <= 0) {
 			e.setDegats(degats);
 			this.lstLarme.add(e);
@@ -332,11 +332,11 @@ public class Hero {
 		this.pV = pV;
 	}
 
-	public List<Larme> getLstLarme() {
+	public List<Tear> getLstLarme() {
 		return lstLarme;
 	}
 
-	public void setLstLarme(ArrayList<Larme> lstLarme) {
+	public void setLstLarme(ArrayList<Tear> lstLarme) {
 		this.lstLarme = lstLarme;
 	}
 
@@ -364,7 +364,7 @@ public class Hero {
 		this.compteurTir = compteurTir;
 	}
 
-	public void setLstLarme(List<Larme> lstLarme) {
+	public void setLstLarme(List<Tear> lstLarme) {
 		this.lstLarme = lstLarme;
 	}
 
