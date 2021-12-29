@@ -10,10 +10,10 @@ public class MonsterRoom extends Room {
 
     private static final String MON_TYPE = "MONSTER_ROOM";
 
-    public MonsterRoom(Hero hero) {
-        super(hero);
+    public MonsterRoom(Hero hero, Integer id) {
+        super(hero, id);
         this.type = MON_TYPE;
         this.bgColor = StdDraw.PINK;
-        this.id = 1;
+
     }
 }

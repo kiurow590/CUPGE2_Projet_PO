@@ -49,8 +49,8 @@ public class Room {
 	 * 
 	 * @param hero personnage de la room
 	 */
-	public Room(Hero hero) {
-		this.id = null;
+	public Room(Hero hero, Integer id) {
+		this.id = id;
 		this.hero = hero;
 		this.lsMonster = new ArrayList<Monster>();
 		this.compteurInvincibiliteHero = 10;

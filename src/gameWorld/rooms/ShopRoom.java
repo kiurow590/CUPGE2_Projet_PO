@@ -7,11 +7,10 @@ public class ShopRoom extends Room {
 
     private static final String MON_TYPE = "SHOP_ROOM";
 
-    public ShopRoom(Hero hero) {
-        super(hero);
+    public ShopRoom(Hero hero, Integer id) {
+        super(hero, id);
         this.type = MON_TYPE;
         this.bgColor = StdDraw.BOOK_RED;
-        this.id = 2;
     }
 
 }

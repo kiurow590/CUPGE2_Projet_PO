@@ -3,12 +3,14 @@ package gameWorld;
 import java.util.HashMap;
 import java.util.Map;
 
-import gameWorld.rooms.Room;
+import gameWorld.rooms.BossRoom;
 import gameWorld.rooms.MonsterRoom;
+import gameWorld.rooms.Room;
+import gameWorld.rooms.ShopRoom;
 import gameWorld.rooms.SpawnRoom;
 import gameWorld.rooms.portes.BottomDoor;
-import gameWorld.rooms.portes.RightDoor;
 import gameWorld.rooms.portes.LeftDoor;
+import gameWorld.rooms.portes.RightDoor;
 import gameWorld.rooms.portes.TopDoor;
 import gameobjects.personnages.Hero;
 import gameobjects.projectiles.Tear;
@@ -40,12 +42,36 @@ public class GameWorld {
 
 		// Generation des rooms
 		Room spawn = new SpawnRoom(hero);
-		Room monster1 = new MonsterRoom(hero);
+		Room monster1 = new MonsterRoom(hero, 1);
+		Room monster2 = new MonsterRoom(hero, 2);
+		Room monster3 = new MonsterRoom(hero, 3);
+		Room commerce1 = new ShopRoom(hero, 4);
+		Room Boss = new BossRoom(hero, 5);
 
+		// on ajoute a la map
 		mapDeRoom.put(spawn.getId(), spawn);
 		mapDeRoom.put(monster1.getId(), monster1);
-		mapDeRoom.get(spawn.getId()).getLstPorte().add(new TopDoor(monster1.getId()));
-		mapDeRoom.get(monster1.getId()).getLstPorte().add(new BottomDoor(spawn.getId()));
+		mapDeRoom.put(monster2.getId(), monster2);
+		mapDeRoom.put(monster3.getId(), monster3);
+		mapDeRoom.put(commerce1.getId(), commerce1);
+		mapDeRoom.put(Boss.getId(), Boss);
+
+		// on ajoute les porte au differente salle
+		mapDeRoom.get(spawn.getId()).getLstPorte().add(new LeftDoor(monster1.getId()));
+		mapDeRoom.get(monster1.getId()).getLstPorte().add(new RightDoor(spawn.getId()));
+		mapDeRoom.get(monster1.getId()).getLstPorte().add(new LeftDoor(monster2.getId()));
+		mapDeRoom.get(monster2.getId()).getLstPorte().add(new RightDoor(monster1.getId()));
+		mapDeRoom.get(monster2.getId()).getLstPorte().add(new RightDoor(monster1.getId()));
+
+		mapDeRoom.get(monster1.getId()).getLstPorte().add(new BottomDoor(monster3.getId()));
+
+		mapDeRoom.get(monster3.getId()).getLstPorte().add(new TopDoor(monster1.getId()));
+		mapDeRoom.get(monster3.getId()).getLstPorte().add(new BottomDoor(commerce1.getId()));
+
+		mapDeRoom.get(commerce1.getId()).getLstPorte().add(new TopDoor(monster3.getId()));
+
+		mapDeRoom.get(commerce1.getId()).getLstPorte().add(new RightDoor(Boss.getId()));
+		mapDeRoom.get(Boss.getId()).getLstPorte().add(new LeftDoor(commerce1.getId()));
 
 		currentRoom = spawn;
 	}
@@ -62,7 +88,7 @@ public class GameWorld {
 
 	private void changeCurrentRoom() {
 
-		for (int i = 0; i < currentRoom.getLstPorte().size(); i++) {
+		for (int i = 0; currentRoom.getLstPorte() != null && i < currentRoom.getLstPorte().size(); i++) {
 			if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
 					currentRoom.getLstPorte().get(i).getPosition(), currentRoom.getLstPorte().get(i).getSize())) {
 
@@ -70,13 +96,13 @@ public class GameWorld {
 					hero.setPosition(new Vector2(0.5, 0.85));
 				} else if (currentRoom.getLstPorte().get(i) instanceof TopDoor) {
 					hero.setPosition(new Vector2(0.5, 0.15));
-				} else if (currentRoom.getLstPorte().get(i) instanceof RightDoor) {
-					hero.setPosition(new Vector2(0.85, 0.5));
 				} else if (currentRoom.getLstPorte().get(i) instanceof LeftDoor) {
+					hero.setPosition(new Vector2(0.85, 0.5));
+				} else if (currentRoom.getLstPorte().get(i) instanceof RightDoor) {
 					hero.setPosition(new Vector2(0.15, 0.5));
 				}
 				currentRoom = mapDeRoom.get(currentRoom.getLstPorte().get(i).getIdSalle());
-
+				System.out.println(currentRoom.getId());
 			}
 		}
 
