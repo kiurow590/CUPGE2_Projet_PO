@@ -153,15 +153,15 @@ public class Room {
 		for (int colone = 0; colone < RoomInfos.NB_TILES; colone++) {
 
 			if (colone == 1 | colone == 0.0) {
-				for (double j = 0; j < RoomInfos.NB_TILES; j = j + 0.1) {
-					StdDraw.picture(colone, j, ImagePaths.WALL, 0.1, 0.1, 90);
+				for (double j = 0; j < RoomInfos.NB_TILES; j = j + 0.5) {
+					StdDraw.picture(colone, j, ImagePaths.WALL, 0.7, 0.1, 90);
 				}
 			}
 			// On contruit les mur du haut et du bas de la room
 			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
 				if (j == 0.0 | j == 1) {
-					for (double i = 0; i < RoomInfos.NB_TILES; i = i + 0.1) {
-						StdDraw.picture(i, j, ImagePaths.WALL, 0.1, 0.1);
+					for (double i = 0; i < RoomInfos.NB_TILES; i = i + 0.5) {
+						StdDraw.picture(i, j, ImagePaths.WALL, 0.7, 0.1);
 					}
 
 				}
