@@ -1,15 +1,11 @@
 package gameWorld;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-import gameobjects.Fly;
 
 import gameobjects.Hero;
 import gameobjects.Larme;
-
+import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
@@ -41,6 +37,8 @@ public class GameWorld {
 
 		mapDeRoom.put(spawn.getId(), spawn);
 		mapDeRoom.put(monster1.getId(), monster1);
+		mapDeRoom.get(spawn.getId()).getLstPorte().add(new PorteHaut(monster1.getId()));
+		mapDeRoom.get(monster1.getId()).getLstPorte().add(new PorteBas(spawn.getId()));
 
 		currentRoom = spawn;
 	}
@@ -52,6 +50,29 @@ public class GameWorld {
 		processKeysForMovement();
 		processTire();
 		cheatCode();
+		changeCurrentRoom();
+	}
+
+	private void changeCurrentRoom() {
+
+		for (int i = 0; i < currentRoom.getLstPorte().size(); i++) {
+			if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+					currentRoom.getLstPorte().get(i).getPosition(), currentRoom.getLstPorte().get(i).getSize())) {
+
+				if (currentRoom.getLstPorte().get(i) instanceof PorteBas) {
+					hero.setPosition(new Vector2(0.5, 0.85));
+				} else if (currentRoom.getLstPorte().get(i) instanceof PorteHaut) {
+					hero.setPosition(new Vector2(0.5, 0.15));
+				} else if (currentRoom.getLstPorte().get(i) instanceof PorteDroit) {
+					hero.setPosition(new Vector2(0.85, 0.5));
+				} else if (currentRoom.getLstPorte().get(i) instanceof PorteGauche) {
+					hero.setPosition(new Vector2(0.15, 0.5));
+				}
+				currentRoom = mapDeRoom.get(currentRoom.getLstPorte().get(i).getIdSalle());
+
+			}
+		}
+
 	}
 
 	private void cheatCode() {
@@ -122,19 +143,19 @@ public class GameWorld {
 	 * </ul>
 	 */
 	private void processKeysForMovement() {
-		if (StdDraw.isKeyPressed(Controls.goUp) && hero.getPosition().getY() < 0.9) {
+		if (StdDraw.isKeyPressed(Controls.goUp) && hero.getPosition().getY() < 0.92) {
 			hero.goUpNext();
 
 		}
-		if (StdDraw.isKeyPressed(Controls.goDown) && hero.getPosition().getY() > 0.1) {
+		if (StdDraw.isKeyPressed(Controls.goDown) && hero.getPosition().getY() > 0.08) {
 			hero.goDownNext();
 
 		}
-		if (StdDraw.isKeyPressed(Controls.goRight) && hero.getPosition().getX() < 0.9) {
+		if (StdDraw.isKeyPressed(Controls.goRight) && hero.getPosition().getX() < 0.92) {
 			hero.goRightNext();
 
 		}
-		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.1) {
+		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.08) {
 			hero.goLeftNext();
 
 		}

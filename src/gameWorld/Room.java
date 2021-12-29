@@ -2,6 +2,7 @@ package gameWorld;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import gameobjects.BloodOfMartyr;
@@ -33,22 +34,14 @@ public class Room {
 
 	Integer id;
 
+	List<Porte> lstPorte;
+
 	private int compteurInvincibiliteHero;
 
 	private List<Monstre> lsMonster;
 	private Obstacles obstacle;
 
 	private Objets objet;
-
-	public Room roomGauche;
-	public Room roomDroite;
-	public Room roomHaut;
-	public Room roomBas;
-
-	public Room() {
-		this.hero = null;
-		this.lsMonster = null;
-	}
 
 	/**
 	 * Constructeur de room
@@ -63,6 +56,8 @@ public class Room {
 		this.type = "DEFAULT_ROOM";
 
 		this.bgColor = StdDraw.GRAY;
+
+		this.lstPorte = new ArrayList<>();
 
 		// initMonster();
 		// initObjectGift();
@@ -96,14 +91,24 @@ public class Room {
 						RoomInfos.HALF_TILE_SIZE.getY());
 			}
 		}
+
+		dessinePorte();
 		this.drawWall();
 
 		hero.drawGameObject();
+		dessinePorte();
+
 		// dessineMonstre();
 		// dessineLarme();
 		// affichageViePiece();
 
 		// affichageObjets();
+	}
+
+	private void dessinePorte() {
+		for (int i = 0; i < lstPorte.size(); i++) {
+			lstPorte.get(i).drawGameObject();
+		}
 	}
 
 	/**
@@ -144,33 +149,23 @@ public class Room {
 
 	private void drawWall() {
 
-		// For every tile, set background color.
-		// StdDraw.setPenColor(StdDraw.BLUE);
 		// on construit les murs sur le coté
 		for (int colone = 0; colone < RoomInfos.NB_TILES; colone++) {
 
 			if (colone == 1 | colone == 0.0) {
-				for (double j = 0; j < RoomInfos.NB_TILES; j = j + 0.1) {
-					StdDraw.picture(colone, j, ImagePaths.WALL, 0.1, 0.1, 90);
+				for (double j = 0; j < RoomInfos.NB_TILES; j = j + 0.5) {
+					StdDraw.picture(colone, j, ImagePaths.WALL, 0.7, 0.1, 90);
 				}
 			}
 			// On contruit les mur du haut et du bas de la room
 			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
 				if (j == 0.0 | j == 1) {
-					for (double i = 0; i < RoomInfos.NB_TILES; i = i + 0.1) {
-						StdDraw.picture(i, j, ImagePaths.WALL, 0.1, 0.1);
-						// if ((j == 0 && i == 0) || (j == 1 && i == 1)) {
-						// StdDraw.picture(0.9, 0.1, ImagePaths.MUR_angle, 0.1, 0.1, 180);
-						// }
-
+					for (double i = 0; i < RoomInfos.NB_TILES; i = i + 0.5) {
+						StdDraw.picture(i, j, ImagePaths.WALL, 0.7, 0.1);
 					}
 
 				}
-				// this.geneSol();
-				// Vector2 position = positionFromTileIndex(colone, j);
-				// StdDraw.filledRectangle(position.getX(), position.getY(),
-				// RoomInfos.HALF_TILE_SIZE.getX(),
-				// RoomInfos.HALF_TILE_SIZE.getY());
+
 			}
 		}
 
@@ -467,6 +462,30 @@ public class Room {
 
 	public Integer getId() {
 		return this.id;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<Porte> getLstPorte() {
+		return this.lstPorte;
+	}
+
+	public void setLstPorte(List<Porte> lstPorte) {
+		this.lstPorte = lstPorte;
+	}
+
+	public Objets getObjet() {
+		return this.objet;
+	}
+
+	public void setObjet(Objets objet) {
+		this.objet = objet;
 	}
 
 }
