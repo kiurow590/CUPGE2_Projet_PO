@@ -1,15 +1,11 @@
 package gameWorld;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-import gameobjects.Fly;
 
 import gameobjects.Hero;
 import gameobjects.Larme;
-
+import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
@@ -54,6 +50,19 @@ public class GameWorld {
 		processKeysForMovement();
 		processTire();
 		cheatCode();
+		changeCurrentRoom();
+	}
+
+	private void changeCurrentRoom() {
+
+		for (int i = 0; i < currentRoom.getLstPorte().size(); i++) {
+			if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+					currentRoom.getLstPorte().get(i).getPosition(), currentRoom.getLstPorte().get(i).getSize())) {
+
+				currentRoom = mapDeRoom.get(currentRoom.getLstPorte().get(i).getIdSalle());
+			}
+		}
+
 	}
 
 	private void cheatCode() {

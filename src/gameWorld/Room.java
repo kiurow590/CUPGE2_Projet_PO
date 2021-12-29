@@ -149,8 +149,6 @@ public class Room {
 
 	private void drawWall() {
 
-		// For every tile, set background color.
-		// StdDraw.setPenColor(StdDraw.BLUE);
 		// on construit les murs sur le coté
 		for (int colone = 0; colone < RoomInfos.NB_TILES; colone++) {
 
@@ -164,18 +162,10 @@ public class Room {
 				if (j == 0.0 | j == 1) {
 					for (double i = 0; i < RoomInfos.NB_TILES; i = i + 0.1) {
 						StdDraw.picture(i, j, ImagePaths.WALL, 0.1, 0.1);
-						// if ((j == 0 && i == 0) || (j == 1 && i == 1)) {
-						// StdDraw.picture(0.9, 0.1, ImagePaths.MUR_angle, 0.1, 0.1, 180);
-						// }
-
 					}
 
 				}
-				// this.geneSol();
-				// Vector2 position = positionFromTileIndex(colone, j);
-				// StdDraw.filledRectangle(position.getX(), position.getY(),
-				// RoomInfos.HALF_TILE_SIZE.getX(),
-				// RoomInfos.HALF_TILE_SIZE.getY());
+
 			}
 		}
 

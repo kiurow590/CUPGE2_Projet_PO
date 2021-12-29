@@ -46,4 +46,28 @@ public abstract class Porte {
         this.idSalle = idSalle;
     }
 
+    public Vector2 getPosition() {
+        return this.position;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    public Vector2 getSize() {
+        return this.size;
+    }
+
+    public void setSize(Vector2 size) {
+        this.size = size;
+    }
+
+    public int getRotation() {
+        return this.rotation;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
+    }
+
 }
