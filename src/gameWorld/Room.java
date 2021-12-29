@@ -2,6 +2,7 @@ package gameWorld;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import gameobjects.BloodOfMartyr;
@@ -33,6 +34,8 @@ public class Room {
 
 	Integer id;
 
+	HashMap<Integer, Integer> lstPorte;
+
 	private int compteurInvincibiliteHero;
 
 	private List<Monstre> lsMonster;
@@ -44,11 +47,6 @@ public class Room {
 	public Room roomDroite;
 	public Room roomHaut;
 	public Room roomBas;
-
-	public Room() {
-		this.hero = null;
-		this.lsMonster = null;
-	}
 
 	/**
 	 * Constructeur de room
@@ -63,6 +61,8 @@ public class Room {
 		this.type = "DEFAULT_ROOM";
 
 		this.bgColor = StdDraw.GRAY;
+
+		this.lstPorte = new HashMap<>();
 
 		// initMonster();
 		// initObjectGift();
