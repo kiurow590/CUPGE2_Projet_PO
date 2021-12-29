@@ -102,7 +102,6 @@ public class GameWorld {
 					hero.setPosition(new Vector2(0.15, 0.5));
 				}
 				currentRoom = mapDeRoom.get(currentRoom.getLstPorte().get(i).getIdSalle());
-				System.out.println(currentRoom.getId());
 			}
 		}
 

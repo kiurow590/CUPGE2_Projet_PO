@@ -1,7 +1,10 @@
 package gameWorld.rooms;
 
 import gameobjects.personnages.Hero;
+import gameobjects.personnages.monstres.Boss;
 import libraries.StdDraw;
+import libraries.Vector2;
+import resources.RoomInfos;
 
 public class BossRoom extends Room {
 
@@ -12,6 +15,45 @@ public class BossRoom extends Room {
         // TODO Auto-generated constructor stub
         this.type = MON_TYPE;
         this.bgColor = StdDraw.GRAY;
+
+        this.lsMonster.add(new Boss(new Vector2(0.5, 0.5), 40));
+    }
+
+    @Override
+    public void updateRoom() {
+        makeHeroPlay();
+        makeMonsterPlay();
+        collisionReport();
+        rammasseMonstreMort();
+        nettoyageLarme();
+        nettoyageProj();
+    }
+
+    /*
+     * Drawing
+     */
+    public void drawRoom() {
+        // For every tile, set background color.
+        StdDraw.setPenColor(this.bgColor);
+        for (int i = 0; i < RoomInfos.NB_TILES; i++) {
+            for (int j = 0; j < RoomInfos.NB_TILES; j++) {
+                Vector2 position = positionFromTileIndex(i, j);
+                StdDraw.filledRectangle(position.getX(), position.getY(), RoomInfos.HALF_TILE_SIZE.getX(),
+                        RoomInfos.HALF_TILE_SIZE.getY());
+            }
+        }
+
+        this.drawWall();
+
+        hero.drawGameObject();
+        dessinePorte();
+
+        dessineLarme();
+        affichageViePiece();
+        dessineMonstre();
+        if (!this.lsMonster.isEmpty()) {
+            this.lsMonster.get(0).drawGameObject();
+        }
 
     }
 

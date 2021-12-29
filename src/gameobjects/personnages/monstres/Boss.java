@@ -13,26 +13,13 @@ public class Boss extends Monster {
     private String imagePath;
     private int compteur;
 
-    private List<Monster> lstMonstre;
+    private List<Monster> lstMonstreBoss;
 
-    /**
-     * Constructeur de fly
-     * 
-     * @param position         position initiale de lu monstre
-     * @param size             taille du monstre
-     * @param imagePath        image du montre
-     * @param speed            vitesse du monstre
-     * @param direction        direction initiale du montre // souvent mise a null a
-     *                         l'init
-     * @param ptDeVie          point de vie du monstre
-     * @param degatCorpsACorps degat au corps a corps du montre
-     */
-    public Boss(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
-            int degatCorpsACorps, int compteur) {
-        super(position, size, speed, ptDeVie, degatCorpsACorps);
+    public Boss(Vector2 position, int compteur) {
+        super(position, new Vector2(0.10, 0.10), 0.03, 20, 1);
         this.imagePath = ImagePaths.SPIDER;
         this.compteur = compteur;
-        lstMonstre = new ArrayList<>();
+        this.lstMonstreBoss = new ArrayList<>();
     }
 
     @Override
@@ -51,20 +38,31 @@ public class Boss extends Monster {
     }
 
     @Override
-    public void updateGameObject(Hero e, List<Monster> lsMonster) {
+    public void updateGameObject(Hero e, List<Monster> lstMonstreBoss) {
         if (this.compteur == 0) {
-            move(e, lsMonster);
+            move(e, lstMonstreBoss);
+            GenereMonstre();
             this.compteur = 40;
         } else {
             this.compteur--;
         }
+        for (int i = 0; i < this.lstMonstreBoss.size(); i++) {
+            this.lstMonstreBoss.get(i).updateGameObject(e, lstMonstreBoss);
+        }
+        drawMonster(e);
+    }
 
+    private void drawMonster(Hero e) {
+        for (int i = 0; i < this.lstMonstreBoss.size(); i++) {
+            this.lstMonstreBoss.get(i).drawGameObject();
+            ;
+        }
     }
 
     /**
      * Methode qui mets en mouvement l'araignee
      */
-    private void move(Hero e, List<Monster> lsMonster) {
+    private void move(Hero e, List<Monster> lstMonstreBoss) {
         /**
          * Collision entre mob ici !
          */
@@ -90,9 +88,9 @@ public class Boss extends Monster {
         double randomNumber = Math.random();
 
         if (randomNumber < 0.5) {
-            lstMonstre.add(new Spider(getPosition()));
+            this.lstMonstreBoss.add(new Spider(getPosition()));
         } else {
-            lstMonstre.add(new Fly(getPosition()));
+            this.lstMonstreBoss.add(new Fly(getPosition()));
         }
 
     }
