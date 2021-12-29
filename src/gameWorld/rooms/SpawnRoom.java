@@ -1,7 +1,5 @@
 package gameWorld.rooms;
 
-import static gameWorld.rooms.Room.positionFromTileIndex;
-
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -28,9 +26,7 @@ public class SpawnRoom extends Room {
         nettoyageProj();
     }
 
-    /*
-     * Drawing
-     */
+    @Override
     public void drawRoom() {
         // For every tile, set background color.
         StdDraw.setPenColor(this.bgColor);

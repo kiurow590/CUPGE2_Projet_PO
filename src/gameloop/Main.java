@@ -19,14 +19,24 @@ public class Main {
 		initializeDisplay();
 
 		// Main loop of the game
-		while (!world.gameOver()) {
+		while (!world.gameOver() && isaac.getAGagner() == false) {
+
 			processNextStep(world);
+
 		}
 
 		if (isaac.isDead()) {
 			Timer.beginTimer();
 			StdDraw.clear();
 			StdDraw.picture(0.5, 0.5, ImagePaths.LOSE_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,
+					RoomInfos.TILE_SIZE.getY() * 9, 0);
+			StdDraw.show();
+			Timer.waitToMaintainConstantFPS();
+		} else {
+
+			Timer.beginTimer();
+			StdDraw.clear();
+			StdDraw.picture(0.5, 0.5, ImagePaths.WIN_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,
 					RoomInfos.TILE_SIZE.getY() * 9, 0);
 			StdDraw.show();
 			Timer.waitToMaintainConstantFPS();

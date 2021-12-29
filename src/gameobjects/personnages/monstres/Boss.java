@@ -11,15 +11,18 @@ import resources.ImagePaths;
 public class Boss extends Monster {
 
     private String imagePath;
-    private int compteur;
+    private int compteurDeplacement;
+    private int compteurGeneration;
 
     private List<Monster> lstMonstreBoss;
 
-    public Boss(Vector2 position, int compteur) {
+    public Boss(Vector2 position, int compteurDeplacement) {
         super(position, new Vector2(0.10, 0.10), 0.03, 20, 1);
         this.imagePath = ImagePaths.SPIDER;
-        this.compteur = compteur;
+        this.compteurDeplacement = compteurDeplacement;
         this.lstMonstreBoss = new ArrayList<>();
+
+        this.compteurGeneration = 200;
     }
 
     @Override
@@ -39,23 +42,38 @@ public class Boss extends Monster {
 
     @Override
     public void updateGameObject(Hero e, List<Monster> lstMonstreBoss) {
-        if (this.compteur == 0) {
+        if (this.compteurDeplacement == 0) {
             move(e, lstMonstreBoss);
-            GenereMonstre();
-            this.compteur = 40;
+
+            this.compteurDeplacement = 40;
         } else {
-            this.compteur--;
+            this.compteurDeplacement--;
+        }
+        if (compteurGeneration <= 0) {
+            GenereMonstre();
+            compteurGeneration = 200;
+        } else {
+            compteurGeneration--;
         }
         for (int i = 0; i < this.lstMonstreBoss.size(); i++) {
             this.lstMonstreBoss.get(i).updateGameObject(e, lstMonstreBoss);
         }
-        drawMonster(e);
     }
 
-    private void drawMonster(Hero e) {
-        for (int i = 0; i < this.lstMonstreBoss.size(); i++) {
+    public void drawMonster() {
+        for (int i = 0; this.lstMonstreBoss != null && i < this.lstMonstreBoss.size(); i++) {
             this.lstMonstreBoss.get(i).drawGameObject();
-            ;
+
+            for (int j = 0; this.lstMonstreBoss.get(i).getLstProjectile() != null
+                    && j < this.lstMonstreBoss.get(i).getLstProjectile().size(); j++) {
+                if (this.lstMonstreBoss.get(i).getLstProjectile().get(j).getPortee() > 0) {
+                    this.lstMonstreBoss.get(i).getLstProjectile().get(j).updateGameObject();
+                    this.lstMonstreBoss.get(i).getLstProjectile().get(j).drawGameObject();
+                } else {
+                    this.lstMonstreBoss.get(i).getLstProjectile().remove(j);
+                }
+            }
+
         }
     }
 
@@ -93,6 +111,30 @@ public class Boss extends Monster {
             this.lstMonstreBoss.add(new Fly(getPosition()));
         }
 
+    }
+
+    public int getCompteurDeplacement() {
+        return this.compteurDeplacement;
+    }
+
+    public void setCompteurDeplacement(int compteurDeplacement) {
+        this.compteurDeplacement = compteurDeplacement;
+    }
+
+    public int getCompteurGeneration() {
+        return this.compteurGeneration;
+    }
+
+    public void setCompteurGeneration(int compteurGeneration) {
+        this.compteurGeneration = compteurGeneration;
+    }
+
+    public List<Monster> getLstMonstreBoss() {
+        return this.lstMonstreBoss;
+    }
+
+    public void setLstMonstreBoss(List<Monster> lstMonstreBoss) {
+        this.lstMonstreBoss = lstMonstreBoss;
     }
 
 }

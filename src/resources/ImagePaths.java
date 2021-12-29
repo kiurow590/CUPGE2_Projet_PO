@@ -1,7 +1,6 @@
 package resources;
 
-public class ImagePaths
-{
+public class ImagePaths {
 	public static final String ISAAC = "images/Isaac.png";
 	public static final String MAGDALENE = "images/Magdalene.png";
 

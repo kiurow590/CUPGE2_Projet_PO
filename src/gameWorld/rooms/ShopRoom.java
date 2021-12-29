@@ -29,9 +29,7 @@ public class ShopRoom extends Room {
         nettoyageLarme();
     }
 
-    /*
-     * Drawing
-     */
+    @Override
     public void drawRoom() {
         // For every tile, set background color.
         StdDraw.setPenColor(this.bgColor);

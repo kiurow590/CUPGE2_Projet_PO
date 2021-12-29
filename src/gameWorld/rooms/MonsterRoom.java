@@ -31,9 +31,7 @@ public class MonsterRoom extends Room {
         nettoyageProj();
     }
 
-    /*
-     * Drawing
-     */
+    @Override
     public void drawRoom() {
         // For every tile, set background color.
         StdDraw.setPenColor(this.bgColor);

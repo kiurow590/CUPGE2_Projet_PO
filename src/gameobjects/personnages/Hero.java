@@ -36,6 +36,8 @@ public class Hero {
 
 	private int compteurArgentTriche;
 
+	private boolean aGagner;
+
 	/**
 	 * Constructeur de personnage
 	 * 
@@ -81,6 +83,8 @@ public class Hero {
 
 		this.stackArgent = 0;
 		soldePieceMax = 50;
+
+		this.aGagner = false;
 	}
 
 	/**
@@ -451,6 +455,14 @@ public class Hero {
 
 	public void setSoldePieceMax(int soldePieceMax) {
 		this.soldePieceMax = soldePieceMax;
+	}
+
+	public boolean getAGagner() {
+		return this.aGagner;
+	}
+
+	public void setAGagner(boolean aGagner) {
+		this.aGagner = aGagner;
 	}
 
 }

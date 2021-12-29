@@ -1,5 +1,6 @@
 package gameWorld.rooms;
 
+import gameobjects.objets.consommables.BoxWin;
 import gameobjects.personnages.Hero;
 import gameobjects.personnages.monstres.Boss;
 import libraries.StdDraw;
@@ -17,6 +18,8 @@ public class BossRoom extends Room {
         this.bgColor = StdDraw.GRAY;
 
         this.lsMonster.add(new Boss(new Vector2(0.5, 0.5), 40));
+
+        this.lstObjet.add(new BoxWin(new Vector2(0.5, 0.5)));
     }
 
     @Override
@@ -29,9 +32,7 @@ public class BossRoom extends Room {
         nettoyageProj();
     }
 
-    /*
-     * Drawing
-     */
+    @Override
     public void drawRoom() {
         // For every tile, set background color.
         StdDraw.setPenColor(this.bgColor);
@@ -52,8 +53,11 @@ public class BossRoom extends Room {
         affichageViePiece();
         dessineMonstre();
         if (!this.lsMonster.isEmpty()) {
-            this.lsMonster.get(0).drawGameObject();
+            Boss b = (Boss) this.lsMonster.get(0);
+            b.drawMonster();
         }
+
+        affichageObjets();
 
     }
 

@@ -2,17 +2,17 @@ package gameWorld.rooms;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import gameWorld.rooms.portes.Door;
 import gameobjects.objets.GenericObject;
-import gameobjects.objets.consommables.Life;
 import gameobjects.objets.consommables.Coin;
+import gameobjects.objets.consommables.Life;
 import gameobjects.objets.passifs.BloodOfMartyr;
 import gameobjects.objets.passifs.LifeExtension;
 import gameobjects.obstacles.GenericObstacle;
 import gameobjects.personnages.Hero;
+import gameobjects.personnages.monstres.Boss;
 import gameobjects.personnages.monstres.Fly;
 import gameobjects.personnages.monstres.Monster;
 import gameobjects.personnages.monstres.Spider;
@@ -72,29 +72,7 @@ public abstract class Room {
 	/*
 	 * Drawing
 	 */
-	public void drawRoom() {
-		// For every tile, set background color.
-		StdDraw.setPenColor(this.bgColor);
-		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-				Vector2 position = positionFromTileIndex(i, j);
-				StdDraw.filledRectangle(position.getX(), position.getY(), RoomInfos.HALF_TILE_SIZE.getX(),
-						RoomInfos.HALF_TILE_SIZE.getY());
-			}
-		}
-
-		dessinePorte();
-		this.drawWall();
-
-		hero.drawGameObject();
-		dessinePorte();
-
-		// dessineMonstre();
-		// dessineLarme();
-		// affichageViePiece();
-
-		// affichageObjets();
-	}
+	public abstract void drawRoom();
 
 	public void dessinePorte() {
 		for (int i = 0; i < lstPorte.size(); i++) {
@@ -212,6 +190,16 @@ public abstract class Room {
 			}
 		}
 
+		if (this instanceof BossRoom && !this.lsMonster.isEmpty()) {
+			Boss b = (Boss) this.lsMonster.get(0);
+			for (int i = 0; i < b.getLstMonstreBoss().size(); i++) {
+				if (b.getLstMonstreBoss().get(i).isDead()) {
+
+					b.getLstMonstreBoss().remove(i);
+				}
+			}
+
+		}
 	}
 
 	/**
@@ -266,6 +254,15 @@ public abstract class Room {
 				lstObjet.get(i).updateHeroPerf(hero);
 			}
 		}
+		if (this instanceof BossRoom && !this.lsMonster.isEmpty()) {
+			Boss b = (Boss) this.lsMonster.get(0);
+			for (int i = 0; i < b.getLstMonstreBoss().size(); i++) {
+				collisionHero(b.getLstMonstreBoss().get(i));
+				collisionLarme(b.getLstMonstreBoss().get(i));
+				collisionProjectileFly(b.getLstMonstreBoss().get(i));
+			}
+
+		}
 
 	}
 
@@ -304,6 +301,7 @@ public abstract class Room {
 					monstre.getSize())) {
 				monstre.retirePV(this.hero.getLstLarme().get(j).getDegats());
 				this.hero.getLstLarme().get(j).setPortee(0);
+				System.out.println(monstre.getPtDeVie());
 			}
 
 		}
@@ -402,15 +400,14 @@ public abstract class Room {
 
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 			this.lsMonster.get(i).drawGameObject();
-			if (this.lsMonster.get(i) instanceof Fly) {
-				Fly f = (Fly) this.lsMonster.get(i);
-				for (int j = 0; j < f.getLstProjectile().size(); j++) {
-					if (f.getLstProjectile().get(j).getPortee() > 0) {
-						f.getLstProjectile().get(j).updateGameObject();
-						f.getLstProjectile().get(j).drawGameObject();
-					} else {
-						f.getLstProjectile().remove(j);
-					}
+
+			for (int j = 0; this.lsMonster.get(i).getLstProjectile() != null
+					&& j < this.lsMonster.get(i).getLstProjectile().size(); j++) {
+				if (this.lsMonster.get(i).getLstProjectile().get(j).getPortee() > 0) {
+					this.lsMonster.get(i).getLstProjectile().get(j).updateGameObject();
+					this.lsMonster.get(i).getLstProjectile().get(j).drawGameObject();
+				} else {
+					this.lsMonster.get(i).getLstProjectile().remove(j);
 				}
 			}
 

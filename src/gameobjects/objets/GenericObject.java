@@ -9,9 +9,9 @@ public abstract class GenericObject {
     /**
      * Attribut
      */
-    private Vector2 position;
-    private Vector2 size;
-    private boolean estRamasser;
+    Vector2 position;
+    protected Vector2 size;
+    boolean estRamasser;
 
     public GenericObject(Vector2 position) {
         this.position = position;
