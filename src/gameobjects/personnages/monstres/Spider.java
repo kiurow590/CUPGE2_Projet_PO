@@ -15,13 +15,9 @@ public class Spider extends Monster {
 	private int compteur;
 
 	/**
-	 * Constructeur de spider
+	 * Constructeur de Spider
 	 * 
-	 * @param position  position de la spider
-	 * @param size      taille de la spider
-	 * @param imagePath image representant la spider
-	 * @param speed     vitesse de la spider
-	 * @param direction direction de deplacement de la spider
+	 * @param position position initiale de l'araigné
 	 */
 	public Spider(Vector2 position) {
 		super(position, MonstreInfo.SPIDER_SIZE, MonstreInfo.SPIDER_SPEED, MonstreInfo.SPIDER_PV,
@@ -39,7 +35,7 @@ public class Spider extends Monster {
 
 	@Override
 	public void drawGameObject() {
-		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
+		StdDraw.picture(getPosition().getX(), getPosition().getY(), imagePath, getSize().getX(), getSize().getY(),
 				0);
 		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
 	}
@@ -56,12 +52,9 @@ public class Spider extends Monster {
 	}
 
 	/**
-	 * Methode qui mets en mouvement l'araignee
+	 * Methode qui mets en mouvement l'araignee de maniere aleatoire
 	 */
 	private void move(List<Monster> lsMonster) {
-		/**
-		 * Methode qui mets en mouvement le monstre
-		 */
 
 		double i = Math.random();
 		if (i >= 0 && i < 0.25 && getPosition().getY() < 0.9) {
@@ -77,26 +70,6 @@ public class Spider extends Monster {
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
 		setPosition(positionAfterMoving);
 		super.setDirection(new Vector2());
-	}
-
-	/**
-	 * GETTERS / SETTERS
-	 */
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	public int getCompteur() {
-		return compteur;
-	}
-
-	public void setCompteur(int compteur) {
-		this.compteur = compteur;
 	}
 
 }

@@ -5,15 +5,13 @@ import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
-import resources.HeroInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
 public class Main {
 	public static void main(String[] args) {
 		// Hero, world and display initialisation.
-		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,
-				ImagePaths.ISAAC, 5, 6, 1);
+		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM);
 		// on genere un nouveau gameWorld
 		GameWorld world = new GameWorld(isaac);
 		// on initialise l'affichage

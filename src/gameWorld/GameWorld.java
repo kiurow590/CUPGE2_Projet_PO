@@ -13,7 +13,7 @@ import gameWorld.rooms.portes.LeftDoor;
 import gameWorld.rooms.portes.RightDoor;
 import gameWorld.rooms.portes.TopDoor;
 import gameobjects.personnages.Hero;
-import gameobjects.projectiles.Tear;
+import gameobjects.projectiles.Projectile;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -210,28 +210,32 @@ public class GameWorld {
 	 */
 	public void processTire() {
 		if (StdDraw.isKeyPressed(Controls.hitUp)) {
-			Tear e = new Tear(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+			Projectile e = new Projectile(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2),
+					ImagePaths.TEAR,
 					0.01, new Vector2(0, 1), 40, 1);
 
 			hero.creeLarme(e);
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitDown)) {
-			Tear e = new Tear(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+			Projectile e = new Projectile(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2),
+					ImagePaths.TEAR,
 					0.01, new Vector2(0, -1), 40, 1);
 
 			hero.creeLarme(e);
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
-			Tear e = new Tear(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+			Projectile e = new Projectile(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2),
+					ImagePaths.TEAR,
 					0.01, new Vector2(-1, 0), 40, 1);
 
 			hero.creeLarme(e);
 		}
 		if (StdDraw.isKeyPressed(Controls.hitRight)) {
 
-			Tear e = new Tear(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+			Projectile e = new Projectile(hero.getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2),
+					ImagePaths.TEAR,
 					0.01, new Vector2(1, 0), 40, 1);
 
 			hero.creeLarme(e);

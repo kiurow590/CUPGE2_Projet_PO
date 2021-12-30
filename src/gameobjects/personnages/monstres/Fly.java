@@ -3,7 +3,7 @@ package gameobjects.personnages.monstres;
 import java.util.List;
 
 import gameobjects.personnages.Hero;
-import gameobjects.projectiles.FlyProjectile;
+import gameobjects.projectiles.Projectile;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
@@ -18,14 +18,7 @@ public class Fly extends Monster {
 	/**
 	 * Constructeur de fly
 	 * 
-	 * @param position         position initiale de lu monstre
-	 * @param size             taille du monstre
-	 * @param imagePath        image du montre
-	 * @param speed            vitesse du monstre
-	 * @param direction        direction initiale du montre // souvent mise a null a
-	 *                         l'init
-	 * @param ptDeVie          point de vie du monstre
-	 * @param degatCorpsACorps degat au corps a corps du monstre
+	 * @param position position initiale
 	 */
 	public Fly(Vector2 position) {
 		super(position, MonstreInfo.FLY_SIZE, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_PV,
@@ -41,7 +34,7 @@ public class Fly extends Monster {
 
 	@Override
 	public void drawGameObject() {
-		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
+		StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(), getSize().getY(),
 				0);
 		StdDraw.setPenColor();
 		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
@@ -62,7 +55,7 @@ public class Fly extends Monster {
 		} else {
 
 			creeLarmeFly(
-					new FlyProjectile(getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
+					new Projectile(getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
 							0.01, new Vector2(e.getPosition().getX() - getPosition().getX(),
 									e.getPosition().getY() - getPosition().getY()),
 							30, 1));
@@ -76,7 +69,7 @@ public class Fly extends Monster {
 	 * 
 	 * @param e larme
 	 */
-	public void creeLarmeFly(FlyProjectile e) {
+	public void creeLarmeFly(Projectile e) {
 		if (this.compteurTir <= 0) {
 			super.getLstProjectile().add(e);
 			this.compteurTir = 50;
@@ -104,14 +97,6 @@ public class Fly extends Monster {
 	/**
 	 * GETTERS / SETTERS
 	 */
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
 
 	public int getCompteurTir() {
 		return compteurTir;

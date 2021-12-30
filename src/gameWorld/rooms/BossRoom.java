@@ -17,7 +17,7 @@ public class BossRoom extends Room {
         this.type = MON_TYPE;
         this.bgColor = StdDraw.GRAY;
 
-        this.lsMonster.add(new Boss(new Vector2(0.5, 0.5), 40));
+        this.lsMonster.add(new Boss(new Vector2(0.5, 0.5)));
 
         this.lstObjet.add(new BoxWin(new Vector2(0.5, 0.5)));
     }

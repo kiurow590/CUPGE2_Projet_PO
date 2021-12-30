@@ -24,4 +24,10 @@ public class MonstreInfo {
     /**
      * BOSS
      */
+    public static final double BOSS_SPEED = 0.03;
+    public static final int BOSS_PV = 20;
+    public static final int BOSS_DAMMAGE = 1;
+    public static final Vector2 BOSS_SIZE = new Vector2(0.10, 0.10);
+    public static final int BOSS_Move_Delay = 40;
+
 }
