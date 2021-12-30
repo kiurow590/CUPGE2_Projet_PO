@@ -7,10 +7,19 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
 
+/**
+ * Class qui genere une room avec un boss dedans
+ */
 public class BossRoom extends Room {
 
     private static final String MON_TYPE = "BossRoom";
 
+    /**
+     * Constructeur de Boss Romm
+     * 
+     * @param hero le hero
+     * @param id   id de la room
+     */
     public BossRoom(Hero hero, Integer id) {
         super(hero, id);
         // TODO Auto-generated constructor stub

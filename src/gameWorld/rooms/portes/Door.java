@@ -19,6 +19,13 @@ public abstract class Door {
 
     String imagePaths;
 
+    /**
+     * Methode Generic qui genere les portes
+     * 
+     * @param position position de la porte
+     * @param idSalle  id de la salle de destination
+     * @param rotation
+     */
     public Door(Vector2 position, int idSalle, int rotation) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.7);
@@ -63,18 +70,6 @@ public abstract class Door {
 
     public void setSize(Vector2 size) {
         this.size = size;
-    }
-
-    public int getRotation() {
-        return this.rotation;
-    }
-
-    public void setRotation(int rotation) {
-        this.rotation = rotation;
-    }
-
-    public String getImagePaths() {
-        return this.imagePaths;
     }
 
     public void setImagePaths(String imagePaths) {

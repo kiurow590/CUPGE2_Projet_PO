@@ -86,6 +86,9 @@ public class GameWorld {
 		changeCurrentRoom();
 	}
 
+	/**
+	 * Methode qui permet de modifier la room lors du passage d'un porte
+	 */
 	private void changeCurrentRoom() {
 
 		if (currentRoom.getLsMonster().isEmpty()) {

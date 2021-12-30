@@ -12,6 +12,11 @@ public class SpawnRoom extends Room {
 
     private static final String MON_TYPE = "SPAWN_ROOM";
 
+    /**
+     * Constructeur de Spawn
+     * 
+     * @param hero
+     */
     public SpawnRoom(Hero hero) {
         super(hero, 0);
         this.type = MON_TYPE;
@@ -47,15 +52,4 @@ public class SpawnRoom extends Room {
         affichageViePiece();
     }
 
-    // public void updateRoom() {
-    //
-    // /*
-    // * makeMonsterPlay();
-    // *
-    // * collisionReport();
-    // * rammasseMonstreMort();
-    // * nettoyageLarme();
-    // * nettoyageProj();
-    // */
-    // }
 }

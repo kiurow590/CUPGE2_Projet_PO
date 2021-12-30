@@ -361,6 +361,9 @@ public abstract class Room {
 
 	}
 
+	/**
+	 * Methode qui affiche les information du joueur
+	 */
 	public void affichageViePiece() {
 		// Affichage nb piece
 		StdDraw.picture(0.75, 0.9, ImagePaths.DIME, RoomInfos.TILE_SIZE.scalarMultiplication(0.4).getX(),

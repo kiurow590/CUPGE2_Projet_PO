@@ -5,6 +5,9 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
 
+/**
+ * Class qui genere des room de commerce
+ */
 public class ShopRoom extends Room {
 
     private static final String MON_TYPE = "SHOP_ROOM";
