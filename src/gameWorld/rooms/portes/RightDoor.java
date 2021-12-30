@@ -2,6 +2,9 @@ package gameWorld.rooms.portes;
 
 import libraries.Vector2;
 
+/**
+ * Class qui genere les portes de droite
+ */
 public class RightDoor extends Door {
 
     public RightDoor(int idSalle) {

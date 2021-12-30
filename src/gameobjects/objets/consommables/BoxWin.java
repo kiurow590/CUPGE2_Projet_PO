@@ -1,24 +1,29 @@
-package gameobjects.objets.passifs;
+package gameobjects.objets.consommables;
 
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
+import resources.RoomInfos;
 
-public class LifeExtension extends PassifObject {
-
+/**
+ * Class generant le Pentacle de la victoire
+ */
+public class BoxWin extends ConsommableObject {
     /**
-     * Attribut
+     * Attributs
      */
     private String imagePath;
-    private int maxValue;
 
-    public LifeExtension(Vector2 position) {
+    /**
+     * Constructeur de Pentacle de la victoire
+     * 
+     * @param position position voulu
+     */
+    public BoxWin(Vector2 position) {
         super(position);
-
-        this.maxValue = 2;
-        this.imagePath = ImagePaths.HP_UP;
-
+        this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.6);
+        this.imagePath = ImagePaths.PENTAGRAM;
     }
 
     @Override
@@ -33,12 +38,8 @@ public class LifeExtension extends PassifObject {
     @Override
     public void updateHeroPerf(Hero e) {
 
-        if (super.EstRamasser() == false) {
-            e.setMaxPV(e.getMaxPV() + maxValue);
-            super.setEstRamasser(true);
-
-        }
-
+        super.setEstRamasser(true);
+        e.setAGagner(true);
     }
 
 }

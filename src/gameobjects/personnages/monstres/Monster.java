@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gameobjects.personnages.Hero;
-import gameobjects.projectiles.FlyProjectile;
+import gameobjects.projectiles.Projectile;
 import libraries.Vector2;
 
 public abstract class Monster {
 
-	private Vector2 position;
-	private Vector2 size;
+	Vector2 position;
+	Vector2 size;
 
-	private double speed;
-	private Vector2 direction;
+	double speed;
+	Vector2 direction;
 	// caracteristique ajout
-	private int ptDeVie;
-	private int degatCorpsACorps;
+	int ptDeVie;
+	int degatCorpsACorps;
 
-	private List<FlyProjectile> lstProjectile;
+	List<Projectile> lstProjectile;
 
-	private int immobilus;
+	int immobilus;
 
 	/**
 	 * Constructeur de monstre
@@ -40,7 +40,7 @@ public abstract class Monster {
 		this.ptDeVie = ptDeVie;
 		this.degatCorpsACorps = degatCorpsACorps;
 		this.immobilus = 0;
-		lstProjectile = new ArrayList<FlyProjectile>();
+		lstProjectile = new ArrayList<Projectile>();
 
 	}
 
@@ -71,7 +71,7 @@ public abstract class Monster {
 	/**
 	 * Methode qui retire les point de vie d'un monstre
 	 * 
-	 * @param i
+	 * @param i le nb de pv a retiré
 	 * 
 	 */
 	public abstract void retirePV(int i);
@@ -167,11 +167,11 @@ public abstract class Monster {
 		this.immobilus = immobilus;
 	}
 
-	public List<FlyProjectile> getLstProjectile() {
+	public List<Projectile> getLstProjectile() {
 		return lstProjectile;
 	}
 
-	public void setLstProjectile(List<FlyProjectile> lstProjectile) {
+	public void setLstProjectile(List<Projectile> lstProjectile) {
 		this.lstProjectile = lstProjectile;
 	}
 

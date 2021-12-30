@@ -17,11 +17,21 @@ public abstract class Door {
     private int idSalle;
     private int rotation;
 
+    String imagePaths;
+
+    /**
+     * Methode Generic qui genere les portes
+     * 
+     * @param position position de la porte
+     * @param idSalle  id de la salle de destination
+     * @param rotation
+     */
     public Door(Vector2 position, int idSalle, int rotation) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.7);
         this.idSalle = idSalle;
         this.rotation = rotation;
+        this.imagePaths = ImagePaths.CLOSED_DOOR;
     }
 
     /**
@@ -29,7 +39,7 @@ public abstract class Door {
      */
     public void drawGameObject() {
 
-        StdDraw.picture(this.position.getX(), this.position.getY(), ImagePaths.OPENED_DOOR, this.size.getX(),
+        StdDraw.picture(this.position.getX(), this.position.getY(), imagePaths, this.size.getX(),
                 this.size.getY(),
                 this.rotation);
         ;
@@ -62,12 +72,8 @@ public abstract class Door {
         this.size = size;
     }
 
-    public int getRotation() {
-        return this.rotation;
-    }
-
-    public void setRotation(int rotation) {
-        this.rotation = rotation;
+    public void setImagePaths(String imagePaths) {
+        this.imagePaths = imagePaths;
     }
 
 }

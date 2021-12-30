@@ -4,15 +4,23 @@ import gameobjects.personnages.Hero;
 import libraries.Vector2;
 import resources.RoomInfos;
 
+/**
+ * Class generique d'objets
+ */
 public abstract class GenericObject {
 
     /**
      * Attribut
      */
-    private Vector2 position;
-    private Vector2 size;
-    private boolean estRamasser;
+    Vector2 position;
+    protected Vector2 size;
+    boolean estRamasser;
 
+    /**
+     * Constructeur d'objet
+     * 
+     * @param position la position de l'objet dans la salle
+     */
     public GenericObject(Vector2 position) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
@@ -23,6 +31,13 @@ public abstract class GenericObject {
      * Methode qui dessine l'objet dans le jeu
      */
     public abstract void drawGameObject();
+
+    /**
+     * Methode qui gere les performance du hero
+     * 
+     * @param e le hero
+     */
+    public abstract void updateHeroPerf(Hero e);
 
     /**
      * Getters and Setters
@@ -44,11 +59,7 @@ public abstract class GenericObject {
         this.size = size;
     }
 
-    public boolean isEstRamasser() {
-        return this.estRamasser;
-    }
-
-    public boolean getEstRamasser() {
+    public boolean EstRamasser() {
         return this.estRamasser;
     }
 
@@ -56,10 +67,4 @@ public abstract class GenericObject {
         this.estRamasser = estRamasser;
     }
 
-    /**
-     * Methode qui gere les performance du hero
-     * 
-     * @param e le hero
-     */
-    public abstract void updateHeroPerf(Hero e);
 }

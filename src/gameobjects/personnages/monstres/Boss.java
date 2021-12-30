@@ -7,32 +7,32 @@ import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
+import resources.MonstreInfo;
 
+/**
+ * Class generant un boss
+ */
 public class Boss extends Monster {
-
+    /**
+     * Attributs
+     */
     private String imagePath;
-    private int compteur;
-
-    private List<Monster> lstMonstre;
+    private int compteurDeplacement;
+    private int compteurGeneration;
+    private List<Monster> lstMonstreBoss;
 
     /**
-     * Constructeur de fly
+     * Constructeur de boss
      * 
-     * @param position         position initiale de lu monstre
-     * @param size             taille du monstre
-     * @param imagePath        image du montre
-     * @param speed            vitesse du monstre
-     * @param direction        direction initiale du montre // souvent mise a null a
-     *                         l'init
-     * @param ptDeVie          point de vie du monstre
-     * @param degatCorpsACorps degat au corps a corps du montre
+     * @param position position initiale du Boss
      */
-    public Boss(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int ptDeVie,
-            int degatCorpsACorps, int compteur) {
-        super(position, size, speed, ptDeVie, degatCorpsACorps);
+    public Boss(Vector2 position) {
+        super(position, MonstreInfo.BOSS_SIZE, MonstreInfo.BOSS_SPEED, MonstreInfo.BOSS_PV, MonstreInfo.BOSS_DAMMAGE);
         this.imagePath = ImagePaths.SPIDER;
-        this.compteur = compteur;
-        lstMonstre = new ArrayList<>();
+        this.compteurDeplacement = MonstreInfo.BOSS_Move_Delay;
+        this.lstMonstreBoss = new ArrayList<>();
+
+        this.compteurGeneration = 200;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Boss extends Monster {
 
     @Override
     public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
+        StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(), getSize().getY(),
                 0);
         StdDraw.setPenColor();
         StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
@@ -51,24 +51,51 @@ public class Boss extends Monster {
     }
 
     @Override
-    public void updateGameObject(Hero e, List<Monster> lsMonster) {
-        if (this.compteur == 0) {
-            move(e, lsMonster);
-            this.compteur = 40;
-        } else {
-            this.compteur--;
-        }
+    public void updateGameObject(Hero e, List<Monster> lstMonstreBoss) {
+        if (this.compteurDeplacement == 0) {
+            move(e, lstMonstreBoss);
 
+            this.compteurDeplacement = 40;
+        } else {
+            this.compteurDeplacement--;
+        }
+        if (compteurGeneration <= 0) {
+            GenereMonstre();
+            compteurGeneration = 200;
+        } else {
+            compteurGeneration--;
+        }
+        // pour chaque monstre de ma liste
+        for (int i = 0; i < this.lstMonstreBoss.size(); i++) {
+            // je les mets a jour
+            this.lstMonstreBoss.get(i).updateGameObject(e, lstMonstreBoss);
+        }
     }
 
     /**
-     * Methode qui mets en mouvement l'araignee
+     * Methode qui dessine les monstre du Boss et leur projectile si il y en a
      */
-    private void move(Hero e, List<Monster> lsMonster) {
-        /**
-         * Collision entre mob ici !
-         */
+    public void drawMonster() {
+        for (int i = 0; this.lstMonstreBoss != null && i < this.lstMonstreBoss.size(); i++) {
+            this.lstMonstreBoss.get(i).drawGameObject();
 
+            for (int j = 0; this.lstMonstreBoss.get(i).getLstProjectile() != null
+                    && j < this.lstMonstreBoss.get(i).getLstProjectile().size(); j++) {
+                if (this.lstMonstreBoss.get(i).getLstProjectile().get(j).getPortee() > 0) {
+                    this.lstMonstreBoss.get(i).getLstProjectile().get(j).updateGameObject();
+                    this.lstMonstreBoss.get(i).getLstProjectile().get(j).drawGameObject();
+                } else {
+                    this.lstMonstreBoss.get(i).getLstProjectile().remove(j);
+                }
+            }
+
+        }
+    }
+
+    /**
+     * Methode qui mets en mouvement le boss
+     */
+    private void move(Hero e, List<Monster> lstMonstreBoss) {
         this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
                 this.getPosition().getY() - e.getPosition().getY()).reverse());
 
@@ -78,23 +105,22 @@ public class Boss extends Monster {
         super.setDirection(new Vector2());
     }
 
-    public String getImagePath() {
-        return this.imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
+    /**
+     * Methode qui genere des monstres
+     */
     public void GenereMonstre() {
         double randomNumber = Math.random();
 
         if (randomNumber < 0.5) {
-            lstMonstre.add(new Spider(getPosition()));
+            this.lstMonstreBoss.add(new Spider(getPosition()));
         } else {
-            lstMonstre.add(new Fly(getPosition()));
+            this.lstMonstreBoss.add(new Fly(getPosition()));
         }
 
+    }
+
+    public List<Monster> getLstMonstreBoss() {
+        return this.lstMonstreBoss;
     }
 
 }

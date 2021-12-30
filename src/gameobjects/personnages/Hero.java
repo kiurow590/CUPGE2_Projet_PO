@@ -3,9 +3,11 @@ package gameobjects.personnages;
 import java.util.ArrayList;
 import java.util.List;
 
-import gameobjects.projectiles.Tear;
+import gameobjects.projectiles.Projectile;
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.HeroInfos;
+import resources.ImagePaths;
 
 public class Hero {
 	/**
@@ -17,7 +19,7 @@ public class Hero {
 	private double speed;
 	private Vector2 direction;
 
-	private List<Tear> lstLarme;
+	private List<Projectile> lstLarme;
 	private int degats;
 
 	private boolean estInvincible;
@@ -36,38 +38,27 @@ public class Hero {
 
 	private int compteurArgentTriche;
 
+	private boolean aGagner;
+
 	/**
-	 * Constructeur de personnage
+	 * Constructeur de hero
 	 * 
-	 * @param position           position initiale du personnage
-	 * @param size               taille du personnage
-	 * @param speed              vitesse du personnage
-	 * @param imagePath          Image du personnage
-	 * @param compteurInvincible compteur d'invincibilité du personnage :
-	 *                           <ul>
-	 *                           <li>sois le perso est toucher --> le temps ou le
-	 *                           perso est invulneralble</li>
-	 *                           <li>sois le perso est invincible --> le temps que
-	 *                           l'on doit attendre pour pouvoir reappuyer sur la
-	 *                           touche</li>
-	 *                           </ul>
-	 * @param pv                 pv du perso
+	 * @param position position initiale du Hero
 	 */
-	public Hero(Vector2 position, Vector2 size, double speed, String imagePath, int compteurInvincible, int pv,
-			int degats) {
+	public Hero(Vector2 position) {
 		this.position = position;
-		this.size = size;
-		this.speed = speed;
-		this.imagePath = imagePath;
+		this.size = HeroInfos.ISAAC_SIZE;
+		this.speed = HeroInfos.ISAAC_SPEED;
+		this.imagePath = ImagePaths.ISAAC;
 		this.direction = new Vector2();
 
 		this.estInvincible = false;
 
-		this.compteurInvincible = compteurInvincible;
-		this.compteurTir = 20;
-		this.pV = pv;
+		this.compteurInvincible = HeroInfos.ISAAC_INVINCIBILITY_DELAY;
+		this.compteurTir = HeroInfos.ISAAC_TIR_DELAY;
+		this.pV = HeroInfos.ISAAC_LIFE;
 
-		lstLarme = new ArrayList<Tear>();
+		lstLarme = new ArrayList<Projectile>();
 
 		this.estRapide = false;
 		this.compteurRapide = 0;
@@ -75,22 +66,23 @@ public class Hero {
 		this.estPuissant = false;
 		this.compteurPuissance = 0;
 
-		this.degats = degats;
+		this.degats = HeroInfos.ATTACK;
 
-		this.maxPV = 6;
+		this.maxPV = HeroInfos.ISAAC_LIFE;
 
 		this.stackArgent = 0;
-		soldePieceMax = 50;
+		soldePieceMax = HeroInfos.ISAAC_MAX_STACK;
+
+		this.aGagner = false;
 	}
 
 	/**
-	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
+	 * Methode qui mets a jour l'objet du jeu (position, vitesse, Compteurs ...etc.)
 	 */
 	public void updateGameObject() {
 		move();
 		if (this.compteurTir > 0) {
 			this.compteurTir--;
-
 		}
 		if (this.compteurInvincible > 0) {
 			this.compteurInvincible--;
@@ -163,7 +155,7 @@ public class Hero {
 	 * 
 	 * @param e larme
 	 */
-	public void creeLarme(Tear e) {
+	public void creeLarme(Projectile e) {
 		if (this.compteurTir <= 0) {
 			e.setDegats(degats);
 			this.lstLarme.add(e);
@@ -187,7 +179,7 @@ public class Hero {
 	 * Methode qui dessine le personnage dans le jeu
 	 */
 	public void drawGameObject() {
-		StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(), getSize().getY(),
+		StdDraw.picture(this.position.getX(), this.position.getY(), this.imagePath, this.size.getX(), this.size.getY(),
 				0);
 		StdDraw.setPenColor();
 		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
@@ -198,10 +190,12 @@ public class Hero {
 	 */
 	public void modeInvincible() {
 		if (!this.estInvincible && this.compteurInvincible == 0) {
-			setEstInvincible(true);
+			this.estInvincible = true;
+
 			this.compteurInvincible = 10;
 		} else if (this.estInvincible && this.compteurInvincible == 0) {
-			setEstInvincible(false);
+			this.estInvincible = false;
+
 			this.compteurInvincible = 10;
 		}
 
@@ -212,13 +206,13 @@ public class Hero {
 	 */
 	public void moderapide() {
 		if (!this.estRapide && this.compteurRapide == 0) {
-			setEstRapide(true);
+			this.estRapide = true;
 			this.compteurRapide = 40;
-			this.setSpeed(this.speed * 2);
+			this.speed = this.speed * 2;
 		} else if (this.estRapide && this.compteurRapide == 0) {
-			setEstRapide(false);
+			this.estRapide = false;
 			this.compteurRapide = 40;
-			this.setSpeed(this.speed / 2);
+			this.speed = this.speed / 2;
 		}
 
 	}
@@ -228,12 +222,12 @@ public class Hero {
 	 */
 	public void modePuissance() {
 		if (!this.estPuissant && this.compteurPuissance == 0) {
-			setEstPuissant(true);
+			this.estPuissant = true;
 			this.compteurPuissance = 40;
 			this.degats = 5000000;
 			System.out.println("Dobby Pete des cul");
 		} else if (this.estRapide && this.compteurRapide == 0) {
-			setEstPuissant(false);
+			this.estPuissant = false;
 			this.compteurPuissance = 40;
 			this.degats = 1;
 			System.out.println("Dobby est une merde");
@@ -243,22 +237,22 @@ public class Hero {
 	}
 
 	/*
-	 * Moving from key inputs. Direction vector is later normalised.
+	 * Methodes qui permette de mettre en mvt le Hero
 	 */
 	public void goUpNext() {
-		getDirection().addY(1);
+		this.direction.addY(1);
 	}
 
 	public void goDownNext() {
-		getDirection().addY(-1);
+		this.direction.addY(-1);
 	}
 
 	public void goLeftNext() {
-		getDirection().addX(-1);
+		this.direction.addX(-1);
 	}
 
 	public void goRightNext() {
-		getDirection().addX(1);
+		this.direction.addX(1);
 	}
 
 	/**
@@ -288,108 +282,12 @@ public class Hero {
 		return size;
 	}
 
-	public void setSize(Vector2 size) {
-		this.size = size;
-	}
-
-	public String getImagePath() {
-		return imagePath;
-	}
-
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
-
-	public double getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
-
-	public Vector2 getDirection() {
-		return direction;
-	}
-
-	public void setDirection(Vector2 direction) {
-		this.direction = direction;
-	}
-
-	public boolean isEstInvincible() {
-		return estInvincible;
-	}
-
-	public void setEstInvincible(boolean estInvincible) {
-		this.estInvincible = estInvincible;
-	}
-
 	public int getpV() {
 		return pV;
 	}
 
-	public void setpV(int pV) {
-		this.pV = pV;
-	}
-
-	public List<Tear> getLstLarme() {
+	public List<Projectile> getLstLarme() {
 		return lstLarme;
-	}
-
-	public void setLstLarme(ArrayList<Tear> lstLarme) {
-		this.lstLarme = lstLarme;
-	}
-
-	public boolean getEstRapide() {
-		return estRapide;
-	}
-
-	public void setEstRapide(boolean estRapide) {
-		this.estRapide = estRapide;
-	}
-
-	public int getCompteurInvincible() {
-		return compteurInvincible;
-	}
-
-	public void setCompteurInvincible(int compteurInvincible) {
-		this.compteurInvincible = compteurInvincible;
-	}
-
-	public int getCompteurTir() {
-		return compteurTir;
-	}
-
-	public void setCompteurTir(int compteurTir) {
-		this.compteurTir = compteurTir;
-	}
-
-	public void setLstLarme(List<Tear> lstLarme) {
-		this.lstLarme = lstLarme;
-	}
-
-	public boolean isEstPuissant() {
-		return estPuissant;
-	}
-
-	public void setEstPuissant(boolean estPuissant) {
-		this.estPuissant = estPuissant;
-	}
-
-	public int getCompteurRapide() {
-		return compteurRapide;
-	}
-
-	public void setCompteurRapide(int compteurRapide) {
-		this.compteurRapide = compteurRapide;
-	}
-
-	public int getCompteurPuissance() {
-		return compteurPuissance;
-	}
-
-	public void setCompteurPuissance(int compteurPuissance) {
-		this.compteurPuissance = compteurPuissance;
 	}
 
 	public int getDegats() {
@@ -400,24 +298,8 @@ public class Hero {
 		this.degats = degats;
 	}
 
-	public boolean getEstInvincible() {
-		return this.estInvincible;
-	}
-
-	public boolean isEstRapide() {
-		return this.estRapide;
-	}
-
-	public boolean getEstPuissant() {
-		return this.estPuissant;
-	}
-
 	public int getPV() {
 		return this.pV;
-	}
-
-	public void setPV(int pV) {
-		this.pV = pV;
 	}
 
 	public int getMaxPV() {
@@ -449,8 +331,12 @@ public class Hero {
 		return this.soldePieceMax;
 	}
 
-	public void setSoldePieceMax(int soldePieceMax) {
-		this.soldePieceMax = soldePieceMax;
+	public boolean getAGagner() {
+		return this.aGagner;
+	}
+
+	public void setAGagner(boolean aGagner) {
+		this.aGagner = aGagner;
 	}
 
 }

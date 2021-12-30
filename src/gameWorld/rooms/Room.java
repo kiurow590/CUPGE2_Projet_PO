@@ -2,17 +2,17 @@ package gameWorld.rooms;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import gameWorld.rooms.portes.Door;
 import gameobjects.objets.GenericObject;
-import gameobjects.objets.consommables.Life;
 import gameobjects.objets.consommables.Coin;
+import gameobjects.objets.consommables.Life;
 import gameobjects.objets.passifs.BloodOfMartyr;
 import gameobjects.objets.passifs.LifeExtension;
 import gameobjects.obstacles.GenericObstacle;
 import gameobjects.personnages.Hero;
+import gameobjects.personnages.monstres.Boss;
 import gameobjects.personnages.monstres.Fly;
 import gameobjects.personnages.monstres.Monster;
 import gameobjects.personnages.monstres.Spider;
@@ -22,7 +22,7 @@ import libraries.Vector2;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
-public class Room {
+public abstract class Room {
 
 	/**
 	 * attributs
@@ -37,20 +37,20 @@ public class Room {
 
 	List<Door> lstPorte;
 
-	private int compteurInvincibiliteHero;
+	int compteurInvincibiliteHero;
 
-	private List<Monster> lsMonster;
-	private GenericObstacle obstacle;
+	List<Monster> lsMonster;
+	GenericObstacle obstacle;
 
-	private GenericObject objet;
+	List<GenericObject> lstObjet;
 
 	/**
 	 * Constructeur de room
 	 * 
 	 * @param hero personnage de la room
 	 */
-	public Room(Hero hero) {
-		this.id = null;
+	public Room(Hero hero, Integer id) {
+		this.id = id;
 		this.hero = hero;
 		this.lsMonster = new ArrayList<Monster>();
 		this.compteurInvincibiliteHero = 10;
@@ -60,54 +60,26 @@ public class Room {
 
 		this.lstPorte = new ArrayList<>();
 
-		// initMonster();
-		// initObjectGift();
+		this.lstObjet = new ArrayList<>();
+
 	}
 
 	/*
 	 * Make every entity that compose a room process one step
 	 */
-	public void updateRoom() {
-		makeHeroPlay();
-		/*
-		 * makeMonsterPlay();
-		 * 
-		 * collisionReport();
-		 * rammasseMonstreMort();
-		 * nettoyageLarme();
-		 * nettoyageProj();
-		 */
-	}
+	public abstract void updateRoom();
 
 	/*
 	 * Drawing
 	 */
-	public void drawRoom() {
-		// For every tile, set background color.
-		StdDraw.setPenColor(this.bgColor);
-		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-				Vector2 position = positionFromTileIndex(i, j);
-				StdDraw.filledRectangle(position.getX(), position.getY(), RoomInfos.HALF_TILE_SIZE.getX(),
-						RoomInfos.HALF_TILE_SIZE.getY());
-			}
-		}
+	public abstract void drawRoom();
 
-		dessinePorte();
-		this.drawWall();
+	public void dessinePorte() {
 
-		hero.drawGameObject();
-		dessinePorte();
-
-		// dessineMonstre();
-		// dessineLarme();
-		// affichageViePiece();
-
-		// affichageObjets();
-	}
-
-	private void dessinePorte() {
 		for (int i = 0; i < lstPorte.size(); i++) {
+			if (lsMonster.isEmpty()) {
+				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
+			}
 			lstPorte.get(i).drawGameObject();
 		}
 	}
@@ -116,39 +88,41 @@ public class Room {
 	 * Methode qui génère une objet random en respectant les probabilité
 	 * d'apparition
 	 */
-	public void initObjectGift() {
+	public GenericObject initObjectGift() {
 		double objectRandom = Math.random();
-
+		GenericObject objectReturn;
 		if (objectRandom < 0.35) {
 			double randomPiece = Math.random();
 			if (randomPiece < 0.45) {
-				this.objet = new Coin(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+				objectReturn = new Coin(1, RoomInfos.POSITION_CENTER_OF_ROOM);
 			} else if (randomPiece >= 0.45 && randomPiece < 0.8) {
-				this.objet = new Coin(5, RoomInfos.POSITION_CENTER_OF_ROOM);
+				objectReturn = new Coin(5, RoomInfos.POSITION_CENTER_OF_ROOM);
 
-			} else if (randomPiece >= 0.8) {
-				this.objet = new Coin(10, RoomInfos.POSITION_CENTER_OF_ROOM);
+			} else {
+				objectReturn = new Coin(10, RoomInfos.POSITION_CENTER_OF_ROOM);
 
 			}
 		} else if (objectRandom >= 0.35 && objectRandom < 0.75) {
 			double randomCoeur = Math.random();
 
 			if (randomCoeur < 0.6) {
-				this.objet = new Life(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+				objectReturn = new Life(1, RoomInfos.POSITION_CENTER_OF_ROOM);
 
-			} else if (randomCoeur >= 0.6) {
-				this.objet = new Life(2, RoomInfos.POSITION_CENTER_OF_ROOM);
+			} else {
+				objectReturn = new Life(2, RoomInfos.POSITION_CENTER_OF_ROOM);
 
 			}
 		} else if (objectRandom >= 0.75 && objectRandom < 0.875) {
-			this.objet = new BloodOfMartyr(new Vector2(5, 5));
-		} else if (objectRandom >= 0.875) {
-			this.objet = new LifeExtension(new Vector2(5, 5));
+			objectReturn = new BloodOfMartyr(new Vector2(5, 5));
+		} else {
+			objectReturn = new LifeExtension(new Vector2(5, 5));
 		}
+
+		return objectReturn;
 
 	}
 
-	private void drawWall() {
+	void drawWall() {
 
 		// on construit les murs sur le coté
 		for (int colone = 0; colone < RoomInfos.NB_TILES; colone++) {
@@ -175,14 +149,14 @@ public class Room {
 	/**
 	 * met a jour le hero
 	 */
-	private void makeHeroPlay() {
+	void makeHeroPlay() {
 		hero.updateGameObject();
 	}
 
 	/**
 	 * Methode qui initialise le nb de monstre au demarrage de la room
 	 */
-	private void initMonster() {
+	void initMonster() {
 		for (int i = 0; i < 4; i++) {
 			if (Math.random() < 0.5) {
 				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random())));
@@ -198,10 +172,12 @@ public class Room {
 	 */
 	public void affichageObjets() {
 
-		if (this.lsMonster.size() == 0 && objet.isEstRamasser() == false) {
+		for (int i = 0; i < lstObjet.size(); i++) {
+			if (this.lsMonster.size() == 0 && lstObjet.get(i).EstRamasser() == false) {
 
-			objet.drawGameObject();
+				lstObjet.get(i).drawGameObject();
 
+			}
 		}
 
 	}
@@ -218,6 +194,16 @@ public class Room {
 			}
 		}
 
+		if (this instanceof BossRoom && !this.lsMonster.isEmpty()) {
+			Boss b = (Boss) this.lsMonster.get(0);
+			for (int i = 0; i < b.getLstMonstreBoss().size(); i++) {
+				if (b.getLstMonstreBoss().get(i).isDead()) {
+
+					b.getLstMonstreBoss().remove(i);
+				}
+			}
+
+		}
 	}
 
 	/**
@@ -237,7 +223,7 @@ public class Room {
 	/**
 	 * Methode qui nettoie de l'afficheage les larme
 	 */
-	public void nettoyageProj() {
+	void nettoyageProj() {
 		for (int k = 0; this.lsMonster != null && k < this.lsMonster.size(); k++) {
 			if (this.lsMonster.get(k) instanceof Fly) {
 				Fly f = (Fly) this.lsMonster.get(k);
@@ -255,7 +241,7 @@ public class Room {
 	/**
 	 * Methode qui gere les collision entre differente entité
 	 */
-	public void collisionReport() {
+	void collisionReport() {
 
 		// Pour chaque monstre (vivant ou mort)
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
@@ -266,9 +252,20 @@ public class Room {
 
 		}
 
-		if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
-				objet.getPosition(), objet.getSize())) {
-			objet.updateHeroPerf(hero);
+		for (int i = 0; i < lstObjet.size(); i++) {
+			if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+					lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
+				lstObjet.get(i).updateHeroPerf(hero);
+			}
+		}
+		if (this instanceof BossRoom && !this.lsMonster.isEmpty()) {
+			Boss b = (Boss) this.lsMonster.get(0);
+			for (int i = 0; i < b.getLstMonstreBoss().size(); i++) {
+				collisionHero(b.getLstMonstreBoss().get(i));
+				collisionLarme(b.getLstMonstreBoss().get(i));
+				collisionProjectileFly(b.getLstMonstreBoss().get(i));
+			}
+
 		}
 
 	}
@@ -308,6 +305,7 @@ public class Room {
 					monstre.getSize())) {
 				monstre.retirePV(this.hero.getLstLarme().get(j).getDegats());
 				this.hero.getLstLarme().get(j).setPortee(0);
+				System.out.println(monstre.getPtDeVie());
 			}
 
 		}
@@ -355,7 +353,7 @@ public class Room {
 	/**
 	 * met a jour le monstre
 	 */
-	private void makeMonsterPlay() {
+	void makeMonsterPlay() {
 
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 			this.lsMonster.get(i).updateGameObject(this.hero, lsMonster);
@@ -363,6 +361,9 @@ public class Room {
 
 	}
 
+	/**
+	 * Methode qui affiche les information du joueur
+	 */
 	public void affichageViePiece() {
 		// Affichage nb piece
 		StdDraw.picture(0.75, 0.9, ImagePaths.DIME, RoomInfos.TILE_SIZE.scalarMultiplication(0.4).getX(),
@@ -402,19 +403,18 @@ public class Room {
 	/**
 	 * Methode qui dessine les monstre
 	 */
-	private void dessineMonstre() {
+	void dessineMonstre() {
 
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
 			this.lsMonster.get(i).drawGameObject();
-			if (this.lsMonster.get(i) instanceof Fly) {
-				Fly f = (Fly) this.lsMonster.get(i);
-				for (int j = 0; j < f.getLstProjectile().size(); j++) {
-					if (f.getLstProjectile().get(j).getPortee() > 0) {
-						f.getLstProjectile().get(j).updateGameObject();
-						f.getLstProjectile().get(j).drawGameObject();
-					} else {
-						f.getLstProjectile().remove(j);
-					}
+
+			for (int j = 0; this.lsMonster.get(i).getLstProjectile() != null
+					&& j < this.lsMonster.get(i).getLstProjectile().size(); j++) {
+				if (this.lsMonster.get(i).getLstProjectile().get(j).getPortee() > 0) {
+					this.lsMonster.get(i).getLstProjectile().get(j).updateGameObject();
+					this.lsMonster.get(i).getLstProjectile().get(j).drawGameObject();
+				} else {
+					this.lsMonster.get(i).getLstProjectile().remove(j);
 				}
 			}
 
@@ -425,7 +425,7 @@ public class Room {
 	/**
 	 * Methode qui dessine les larmes
 	 */
-	private void dessineLarme() {
+	void dessineLarme() {
 		for (int i = 0; i < hero.getLstLarme().size(); i++) {
 			if (hero.getLstLarme().get(i).getPortee() > 0) {
 				hero.getLstLarme().get(i).updateGameObject();
@@ -444,7 +444,7 @@ public class Room {
 	 * @param indexY
 	 * @return
 	 */
-	private static Vector2 positionFromTileIndex(int indexX, int indexY) {
+	static Vector2 positionFromTileIndex(int indexX, int indexY) {
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
@@ -481,12 +481,20 @@ public class Room {
 		this.lstPorte = lstPorte;
 	}
 
-	public GenericObject getObjet() {
-		return this.objet;
+	public Hero getHero() {
+		return this.hero;
 	}
 
-	public void setObjet(GenericObject objet) {
-		this.objet = objet;
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
+
+	public List<GenericObject> getLstObjet() {
+		return this.lstObjet;
+	}
+
+	public void setLstObjet(List<GenericObject> lstObjet) {
+		this.lstObjet = lstObjet;
 	}
 
 }

@@ -5,38 +5,45 @@ import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
-import resources.HeroInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
 public class Main {
 	public static void main(String[] args) {
 		// Hero, world and display initialisation.
-		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM, HeroInfos.ISAAC_SIZE, HeroInfos.ISAAC_SPEED,
-				ImagePaths.ISAAC, 5, 6, 1);
-
+		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM);
+		// on genere un nouveau gameWorld
 		GameWorld world = new GameWorld(isaac);
+		// on initialise l'affichage
 		initializeDisplay();
 
-		// Main loop of the game
-		while (!world.gameOver()) {
+		// Tant que le jeu n'est pas fini ou que isaac n'as pas gagne
+		while (!world.gameOver() && isaac.getAGagner() == false) {
+			// le jeu continue de tourner
 			processNextStep(world);
-		}
 
+		}
+		// Si isaac est mort
 		if (isaac.isDead()) {
-			Timer.beginTimer();
+			// on affiche une image indiquant que la partie est perdu
 			StdDraw.clear();
 			StdDraw.picture(0.5, 0.5, ImagePaths.LOSE_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,
 					RoomInfos.TILE_SIZE.getY() * 9, 0);
 			StdDraw.show();
-			Timer.waitToMaintainConstantFPS();
+			// Sinon
+		} else {
+			// on affiche l'image indiquant que la partie est gagnee
+			StdDraw.clear();
+			StdDraw.picture(0.5, 0.5, ImagePaths.WIN_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,
+					RoomInfos.TILE_SIZE.getY() * 9, 0);
+			StdDraw.show();
 		}
 	}
 
 	/**
 	 * Methode qui affiche la suite de la map
 	 * 
-	 * @param world map actuel
+	 * @param world monde actuel
 	 */
 	private static void processNextStep(GameWorld world) {
 		Timer.beginTimer();
