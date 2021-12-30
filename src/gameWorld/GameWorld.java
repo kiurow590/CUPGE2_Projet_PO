@@ -88,21 +88,25 @@ public class GameWorld {
 
 	private void changeCurrentRoom() {
 
-		for (int i = 0; currentRoom.getLstPorte() != null && i < currentRoom.getLstPorte().size(); i++) {
-			if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
-					currentRoom.getLstPorte().get(i).getPosition(), currentRoom.getLstPorte().get(i).getSize())) {
+		if (currentRoom.getLsMonster().isEmpty()) {
 
-				if (currentRoom.getLstPorte().get(i) instanceof BottomDoor) {
-					hero.setPosition(new Vector2(0.5, 0.85));
-				} else if (currentRoom.getLstPorte().get(i) instanceof TopDoor) {
-					hero.setPosition(new Vector2(0.5, 0.15));
-				} else if (currentRoom.getLstPorte().get(i) instanceof LeftDoor) {
-					hero.setPosition(new Vector2(0.85, 0.5));
-				} else if (currentRoom.getLstPorte().get(i) instanceof RightDoor) {
-					hero.setPosition(new Vector2(0.15, 0.5));
+			for (int i = 0; currentRoom.getLstPorte() != null && i < currentRoom.getLstPorte().size(); i++) {
+				if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+						currentRoom.getLstPorte().get(i).getPosition(), currentRoom.getLstPorte().get(i).getSize())) {
+
+					if (currentRoom.getLstPorte().get(i) instanceof BottomDoor) {
+						hero.setPosition(new Vector2(0.5, 0.85));
+					} else if (currentRoom.getLstPorte().get(i) instanceof TopDoor) {
+						hero.setPosition(new Vector2(0.5, 0.15));
+					} else if (currentRoom.getLstPorte().get(i) instanceof LeftDoor) {
+						hero.setPosition(new Vector2(0.85, 0.5));
+					} else if (currentRoom.getLstPorte().get(i) instanceof RightDoor) {
+						hero.setPosition(new Vector2(0.15, 0.5));
+					}
+					currentRoom = mapDeRoom.get(currentRoom.getLstPorte().get(i).getIdSalle());
 				}
-				currentRoom = mapDeRoom.get(currentRoom.getLstPorte().get(i).getIdSalle());
 			}
+
 		}
 
 	}

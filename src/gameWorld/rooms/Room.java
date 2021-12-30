@@ -75,7 +75,11 @@ public abstract class Room {
 	public abstract void drawRoom();
 
 	public void dessinePorte() {
+
 		for (int i = 0; i < lstPorte.size(); i++) {
+			if (lsMonster.isEmpty()) {
+				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
+			}
 			lstPorte.get(i).drawGameObject();
 		}
 	}
