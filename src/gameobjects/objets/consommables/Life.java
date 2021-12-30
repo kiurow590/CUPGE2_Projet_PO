@@ -5,6 +5,9 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
+/**
+ * Class generatrice de Point de Vie
+ */
 public class Life extends ConsommableObject {
     /**
      * Attribut
@@ -24,25 +27,9 @@ public class Life extends ConsommableObject {
         }
     }
 
-    public String getImagePath() {
-        return this.imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public int getValue() {
-        return this.value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
     @Override
     public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(),
+        StdDraw.picture(getPosition().getX(), getPosition().getY(), imagePath, getSize().getX(),
                 getSize().getY(),
                 0);
         StdDraw.setPenColor();
@@ -50,16 +37,8 @@ public class Life extends ConsommableObject {
     }
 
     @Override
-    public String toString() {
-        return "Coeur = {" +
-                " imagePath='" + getImagePath() + "'" +
-                ", value='" + getValue() + "'" +
-                "}";
-    }
-
-    @Override
     public void updateHeroPerf(Hero e) {
-        if (e.getpV() + value <= e.getMaxPV() && super.isEstRamasser() == false) {
+        if (e.getpV() + value <= e.getMaxPV() && super.EstRamasser() == false) {
             e.addPV(value);
             super.setEstRamasser(true);
         }

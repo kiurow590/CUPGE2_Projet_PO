@@ -6,10 +6,20 @@ import libraries.Vector2;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
+/**
+ * Class generant le Pentacle de la victoire
+ */
 public class BoxWin extends ConsommableObject {
-
+    /**
+     * Attributs
+     */
     private String imagePath;
 
+    /**
+     * Constructeur de Pentacle de la victoire
+     * 
+     * @param position position voulu
+     */
     public BoxWin(Vector2 position) {
         super(position);
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.6);

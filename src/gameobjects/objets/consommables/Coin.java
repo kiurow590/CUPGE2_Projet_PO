@@ -5,19 +5,22 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
+/**
+ * Class generatrice de piece d'argent
+ */
 public class Coin extends ConsommableObject {
+
     /**
      * Attribut
      */
-
     private String imagePath;
     private int value;
 
     /**
      * Constructeur de piece
      * 
-     * @param value
-     * @param position
+     * @param value    valeur de la piece
+     * @param position position de la piece
      */
     public Coin(int value, Vector2 position) {
 
@@ -36,25 +39,9 @@ public class Coin extends ConsommableObject {
 
     }
 
-    public String getImagePath() {
-        return this.imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public int getValue() {
-        return this.value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
     @Override
     public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(),
+        StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(),
                 getSize().getY(),
                 0);
         StdDraw.setPenColor();
@@ -62,17 +49,9 @@ public class Coin extends ConsommableObject {
     }
 
     @Override
-    public String toString() {
-        return "Piece = {" +
-                " imagePath='" + getImagePath() + "'" +
-                ", value='" + getValue() + "'" +
-                "}";
-    }
-
-    @Override
     public void updateHeroPerf(Hero e) {
 
-        if (e.getStackArgent() + value <= e.getSoldePieceMax() && super.isEstRamasser() == false) {
+        if (e.getStackArgent() + value <= e.getSoldePieceMax() && super.EstRamasser() == false) {
             e.AjoutStackArgent(value);
             super.setEstRamasser(true);
         }

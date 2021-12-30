@@ -5,6 +5,9 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
+/**
+ * Class BloodOfMartyr qui ajoute de la force au hero
+ */
 public class BloodOfMartyr extends PassifObject {
 
     /**
@@ -13,33 +16,21 @@ public class BloodOfMartyr extends PassifObject {
     private String imagePath;
     private int strength;
 
+    /**
+     * Constructeur de BloodOfMartyr
+     * 
+     * @param position position dans la salle
+     */
     public BloodOfMartyr(Vector2 position) {
         super(new Vector2(0.5, 0.5));
-
         this.strength = 1;
         this.imagePath = ImagePaths.BLOOD_OF_THE_MARTYR;
 
     }
 
-    public String getImagePath() {
-        return this.imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public int getStrength() {
-        return this.strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
     @Override
     public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), getImagePath(), getSize().getX(),
+        StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(),
                 getSize().getY(),
                 0);
         StdDraw.setPenColor();
@@ -47,17 +38,10 @@ public class BloodOfMartyr extends PassifObject {
     }
 
     @Override
-    public String toString() {
-        return "BloodOfMartyr = {" +
-                " imagePath='" + getImagePath() + "'" +
-                "}";
-    }
-
-    @Override
     public void updateHeroPerf(Hero e) {
 
-        if (super.isEstRamasser() == false) {
-            e.setDegats(e.getDegats() + 1);
+        if (super.EstRamasser() == false) {
+            e.setDegats(e.getDegats() + this.strength);
             super.setEstRamasser(true);
 
         }

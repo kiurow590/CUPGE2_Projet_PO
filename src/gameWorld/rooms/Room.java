@@ -173,7 +173,7 @@ public abstract class Room {
 	public void affichageObjets() {
 
 		for (int i = 0; i < lstObjet.size(); i++) {
-			if (this.lsMonster.size() == 0 && lstObjet.get(i).isEstRamasser() == false) {
+			if (this.lsMonster.size() == 0 && lstObjet.get(i).EstRamasser() == false) {
 
 				lstObjet.get(i).drawGameObject();
 
