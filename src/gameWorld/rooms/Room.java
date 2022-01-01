@@ -12,7 +12,6 @@ import gameobjects.objets.passifs.BloodOfMartyr;
 import gameobjects.objets.passifs.LifeExtension;
 import gameobjects.obstacles.GenericObstacle;
 import gameobjects.personnages.Hero;
-import gameobjects.personnages.monstres.Boss;
 import gameobjects.personnages.monstres.Fly;
 import gameobjects.personnages.monstres.Monster;
 import gameobjects.personnages.monstres.Spider;
@@ -194,16 +193,6 @@ public abstract class Room {
 			}
 		}
 
-		if (this instanceof BossRoom && !this.lsMonster.isEmpty()) {
-			Boss b = (Boss) this.lsMonster.get(0);
-			for (int i = 0; i < b.getLstMonstreBoss().size(); i++) {
-				if (b.getLstMonstreBoss().get(i).isDead()) {
-
-					b.getLstMonstreBoss().remove(i);
-				}
-			}
-
-		}
 	}
 
 	/**
@@ -257,15 +246,6 @@ public abstract class Room {
 					lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
 				lstObjet.get(i).updateHeroPerf(hero);
 			}
-		}
-		if (this instanceof BossRoom && !this.lsMonster.isEmpty()) {
-			Boss b = (Boss) this.lsMonster.get(0);
-			for (int i = 0; i < b.getLstMonstreBoss().size(); i++) {
-				collisionHero(b.getLstMonstreBoss().get(i));
-				collisionLarme(b.getLstMonstreBoss().get(i));
-				collisionProjectileFly(b.getLstMonstreBoss().get(i));
-			}
-
 		}
 
 	}
