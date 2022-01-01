@@ -3,12 +3,11 @@ package gameobjects.personnages.monstres;
 import java.util.List;
 
 import gameobjects.personnages.Hero;
-import gameobjects.projectiles.Projectile;
+import gameobjects.projectiles.FlyProjectile;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 import resources.MonstreInfo;
-import resources.RoomInfos;
 
 public class Fly extends Monster {
 	private String imagePath;
@@ -55,10 +54,9 @@ public class Fly extends Monster {
 		} else {
 
 			creeLarmeFly(
-					new Projectile(getPosition(), RoomInfos.TILE_SIZE.scalarMultiplication(0.2), ImagePaths.TEAR,
-							0.01, new Vector2(e.getPosition().getX() - getPosition().getX(),
-									e.getPosition().getY() - getPosition().getY()),
-							30, 1));
+					getPosition(), ImagePaths.TEAR,
+					new Vector2(e.getPosition().getX() - getPosition().getX(),
+							e.getPosition().getY() - getPosition().getY()));
 			this.compteurTir = 50;
 		}
 	}
@@ -69,9 +67,9 @@ public class Fly extends Monster {
 	 * 
 	 * @param e larme
 	 */
-	public void creeLarmeFly(Projectile e) {
+	public void creeLarmeFly(Vector2 position, String imagePath, Vector2 direction) {
 		if (this.compteurTir <= 0) {
-			super.getLstProjectile().add(e);
+			super.getLstProjectile().add(new FlyProjectile(position, imagePath, direction));
 			this.compteurTir = 50;
 		}
 
