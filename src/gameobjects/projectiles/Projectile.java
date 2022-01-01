@@ -2,7 +2,11 @@ package gameobjects.projectiles;
 
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.RoomInfos;
 
+/**
+ * Class Generique projectile
+ */
 public class Projectile {
     Vector2 position;
     Vector2 size;
@@ -13,12 +17,12 @@ public class Projectile {
     int degats;
 
     /**
-     * Constructeur de larme
+     * Constructeur de Projectile
      * 
      * @param position  position initiale de la larme
-     * @param size      taille de la larme
+     * 
      * @param imagePath image representant la larme
-     * @param speed     vitesse de la larme
+     * 
      * @param direction direction de la larme --> 4 cas de figure :
      *                  <ul>
      *                  <li>(1,0) --> la larme sera en mouvement vers la gauche</li>
@@ -27,19 +31,15 @@ public class Projectile {
      *                  <li>(0,1) --> la larme sera en mouvement vers le haut</li>
      *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
      *                  </ul>
-     * @param portee    porté de la larme --> la distance max quelle peut parcourir
-     * @param degats    les degats que la larme engendre
      */
-    public Projectile(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int portee,
-            int degats) {
-        super();
+    public Projectile(Vector2 position, String imagePath, Vector2 direction) {
         this.position = position;
-        this.size = size;
+        this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.2);
         this.imagePath = imagePath;
-        this.speed = speed;
+        this.speed = 0.01;
         this.direction = direction;
-        this.portee = portee;
-        this.degats = degats;
+        this.portee = 40;
+        this.degats = 1;
     }
 
     /**

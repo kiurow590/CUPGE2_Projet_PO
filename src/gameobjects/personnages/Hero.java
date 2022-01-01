@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gameobjects.projectiles.Projectile;
+import gameobjects.projectiles.Tear;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.HeroInfos;
@@ -155,10 +156,9 @@ public class Hero {
 	 * 
 	 * @param e larme
 	 */
-	public void creeLarme(Projectile e) {
+	public void creeLarme(Vector2 position, String imagePath, Vector2 direction) {
 		if (this.compteurTir <= 0) {
-			e.setDegats(degats);
-			this.lstLarme.add(e);
+			this.lstLarme.add(new Tear(position, imagePath, direction));
 			this.compteurTir = 20;
 		}
 
