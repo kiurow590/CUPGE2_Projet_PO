@@ -288,7 +288,7 @@ public abstract class Room {
 					monstre.getSize())) {
 				monstre.retirepointVie(this.hero.getLstLarme().get(j).getdamage());
 				this.hero.getLstLarme().get(j).setPortee(0);
-				System.out.println(monstre.getPtDeVie());
+				System.out.println(monstre.getPointVie());
 			}
 
 		}

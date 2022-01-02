@@ -4,13 +4,11 @@ import java.util.List;
 
 import gameobjects.personnages.Hero;
 import gameobjects.projectiles.FlyProjectile;
-import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 import resources.MonstreInfo;
 
 public class Fly extends Monster {
-	private String imagePath;
 
 	private int countDownTir;
 
@@ -20,23 +18,14 @@ public class Fly extends Monster {
 	 * @param position position initiale
 	 */
 	public Fly(Vector2 position) {
-		super(position, MonstreInfo.FLY_SIZE, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_pointVie,
+		super(position, MonstreInfo.FLY_SIZE, ImagePaths.FLY, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_pointVie,
 				MonstreInfo.FLY_DAMMAGE);
-		this.imagePath = ImagePaths.FLY;
 		this.countDownTir = 50;
 	}
 
 	@Override
 	public void retirepointVie(int i) {
-		setPtDeVie(super.getPtDeVie() - i);
-	}
-
-	@Override
-	public void drawGameObject() {
-		StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(), getSize().getY(),
-				0);
-		StdDraw.setPenColor();
-		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
+		setPointVie(getPointVie() - i);
 	}
 
 	@Override

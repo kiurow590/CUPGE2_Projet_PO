@@ -3,7 +3,7 @@ package gameobjects;
 import libraries.StdDraw;
 import libraries.Vector2;
 
-public class Entity {
+public abstract class Entity {
 
     /**
      * Attribut
@@ -14,13 +14,43 @@ public class Entity {
     protected double speed;
     protected Vector2 direction;
 
-    public Entity(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction) {
+    protected int pointVie;
+    protected int maxpointVie;
+
+    public Entity(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int pointVie,
+            int maxpointVie) {
         this.position = position;
         this.size = size;
         this.imagePath = imagePath;
         this.speed = speed;
         this.direction = direction;
+        this.pointVie = pointVie;
+        this.maxpointVie = maxpointVie;
     }
+
+    /**
+     * Methode qui calcul si une mouche est morte
+     * 
+     * @return un boolean </br>
+     *         <ul>
+     *         <li>true - la mouche est morte</li>
+     *         <li>false - la mouche est vivante</li>
+     *         </ul>
+     */
+    public boolean isDead() {
+        return this.pointVie <= 0;
+    }
+
+    /**
+     * Methode qui ajoute des pointVie au personnage
+     * 
+     * @param i la valeur de pointVie a rajouter
+     */
+    public void addpointVie(int i) {
+        this.pointVie += i;
+    }
+
+    public abstract void retirepointVie(int i);
 
     /**
      * Methode qui mets en mouvement l'objet
@@ -53,6 +83,29 @@ public class Entity {
         normalizedVector.euclidianNormalize(speed);
         return normalizedVector;
     }
+
+    /*
+     * Methodes qui permette de mettre en mvt le Hero
+     */
+    public void goUpNext() {
+        this.direction.addY(1);
+    }
+
+    public void goDownNext() {
+        this.direction.addY(-1);
+    }
+
+    public void goLeftNext() {
+        this.direction.addX(-1);
+    }
+
+    public void goRightNext() {
+        this.direction.addX(1);
+    }
+
+    /**
+     * Getters / setters
+     */
 
     public Vector2 getPosition() {
         return this.position;
@@ -92,6 +145,22 @@ public class Entity {
 
     public void setDirection(Vector2 direction) {
         this.direction = direction;
+    }
+
+    public int getPointVie() {
+        return this.pointVie;
+    }
+
+    public void setPointVie(int pointVie) {
+        this.pointVie = pointVie;
+    }
+
+    public int getMaxpointVie() {
+        return this.maxpointVie;
+    }
+
+    public void setMaxpointVie(int maxpointVie) {
+        this.maxpointVie = maxpointVie;
     }
 
 }

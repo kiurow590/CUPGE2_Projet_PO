@@ -1,11 +1,9 @@
 package gameobjects.personnages.monstres;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import gameWorld.rooms.Room;
 import gameobjects.personnages.Hero;
-import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 import resources.MonstreInfo;
@@ -17,7 +15,7 @@ public class Boss extends Monster {
     /**
      * Attributs
      */
-    private String imagePath;
+
     private int compteurDeplacement;
     private int compteurGeneration;
 
@@ -29,9 +27,8 @@ public class Boss extends Monster {
      * @param position position initiale du Boss
      */
     public Boss(Vector2 position, Room currentRoom) {
-        super(position, MonstreInfo.BOSS_SIZE, MonstreInfo.BOSS_SPEED, MonstreInfo.BOSS_pointVie,
+        super(position, MonstreInfo.BOSS_SIZE, ImagePaths.SPIDER, MonstreInfo.BOSS_SPEED, MonstreInfo.BOSS_pointVie,
                 MonstreInfo.BOSS_DAMMAGE);
-        this.imagePath = ImagePaths.SPIDER;
         this.compteurDeplacement = MonstreInfo.BOSS_Move_Delay;
         this.currentRoom = currentRoom;
         this.compteurGeneration = 200;
@@ -39,16 +36,7 @@ public class Boss extends Monster {
 
     @Override
     public void retirepointVie(int i) {
-        this.setPtDeVie(getPtDeVie() - i);
-
-    }
-
-    @Override
-    public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(), getSize().getY(),
-                0);
-        StdDraw.setPenColor();
-        StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
+        this.setPointVie(getPointVie() - i);
 
     }
 

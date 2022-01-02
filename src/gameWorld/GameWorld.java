@@ -125,7 +125,7 @@ public class GameWorld {
 		if (StdDraw.isKeyPressed(Controls.killMonster)) {
 
 			for (int i = 0; currentRoom.getLsMonster() != null && i < currentRoom.getLsMonster().size(); i++) {
-				currentRoom.getLsMonster().get(i).setPtDeVie(-800);
+				currentRoom.getLsMonster().get(i).setPointVie(-800);
 
 			}
 

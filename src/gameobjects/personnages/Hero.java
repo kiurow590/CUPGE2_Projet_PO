@@ -26,9 +26,6 @@ public class Hero extends Entity {
 	private int countDownTir;
 	private int countDownPower;
 
-	private int pointVie;
-	private int maxpointVie;
-
 	private int stackArgent;
 	private int soldeStackMax;
 
@@ -41,13 +38,13 @@ public class Hero extends Entity {
 	 */
 	public Hero(Vector2 position) {
 
-		super(position, HeroInfos.ISAAC_SIZE, ImagePaths.ISAAC, HeroInfos.ISAAC_SPEED, new Vector2());
+		super(position, HeroInfos.ISAAC_SIZE, ImagePaths.ISAAC, HeroInfos.ISAAC_SPEED, new Vector2(),
+				HeroInfos.ISAAC_LIFE, HeroInfos.ISAAC_LIFE);
 
 		this.estInvincible = false;
 
 		this.countDownInvincible = HeroInfos.ISAAC_INVINCIBILITY_DELAY;
 		this.countDownTir = HeroInfos.ISAAC_TIR_DELAY;
-		this.pointVie = HeroInfos.ISAAC_LIFE;
 
 		lstLarme = new ArrayList<Projectile>();
 
@@ -58,8 +55,6 @@ public class Hero extends Entity {
 		this.countDownPower = 0;
 
 		this.damage = HeroInfos.ATTACK;
-
-		this.maxpointVie = HeroInfos.ISAAC_LIFE;
 
 		this.stackArgent = 0;
 		soldeStackMax = HeroInfos.ISAAC_MAX_STACK;
@@ -91,11 +86,7 @@ public class Hero extends Entity {
 		}
 	}
 
-	/**
-	 * Methode qui retire des pointVie au personnage
-	 * 
-	 * @param i valeur de pointVie retiré
-	 */
+	@Override
 	public void retirepointVie(int i) {
 		if (!this.estInvincible) {
 			this.pointVie -= i;
@@ -127,15 +118,6 @@ public class Hero extends Entity {
 	 */
 	public boolean isDead() {
 		return this.pointVie <= 0;
-	}
-
-	/**
-	 * Methode qui ajoute des pointVie au personnage
-	 * 
-	 * @param i la valeur de pointVie a rajouter
-	 */
-	public void addpointVie(int i) {
-		this.pointVie += i;
 	}
 
 	/**
@@ -201,25 +183,6 @@ public class Hero extends Entity {
 
 		}
 
-	}
-
-	/*
-	 * Methodes qui permette de mettre en mvt le Hero
-	 */
-	public void goUpNext() {
-		this.direction.addY(1);
-	}
-
-	public void goDownNext() {
-		this.direction.addY(-1);
-	}
-
-	public void goLeftNext() {
-		this.direction.addX(-1);
-	}
-
-	public void goRightNext() {
-		this.direction.addX(1);
 	}
 
 	public List<Projectile> getLstLarme() {
