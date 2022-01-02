@@ -12,7 +12,7 @@ import resources.MonstreInfo;
 public class Fly extends Monster {
 	private String imagePath;
 
-	private int compteurTir;
+	private int countDownTir;
 
 	/**
 	 * Constructeur de fly
@@ -23,7 +23,7 @@ public class Fly extends Monster {
 		super(position, MonstreInfo.FLY_SIZE, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_PV,
 				MonstreInfo.FLY_DAMMAGE);
 		this.imagePath = ImagePaths.FLY;
-		this.compteurTir = 50;
+		this.countDownTir = 50;
 	}
 
 	@Override
@@ -48,8 +48,8 @@ public class Fly extends Monster {
 		} else {
 			this.setImmobilus(getImmobilus() - 1);
 		}
-		if (this.compteurTir > 0) {
-			this.compteurTir--;
+		if (this.countDownTir > 0) {
+			this.countDownTir--;
 
 		} else {
 
@@ -57,7 +57,7 @@ public class Fly extends Monster {
 					getPosition(), ImagePaths.TEAR,
 					new Vector2(e.getPosition().getX() - getPosition().getX(),
 							e.getPosition().getY() - getPosition().getY()));
-			this.compteurTir = 50;
+			this.countDownTir = 50;
 		}
 	}
 
@@ -68,9 +68,9 @@ public class Fly extends Monster {
 	 * @param e larme
 	 */
 	public void creeLarmeFly(Vector2 position, String imagePath, Vector2 direction) {
-		if (this.compteurTir <= 0) {
+		if (this.countDownTir <= 0) {
 			super.getLstProjectile().add(new FlyProjectile(position, imagePath, direction));
-			this.compteurTir = 50;
+			this.countDownTir = 50;
 		}
 
 	}
@@ -96,12 +96,12 @@ public class Fly extends Monster {
 	 * GETTERS / SETTERS
 	 */
 
-	public int getCompteurTir() {
-		return compteurTir;
+	public int getcountDownTir() {
+		return countDownTir;
 	}
 
-	public void setCompteurTir(int compteurTir) {
-		this.compteurTir = compteurTir;
+	public void setcountDownTir(int countDownTir) {
+		this.countDownTir = countDownTir;
 	}
 
 }
