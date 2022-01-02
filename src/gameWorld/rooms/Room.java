@@ -160,11 +160,25 @@ public abstract class Room {
 	 */
 	void initMonster() {
 		for (int i = 0; i < 4; i++) {
+			double x = Math.random();
+			double y = Math.random();
+			if (x < 0.08) {
+				x += 0.2;
+			}
+			if (x > 0.92) {
+				x -= 0.2;
+			}
+			if (y < 0.08) {
+				y += 0.2;
+			}
+			if (y > 0.92) {
+				y -= 0.2;
+			}
 			if (Math.random() < 0.5) {
-				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random())));
+
+				this.lsMonster.add(new Spider(new Vector2(x, y)));
 			} else {
 				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
-
 			}
 		}
 	}

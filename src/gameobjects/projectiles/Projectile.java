@@ -32,14 +32,14 @@ public class Projectile {
      *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
      *                  </ul>
      */
-    public Projectile(Vector2 position, String imagePath, Vector2 direction) {
+    public Projectile(Vector2 position, String imagePath, Vector2 direction, int damage) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.2);
         this.imagePath = imagePath;
         this.speed = 0.01;
         this.direction = direction;
         this.portee = 40;
-        this.damage = 1;
+        this.damage = damage;
     }
 
     /**
@@ -48,6 +48,18 @@ public class Projectile {
     public void updateGameObject() {
         if (this.portee > 0) {
             move();
+            verifPositionValide();
+        }
+
+    }
+
+    /**
+     * Methode qui verifie si le projectile n'est pas hors de l'ecran
+     */
+    private void verifPositionValide() {
+        if (getPosition().getX() < 0.08 || getPosition().getX() > 0.92 || getPosition().getY() < 0.08
+                || getPosition().getY() > 0.92) {
+            this.portee = 0;
         }
 
     }

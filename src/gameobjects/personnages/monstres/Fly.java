@@ -58,7 +58,7 @@ public class Fly extends Monster {
 	 */
 	public void creeLarmeFly(Vector2 position, String imagePath, Vector2 direction) {
 		if (this.countDownTir <= 0) {
-			super.getLstProjectile().add(new FlyProjectile(position, imagePath, direction));
+			super.getLstProjectile().add(new FlyProjectile(position, imagePath, direction, degatCorpsACorps));
 			this.countDownTir = 50;
 		}
 

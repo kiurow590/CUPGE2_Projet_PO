@@ -128,7 +128,7 @@ public class Hero extends Entity {
 	 */
 	public void creeLarme(Vector2 position, String imagePath, Vector2 direction) {
 		if (this.countDownTir <= 0) {
-			this.lstLarme.add(new Tear(position, imagePath, direction));
+			this.lstLarme.add(new Tear(position, imagePath, direction, damage));
 			this.countDownTir = 20;
 		}
 

@@ -31,7 +31,7 @@ public class Boss extends Monster {
                 MonstreInfo.BOSS_DAMMAGE);
         this.compteurDeplacement = MonstreInfo.BOSS_Move_Delay;
         this.currentRoom = currentRoom;
-        this.compteurGeneration = 200;
+        this.compteurGeneration = 120;
     }
 
     @Override
