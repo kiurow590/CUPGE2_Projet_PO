@@ -14,7 +14,7 @@ public class LifeExtension extends PassifObject {
     private int maxValue;
 
     public LifeExtension(Vector2 position) {
-        super(position);
+        super(position, 20);
 
         this.maxValue = 2;
         this.imagePath = ImagePaths.HP_UP;

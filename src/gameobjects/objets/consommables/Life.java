@@ -16,14 +16,18 @@ public class Life extends ConsommableObject {
     private int value;
 
     public Life(int value, Vector2 position) {
-        super(position);
+
+        super(position, 0);
 
         this.value = value;
 
         if (this.value == 1) {
             imagePath = ImagePaths.HALF_HEART_HUD;
+            this.prix = 2;
         } else if (this.value == 2) {
             imagePath = ImagePaths.HEART_HUD;
+            this.prix = 4;
+
         }
     }
 

@@ -12,8 +12,8 @@ public abstract class PassifObject extends GenericObject {
      * 
      * @param position position de l'objets
      */
-    public PassifObject(Vector2 position) {
-        super(position);
+    public PassifObject(Vector2 position, int prix) {
+        super(position, prix);
     }
 
 }

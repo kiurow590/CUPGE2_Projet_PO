@@ -15,13 +15,14 @@ public abstract class GenericObject {
     Vector2 position;
     protected Vector2 size;
     boolean estRamasser;
+    protected int prix;
 
     /**
      * Constructeur d'objet
      * 
      * @param position la position de l'objet dans la salle
      */
-    public GenericObject(Vector2 position) {
+    public GenericObject(Vector2 position, int prix) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
         this.estRamasser = false;

@@ -12,8 +12,8 @@ public abstract class ConsommableObject extends GenericObject {
      * 
      * @param position position dans la room
      */
-    public ConsommableObject(Vector2 position) {
-        super(position);
+    public ConsommableObject(Vector2 position, int prix) {
+        super(position, prix);
     }
 
 }
