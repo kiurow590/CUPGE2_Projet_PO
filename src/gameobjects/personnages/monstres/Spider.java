@@ -20,7 +20,7 @@ public class Spider extends Monster {
 	 * @param position position initiale de l'araigné
 	 */
 	public Spider(Vector2 position) {
-		super(position, MonstreInfo.SPIDER_SIZE, MonstreInfo.SPIDER_SPEED, MonstreInfo.SPIDER_PV,
+		super(position, MonstreInfo.SPIDER_SIZE, MonstreInfo.SPIDER_SPEED, MonstreInfo.SPIDER_pointVie,
 				MonstreInfo.SPIDER_DAMMAGE);
 		this.imagePath = ImagePaths.SPIDER;
 		this.compteur = DisplaySettings.FRAME_PER_SECOND;
@@ -28,8 +28,8 @@ public class Spider extends Monster {
 	}
 
 	@Override
-	public void retirePV(int i) {
-		// TODO: rajouter parametre pour retirer n PV
+	public void retirepointVie(int i) {
+		// TODO: rajouter parametre pour retirer n pointVie
 		setPtDeVie(super.getPtDeVie() - i);
 	}
 

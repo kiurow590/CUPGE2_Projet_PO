@@ -38,8 +38,8 @@ public class Life extends ConsommableObject {
 
     @Override
     public void updateHeroPerf(Hero e) {
-        if (e.getpV() + value <= e.getMaxPV() && super.EstRamasser() == false) {
-            e.addPV(value);
+        if (e.getpointVie() + value <= e.getMaxpointVie() && super.EstRamasser() == false) {
+            e.addpointVie(value);
             super.setEstRamasser(true);
         }
 

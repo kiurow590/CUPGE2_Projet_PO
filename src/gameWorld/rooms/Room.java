@@ -262,7 +262,7 @@ public abstract class Room {
 		// Retrait des points de vie d'Isaac s'il est touche par un monstre
 		if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
 				this.hero.getSize(), monstre.getPosition(), monstre.getSize())) {
-			this.hero.retirePV(monstre.getDegatCorpsACorps());
+			this.hero.retirepointVie(monstre.getDegatCorpsACorps());
 			this.compteurInvincibiliteHero = 50;
 			monstre.setImmobilus(35);
 
@@ -286,7 +286,7 @@ public abstract class Room {
 			if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
 					this.hero.getLstLarme().get(j).getSize(), monstre.getPosition(),
 					monstre.getSize())) {
-				monstre.retirePV(this.hero.getLstLarme().get(j).getDegats());
+				monstre.retirepointVie(this.hero.getLstLarme().get(j).getdamage());
 				this.hero.getLstLarme().get(j).setPortee(0);
 				System.out.println(monstre.getPtDeVie());
 			}
@@ -309,7 +309,7 @@ public abstract class Room {
 			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
 					monstre.getLstProjectile().get(j).getPosition(),
 					monstre.getLstProjectile().get(j).getSize())) {
-				this.hero.retirePV(monstre.getLstProjectile().get(j).getDegats());
+				this.hero.retirepointVie(monstre.getLstProjectile().get(j).getdamage());
 				monstre.getLstProjectile().get(j).setPortee(0);
 			}
 		}
@@ -356,25 +356,25 @@ public abstract class Room {
 		StdDraw.text(0.8, 0.9, ": " + hero.getStackArgent() + "");
 		// ----------------------------------------------------------------
 		StdDraw.setPenRadius();
-		int pvView = this.hero.getPV();
-		if (pvView % 2 == 0) {
+		int pointVieView = this.hero.getpointVie();
+		if (pointVieView % 2 == 0) {
 			double x = 0.1;
-			while (pvView != 0) {
+			while (pointVieView != 0) {
 				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
 						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 
 				x += 0.1;
-				pvView -= 2;
+				pointVieView -= 2;
 			}
 
 		} else {
 			double x = 0.1;
-			while (pvView != 1) {
+			while (pointVieView != 1) {
 				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
 						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 
 				x += 0.1;
-				pvView -= 2;
+				pointVieView -= 2;
 
 			}
 

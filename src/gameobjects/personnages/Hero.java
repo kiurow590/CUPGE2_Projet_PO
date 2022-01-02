@@ -16,7 +16,7 @@ public class Hero extends Entity {
 	 */
 
 	private List<Projectile> lstLarme;
-	private int degats;
+	private int damage;
 
 	private boolean estInvincible;
 	private boolean estRapide;
@@ -26,11 +26,11 @@ public class Hero extends Entity {
 	private int countDownTir;
 	private int countDownPower;
 
-	private int pV;
-	private int maxPV;
+	private int pointVie;
+	private int maxpointVie;
 
 	private int stackArgent;
-	private int soldePieceMax;
+	private int soldeStackMax;
 
 	private int countDownGiveStack;
 
@@ -47,7 +47,7 @@ public class Hero extends Entity {
 
 		this.countDownInvincible = HeroInfos.ISAAC_INVINCIBILITY_DELAY;
 		this.countDownTir = HeroInfos.ISAAC_TIR_DELAY;
-		this.pV = HeroInfos.ISAAC_LIFE;
+		this.pointVie = HeroInfos.ISAAC_LIFE;
 
 		lstLarme = new ArrayList<Projectile>();
 
@@ -57,12 +57,12 @@ public class Hero extends Entity {
 		this.estPuissant = false;
 		this.countDownPower = 0;
 
-		this.degats = HeroInfos.ATTACK;
+		this.damage = HeroInfos.ATTACK;
 
-		this.maxPV = HeroInfos.ISAAC_LIFE;
+		this.maxpointVie = HeroInfos.ISAAC_LIFE;
 
 		this.stackArgent = 0;
-		soldePieceMax = HeroInfos.ISAAC_MAX_STACK;
+		soldeStackMax = HeroInfos.ISAAC_MAX_STACK;
 	}
 
 	/**
@@ -92,13 +92,13 @@ public class Hero extends Entity {
 	}
 
 	/**
-	 * Methode qui retire des pv au personnage
+	 * Methode qui retire des pointVie au personnage
 	 * 
-	 * @param i valeur de pv retiré
+	 * @param i valeur de pointVie retiré
 	 */
-	public void retirePV(int i) {
+	public void retirepointVie(int i) {
 		if (!this.estInvincible) {
-			this.pV -= i;
+			this.pointVie -= i;
 			this.countDownInvincible = 50;
 		}
 
@@ -126,16 +126,16 @@ public class Hero extends Entity {
 	 *         </ul>
 	 */
 	public boolean isDead() {
-		return this.pV <= 0;
+		return this.pointVie <= 0;
 	}
 
 	/**
-	 * Methode qui ajoute des PV au personnage
+	 * Methode qui ajoute des pointVie au personnage
 	 * 
-	 * @param i la valeur de pv a rajouter
+	 * @param i la valeur de pointVie a rajouter
 	 */
-	public void addPV(int i) {
-		this.pV += i;
+	public void addpointVie(int i) {
+		this.pointVie += i;
 	}
 
 	/**
@@ -191,12 +191,12 @@ public class Hero extends Entity {
 		if (!this.estPuissant && this.countDownPower == 0) {
 			this.estPuissant = true;
 			this.countDownPower = 40;
-			this.degats = 5000000;
+			this.damage = 5000000;
 			System.out.println("Dobby Pete des cul");
 		} else if (this.estRapide && this.countDownSpped == 0) {
 			this.estPuissant = false;
 			this.countDownPower = 40;
-			this.degats = 1;
+			this.damage = 1;
 			System.out.println("Dobby est une merde");
 
 		}
@@ -222,36 +222,28 @@ public class Hero extends Entity {
 		this.direction.addX(1);
 	}
 
-	/*
-	 * Getters and Setters
-	 */
-
-	public int getpV() {
-		return pV;
-	}
-
 	public List<Projectile> getLstLarme() {
 		return lstLarme;
 	}
 
-	public int getDegats() {
-		return degats;
+	public int getdamage() {
+		return damage;
 	}
 
-	public void setDegats(int degats) {
-		this.degats = degats;
+	public void setdamage(int damage) {
+		this.damage = damage;
 	}
 
-	public int getPV() {
-		return this.pV;
+	public int getpointVie() {
+		return this.pointVie;
 	}
 
-	public int getMaxPV() {
-		return this.maxPV;
+	public int getMaxpointVie() {
+		return this.maxpointVie;
 	}
 
-	public void setMaxPV(int maxPV) {
-		this.maxPV = maxPV;
+	public void setMaxpointVie(int maxpointVie) {
+		this.maxpointVie = maxpointVie;
 	}
 
 	public int getStackArgent() {
@@ -259,7 +251,7 @@ public class Hero extends Entity {
 	}
 
 	public void AjoutStackArgent(int stackArgent) {
-		if (this.stackArgent + stackArgent <= soldePieceMax) {
+		if (this.stackArgent + stackArgent <= soldeStackMax) {
 			this.stackArgent += stackArgent;
 		}
 
@@ -271,8 +263,8 @@ public class Hero extends Entity {
 
 	}
 
-	public int getSoldePieceMax() {
-		return this.soldePieceMax;
+	public int getsoldeStackMax() {
+		return this.soldeStackMax;
 	}
 
 }

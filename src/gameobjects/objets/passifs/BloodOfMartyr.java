@@ -41,7 +41,7 @@ public class BloodOfMartyr extends PassifObject {
     public void updateHeroPerf(Hero e) {
 
         if (super.EstRamasser() == false) {
-            e.setDegats(e.getDegats() + this.strength);
+            e.setdamage(e.getdamage() + this.strength);
             super.setEstRamasser(true);
 
         }

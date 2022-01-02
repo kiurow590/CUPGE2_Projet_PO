@@ -20,14 +20,14 @@ public class Fly extends Monster {
 	 * @param position position initiale
 	 */
 	public Fly(Vector2 position) {
-		super(position, MonstreInfo.FLY_SIZE, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_PV,
+		super(position, MonstreInfo.FLY_SIZE, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_pointVie,
 				MonstreInfo.FLY_DAMMAGE);
 		this.imagePath = ImagePaths.FLY;
 		this.countDownTir = 50;
 	}
 
 	@Override
-	public void retirePV(int i) {
+	public void retirepointVie(int i) {
 		setPtDeVie(super.getPtDeVie() - i);
 	}
 

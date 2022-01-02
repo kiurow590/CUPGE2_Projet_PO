@@ -29,7 +29,8 @@ public class Boss extends Monster {
      * @param position position initiale du Boss
      */
     public Boss(Vector2 position, Room currentRoom) {
-        super(position, MonstreInfo.BOSS_SIZE, MonstreInfo.BOSS_SPEED, MonstreInfo.BOSS_PV, MonstreInfo.BOSS_DAMMAGE);
+        super(position, MonstreInfo.BOSS_SIZE, MonstreInfo.BOSS_SPEED, MonstreInfo.BOSS_pointVie,
+                MonstreInfo.BOSS_DAMMAGE);
         this.imagePath = ImagePaths.SPIDER;
         this.compteurDeplacement = MonstreInfo.BOSS_Move_Delay;
         this.currentRoom = currentRoom;
@@ -37,7 +38,7 @@ public class Boss extends Monster {
     }
 
     @Override
-    public void retirePV(int i) {
+    public void retirepointVie(int i) {
         this.setPtDeVie(getPtDeVie() - i);
 
     }

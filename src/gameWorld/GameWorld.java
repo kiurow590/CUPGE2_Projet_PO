@@ -154,7 +154,7 @@ public class GameWorld {
 	 *         </ul>
 	 */
 	public boolean gameOver() {
-		return hero.getpV() <= 0;
+		return hero.getpointVie() <= 0;
 	}
 
 	/**

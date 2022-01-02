@@ -14,7 +14,7 @@ public class Projectile {
     double speed;
     Vector2 direction;
     int portee;
-    int degats;
+    int damage;
 
     /**
      * Constructeur de Projectile
@@ -39,7 +39,7 @@ public class Projectile {
         this.speed = 0.01;
         this.direction = direction;
         this.portee = 40;
-        this.degats = 1;
+        this.damage = 1;
     }
 
     /**
@@ -125,11 +125,11 @@ public class Projectile {
         this.portee = portee;
     }
 
-    public int getDegats() {
-        return degats;
+    public int getdamage() {
+        return damage;
     }
 
-    public void setDegats(int degats) {
-        this.degats = degats;
+    public void setdamage(int damage) {
+        this.damage = damage;
     }
 }

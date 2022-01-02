@@ -9,7 +9,7 @@ public class MonstreInfo {
      */
 
     public static final double FLY_SPEED = 0.005;
-    public static final int FLY_PV = 3;
+    public static final int FLY_pointVie = 3;
     public static final int FLY_DAMMAGE = 1;
     public static final Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
 
@@ -17,7 +17,7 @@ public class MonstreInfo {
      * SPIDER
      */
     public static final double SPIDER_SPEED = 0.02;
-    public static final int SPIDER_PV = 5;
+    public static final int SPIDER_pointVie = 5;
     public static final int SPIDER_DAMMAGE = 1;
     public static final Vector2 SPIDER_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
 
@@ -25,7 +25,7 @@ public class MonstreInfo {
      * BOSS
      */
     public static final double BOSS_SPEED = 0.03;
-    public static final int BOSS_PV = 20;
+    public static final int BOSS_pointVie = 20;
     public static final int BOSS_DAMMAGE = 1;
     public static final Vector2 BOSS_SIZE = new Vector2(0.10, 0.10);
     public static final int BOSS_Move_Delay = 40;

@@ -30,7 +30,7 @@ public abstract class Monster {
 	 * @param speed            vitesse du monstre
 	 * @param direction        direction initale du monstre --> souvent null
 	 * @param ptDeVie          point de vie du monstre
-	 * @param degatCorpsACorps degats du monstre au corps a corps
+	 * @param degatCorpsACorps damage du monstre au corps a corps
 	 */
 	public Monster(Vector2 position, Vector2 size, double speed, int ptDeVie, int degatCorpsACorps) {
 		this.position = position;
@@ -71,10 +71,10 @@ public abstract class Monster {
 	/**
 	 * Methode qui retire les point de vie d'un monstre
 	 * 
-	 * @param i le nb de pv a retiré
+	 * @param i le nb de pointVie a retiré
 	 * 
 	 */
-	public abstract void retirePV(int i);
+	public abstract void retirepointVie(int i);
 
 	/**
 	 * Methode qui dessine la mouche dans le jeu

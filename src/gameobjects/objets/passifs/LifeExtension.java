@@ -34,7 +34,7 @@ public class LifeExtension extends PassifObject {
     public void updateHeroPerf(Hero e) {
 
         if (super.EstRamasser() == false) {
-            e.setMaxPV(e.getMaxPV() + maxValue);
+            e.setMaxpointVie(e.getMaxpointVie() + maxValue);
             super.setEstRamasser(true);
 
         }
