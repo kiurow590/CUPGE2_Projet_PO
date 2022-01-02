@@ -237,4 +237,12 @@ public class GameWorld {
 		}
 	}
 
+	public Room getCurrentRoom() {
+		return this.currentRoom;
+	}
+
+	public void setCurrentRoom(Room currentRoom) {
+		this.currentRoom = currentRoom;
+	}
+
 }

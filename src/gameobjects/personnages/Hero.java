@@ -3,6 +3,7 @@ package gameobjects.personnages;
 import java.util.ArrayList;
 import java.util.List;
 
+import gameobjects.Entity;
 import gameobjects.projectiles.Projectile;
 import gameobjects.projectiles.Tear;
 import libraries.StdDraw;
@@ -10,7 +11,7 @@ import libraries.Vector2;
 import resources.HeroInfos;
 import resources.ImagePaths;
 
-public class Hero {
+public class Hero extends Entity {
 	/**
 	 * Attribut
 	 */
@@ -38,8 +39,6 @@ public class Hero {
 	private int soldePieceMax;
 
 	private int compteurArgentTriche;
-
-	private boolean aGagner;
 
 	/**
 	 * Constructeur de hero
@@ -73,8 +72,6 @@ public class Hero {
 
 		this.stackArgent = 0;
 		soldePieceMax = HeroInfos.ISAAC_MAX_STACK;
-
-		this.aGagner = false;
 	}
 
 	/**
@@ -329,14 +326,6 @@ public class Hero {
 
 	public int getSoldePieceMax() {
 		return this.soldePieceMax;
-	}
-
-	public boolean getAGagner() {
-		return this.aGagner;
-	}
-
-	public void setAGagner(boolean aGagner) {
-		this.aGagner = aGagner;
 	}
 
 }

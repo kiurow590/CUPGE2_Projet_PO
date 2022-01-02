@@ -43,6 +43,8 @@ public abstract class Room {
 
 	List<GenericObject> lstObjet;
 
+	boolean aGagner;
+
 	/**
 	 * Constructeur de room
 	 * 
@@ -60,6 +62,7 @@ public abstract class Room {
 		this.lstPorte = new ArrayList<>();
 
 		this.lstObjet = new ArrayList<>();
+		this.aGagner = false;
 
 	}
 
@@ -477,4 +480,11 @@ public abstract class Room {
 		this.lstObjet = lstObjet;
 	}
 
+	public boolean getAGagner() {
+		return this.aGagner;
+	}
+
+	public void setAGagner(boolean aGagner) {
+		this.aGagner = aGagner;
+	}
 }
