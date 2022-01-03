@@ -50,7 +50,14 @@ public abstract class Entity {
         this.pointVie += i;
     }
 
-    public abstract void retirepointVie(int i);
+    /**
+     * Methode qui retire les point de vie
+     * 
+     * @param i le nombre de point de vie retiré
+     */
+    public void retirepointVie(int i) {
+        this.setPointVie(pointVie - i);
+    }
 
     /**
      * Methode qui mets en mouvement l'objet
