@@ -1,20 +1,16 @@
 package gameobjects.projectiles;
 
-import libraries.StdDraw;
+import gameobjects.Entity;
 import libraries.Vector2;
 import resources.RoomInfos;
 
 /**
  * Class Generique projectile
  */
-public class Projectile {
-    Vector2 position;
-    Vector2 size;
-    String imagePath;
-    double speed;
-    Vector2 direction;
+public class Projectile extends Entity {
+
     int portee;
-    int degats;
+    int damage;
 
     /**
      * Constructeur de Projectile
@@ -32,14 +28,12 @@ public class Projectile {
      *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
      *                  </ul>
      */
-    public Projectile(Vector2 position, String imagePath, Vector2 direction) {
-        this.position = position;
-        this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.2);
-        this.imagePath = imagePath;
-        this.speed = 0.01;
-        this.direction = direction;
+    public Projectile(Vector2 position, String imagePath, Vector2 direction, int damage) {
+
+        super(position, RoomInfos.TILE_SIZE.scalarMultiplication(0.2), imagePath, 0.01, direction, 0, 0);
+
         this.portee = 40;
-        this.degats = 1;
+        this.damage = damage;
     }
 
     /**
@@ -48,57 +42,28 @@ public class Projectile {
     public void updateGameObject() {
         if (this.portee > 0) {
             move();
+            verifPositionValide();
         }
 
     }
 
     /**
-     * Methode qui mets en mouvement de la larme
+     * Methode qui verifie si le projectile n'est pas hors de l'ecran
      */
-    private void move() {
+    private void verifPositionValide() {
+        if (getPosition().getX() < 0.08 || getPosition().getX() > 0.92 || getPosition().getY() < 0.08
+                || getPosition().getY() > 0.92) {
+            this.portee = 0;
+        }
+
+    }
+
+    protected void move() {
         Vector2 normalizedDirection = getNormalizedDirection();
         Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
         setPosition(positionAfterMoving);
         this.portee--;
 
-    }
-
-    /**
-     * Methode qui dessine la larme dans le jeu
-     */
-    public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), imagePath, getSize().getX(), getSize().getY(),
-                0);
-    }
-
-    /**
-     * Methode qui normalise le vecteur direction de la larme
-     * 
-     * @return le vecteur normaliser
-     */
-    public Vector2 getNormalizedDirection() {
-        Vector2 normalizedVector = new Vector2(direction);
-        normalizedVector.euclidianNormalize(speed);
-        return normalizedVector;
-    }
-
-    /*
-     * Moving from key inputs. Direction vector is later normalised.
-     */
-    public void goUpNext() {
-        direction.addY(1);
-    }
-
-    public void goDownNext() {
-        direction.addY(-1);
-    }
-
-    public void goLeftNext() {
-        direction.addX(-1);
-    }
-
-    public void goRightNext() {
-        direction.addX(1);
     }
 
     /**
@@ -125,11 +90,11 @@ public class Projectile {
         this.portee = portee;
     }
 
-    public int getDegats() {
-        return degats;
+    public int getdamage() {
+        return damage;
     }
 
-    public void setDegats(int degats) {
-        this.degats = degats;
+    public void setdamage(int damage) {
+        this.damage = damage;
     }
 }

@@ -125,7 +125,7 @@ public class GameWorld {
 		if (StdDraw.isKeyPressed(Controls.killMonster)) {
 
 			for (int i = 0; currentRoom.getLsMonster() != null && i < currentRoom.getLsMonster().size(); i++) {
-				currentRoom.getLsMonster().get(i).setPtDeVie(-800);
+				currentRoom.getLsMonster().get(i).setPointVie(-800);
 
 			}
 
@@ -154,7 +154,7 @@ public class GameWorld {
 	 *         </ul>
 	 */
 	public boolean gameOver() {
-		return hero.getpV() <= 0;
+		return hero.getpointVie() <= 0;
 	}
 
 	/**
@@ -235,6 +235,14 @@ public class GameWorld {
 			hero.creeLarme(hero.getPosition(),
 					ImagePaths.TEAR, new Vector2(1, 0));
 		}
+	}
+
+	public Room getCurrentRoom() {
+		return this.currentRoom;
+	}
+
+	public void setCurrentRoom(Room currentRoom) {
+		this.currentRoom = currentRoom;
 	}
 
 }

@@ -2,3 +2,6 @@ bin/
 .settings/
 .classpath
 .project
+.vscode/
+Projet_PO.jar
+Projet_PO.zip
