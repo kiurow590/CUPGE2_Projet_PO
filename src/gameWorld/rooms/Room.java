@@ -189,11 +189,27 @@ public abstract class Room {
 	public void affichageObjets() {
 
 		for (int i = 0; i < lstObjet.size(); i++) {
-			if (this.lsMonster.size() == 0 && lstObjet.get(i).EstRamasser() == false) {
+			if (!(this instanceof ShopRoom)) {
 
-				lstObjet.get(i).drawGameObject();
+				if (this.lsMonster.size() == 0 && lstObjet.get(i).EstRamasser() == false) {
 
+					lstObjet.get(i).drawGameObject();
+
+				}
+
+			} else {
+				if (this.lsMonster.size() == 0 && lstObjet.get(i).EstRamasser() == false) {
+
+					lstObjet.get(i).drawGameObject();
+
+					StdDraw.setPenRadius();
+					StdDraw.setPenColor(StdDraw.BLACK);
+					StdDraw.text(lstObjet.get(i).getPosition().getX() + 0.02,
+							lstObjet.get(i).getPosition().getY() + 0.02, +lstObjet.get(i).getPrix() + "");
+
+				}
 			}
+
 		}
 
 	}
@@ -259,10 +275,12 @@ public abstract class Room {
 		}
 
 		for (int i = 0; i < lstObjet.size(); i++) {
+
 			if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
 					lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
 				lstObjet.get(i).updateHeroPerf(hero);
 			}
+
 		}
 
 	}

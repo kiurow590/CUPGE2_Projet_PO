@@ -26,6 +26,7 @@ public abstract class GenericObject {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
         this.estRamasser = false;
+        this.prix = prix;
     }
 
     /**
@@ -66,6 +67,22 @@ public abstract class GenericObject {
 
     public void setEstRamasser(boolean estRamasser) {
         this.estRamasser = estRamasser;
+    }
+
+    public boolean isEstRamasser() {
+        return this.estRamasser;
+    }
+
+    public boolean getEstRamasser() {
+        return this.estRamasser;
+    }
+
+    public int getPrix() {
+        return this.prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
     }
 
 }
