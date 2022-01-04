@@ -21,7 +21,7 @@ public class MonsterRoom extends Room {
         this.bgColor = StdDraw.PINK;
         initMonster();
         this.lstObjet.add(initObjectGift());
-        this.lsObstacle.add(new Rock(new Vector2(0.5,0.5),new Vector2(1,1)));
+        this.lsObstacle.add(new Rock(new Vector2(0.5,0.5),new Vector2(0.1,0.1)));
         
     }
 
@@ -55,8 +55,8 @@ public class MonsterRoom extends Room {
 
         dessineMonstre();
         dessineLarme();
-        affichageViePiece();
         dessineObstacles();
+        affichageViePiece();
         affichageObjets();
     }
 }

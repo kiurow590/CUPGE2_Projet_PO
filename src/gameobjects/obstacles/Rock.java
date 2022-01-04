@@ -16,7 +16,7 @@ public class Rock extends GenericObstacle {
 	 * @param imagePaths 	image de l'obstacle
 	 */
 	public Rock (Vector2 position , Vector2 size) {
-		super (position , size,resources.ImagePaths.ROCK,1);
+		super (position , size,ImagePaths.ROCK,1);
 	}
 
 	

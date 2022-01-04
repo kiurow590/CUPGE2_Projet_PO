@@ -20,8 +20,8 @@ public abstract class GenericObstacle {
 
 	public GenericObstacle(Vector2 position, Vector2 size ,String image,int pointdeVie) {
 		this.position = position;
-		this.size = size;
-		this.imagePaths="";
+		this.size =size;
+		this.imagePaths=image;
 		this.pointDeVie =pointdeVie ;
 	}
 
@@ -57,9 +57,10 @@ public abstract class GenericObstacle {
 		return pointDeVie;}
 	
 	public boolean estVivant() {
-		if (this.getpointDeVie() ==0 ) { 
+		if (this.getpointDeVie() <=0 ) { 
 	 return false ;
 		}
 		return true ;
 }
+	
 } 
