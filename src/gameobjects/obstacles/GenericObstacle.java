@@ -9,18 +9,29 @@ import libraries.Vector2;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
-public class GenericObstacle {
+public abstract class GenericObstacle {
 	/*
 	 * Attributs Des obstacles
 	 */
 	private Vector2 position;
 	private Vector2 size;
+	private String imagePaths;
+	private int pointDeVie;
 
-	public GenericObstacle(Vector2 position, Vector2 size) {
+	public GenericObstacle(Vector2 position, Vector2 size ,String image,int pointdeVie) {
 		this.position = position;
 		this.size = size;
+		this.imagePaths="";
+		this.pointDeVie =pointdeVie ;
 	}
 
+	public void drawGameObject() {
+		StdDraw.picture(getPosition().getX(), getPosition().getY(), getimagePaths(), getSize().getX(), getSize().getY(),
+				0);
+		StdDraw.setPenColor();
+		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
+	}
+	
 	/*
 	 * getter et setter
 	 */
@@ -39,4 +50,16 @@ public class GenericObstacle {
 	public void setSize(Vector2 size) {
 		this.size = size;
 	}
+	public String getimagePaths() {
+		return imagePaths;
+	}
+	public int getpointDeVie() {
+		return pointDeVie;}
+	
+	public boolean estVivant() {
+		if (this.getpointDeVie() ==0 ) { 
+	 return false ;
+		}
+		return true ;
 }
+} 
