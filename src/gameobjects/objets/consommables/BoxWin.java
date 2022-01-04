@@ -1,5 +1,6 @@
 package gameobjects.objets.consommables;
 
+import gameWorld.rooms.Room;
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -15,15 +16,18 @@ public class BoxWin extends ConsommableObject {
      */
     private String imagePath;
 
+    private Room currentRoom;
+
     /**
      * Constructeur de Pentacle de la victoire
      * 
      * @param position position voulu
      */
-    public BoxWin(Vector2 position) {
-        super(position);
+    public BoxWin(Vector2 position, Room currentRoom) {
+        super(position, 0);
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.6);
         this.imagePath = ImagePaths.PENTAGRAM;
+        this.currentRoom = currentRoom;
     }
 
     @Override
@@ -39,7 +43,12 @@ public class BoxWin extends ConsommableObject {
     public void updateHeroPerf(Hero e) {
 
         super.setEstRamasser(true);
-        e.setAGagner(true);
+        roomWon();
+
+    }
+
+    private void roomWon() {
+        currentRoom.setAGagner(true);
     }
 
 }

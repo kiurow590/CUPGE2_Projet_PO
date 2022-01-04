@@ -22,8 +22,8 @@ public class FlyProjectile extends Projectile {
      *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
      *                  </ul>
      */
-    public FlyProjectile(Vector2 position, String imagePath, Vector2 direction) {
-        super(position, imagePath, direction);
+    public FlyProjectile(Vector2 position, String imagePath, Vector2 direction, int damage) {
+        super(position, imagePath, direction, damage);
         // TODO Auto-generated constructor stub
     }
 

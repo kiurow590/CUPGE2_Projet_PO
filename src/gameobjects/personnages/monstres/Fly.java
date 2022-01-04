@@ -4,15 +4,13 @@ import java.util.List;
 
 import gameobjects.personnages.Hero;
 import gameobjects.projectiles.FlyProjectile;
-import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 import resources.MonstreInfo;
 
 public class Fly extends Monster {
-	private String imagePath;
 
-	private int compteurTir;
+	private int countDownTir;
 
 	/**
 	 * Constructeur de fly
@@ -20,23 +18,14 @@ public class Fly extends Monster {
 	 * @param position position initiale
 	 */
 	public Fly(Vector2 position) {
-		super(position, MonstreInfo.FLY_SIZE, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_PV,
+		super(position, MonstreInfo.FLY_SIZE, ImagePaths.FLY, MonstreInfo.FLY_SPEED, MonstreInfo.FLY_pointVie,
 				MonstreInfo.FLY_DAMMAGE);
-		this.imagePath = ImagePaths.FLY;
-		this.compteurTir = 50;
+		this.countDownTir = 50;
 	}
 
 	@Override
-	public void retirePV(int i) {
-		setPtDeVie(super.getPtDeVie() - i);
-	}
-
-	@Override
-	public void drawGameObject() {
-		StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(), getSize().getY(),
-				0);
-		StdDraw.setPenColor();
-		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
+	public void retirepointVie(int i) {
+		setPointVie(getPointVie() - i);
 	}
 
 	@Override
@@ -48,8 +37,8 @@ public class Fly extends Monster {
 		} else {
 			this.setImmobilus(getImmobilus() - 1);
 		}
-		if (this.compteurTir > 0) {
-			this.compteurTir--;
+		if (this.countDownTir > 0) {
+			this.countDownTir--;
 
 		} else {
 
@@ -57,7 +46,7 @@ public class Fly extends Monster {
 					getPosition(), ImagePaths.TEAR,
 					new Vector2(e.getPosition().getX() - getPosition().getX(),
 							e.getPosition().getY() - getPosition().getY()));
-			this.compteurTir = 50;
+			this.countDownTir = 50;
 		}
 	}
 
@@ -68,9 +57,9 @@ public class Fly extends Monster {
 	 * @param e larme
 	 */
 	public void creeLarmeFly(Vector2 position, String imagePath, Vector2 direction) {
-		if (this.compteurTir <= 0) {
-			super.getLstProjectile().add(new FlyProjectile(position, imagePath, direction));
-			this.compteurTir = 50;
+		if (this.countDownTir <= 0) {
+			super.getLstProjectile().add(new FlyProjectile(position, imagePath, direction, degatCorpsACorps));
+			this.countDownTir = 50;
 		}
 
 	}
@@ -96,12 +85,12 @@ public class Fly extends Monster {
 	 * GETTERS / SETTERS
 	 */
 
-	public int getCompteurTir() {
-		return compteurTir;
+	public int getcountDownTir() {
+		return countDownTir;
 	}
 
-	public void setCompteurTir(int compteurTir) {
-		this.compteurTir = compteurTir;
+	public void setcountDownTir(int countDownTir) {
+		this.countDownTir = countDownTir;
 	}
 
 }

@@ -44,6 +44,8 @@ public abstract class Room {
 	
 	List<GenericObstacle> lsObstacle;
 
+	boolean aGagner;
+
 	/**
 	 * Constructeur de room
 	 * 
@@ -61,8 +63,10 @@ public abstract class Room {
 		this.lstPorte = new ArrayList<>();
 
 		this.lstObjet = new ArrayList<>();
-		this.lsObstacle = new ArrayList<>();
 
+		this.aGagner = false;
+
+		this.lsObstacle = new ArrayList<>();
 	}
 
 	/*
@@ -171,11 +175,25 @@ public void dessineObstacles () {
 	 */
 	void initMonster() {
 		for (int i = 0; i < 4; i++) {
+			double x = Math.random();
+			double y = Math.random();
+			if (x < 0.08) {
+				x += 0.2;
+			}
+			if (x > 0.92) {
+				x -= 0.2;
+			}
+			if (y < 0.08) {
+				y += 0.2;
+			}
+			if (y > 0.92) {
+				y -= 0.2;
+			}
 			if (Math.random() < 0.5) {
-				this.lsMonster.add(new Spider(new Vector2(Math.random(), Math.random())));
+
+				this.lsMonster.add(new Spider(new Vector2(x, y)));
 			} else {
 				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
-
 			}
 		}
 	}
@@ -186,11 +204,27 @@ public void dessineObstacles () {
 	public void affichageObjets() {
 
 		for (int i = 0; i < lstObjet.size(); i++) {
-			if (this.lsMonster.size() == 0 && lstObjet.get(i).EstRamasser() == false) {
+			if (!(this instanceof ShopRoom)) {
 
-				lstObjet.get(i).drawGameObject();
+				if (this.lsMonster.size() == 0 && lstObjet.get(i).EstRamasser() == false) {
 
+					lstObjet.get(i).drawGameObject();
+
+				}
+
+			} else {
+				if (this.lsMonster.size() == 0 && lstObjet.get(i).EstRamasser() == false) {
+
+					lstObjet.get(i).drawGameObject();
+
+					StdDraw.setPenRadius();
+					StdDraw.setPenColor(StdDraw.BLACK);
+					StdDraw.text(lstObjet.get(i).getPosition().getX() + 0.02,
+							lstObjet.get(i).getPosition().getY() + 0.02, +lstObjet.get(i).getPrix() + "");
+
+				}
 			}
+
 		}
 
 	}
@@ -258,10 +292,12 @@ public void dessineObstacles () {
 		}
 
 		for (int i = 0; i < lstObjet.size(); i++) {
+
 			if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
 					lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
 				lstObjet.get(i).updateHeroPerf(hero);
 			}
+
 		}
 
 	}
@@ -275,7 +311,7 @@ public void dessineObstacles () {
 		// Retrait des points de vie d'Isaac s'il est touche par un monstre
 		if (this.compteurInvincibiliteHero == 0 && Physics.rectangleCollision(this.hero.getPosition(),
 				this.hero.getSize(), monstre.getPosition(), monstre.getSize())) {
-			this.hero.retirePV(monstre.getDegatCorpsACorps());
+			this.hero.retirepointVie(monstre.getDegatCorpsACorps());
 			this.compteurInvincibiliteHero = 50;
 			monstre.setImmobilus(35);
 
@@ -299,9 +335,9 @@ public void dessineObstacles () {
 			if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
 					this.hero.getLstLarme().get(j).getSize(), monstre.getPosition(),
 					monstre.getSize())) {
-				monstre.retirePV(this.hero.getLstLarme().get(j).getDegats());
+				monstre.retirepointVie(this.hero.getLstLarme().get(j).getdamage());
 				this.hero.getLstLarme().get(j).setPortee(0);
-				System.out.println(monstre.getPtDeVie());
+				System.out.println(monstre.getPointVie());
 			}
 
 		}
@@ -322,7 +358,7 @@ public void dessineObstacles () {
 			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
 					monstre.getLstProjectile().get(j).getPosition(),
 					monstre.getLstProjectile().get(j).getSize())) {
-				this.hero.retirePV(monstre.getLstProjectile().get(j).getDegats());
+				this.hero.retirepointVie(monstre.getLstProjectile().get(j).getdamage());
 				monstre.getLstProjectile().get(j).setPortee(0);
 			}
 		}
@@ -369,25 +405,25 @@ public void dessineObstacles () {
 		StdDraw.text(0.8, 0.9, ": " + hero.getStackArgent() + "");
 		// ----------------------------------------------------------------
 		StdDraw.setPenRadius();
-		int pvView = this.hero.getPV();
-		if (pvView % 2 == 0) {
+		int pointVieView = this.hero.getpointVie();
+		if (pointVieView % 2 == 0) {
 			double x = 0.1;
-			while (pvView != 0) {
+			while (pointVieView != 0) {
 				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
 						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 
 				x += 0.1;
-				pvView -= 2;
+				pointVieView -= 2;
 			}
 
 		} else {
 			double x = 0.1;
-			while (pvView != 1) {
+			while (pointVieView != 1) {
 				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
 						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 
 				x += 0.1;
-				pvView -= 2;
+				pointVieView -= 2;
 
 			}
 
@@ -498,4 +534,11 @@ public void setLsObstacle (List<GenericObstacle> lsObstacle) {
 		this.lstObjet = lstObjet;
 	}
 
+	public boolean getAGagner() {
+		return this.aGagner;
+	}
+
+	public void setAGagner(boolean aGagner) {
+		this.aGagner = aGagner;
+	}
 }

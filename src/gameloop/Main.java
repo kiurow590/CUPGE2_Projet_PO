@@ -18,7 +18,7 @@ public class Main {
 		initializeDisplay();
 
 		// Tant que le jeu n'est pas fini ou que isaac n'as pas gagne
-		while (!world.gameOver() && isaac.getAGagner() == false) {
+		while (!world.gameOver() && world.getCurrentRoom().getAGagner() == false) {
 			// le jeu continue de tourner
 			processNextStep(world);
 
