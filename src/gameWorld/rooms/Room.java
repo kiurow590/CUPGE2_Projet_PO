@@ -41,7 +41,7 @@ public abstract class Room {
 	List<Monster> lsMonster;
 
 	List<GenericObject> lstObjet;
-	
+
 	List<GenericObstacle> lsObstacle;
 
 	boolean aGagner;
@@ -157,19 +157,21 @@ public abstract class Room {
 	void makeHeroPlay() {
 		hero.updateGameObject();
 	}
+
 	/**
 	 * affiche les obstacles
 	 */
 public void dessineObstacles () {
-	if(lsObstacle !=null) {
+if(!lsObstacle.isEmpty()) {
 	for (int i = 0; i < lsObstacle.size(); i++) {
 		if ( lsObstacle.get(i).estVivant() == true) {
-
+			System.out.print("je suis en vie");			
 			lsObstacle.get(i).drawGameObject();
 		}
 	}
 }
 }
+
 	/**
 	 * Methode qui initialise le nb de monstre au demarrage de la room
 	 */
@@ -228,8 +230,6 @@ public void dessineObstacles () {
 		}
 
 	}
-	
-	 
 
 	/**
 	 * Methode qui retire des listes tous les monstre qui sont supposer mort
@@ -333,8 +333,7 @@ public void dessineObstacles () {
 
 			// Gestion de la collision d'une larme
 			if (Physics.rectangleCollision(this.hero.getLstLarme().get(j).getPosition(),
-					this.hero.getLstLarme().get(j).getSize(), monstre.getPosition(),
-					monstre.getSize())) {
+					this.hero.getLstLarme().get(j).getSize(), monstre.getPosition(), monstre.getSize())) {
 				monstre.retirepointVie(this.hero.getLstLarme().get(j).getdamage());
 				this.hero.getLstLarme().get(j).setPortee(0);
 				System.out.println(monstre.getPointVie());
@@ -353,11 +352,9 @@ public void dessineObstacles () {
 	public void collisionProjectileFly(Monster monstre) {
 		// Gestion des projectiles de la mouche
 
-		for (int j = 0; !monstre.getLstProjectile().isEmpty()
-				&& j < monstre.getLstProjectile().size(); j++) {
+		for (int j = 0; !monstre.getLstProjectile().isEmpty() && j < monstre.getLstProjectile().size(); j++) {
 			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
-					monstre.getLstProjectile().get(j).getPosition(),
-					monstre.getLstProjectile().get(j).getSize())) {
+					monstre.getLstProjectile().get(j).getPosition(), monstre.getLstProjectile().get(j).getSize())) {
 				this.hero.retirepointVie(monstre.getLstProjectile().get(j).getdamage());
 				monstre.getLstProjectile().get(j).setPortee(0);
 			}
@@ -365,21 +362,14 @@ public void dessineObstacles () {
 	}
 
 	/*
-	 * public void collisionObstacle() {
-	 * // Gestion des collision avec les rochers
-	 * if (Physics.rectangleCollision(this.hero.getPosition(),
-	 * this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) {
-	 * // hero.position=new Vector2(0,0);
-	 * }
-	 * for (int i = 0; i < lsMonster.size(); i++) {
-	 * // on evite les mouches car elles non pas de collision avec les rochers
-	 * if (this.lsMonster.get(i) instanceof Fly == false) {
-	 * if (Physics.rectangleCollision(this.lsMonster.get(i).getPosition(),
-	 * this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) {
-	 * }
-	 * }
-	 * }
-	 * }
+	 * public void collisionObstacle() { // Gestion des collision avec les rochers
+	 * if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
+	 * obstacle.getPosition(), obstacle.getSize())) { // hero.position=new
+	 * Vector2(0,0); } for (int i = 0; i < lsMonster.size(); i++) { // on evite les
+	 * mouches car elles non pas de collision avec les rochers if
+	 * (this.lsMonster.get(i) instanceof Fly == false) { if
+	 * (Physics.rectangleCollision(this.lsMonster.get(i).getPosition(),
+	 * this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) { } } } }
 	 */
 
 	/**
@@ -480,12 +470,15 @@ public void dessineObstacles () {
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
-public List<GenericObstacle> getLsObstacle(){
-	return lsObstacle;
-}
-public void setLsObstacle (List<GenericObstacle> lsObstacle) {
-	this.lsObstacle = lsObstacle;
-}
+
+	public List<GenericObstacle> getLsObstacle() {
+		return lsObstacle;
+	}
+
+	public void setLsObstacle(List<GenericObstacle> lsObstacle) {
+		this.lsObstacle = lsObstacle;
+	}
+
 	public List<Monster> getLsMonster() {
 		return lsMonster;
 	}
