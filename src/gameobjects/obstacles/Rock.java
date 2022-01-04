@@ -9,7 +9,6 @@ import libraries.Vector2;
 import resources.ImagePaths;
 import resources.RoomInfos;
 public class Rock extends GenericObstacle {
-	private String imagePaths;
 	/*
 	 * constructeur de rocher 
 	 * @param position 		position de l'obstacle 
@@ -17,19 +16,10 @@ public class Rock extends GenericObstacle {
 	 * @param imagePaths 	image de l'obstacle
 	 */
 	public Rock (Vector2 position , Vector2 size) {
-		super (position , size);
-		this.imagePaths= resources.ImagePaths.ROCK;
+		super (position , size,resources.ImagePaths.ROCK,1);
 	}
 
 	
-	public void drawGameObject() {
-		StdDraw.picture(getPosition().getX(), getPosition().getY(), getimagePaths(), getSize().getX(), getSize().getY(),
-				0);
-		StdDraw.setPenColor();
-		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
-	}
-	public String getimagePaths() {
-		return imagePaths;
-	}
-	
+
 }
+	

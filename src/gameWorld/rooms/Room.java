@@ -39,9 +39,10 @@ public abstract class Room {
 	int compteurInvincibiliteHero;
 
 	List<Monster> lsMonster;
-	GenericObstacle obstacle;
 
 	List<GenericObject> lstObjet;
+	
+	List<GenericObstacle> lsObstacle;
 
 	/**
 	 * Constructeur de room
@@ -60,6 +61,7 @@ public abstract class Room {
 		this.lstPorte = new ArrayList<>();
 
 		this.lstObjet = new ArrayList<>();
+		this.lsObstacle = new ArrayList<>();
 
 	}
 
@@ -151,7 +153,19 @@ public abstract class Room {
 	void makeHeroPlay() {
 		hero.updateGameObject();
 	}
+	/**
+	 * affiche les obstacles
+	 */
+public void dessineObstacles () {
+	if(lsObstacle !=null) {
+	for (int i = 0; i < lsObstacle.size(); i++) {
+		if ( lsObstacle.get(i).estVivant() == true) {
 
+			lsObstacle.get(i).drawGameObject();
+		}
+	}
+}
+}
 	/**
 	 * Methode qui initialise le nb de monstre au demarrage de la room
 	 */
@@ -180,6 +194,8 @@ public abstract class Room {
 		}
 
 	}
+	
+	 
 
 	/**
 	 * Methode qui retire des listes tous les monstre qui sont supposer mort
@@ -428,7 +444,12 @@ public abstract class Room {
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
-
+public List<GenericObstacle> getLsObstacle(){
+	return lsObstacle;
+}
+public void setLsObstacle (List<GenericObstacle> lsObstacle) {
+	this.lsObstacle = lsObstacle;
+}
 	public List<Monster> getLsMonster() {
 		return lsMonster;
 	}
