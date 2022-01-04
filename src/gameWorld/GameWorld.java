@@ -29,6 +29,8 @@ public class GameWorld {
 	private Room currentRoom;
 	private Hero hero;
 
+	private int nbSalle;
+
 	Map<Integer, Room> mapDeRoom = new HashMap<>();
 
 	/**
@@ -38,6 +40,7 @@ public class GameWorld {
 	 */
 	public GameWorld(Hero hero) {
 		this.hero = hero;
+		this.nbSalle = (int) (Math.random() * 4);
 
 		// Generation des rooms
 		Room spawn = new SpawnRoom(hero);
