@@ -161,15 +161,16 @@ public abstract class Room {
 	/**
 	 * affiche les obstacles
 	 */
-	public void dessineObstacles() {
-		if (!lsObstacle.isEmpty()) {
-			for (int i = 0; i < lsObstacle.size(); i++) {
-				if (lsObstacle.get(i).estVivant() == true) {
-					lsObstacle.get(i).drawGameObject();
-				}
-			}
+public void dessineObstacles () {
+if(!lsObstacle.isEmpty()) {
+	for (int i = 0; i < lsObstacle.size(); i++) {
+		if ( lsObstacle.get(i).estVivant() == true) {
+			System.out.print("je suis en vie");			
+			lsObstacle.get(i).drawGameObject();
 		}
 	}
+}
+}
 
 	/**
 	 * Methode qui initialise le nb de monstre au demarrage de la room
