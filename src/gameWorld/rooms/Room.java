@@ -11,6 +11,7 @@ import gameobjects.objets.consommables.Life;
 import gameobjects.objets.passifs.BloodOfMartyr;
 import gameobjects.objets.passifs.LifeExtension;
 import gameobjects.obstacles.GenericObstacle;
+import gameobjects.obstacles.Spikes;
 import gameobjects.personnages.Hero;
 import gameobjects.personnages.monstres.Fly;
 import gameobjects.personnages.monstres.Monster;
@@ -161,16 +162,15 @@ public abstract class Room {
 	/**
 	 * affiche les obstacles
 	 */
-public void dessineObstacles () {
-if(!lsObstacle.isEmpty()) {
-	for (int i = 0; i < lsObstacle.size(); i++) {
-		if ( lsObstacle.get(i).estVivant() == true) {
-			System.out.print("je suis en vie");			
-			lsObstacle.get(i).drawGameObject();
+	public void dessineObstacles() {
+		if (!lsObstacle.isEmpty()) {
+			for (int i = 0; i < lsObstacle.size(); i++) {
+				if (lsObstacle.get(i).estVivant() == true) {
+					lsObstacle.get(i).drawGameObject();
+				}
+			}
 		}
 	}
-}
-}
 
 	/**
 	 * Methode qui initialise le nb de monstre au demarrage de la room
@@ -288,9 +288,10 @@ if(!lsObstacle.isEmpty()) {
 			collisionHero(this.lsMonster.get(i));
 			collisionLarme(this.lsMonster.get(i));
 			collisionProjectileFly(this.lsMonster.get(i));
+			
 
 		}
-
+		collisionObstacle(this.lsObstacle);
 		for (int i = 0; i < lstObjet.size(); i++) {
 
 			if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
@@ -361,16 +362,22 @@ if(!lsObstacle.isEmpty()) {
 		}
 	}
 
-	/*
-	 * public void collisionObstacle() { // Gestion des collision avec les rochers
-	 * if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
-	 * obstacle.getPosition(), obstacle.getSize())) { // hero.position=new
-	 * Vector2(0,0); } for (int i = 0; i < lsMonster.size(); i++) { // on evite les
-	 * mouches car elles non pas de collision avec les rochers if
-	 * (this.lsMonster.get(i) instanceof Fly == false) { if
-	 * (Physics.rectangleCollision(this.lsMonster.get(i).getPosition(),
-	 * this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) { } } } }
-	 */
+	public void collisionObstacle(List<GenericObstacle> lsObstacle) {
+		// Gestion des collision avec les obstacles
+		for (int numeroObstacles = 0; !lsObstacle.isEmpty() && numeroObstacles < lsObstacle.size(); numeroObstacles++) {
+			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
+					lsObstacle.get(numeroObstacles).getPosition(), lsObstacle.get(numeroObstacles).getSize())) {
+				System.out.print("touché");
+				if (lsObstacle.get(numeroObstacles) instanceof Spikes) {
+					this.hero.retirepointVie(lsObstacle.get(numeroObstacles).getDegats());
+					
+						
+					
+				}
+
+			}
+		}
+	}
 
 	/**
 	 * met a jour le monstre

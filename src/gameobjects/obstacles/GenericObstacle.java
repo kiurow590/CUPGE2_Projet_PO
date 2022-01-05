@@ -17,12 +17,30 @@ public abstract class GenericObstacle {
 	private Vector2 size;
 	private String imagePaths;
 	private int pointDeVie;
-
-	public GenericObstacle(Vector2 position, Vector2 size ,String image,int pointdeVie) {
+	private int degats;
+	private boolean collision ;
+/*
+ * fonction generatrice
+ * @param position 		position de l'obstacle
+ * 
+ * @param size 			taille de l'obstacle
+ * 
+ * @param image 		image qui represente  l'obstacle
+ * 
+ * @param pointdeVie 	Point de vie de l'obstacle 
+ * 
+ * @param degats 		degats de l'obstacle ( pour les Spikes)
+ * 
+ * @param collision 	boolean qui indique la presence de collision  
+ *  
+ */
+	public GenericObstacle(Vector2 position, Vector2 size ,String image,int pointdeVie,int degats, Boolean collision) {
 		this.position = position;
 		this.size =size;
 		this.imagePaths=image;
 		this.pointDeVie =pointdeVie ;
+		this.degats=degats;
+		this.collision=collision;
 	}
 
 	public void drawGameObject() {
@@ -55,6 +73,13 @@ public abstract class GenericObstacle {
 	}
 	public int getpointDeVie() {
 		return pointDeVie;}
+	
+	public int getDegats() {
+		return degats;
+	}
+	public boolean getcollision() {
+		return collision;
+	}
 	
 	public boolean estVivant() {
 		if (this.getpointDeVie() <=0 ) { 

@@ -7,6 +7,7 @@ import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
+import gameobjects.obstacles.Spikes;
 
 /**
  * Room avec des monstres dedans.
@@ -22,6 +23,8 @@ public class MonsterRoom extends Room {
         initMonster();
         this.lstObjet.add(initObjectGift());
         this.lsObstacle.add(new Rock(new Vector2(0.5,0.5),new Vector2(0.1,0.1)));
+        this.lsObstacle.add(new Poop(new Vector2(0.4,0.4),new Vector2(0.1,0.1)));
+        this.lsObstacle.add(new Spikes(new Vector2(0.2,0.2),new Vector2(0.1,0.1)));
         
     }
 
