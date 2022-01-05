@@ -288,7 +288,6 @@ public abstract class Room {
 			collisionHero(this.lsMonster.get(i));
 			collisionLarme(this.lsMonster.get(i));
 			collisionProjectileFly(this.lsMonster.get(i));
-			
 
 		}
 		collisionObstacle(this.lsObstacle);
@@ -367,15 +366,18 @@ public abstract class Room {
 		for (int numeroObstacles = 0; !lsObstacle.isEmpty() && numeroObstacles < lsObstacle.size(); numeroObstacles++) {
 			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
 					lsObstacle.get(numeroObstacles).getPosition(), lsObstacle.get(numeroObstacles).getSize())) {
-				System.out.print("touché");
+
 				if (lsObstacle.get(numeroObstacles) instanceof Spikes) {
 					this.hero.retirepointVie(lsObstacle.get(numeroObstacles).getDegats());
 					
-						
+				} else {
+					System.out.print("test");
+					this.hero.setDirection(new Vector2(0, 0));
 					
 				}
 
 			}
+
 		}
 	}
 
