@@ -13,6 +13,7 @@ public abstract class Entity {
     protected String imagePath;
     protected double speed;
     protected Vector2 direction;
+    private Vector2 lastPosition;
 
     protected int pointVie;
     protected int maxpointVie;
@@ -26,6 +27,7 @@ public abstract class Entity {
         this.direction = direction;
         this.pointVie = pointVie;
         this.maxpointVie = maxpointVie;
+        
     }
 
     /**
@@ -64,6 +66,7 @@ public abstract class Entity {
      */
     protected void move() {
         Vector2 normalizedDirection = getNormalizedDirection();
+        this.setLastposition(getPosition());
         Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
         setPosition(positionAfterMoving);
         this.direction = new Vector2();
@@ -169,5 +172,12 @@ public abstract class Entity {
     public void setMaxpointVie(int maxpointVie) {
         this.maxpointVie = maxpointVie;
     }
+    public Vector2 getLastposition() {
+		return lastPosition;
+	}
+
+	public void setLastposition(Vector2 position) {
+		this.lastPosition = position;
+	}
 
 }

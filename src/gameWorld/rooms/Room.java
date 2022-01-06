@@ -11,6 +11,8 @@ import gameobjects.objets.consommables.Life;
 import gameobjects.objets.passifs.BloodOfMartyr;
 import gameobjects.objets.passifs.LifeExtension;
 import gameobjects.obstacles.GenericObstacle;
+import gameobjects.obstacles.Rock;
+import gameobjects.obstacles.Poop;
 import gameobjects.obstacles.Spikes;
 import gameobjects.personnages.Hero;
 import gameobjects.personnages.monstres.Fly;
@@ -362,17 +364,25 @@ public abstract class Room {
 	}
 
 	public void collisionObstacle(List<GenericObstacle> lsObstacle) {
+		// On décremante le potentielle compteur d'invisibilité du personnage si il a touché des pikes 
+		if (this.compteurInvincibiliteHero > 0) {
+			this.compteurInvincibiliteHero--;
+			}
 		// Gestion des collision avec les obstacles
 		for (int numeroObstacles = 0; !lsObstacle.isEmpty() && numeroObstacles < lsObstacle.size(); numeroObstacles++) {
 			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
 					lsObstacle.get(numeroObstacles).getPosition(), lsObstacle.get(numeroObstacles).getSize())) {
 
-				if (lsObstacle.get(numeroObstacles) instanceof Spikes) {
+				if (lsObstacle.get(numeroObstacles) instanceof Spikes && this.compteurInvincibiliteHero == 0 ) {
 					this.hero.retirepointVie(lsObstacle.get(numeroObstacles).getDegats());
+					this.compteurInvincibiliteHero=50;
 					
-				} else {
-					System.out.print("test");
-					this.hero.setDirection(new Vector2(0, 0));
+					
+					
+				} else  if(lsObstacle.get(numeroObstacles) instanceof Poop || lsObstacle.get(numeroObstacles) instanceof Rock ){
+					
+				this.hero.setPosition(this.hero.getLastposition());
+					
 					
 				}
 
