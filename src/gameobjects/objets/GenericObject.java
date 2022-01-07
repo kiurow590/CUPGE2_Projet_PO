@@ -16,6 +16,7 @@ public abstract class GenericObject {
     protected Vector2 size;
     boolean estRamasser;
     protected int prix;
+    protected int value;
 
     /**
      * Constructeur d'objet
@@ -83,6 +84,14 @@ public abstract class GenericObject {
 
     public void setPrix(int prix) {
         this.prix = prix;
+    }
+
+    public int getValue() {
+        return this.value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
 }

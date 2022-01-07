@@ -141,11 +141,11 @@ public class Hero extends Entity {
 		if (!this.estInvincible && this.countDownInvincible == 0) {
 			this.estInvincible = true;
 
-			this.countDownInvincible = 10;
+			this.countDownInvincible = 40;
 		} else if (this.estInvincible && this.countDownInvincible == 0) {
 			this.estInvincible = false;
 
-			this.countDownInvincible = 10;
+			this.countDownInvincible = 40;
 		}
 
 	}
@@ -175,7 +175,7 @@ public class Hero extends Entity {
 			this.countDownPower = 40;
 			this.damage = 5000000;
 			System.out.println("Dobby Pete des cul");
-		} else if (this.estRapide && this.countDownSpped == 0) {
+		} else if (this.estPuissant && this.countDownPower == 0) {
 			this.estPuissant = false;
 			this.countDownPower = 40;
 			this.damage = 1;

@@ -13,7 +13,6 @@ public class Life extends ConsommableObject {
      * Attribut
      */
     private String imagePath;
-    private int value;
 
     public Life(int value, Vector2 position) {
 

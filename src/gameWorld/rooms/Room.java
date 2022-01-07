@@ -301,7 +301,13 @@ public abstract class Room {
 						lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())
 						&& hero.getStackArgent() >= lstObjet.get(i).getPrix() && !(lstObjet.get(i).EstRamasser())) {
 					lstObjet.get(i).updateHeroPerf(hero);
-					hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+					if (!(lstObjet.get(i) instanceof Life)) {
+						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+					} else if ((lstObjet.get(i) instanceof Life)
+							&& lstObjet.get(i).getValue() + hero.getPointVie() <= hero.getMaxpointVie()) {
+						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+						System.out.println("Rend l'argent des pieces !");
+					}
 				}
 			}
 

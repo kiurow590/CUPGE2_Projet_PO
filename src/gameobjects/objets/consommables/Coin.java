@@ -14,7 +14,6 @@ public class Coin extends ConsommableObject {
      * Attribut
      */
     private String imagePath;
-    private int value;
 
     /**
      * Constructeur de piece
