@@ -35,6 +35,8 @@ public class LifeExtension extends PassifObject {
 
         if (super.EstRamasser() == false) {
             e.setMaxpointVie(e.getMaxpointVie() + maxValue);
+            e.setPointVie(e.getPointVie() + 2);
+
             super.setEstRamasser(true);
 
         }

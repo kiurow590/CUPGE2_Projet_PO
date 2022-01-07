@@ -292,9 +292,17 @@ public abstract class Room {
 
 		for (int i = 0; i < lstObjet.size(); i++) {
 
-			if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
-					lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
+			if (!(this instanceof ShopRoom) && this.lsMonster.size() == 0
+					&& Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+							lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
 				lstObjet.get(i).updateHeroPerf(hero);
+			} else if (this instanceof ShopRoom) {
+				if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+						lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())
+						&& hero.getStackArgent() >= lstObjet.get(i).getPrix() && !(lstObjet.get(i).EstRamasser())) {
+					lstObjet.get(i).updateHeroPerf(hero);
+					hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+				}
 			}
 
 		}
