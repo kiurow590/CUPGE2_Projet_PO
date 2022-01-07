@@ -231,7 +231,4 @@ public class Hero extends Entity {
 	public int getsoldeStackMax() {
 		return this.soldeStackMax;
 	}
-
-	
-
 }

@@ -87,5 +87,7 @@ public abstract class GenericObstacle {
 		}
 		return true ;
 }
-	
+	public void retirepointVie(int i) {
+		this.pointDeVie -= i;
+		}
 } 
