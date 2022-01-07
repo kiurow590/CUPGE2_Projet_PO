@@ -6,6 +6,7 @@ import java.util.List;
 
 import gameWorld.rooms.portes.Door;
 import gameobjects.objets.GenericObject;
+import gameobjects.objets.consommables.BoxWin;
 import gameobjects.objets.consommables.Coin;
 import gameobjects.objets.consommables.Life;
 import gameobjects.objets.passifs.BloodOfMartyr;
@@ -95,7 +96,7 @@ public abstract class Room {
 	 */
 	public GenericObject initObjectGift() {
 		double objectRandom = Math.random();
-		GenericObject objectReturn;
+		GenericObject objectReturn = new BoxWin(RoomInfos.POSITION_CENTER_OF_ROOM, this);
 		if (objectRandom < 0.35) {
 			double randomPiece = Math.random();
 			if (randomPiece < 0.45) {
@@ -118,9 +119,9 @@ public abstract class Room {
 
 			}
 		} else if (objectRandom >= 0.75 && objectRandom < 0.875) {
-			objectReturn = new BloodOfMartyr(new Vector2(5, 5));
-		} else {
-			objectReturn = new LifeExtension(new Vector2(5, 5));
+			objectReturn = new BloodOfMartyr(RoomInfos.POSITION_CENTER_OF_ROOM);
+		} else if (objectRandom >= 0.875) {
+			objectReturn = new LifeExtension(RoomInfos.POSITION_CENTER_OF_ROOM);
 		}
 
 		return objectReturn;
@@ -292,14 +293,15 @@ public abstract class Room {
 
 		for (int i = 0; i < lstObjet.size(); i++) {
 
-			if (!(this instanceof ShopRoom) && this.lsMonster.size() == 0
+			if (!(this instanceof ShopRoom) && this.lsMonster.isEmpty()
 					&& Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
 							lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
 				lstObjet.get(i).updateHeroPerf(hero);
 			} else if (this instanceof ShopRoom) {
-				if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+				if (this.lsMonster.isEmpty() && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
 						lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())
-						&& hero.getStackArgent() >= lstObjet.get(i).getPrix() && !(lstObjet.get(i).EstRamasser())) {
+						&& hero.getStackArgent() >= lstObjet.get(i).getPrix()
+						&& (lstObjet.get(i).EstRamasser() == false)) {
 					lstObjet.get(i).updateHeroPerf(hero);
 					if (!(lstObjet.get(i) instanceof Life)) {
 						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());

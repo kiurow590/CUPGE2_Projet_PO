@@ -11,12 +11,10 @@ public class LifeExtension extends PassifObject {
      * Attribut
      */
     private String imagePath;
-    private int maxValue;
 
     public LifeExtension(Vector2 position) {
-        super(position, 20);
+        super(position, 20, 2);
 
-        this.maxValue = 2;
         this.imagePath = ImagePaths.HP_UP;
 
     }
@@ -34,7 +32,7 @@ public class LifeExtension extends PassifObject {
     public void updateHeroPerf(Hero e) {
 
         if (super.EstRamasser() == false) {
-            e.setMaxpointVie(e.getMaxpointVie() + maxValue);
+            e.setMaxpointVie(e.getMaxpointVie() + value);
             e.setPointVie(e.getPointVie() + 2);
 
             super.setEstRamasser(true);

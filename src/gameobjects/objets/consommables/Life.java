@@ -16,9 +16,7 @@ public class Life extends ConsommableObject {
 
     public Life(int value, Vector2 position) {
 
-        super(position, 0);
-
-        this.value = value;
+        super(position, 0, value);
 
         if (this.value == 1) {
             imagePath = ImagePaths.HALF_HEART_HUD;

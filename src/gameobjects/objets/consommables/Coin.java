@@ -23,8 +23,7 @@ public class Coin extends ConsommableObject {
      */
     public Coin(int value, Vector2 position) {
 
-        super(position, 0);
-        this.value = value;
+        super(position, 0, value);
 
         if (this.value == 1) {
             this.imagePath = ImagePaths.COIN;

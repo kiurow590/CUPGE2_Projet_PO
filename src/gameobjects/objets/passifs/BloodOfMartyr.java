@@ -14,7 +14,6 @@ public class BloodOfMartyr extends PassifObject {
      * Attribut
      */
     private String imagePath;
-    private int strength;
 
     /**
      * Constructeur de BloodOfMartyr
@@ -22,8 +21,7 @@ public class BloodOfMartyr extends PassifObject {
      * @param position position dans la salle
      */
     public BloodOfMartyr(Vector2 position) {
-        super(new Vector2(0.5, 0.5), 10);
-        this.strength = 1;
+        super(new Vector2(0.5, 0.5), 10, 1);
         this.imagePath = ImagePaths.BLOOD_OF_THE_MARTYR;
 
     }
@@ -41,7 +39,7 @@ public class BloodOfMartyr extends PassifObject {
     public void updateHeroPerf(Hero e) {
 
         if (super.EstRamasser() == false) {
-            e.setdamage(e.getdamage() + this.strength);
+            e.setdamage(e.getdamage() + this.value);
             super.setEstRamasser(true);
 
         }
