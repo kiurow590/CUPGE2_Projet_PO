@@ -24,6 +24,7 @@ public class FlyProjectile extends Projectile {
      */
     public FlyProjectile(Vector2 position, String imagePath, Vector2 direction, int damage) {
         super(position, imagePath, direction, damage);
+        size = new Vector2(0.045, 0.045);
         // TODO Auto-generated constructor stub
     }
 

@@ -43,4 +43,8 @@ public class ImagePaths {
 
 	public static final String BLUBBER = "images/Blubber.png";
 
+	public static final String GODMODE = "images/Character_GodMode.png";
+
+	public static final String FLYPROJECTILE = "images/flyProjectile.png";
+
 }

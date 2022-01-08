@@ -43,7 +43,7 @@ public class Fly extends Monster {
 		} else {
 
 			creeLarmeFly(
-					getPosition(), ImagePaths.TEAR,
+					getPosition(), ImagePaths.FLYPROJECTILE,
 					new Vector2(e.getPosition().getX() - getPosition().getX(),
 							e.getPosition().getY() - getPosition().getY()));
 			this.countDownTir = 50;

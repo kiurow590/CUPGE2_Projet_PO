@@ -140,10 +140,11 @@ public class Hero extends Entity {
 	public void modeInvincible() {
 		if (!this.estInvincible && this.countDownInvincible == 0) {
 			this.estInvincible = true;
-
+			this.imagePath = ImagePaths.GODMODE;
 			this.countDownInvincible = 40;
 		} else if (this.estInvincible && this.countDownInvincible == 0) {
 			this.estInvincible = false;
+			this.imagePath = ImagePaths.GAPER;
 
 			this.countDownInvincible = 40;
 		}
