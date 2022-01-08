@@ -47,4 +47,6 @@ public class ImagePaths {
 
 	public static final String FLYPROJECTILE = "images/flyProjectile.png";
 
+	public static final String SECRET_ENTRY = "images/secretEntry.png";
+
 }

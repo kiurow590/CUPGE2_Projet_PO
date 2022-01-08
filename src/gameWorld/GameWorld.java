@@ -6,6 +6,7 @@ import java.util.Map;
 import gameWorld.rooms.BossRoom;
 import gameWorld.rooms.MonsterRoom;
 import gameWorld.rooms.Room;
+import gameWorld.rooms.SecretRoom;
 import gameWorld.rooms.ShopRoom;
 import gameWorld.rooms.SpawnRoom;
 import gameWorld.rooms.portes.BottomDoor;
@@ -62,7 +63,15 @@ public class GameWorld {
 		Room commerce1 = new ShopRoom(hero, 4);
 		Room boss = new BossRoom(hero, 5);
 
+		Room secretRoom = new SecretRoom(hero, -1);
+
 		// on ajoute les porte au differente salle
+
+		spawn.getLstPorte().add(new RightDoor(secretRoom.getId()));
+		secretRoom.getLstPorte().add(new LeftDoor(spawn.getId()));
+		spawn.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+		secretRoom.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+
 		spawn.getLstPorte().add(new LeftDoor(monster1.getId()));
 		monster1.getLstPorte().add(new RightDoor(spawn.getId()));
 		monster1.getLstPorte().add(new LeftDoor(monster2.getId()));
@@ -82,6 +91,8 @@ public class GameWorld {
 
 		// on ajoute a la map
 		mapDeRoom.put(spawn.getId(), spawn);
+		mapDeRoom.put(secretRoom.getId(), secretRoom);
+
 		mapDeRoom.put(monster1.getId(), monster1);
 		mapDeRoom.put(monster2.getId(), monster2);
 		mapDeRoom.put(monster3.getId(), monster3);
@@ -103,6 +114,19 @@ public class GameWorld {
 		Room monster5 = new MonsterRoom(hero, 12);
 		Room commerce2 = new ShopRoom(hero, 13);
 		Room boss = new BossRoom(hero, 14);
+
+		Room secretRoom1 = new SecretRoom(hero, -2);
+		Room secretRoom2 = new SecretRoom(hero, -3);
+
+		monster2.getLstPorte().add(new LeftDoor(secretRoom1.getId()));
+		secretRoom1.getLstPorte().add(new RightDoor(monster2.getId()));
+		monster2.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+		secretRoom1.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+
+		monster5.getLstPorte().add(new TopDoor(secretRoom2.getId()));
+		secretRoom2.getLstPorte().add(new BottomDoor(monster5.getId()));
+		monster5.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+		secretRoom2.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
 
 		// on ajoute les porte au differente salle
 		spawn.getLstPorte().add(new RightDoor(monster1.getId()));
@@ -132,6 +156,10 @@ public class GameWorld {
 
 		// on ajoute a la map
 		mapDeRoom.put(spawn.getId(), spawn);
+
+		mapDeRoom.put(secretRoom1.getId(), secretRoom1);
+		mapDeRoom.put(secretRoom2.getId(), secretRoom2);
+
 		mapDeRoom.put(monster1.getId(), monster1);
 		mapDeRoom.put(monster2.getId(), monster2);
 		mapDeRoom.put(monster3.getId(), monster3);
@@ -160,6 +188,25 @@ public class GameWorld {
 		Room monster9 = new MonsterRoom(hero, 25);
 		Room commerce2 = new ShopRoom(hero, 26);
 		Room boss = new BossRoom(hero, 27);
+
+		Room secretRoom1 = new SecretRoom(hero, -4);
+		Room secretRoom2 = new SecretRoom(hero, -5);
+		Room secretRoom3 = new SecretRoom(hero, -6);
+
+		monster3.getLstPorte().add(new RightDoor(secretRoom1.getId()));
+		secretRoom1.getLstPorte().add(new LeftDoor(monster3.getId()));
+		monster3.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+		secretRoom1.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+
+		monster6.getLstPorte().add(new LeftDoor(secretRoom2.getId()));
+		secretRoom2.getLstPorte().add(new RightDoor(monster6.getId()));
+		monster6.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+		secretRoom2.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+
+		monster9.getLstPorte().add(new TopDoor(secretRoom3.getId()));
+		secretRoom3.getLstPorte().add(new BottomDoor(monster9.getId()));
+		monster9.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
+		secretRoom3.getLstPorte().get(0).setImagePaths(ImagePaths.SECRET_ENTRY);
 
 		// on ajoute les porte au differente salle
 		spawn.getLstPorte().add(new TopDoor(monster1.getId()));
@@ -200,6 +247,11 @@ public class GameWorld {
 
 		// on ajoute a la map
 		mapDeRoom.put(spawn.getId(), spawn);
+
+		mapDeRoom.put(secretRoom1.getId(), secretRoom1);
+		mapDeRoom.put(secretRoom2.getId(), secretRoom2);
+		mapDeRoom.put(secretRoom3.getId(), secretRoom3);
+
 		mapDeRoom.put(monster1.getId(), monster1);
 		mapDeRoom.put(monster2.getId(), monster2);
 		mapDeRoom.put(monster3.getId(), monster3);

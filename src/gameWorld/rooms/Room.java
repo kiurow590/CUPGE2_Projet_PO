@@ -87,7 +87,8 @@ public abstract class Room {
 	public void dessinePorte() {
 
 		for (int i = 0; i < lstPorte.size(); i++) {
-			if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)) {
+			if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
+					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
 				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
 			}
 			lstPorte.get(i).drawGameObject();
