@@ -1,8 +1,6 @@
 package gameWorld.rooms;
 
 import gameobjects.obstacles.Rock;
-import gameobjects.obstacles.GenericObstacle;
-import gameobjects.obstacles.Poop;
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -21,8 +19,8 @@ public class MonsterRoom extends Room {
         this.bgColor = StdDraw.PINK;
         initMonster();
         this.lstObjet.add(initObjectGift());
-        this.lsObstacle.add(new Rock(new Vector2(0.5,0.5),new Vector2(0.1,0.1)));
-        
+        this.lsObstacle.add(new Rock(new Vector2(0.5, 0.5), new Vector2(0.1, 0.1)));
+
     }
 
     @Override

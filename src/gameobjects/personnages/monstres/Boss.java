@@ -27,7 +27,7 @@ public class Boss extends Monster {
      * @param position position initiale du Boss
      */
     public Boss(Vector2 position, Room currentRoom) {
-        super(position, MonstreInfo.BOSS_SIZE, ImagePaths.SPIDER, MonstreInfo.BOSS_SPEED, MonstreInfo.BOSS_pointVie,
+        super(position, MonstreInfo.BOSS_SIZE, ImagePaths.BLUBBER, MonstreInfo.BOSS_SPEED, MonstreInfo.BOSS_pointVie,
                 MonstreInfo.BOSS_DAMMAGE);
         this.compteurDeplacement = MonstreInfo.BOSS_Move_Delay;
         this.currentRoom = currentRoom;

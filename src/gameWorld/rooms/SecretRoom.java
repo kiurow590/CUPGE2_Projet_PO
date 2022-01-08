@@ -6,28 +6,32 @@ import libraries.Vector2;
 import resources.RoomInfos;
 
 /**
- * Room de depart.
+ * classe de secret room
  */
-public class SpawnRoom extends Room {
+public class SecretRoom extends Room {
 
-    private static final String MON_TYPE = "SPAWN_ROOM";
+    private static final String MON_TYPE = "SECRET_ROOM";
 
     /**
-     * Constructeur de Spawn
+     * Constructeur de secret room
      * 
      * @param hero
      */
-    public SpawnRoom(Hero hero, int id) {
+    public SecretRoom(Hero hero, int id) {
         super(hero, id);
         this.type = MON_TYPE;
 
-        this.bgColor = StdDraw.GREEN;
+        this.bgColor = StdDraw.CYAN;
+        this.lstObjet.add(initObjectGift());
+
     }
 
     @Override
     public void updateRoom() {
         // TODO Auto-generated method stub
+
         makeHeroPlay();
+        collisionReport();
         nettoyageProj();
     }
 
@@ -43,13 +47,14 @@ public class SpawnRoom extends Room {
             }
         }
 
-        dessinePorte();
         this.drawWall();
-
+        dessinePorte();
         hero.drawGameObject();
         dessinePorte();
         dessineLarme();
         affichageViePiece();
+        affichageObjets();
+
     }
 
 }

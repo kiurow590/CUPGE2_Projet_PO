@@ -76,4 +76,8 @@ public abstract class Door {
         this.imagePaths = imagePaths;
     }
 
+    public String getImagePaths() {
+        return this.imagePaths;
+    }
+
 }

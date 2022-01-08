@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import gameWorld.rooms.portes.CarriesAway;
 import gameWorld.rooms.portes.Door;
 import gameobjects.objets.GenericObject;
 import gameobjects.objets.consommables.BoxWin;
@@ -86,7 +87,8 @@ public abstract class Room {
 	public void dessinePorte() {
 
 		for (int i = 0; i < lstPorte.size(); i++) {
-			if (lsMonster.isEmpty()) {
+			if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
+					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
 				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
 			}
 			lstPorte.get(i).drawGameObject();
