@@ -40,4 +40,7 @@ public class ImagePaths {
 
 	public static final String WIN_SCREEN = "images/win.jpg";
 	public static final String LOSE_SCREEN = "images/lose.png";
+
+	public static final String BLUBBER = "images/Blubber.png";
+
 }

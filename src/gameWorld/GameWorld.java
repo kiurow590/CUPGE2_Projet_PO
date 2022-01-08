@@ -50,6 +50,9 @@ public class GameWorld {
 		currentRoom = mapDeRoom.get(0);
 	}
 
+	/**
+	 * Methode qui genere le premiere etage du jeu
+	 */
 	public void generateStage1() {
 		// Generation des rooms
 		Room spawn = new SpawnRoom(hero, 0);
@@ -86,6 +89,9 @@ public class GameWorld {
 		mapDeRoom.put(boss.getId(), boss);
 	}
 
+	/**
+	 * Methode qui genere le deuxieme etage du jeu
+	 */
 	public void generateStage2() {
 		// Generation des rooms
 		Room spawn = new SpawnRoom(hero, 6);
@@ -136,6 +142,9 @@ public class GameWorld {
 		mapDeRoom.put(boss.getId(), boss);
 	}
 
+	/**
+	 * Methode qui genere le troisieme etage du jeu
+	 */
 	public void generateStage3() {
 		// Generation des rooms
 		Room spawn = new SpawnRoom(hero, 15);
