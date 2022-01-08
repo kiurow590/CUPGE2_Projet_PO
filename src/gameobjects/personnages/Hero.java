@@ -222,7 +222,7 @@ public class Hero extends Entity {
 
 	public void setStackArgent(int stackArgent) {
 
-		this.stackArgent += stackArgent;
+		this.stackArgent = stackArgent;
 
 	}
 

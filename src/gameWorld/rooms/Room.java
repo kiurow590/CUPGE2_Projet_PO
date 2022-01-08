@@ -45,6 +45,8 @@ public abstract class Room {
 
 	List<GenericObstacle> lsObstacle;
 
+	int countDownObject;
+
 	boolean aGagner;
 
 	/**
@@ -68,6 +70,7 @@ public abstract class Room {
 		this.aGagner = false;
 
 		this.lsObstacle = new ArrayList<>();
+		this.countDownObject = 0;
 	}
 
 	/*
@@ -290,26 +293,42 @@ public abstract class Room {
 			collisionProjectileFly(this.lsMonster.get(i));
 
 		}
-
+		// pour chacun de mes objet
 		for (int i = 0; i < lstObjet.size(); i++) {
-
+			// si je ne suis pas dans une shopRoom
+			// que la liste de monstre n'est pas vide
+			// que je ne suis pas en collision
 			if (!(this instanceof ShopRoom) && this.lsMonster.isEmpty()
 					&& Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
 							lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
 				lstObjet.get(i).updateHeroPerf(hero);
+				// Sinon si je suis dans une shop room
 			} else if (this instanceof ShopRoom) {
-				if (this.lsMonster.isEmpty() && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
-						lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())
+				// si mon compteur pour recup l'objet est null
+				// que la lst de monstre est vide et que je suis en collision et que mon objet
+				// n'est pas ramasser
+				if (this.countDownObject == 0 && this.lsMonster.isEmpty()
+						&& Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+								lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())
 						&& hero.getStackArgent() >= lstObjet.get(i).getPrix()
 						&& (lstObjet.get(i).EstRamasser() == false)) {
+					// je mets a jour mes perf
 					lstObjet.get(i).updateHeroPerf(hero);
+					// si mon objet c'est pas de l'ajout de vie
 					if (!(lstObjet.get(i) instanceof Life)) {
+						// je retire de l'argetnt au hero a hauteur du prix de l'objet prix
 						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+						// si mon objet c'est de la vie et que l'ajout de pv ne depasse pas les pc Max
 					} else if ((lstObjet.get(i) instanceof Life)
 							&& lstObjet.get(i).getValue() + hero.getPointVie() <= hero.getMaxpointVie()) {
 						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
 						System.out.println("Rend l'argent des pieces !");
 					}
+					countDownObject = 20;
+				}
+
+				if (this.countDownObject > 0) {
+					this.countDownObject--;
 				}
 			}
 
