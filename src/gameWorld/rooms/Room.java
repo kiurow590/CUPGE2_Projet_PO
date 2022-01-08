@@ -293,6 +293,14 @@ public abstract class Room {
 			collisionProjectileFly(this.lsMonster.get(i));
 
 		}
+		collisionObjet();
+	}
+
+	/**
+	 * Methode qui calcul les collision entre le personnage et les objet
+	 */
+	public void collisionObjet() {
+
 		// pour chacun de mes objet
 		for (int i = 0; i < lstObjet.size(); i++) {
 			// si je ne suis pas dans une shopRoom
