@@ -17,8 +17,8 @@ public class SpawnRoom extends Room {
      * 
      * @param hero
      */
-    public SpawnRoom(Hero hero) {
-        super(hero, 0);
+    public SpawnRoom(Hero hero, int id) {
+        super(hero, id);
         this.type = MON_TYPE;
 
         this.bgColor = StdDraw.GREEN;
