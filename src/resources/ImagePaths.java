@@ -49,4 +49,10 @@ public class ImagePaths {
 
 	public static final String SECRET_ENTRY = "images/secretEntry.png";
 
+	public static final String BOSS_ROOM = "images/BossRoom.png";
+	public static final String MONSTER_ROOM = "images/MonsterRoom.png";
+	public static final String SECRET_ROOM = "images/SecretRoom.png";
+	public static final String SHOP_ROOM = "images/ShopRoom.png";
+	public static final String SPAWN_ROOM = "images/SpawnRoom.png";
+
 }

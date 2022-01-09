@@ -3,6 +3,7 @@ package gameWorld.rooms;
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.ImagePaths;
 import resources.RoomInfos;
 
 /**
@@ -35,16 +36,19 @@ public class ShopRoom extends Room {
     @Override
     public void drawRoom() {
         // For every tile, set background color.
-        StdDraw.setPenColor(this.bgColor);
-        for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-            for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-                Vector2 position = positionFromTileIndex(i, j);
-                StdDraw.filledRectangle(position.getX(), position.getY(), RoomInfos.HALF_TILE_SIZE.getX(),
-                        RoomInfos.HALF_TILE_SIZE.getY());
-            }
-        }
+        // StdDraw.setPenColor(this.bgColor);
+        // for (int i = 0; i < RoomInfos.NB_TILES; i++) {
+        // for (int j = 0; j < RoomInfos.NB_TILES; j++) {
+        // Vector2 position = positionFromTileIndex(i, j);
+        // StdDraw.filledRectangle(position.getX(), position.getY(),
+        // RoomInfos.HALF_TILE_SIZE.getX(),
+        // RoomInfos.HALF_TILE_SIZE.getY());
+        // }
+        // }
 
-        this.drawWall();
+        StdDraw.picture(0.5, 0.5, ImagePaths.SHOP_ROOM, 1, 1);
+
+        // this.drawWall();
 
         hero.drawGameObject();
 

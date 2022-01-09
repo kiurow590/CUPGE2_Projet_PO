@@ -96,6 +96,7 @@ public abstract class Room {
 				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
 			}
 			lstPorte.get(i).drawGameObject();
+
 		}
 	}
 
@@ -195,8 +196,8 @@ public abstract class Room {
 			double y = Math.random();
 			boolean jeSuisSurUnobstacle = false;
 			while (jeSuisSurUnobstacle) {
-				 x = Math.random();
-				 y = Math.random();
+				x = Math.random();
+				y = Math.random();
 				if (x < 0.08) {
 					x += 0.2;
 				}
@@ -213,8 +214,8 @@ public abstract class Room {
 				Vector2 vecteurTampon = new Vector2(x, y);
 				for (int numeroObstacle = 0; !lsObstacle.isEmpty()
 						&& numeroObstacle < lsObstacle.size(); numeroObstacle++) {
-					
-					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon)|| vecteurTampon == null) {
+
+					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon) || vecteurTampon == null) {
 						jeSuisSurUnobstacle = true;
 					} else {
 						jeSuisSurUnobstacle = false;
@@ -228,7 +229,6 @@ public abstract class Room {
 				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
 			}
 
-			
 		}
 	}
 
@@ -331,7 +331,7 @@ public abstract class Room {
 	 */
 	public void collisionObjet() {
 		collisionObstacle(this.lsObstacle);
-		
+
 		// pour chacun de mes objet
 		for (int i = 0; i < lstObjet.size(); i++) {
 			// si je ne suis pas dans une shopRoom
