@@ -33,18 +33,47 @@ II - BONUS :
 III - ETAPE DU PROJET :
 
     A) Creation des monstres
-        Les monstres ne seront généré quand dans les salle de monstre ainsi que dans la salle du boss.
+        Les monstres ne seront généré quand dans les salle de monstre ainsi que dans la salle du boss de maniere aléatoire.
 
         Chaque monstres a ses caractéristiques
 
         1) Fly
-            La mouche poursuit le Hero. Elle peut lui faire des dégats au corps a corps. Lors de l'impact on remarquera que la mouche arrète son mouvement mais continue a tiré des projectile.
+            La mouche poursuit le Hero. Elle peut lui faire des dégats au corps a corps. Lors de l'impact on remarquera que la mouche arrète de se déplacer mais continue a tiré des projectiles.
             Elle peut aussi faire des dégats a distance grace a ses projectile.    
         2) Spider
-            L'araignée se mets en mouvement tout les cycle suivant un paterne aléatoire. Déterminé a l'aide d'un boolean. Elle fera cependant des dégats aux Hero que au corps a corps. 
+            L'araignée se mets en mouvement tout les cycle suivant un paterne aléatoire. Déterminé a l'aide d'un entier random. Elle fera cependant des dégats aux Hero que au corps a corps. 
         3) Boss
-            Le boss est une arraignée qui bouge a chaque cycle en direction du Hero en générant de maniere aléatoire tous les 2 cycle un monstre différents.
+            Le boss est une arraignée spéciale qui bouge a chaque cycle en direction du Hero en générant de maniere aléatoire un monstre différents.
     B) Generation de la Map
+
+        1) Creation de different type de room
+            
+            Il existe 4 type de room differentes
+            
+            a) SpawnRoom
+                Cette room est la room d'aparition du joueur. il n'as pas de comportement particulier. elle ne fait apparaitre aucun objet ni aucun monstre
+
+            b) MonsterRoom
+                Dans cette room, on retrouve des monstre generé aleatoirement ainsi que des obstables(Caractéristique décrite dans une prochaine partie)
+
+            c) ShopRoom
+                Dans cette room aucun monstre ni obstacle apparait. Cependant, 3 objets sont disponible a la vente. Le joueur pourra utilisé ses pices pour les acheter.
+
+            d) BossRoom
+                Cette room a la meme comportement que la Monster Room. la seul difference c'est le monstre creer qui est le boss. Le boss a pour particularité de generer des monstre de maniere aléatoire.
+
+
+            e) [secretRoom]
+
+        2) Creation des Etages
+
+            Les Rooms sont stocké dans une map de room. elle sont accesible avec un identifiant quelles ont.
+            Chaque salle possede une liste de porte qui permet au joueur de se déplacer d'une room a l'autre. 
+
+      
+
+        [prevoir l'ajout d'etage]
+    
     C) Creation des Projectile
 
         1) Larmes

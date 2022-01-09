@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import gameWorld.rooms.portes.CarriesAway;
 import gameWorld.rooms.portes.Door;
 import gameobjects.objets.GenericObject;
+import gameobjects.objets.consommables.BoxWin;
 import gameobjects.objets.consommables.Coin;
 import gameobjects.objets.consommables.Life;
 import gameobjects.objets.passifs.BloodOfMartyr;
@@ -48,6 +50,8 @@ public abstract class Room {
 
 	List<GenericObstacle> lsObstacle;
 
+	int countDownObject;
+
 	boolean aGagner;
 
 	/**
@@ -71,6 +75,7 @@ public abstract class Room {
 		this.aGagner = false;
 
 		this.lsObstacle = new ArrayList<>();
+		this.countDownObject = 0;
 	}
 
 	/*
@@ -86,7 +91,8 @@ public abstract class Room {
 	public void dessinePorte() {
 
 		for (int i = 0; i < lstPorte.size(); i++) {
-			if (lsMonster.isEmpty()) {
+			if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
+					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
 				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
 			}
 			lstPorte.get(i).drawGameObject();
@@ -99,7 +105,7 @@ public abstract class Room {
 	 */
 	public GenericObject initObjectGift() {
 		double objectRandom = Math.random();
-		GenericObject objectReturn;
+		GenericObject objectReturn = new BoxWin(RoomInfos.POSITION_CENTER_OF_ROOM, this);
 		if (objectRandom < 0.35) {
 			double randomPiece = Math.random();
 			if (randomPiece < 0.45) {
@@ -122,9 +128,9 @@ public abstract class Room {
 
 			}
 		} else if (objectRandom >= 0.75 && objectRandom < 0.875) {
-			objectReturn = new BloodOfMartyr(new Vector2(5, 5));
-		} else {
-			objectReturn = new LifeExtension(new Vector2(5, 5));
+			objectReturn = new BloodOfMartyr(RoomInfos.POSITION_CENTER_OF_ROOM);
+		} else if (objectRandom >= 0.875) {
+			objectReturn = new LifeExtension(RoomInfos.POSITION_CENTER_OF_ROOM);
 		}
 
 		return objectReturn;
@@ -316,12 +322,54 @@ public abstract class Room {
 			collisionProjectileFly(this.lsMonster.get(i));
 
 		}
+
+		collisionObjet();
+	}
+
+	/**
+	 * Methode qui calcul les collision entre le personnage et les objet
+	 */
+	public void collisionObjet() {
 		collisionObstacle(this.lsObstacle);
 		for (int i = 0; i < lstObjet.size(); i++) {
 
-			if (this.lsMonster.size() == 0 && Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
-					lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
+		// pour chacun de mes objet
+		for (int i = 0; i < lstObjet.size(); i++) {
+			// si je ne suis pas dans une shopRoom
+			// que la liste de monstre n'est pas vide
+			// que je ne suis pas en collision
+			if (!(this instanceof ShopRoom) && this.lsMonster.isEmpty()
+					&& Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+							lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())) {
 				lstObjet.get(i).updateHeroPerf(hero);
+				// Sinon si je suis dans une shop room
+			} else if (this instanceof ShopRoom) {
+				// si mon compteur pour recup l'objet est null
+				// que la lst de monstre est vide et que je suis en collision et que mon objet
+				// n'est pas ramasser
+				if (this.countDownObject == 0 && this.lsMonster.isEmpty()
+						&& Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
+								lstObjet.get(i).getPosition(), lstObjet.get(i).getSize())
+						&& hero.getStackArgent() >= lstObjet.get(i).getPrix()
+						&& (lstObjet.get(i).EstRamasser() == false)) {
+					// je mets a jour mes perf
+					lstObjet.get(i).updateHeroPerf(hero);
+					// si mon objet c'est pas de l'ajout de vie
+					if (!(lstObjet.get(i) instanceof Life)) {
+						// je retire de l'argetnt au hero a hauteur du prix de l'objet prix
+						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+						// si mon objet c'est de la vie et que l'ajout de pv ne depasse pas les pc Max
+					} else if ((lstObjet.get(i) instanceof Life)
+							&& lstObjet.get(i).getValue() + hero.getPointVie() <= hero.getMaxpointVie()) {
+						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+						System.out.println("Rend l'argent des pieces !");
+					}
+					countDownObject = 20;
+				}
+
+				if (this.countDownObject > 0) {
+					this.countDownObject--;
+				}
 			}
 
 		}

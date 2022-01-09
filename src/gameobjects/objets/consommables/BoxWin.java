@@ -24,7 +24,7 @@ public class BoxWin extends ConsommableObject {
      * @param position position voulu
      */
     public BoxWin(Vector2 position, Room currentRoom) {
-        super(position, 0);
+        super(position, 0, 0);
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.6);
         this.imagePath = ImagePaths.PENTAGRAM;
         this.currentRoom = currentRoom;
