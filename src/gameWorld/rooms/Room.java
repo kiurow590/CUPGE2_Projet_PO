@@ -183,8 +183,8 @@ public abstract class Room {
 	void initMonster() {
 		for (int i = 0; i < 4; i++) {
 			// on evite que un monstre spawn sur un obstacle
-			// ainsi lors de la génération on fait en sorte que la position du monstre
-			// n'est jamais la même que celui d'un obstacle.
+			// ainsi lors de la gï¿½nï¿½ration on fait en sorte que la position du monstre
+			// n'est jamais la mï¿½me que celui d'un obstacle.
 			double x = Math.random();
 			double y = Math.random();
 			boolean jeSuisSurUnobstacle = false;
@@ -204,10 +204,11 @@ public abstract class Room {
 					y -= 0.2;
 
 				}
+				Vector2 vecteurTampon = new Vector2(x, y);
 				for (int numeroObstacle = 0; !lsObstacle.isEmpty()
 						&& numeroObstacle < lsObstacle.size(); numeroObstacle++) {
-					Vector2 vecteurTampon = new Vector2(x, y);
-					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon)) {
+					
+					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon)|| vecteurTampon == null) {
 						jeSuisSurUnobstacle = true;
 					} else {
 						jeSuisSurUnobstacle = false;
@@ -387,8 +388,8 @@ public abstract class Room {
 	}
 
 	public void collisionObstacle(List<GenericObstacle> lsObstacle) {
-		// On décremante le potentielle compteur d'invisibilité du personnage si il a
-		// touché des pikes
+		// On dï¿½cremante le potentielle compteur d'invisibilitï¿½ du personnage si il a
+		// touchï¿½ des pikes
 		if (this.compteurInvincibiliteHero > 0) {
 			this.compteurInvincibiliteHero--;
 		}
