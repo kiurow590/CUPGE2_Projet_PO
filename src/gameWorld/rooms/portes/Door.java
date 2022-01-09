@@ -28,7 +28,7 @@ public abstract class Door {
      */
     public Door(Vector2 position, int idSalle, int rotation) {
         this.position = position;
-        this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.7);
+        this.size = RoomInfos.TILE_SIZE.scalarMultiplication(1);
         this.idSalle = idSalle;
         this.rotation = rotation;
         this.imagePaths = ImagePaths.CLOSED_DOOR;

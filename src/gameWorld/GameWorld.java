@@ -289,13 +289,13 @@ public class GameWorld {
 						door.getPosition(), door.getSize())) {
 
 					if (door instanceof BottomDoor) {
-						hero.setPosition(new Vector2(0.5, 0.85));
+						hero.setPosition(new Vector2(0.5, 0.78));
 					} else if (door instanceof TopDoor) {
-						hero.setPosition(new Vector2(0.5, 0.15));
+						hero.setPosition(new Vector2(0.5, 0.22));
 					} else if (door instanceof LeftDoor) {
-						hero.setPosition(new Vector2(0.85, 0.5));
+						hero.setPosition(new Vector2(0.84, 0.5));
 					} else if (door instanceof RightDoor) {
-						hero.setPosition(new Vector2(0.15, 0.5));
+						hero.setPosition(new Vector2(0.16, 0.5));
 					}
 					currentRoom = mapDeRoom.get(door.getIdSalle());
 				}
@@ -373,19 +373,19 @@ public class GameWorld {
 	 * </ul>
 	 */
 	private void processKeysForMovement() {
-		if (StdDraw.isKeyPressed(Controls.goUp) && hero.getPosition().getY() < 0.92) {
+		if (StdDraw.isKeyPressed(Controls.goUp) && hero.getPosition().getY() < 0.85) {
 			hero.goUpNext();
 
 		}
-		if (StdDraw.isKeyPressed(Controls.goDown) && hero.getPosition().getY() > 0.08) {
+		if (StdDraw.isKeyPressed(Controls.goDown) && hero.getPosition().getY() > 0.2) {
 			hero.goDownNext();
 
 		}
-		if (StdDraw.isKeyPressed(Controls.goRight) && hero.getPosition().getX() < 0.92) {
+		if (StdDraw.isKeyPressed(Controls.goRight) && hero.getPosition().getX() < 0.85) {
 			hero.goRightNext();
 
 		}
-		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.08) {
+		if (StdDraw.isKeyPressed(Controls.goLeft) && hero.getPosition().getX() > 0.15) {
 			hero.goLeftNext();
 
 		}

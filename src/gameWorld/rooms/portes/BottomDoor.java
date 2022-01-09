@@ -12,7 +12,7 @@ public class BottomDoor extends Door {
      * @param idSalle salle de destination
      */
     public BottomDoor(int idSalle) {
-        super(new Vector2(0.5, 0.05), idSalle, 180);
+        super(new Vector2(0.5, 0.11), idSalle, 180);
         // TODO Auto-generated constructor stub
     }
 
