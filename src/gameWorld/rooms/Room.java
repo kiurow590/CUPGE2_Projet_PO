@@ -13,7 +13,11 @@ import gameobjects.objets.consommables.Life;
 import gameobjects.objets.passifs.BloodOfMartyr;
 import gameobjects.objets.passifs.LifeExtension;
 import gameobjects.obstacles.GenericObstacle;
+import gameobjects.obstacles.Rock;
+import gameobjects.obstacles.Poop;
+import gameobjects.obstacles.Spikes;
 import gameobjects.personnages.Hero;
+import gameobjects.personnages.monstres.Boss;
 import gameobjects.personnages.monstres.Fly;
 import gameobjects.personnages.monstres.Monster;
 import gameobjects.personnages.monstres.Spider;
@@ -170,7 +174,9 @@ public abstract class Room {
 	public void dessineObstacles() {
 		if (!lsObstacle.isEmpty()) {
 			for (int i = 0; i < lsObstacle.size(); i++) {
-				if (lsObstacle.get(i).estVivant() == true) {
+				if (!lsObstacle.get(i).estVivant()) {
+					lsObstacle.remove(i);
+				} else {
 					lsObstacle.get(i).drawGameObject();
 				}
 			}
@@ -182,19 +188,38 @@ public abstract class Room {
 	 */
 	void initMonster() {
 		for (int i = 0; i < 4; i++) {
+			// on evite que un monstre spawn sur un obstacle
+			// ainsi lors de la g�n�ration on fait en sorte que la position du monstre
+			// n'est jamais la m�me que celui d'un obstacle.
 			double x = Math.random();
 			double y = Math.random();
-			if (x < 0.08) {
-				x += 0.2;
-			}
-			if (x > 0.92) {
-				x -= 0.2;
-			}
-			if (y < 0.08) {
-				y += 0.2;
-			}
-			if (y > 0.92) {
-				y -= 0.2;
+			boolean jeSuisSurUnobstacle = false;
+			while (jeSuisSurUnobstacle) {
+				 x = Math.random();
+				 y = Math.random();
+				if (x < 0.08) {
+					x += 0.2;
+				}
+				if (x > 0.92) {
+					x -= 0.2;
+				}
+				if (y < 0.08) {
+					y += 0.2;
+				}
+				if (y > 0.92) {
+					y -= 0.2;
+
+				}
+				Vector2 vecteurTampon = new Vector2(x, y);
+				for (int numeroObstacle = 0; !lsObstacle.isEmpty()
+						&& numeroObstacle < lsObstacle.size(); numeroObstacle++) {
+					
+					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon)|| vecteurTampon == null) {
+						jeSuisSurUnobstacle = true;
+					} else {
+						jeSuisSurUnobstacle = false;
+					}
+				}
 			}
 			if (Math.random() < 0.5) {
 
@@ -202,6 +227,8 @@ public abstract class Room {
 			} else {
 				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
 			}
+
+			
 		}
 	}
 
@@ -295,6 +322,7 @@ public abstract class Room {
 			collisionProjectileFly(this.lsMonster.get(i));
 
 		}
+
 		collisionObjet();
 	}
 
@@ -302,6 +330,8 @@ public abstract class Room {
 	 * Methode qui calcul les collision entre le personnage et les objet
 	 */
 	public void collisionObjet() {
+		collisionObstacle(this.lsObstacle);
+		for (int i = 0; i < lstObjet.size(); i++) {
 
 		// pour chacun de mes objet
 		for (int i = 0; i < lstObjet.size(); i++) {
@@ -405,16 +435,62 @@ public abstract class Room {
 		}
 	}
 
-	/*
-	 * public void collisionObstacle() { // Gestion des collision avec les rochers
-	 * if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
-	 * obstacle.getPosition(), obstacle.getSize())) { // hero.position=new
-	 * Vector2(0,0); } for (int i = 0; i < lsMonster.size(); i++) { // on evite les
-	 * mouches car elles non pas de collision avec les rochers if
-	 * (this.lsMonster.get(i) instanceof Fly == false) { if
-	 * (Physics.rectangleCollision(this.lsMonster.get(i).getPosition(),
-	 * this.hero.getSize(), obstacle.getPosition(), obstacle.getSize())) { } } } }
-	 */
+	public void collisionObstacle(List<GenericObstacle> lsObstacle) {
+		// On d�cremante le potentielle compteur d'invisibilit� du personnage si il a
+		// touch� des pikes
+		if (this.compteurInvincibiliteHero > 0) {
+			this.compteurInvincibiliteHero--;
+		}
+		// Gestion des collision avec les obstacles des monstre , on parcours tout les
+		// obstacles et tout les monstres
+		for (int numeroObstacles = 0; !lsObstacle.isEmpty() && numeroObstacles < lsObstacle.size(); numeroObstacles++) {
+			for (int numeroMonstre = 0; !lsMonster.isEmpty() && numeroMonstre < lsMonster.size(); numeroMonstre++) {
+				if (Physics.rectangleCollision(lsMonster.get(numeroMonstre).getPosition(),
+						lsMonster.get(numeroMonstre).getSize(), lsObstacle.get(numeroObstacles).getPosition(),
+						lsObstacle.get(numeroObstacles).getSize())) {
+					if (lsObstacle.get(numeroObstacles) instanceof Poop
+							|| lsObstacle.get(numeroObstacles) instanceof Rock) {
+						if (lsMonster.get(numeroMonstre) instanceof Spider
+								|| lsMonster.get(numeroMonstre) instanceof Boss) {
+							lsMonster.get(numeroMonstre).setPosition(lsMonster.get(numeroMonstre).getLastposition());
+						}
+					}
+				}
+			}
+			for (int numeroLarmeHero = 0; !this.hero.getLstLarme().isEmpty()
+					&& numeroLarmeHero < this.hero.getLstLarme().size(); numeroLarmeHero++) {
+				if (Physics.rectangleCollision(this.hero.getLstLarme().get(numeroLarmeHero).getPosition(),
+						this.hero.getLstLarme().get(numeroLarmeHero).getSize(),
+						lsObstacle.get(numeroObstacles).getPosition(), lsObstacle.get(numeroObstacles).getSize())) {
+					if (lsObstacle.get(numeroObstacles) instanceof Rock) {
+						this.hero.getLstLarme().remove(numeroLarmeHero);
+					}
+					if (lsObstacle.get(numeroObstacles) instanceof Poop) {
+						lsObstacle.get(numeroObstacles).retirepointVie(this.hero.getdamage());
+						this.hero.getLstLarme().remove(numeroLarmeHero);
+					}
+				}
+
+			}
+			// colision du hero avec les obstacles
+			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
+					lsObstacle.get(numeroObstacles).getPosition(), lsObstacle.get(numeroObstacles).getSize())) {
+
+				if (lsObstacle.get(numeroObstacles) instanceof Spikes && this.compteurInvincibiliteHero == 0) {
+					this.hero.retirepointVie(lsObstacle.get(numeroObstacles).getDegats());
+					this.compteurInvincibiliteHero = 50;
+
+				} else if (lsObstacle.get(numeroObstacles) instanceof Poop
+						|| lsObstacle.get(numeroObstacles) instanceof Rock) {
+
+					this.hero.setPosition(this.hero.getLastposition());
+
+				}
+
+			}
+
+		}
+	}
 
 	/**
 	 * met a jour le monstre

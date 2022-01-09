@@ -25,6 +25,7 @@ public class Hero extends Entity {
 	private int countDownSpped;
 	private int countDownTir;
 	private int countDownPower;
+	
 
 	private int stackArgent;
 	private int soldeStackMax;
@@ -58,6 +59,7 @@ public class Hero extends Entity {
 
 		this.stackArgent = 0;
 		soldeStackMax = HeroInfos.ISAAC_MAX_STACK;
+		
 	}
 
 	/**
@@ -230,5 +232,4 @@ public class Hero extends Entity {
 	public int getsoldeStackMax() {
 		return this.soldeStackMax;
 	}
-
 }
