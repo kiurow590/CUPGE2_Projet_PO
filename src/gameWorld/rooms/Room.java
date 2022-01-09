@@ -331,7 +331,7 @@ public abstract class Room {
 	 */
 	public void collisionObjet() {
 		collisionObstacle(this.lsObstacle);
-		for (int i = 0; i < lstObjet.size(); i++) {
+		
 
 		// pour chacun de mes objet
 		for (int i = 0; i < lstObjet.size(); i++) {
