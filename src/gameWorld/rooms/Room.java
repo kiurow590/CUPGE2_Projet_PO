@@ -193,8 +193,8 @@ public abstract class Room {
 			// n'est jamais la m�me que celui d'un obstacle.
 			double x = Math.random();
 			double y = Math.random();
-			boolean jeSuisSurUnobstacle = false;
-			while (jeSuisSurUnobstacle) {
+			boolean jeSuisSurUnobstacle = true;
+			while (jeSuisSurUnobstacle ==  true) {
 				 x = Math.random();
 				 y = Math.random();
 				if (x < 0.08) {
@@ -322,7 +322,7 @@ public abstract class Room {
 			collisionProjectileFly(this.lsMonster.get(i));
 
 		}
-
+		collisionObstacle(this.lsObstacle);
 		collisionObjet();
 	}
 
@@ -330,7 +330,7 @@ public abstract class Room {
 	 * Methode qui calcul les collision entre le personnage et les objet
 	 */
 	public void collisionObjet() {
-		collisionObstacle(this.lsObstacle);
+		
 		
 
 		// pour chacun de mes objet
@@ -445,7 +445,7 @@ public abstract class Room {
 		// obstacles et tout les monstres
 		for (int numeroObstacles = 0; !lsObstacle.isEmpty() && numeroObstacles < lsObstacle.size(); numeroObstacles++) {
 			for (int numeroMonstre = 0; !lsMonster.isEmpty() && numeroMonstre < lsMonster.size(); numeroMonstre++) {
-				if (Physics.rectangleCollision(lsMonster.get(numeroMonstre).getPosition(),
+				if (lsMonster.get(numeroMonstre)!= null && Physics.rectangleCollision(lsMonster.get(numeroMonstre).getPosition(),
 						lsMonster.get(numeroMonstre).getSize(), lsObstacle.get(numeroObstacles).getPosition(),
 						lsObstacle.get(numeroObstacles).getSize())) {
 					if (lsObstacle.get(numeroObstacles) instanceof Poop
