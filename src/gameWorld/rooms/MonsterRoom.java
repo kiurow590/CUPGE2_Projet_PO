@@ -4,6 +4,7 @@ import gameobjects.obstacles.Rock;
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
+import resources.ImagePaths;
 import resources.RoomInfos;
 import gameobjects.obstacles.Spikes;
 import gameobjects.obstacles.Poop;
@@ -13,52 +14,55 @@ import gameobjects.obstacles.Poop;
  */
 public class MonsterRoom extends Room {
 
-	private static final String MON_TYPE = "MONSTER_ROOM";
 
-	public MonsterRoom(Hero hero, Integer id) {
-		super(hero, id);
-		this.type = MON_TYPE;
-		this.bgColor = StdDraw.PINK;
-		initMonster();
-		this.lstObjet.add(initObjectGift());
-		choixpatternObstacle();
-	}
+    private static final String MON_TYPE = "MONSTER_ROOM";
 
-	@Override
-	public void updateRoom() {
-		// TODO Auto-generated method stub
-		makeHeroPlay();
-		makeMonsterPlay();
-		collisionReport();
-		rammasseMonstreMort();
-		nettoyageLarme();
-		nettoyageProj();
-	}
+    public MonsterRoom(Hero hero, Integer id) {
+        super(hero, id);
+        this.type = MON_TYPE;
+        this.bgColor = StdDraw.PINK;
+        initMonster();
+        this.lstObjet.add(initObjectGift());
 
-	@Override
-	public void drawRoom() {
-		// For every tile, set background color.
-		StdDraw.setPenColor(this.bgColor);
-		for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-				Vector2 position = positionFromTileIndex(i, j);
-				StdDraw.filledRectangle(position.getX(), position.getY(), RoomInfos.HALF_TILE_SIZE.getX(),
-						RoomInfos.HALF_TILE_SIZE.getY());
-			}
-		}
+    }
 
-		this.drawWall();
+    @Override
+    public void updateRoom() {
+        // TODO Auto-generated method stub
+        makeHeroPlay();
+        makeMonsterPlay();
+        collisionReport();
+        rammasseMonstreMort();
+        nettoyageLarme();
+        nettoyageProj();
+    }
 
-		hero.drawGameObject();
-		dessinePorte();
+    @Override
+    public void drawRoom() {
+        // For every tile, set background color.
+        // StdDraw.setPenColor(this.bgColor);
+        // for (int i = 0; i < RoomInfos.NB_TILES; i++) {
+        // for (int j = 0; j < RoomInfos.NB_TILES; j++) {
+        // Vector2 position = positionFromTileIndex(i, j);
+        // StdDraw.filledRectangle(position.getX(), position.getY(),
+        // RoomInfos.HALF_TILE_SIZE.getX(),
+        // RoomInfos.HALF_TILE_SIZE.getY());
+        // }
+        // }
 
-		dessineMonstre();
-		dessineLarme();
-		dessineObstacles();
-		affichageViePiece();
-		affichageObjets();
-	}
+        StdDraw.picture(0.5, 0.5, ImagePaths.MONSTER_ROOM, 1, 1);
 
+        hero.drawGameObject();
+        dessinePorte();
+
+        dessineMonstre();
+        dessineLarme();
+        dessineObstacles();
+        affichageViePiece();
+        affichageObjets();
+    
+    }
+  
 	public void choixpatternObstacle() {
 		// on choisi un pattern possible parmis les 6 ( construit a la main
 		Double numeropattern = Math.random() * 6;

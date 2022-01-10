@@ -14,6 +14,7 @@ public class CarriesAway extends Door {
      */
     public CarriesAway(int idSalle) {
         super(RoomInfos.POSITION_CENTER_OF_ROOM, idSalle, 0);
+        this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.6);
         this.imagePaths = ImagePaths.STIGMATA;
     }
 

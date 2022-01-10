@@ -13,8 +13,8 @@ import gameobjects.objets.consommables.Life;
 import gameobjects.objets.passifs.BloodOfMartyr;
 import gameobjects.objets.passifs.LifeExtension;
 import gameobjects.obstacles.GenericObstacle;
-import gameobjects.obstacles.Rock;
 import gameobjects.obstacles.Poop;
+import gameobjects.obstacles.Rock;
 import gameobjects.obstacles.Spikes;
 import gameobjects.personnages.Hero;
 import gameobjects.personnages.monstres.Boss;
@@ -96,6 +96,7 @@ public abstract class Room {
 				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
 			}
 			lstPorte.get(i).drawGameObject();
+
 		}
 	}
 
@@ -137,30 +138,6 @@ public abstract class Room {
 
 	}
 
-	void drawWall() {
-
-		// on construit les murs sur le coté
-		for (int colone = 0; colone < RoomInfos.NB_TILES; colone++) {
-
-			if (colone == 1 | colone == 0.0) {
-				for (double j = 0; j < RoomInfos.NB_TILES; j = j + 0.5) {
-					StdDraw.picture(colone, j, ImagePaths.WALL, 0.7, 0.1, 90);
-				}
-			}
-			// On contruit les mur du haut et du bas de la room
-			for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-				if (j == 0.0 | j == 1) {
-					for (double i = 0; i < RoomInfos.NB_TILES; i = i + 0.5) {
-						StdDraw.picture(i, j, ImagePaths.WALL, 0.7, 0.1);
-					}
-
-				}
-
-			}
-		}
-
-	}
-
 	/**
 	 * met a jour le hero
 	 */
@@ -198,23 +175,23 @@ public abstract class Room {
 				 x = Math.random();
 				 y = Math.random();
 				if (x < 0.08) {
-					x += 0.2;
+					x += 0.3;
 				}
 				if (x > 0.92) {
-					x -= 0.2;
+					x -= 0.3;
 				}
 				if (y < 0.08) {
-					y += 0.2;
+					y += 0.25;
 				}
 				if (y > 0.92) {
-					y -= 0.2;
+					y -= 0.25;
 
 				}
 				Vector2 vecteurTampon = new Vector2(x, y);
 				for (int numeroObstacle = 0; !lsObstacle.isEmpty()
 						&& numeroObstacle < lsObstacle.size(); numeroObstacle++) {
-					
-					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon)|| vecteurTampon == null) {
+
+					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon) || vecteurTampon == null) {
 						jeSuisSurUnobstacle = true;
 					} else {
 						jeSuisSurUnobstacle = false;
@@ -228,7 +205,6 @@ public abstract class Room {
 				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
 			}
 
-			
 		}
 	}
 
@@ -330,9 +306,6 @@ public abstract class Room {
 	 * Methode qui calcul les collision entre le personnage et les objet
 	 */
 	public void collisionObjet() {
-		
-		
-
 		// pour chacun de mes objet
 		for (int i = 0; i < lstObjet.size(); i++) {
 			// si je ne suis pas dans une shopRoom
@@ -508,31 +481,31 @@ public abstract class Room {
 	 */
 	public void affichageViePiece() {
 		// Affichage nb piece
-		StdDraw.picture(0.75, 0.9, ImagePaths.DIME, RoomInfos.TILE_SIZE.scalarMultiplication(0.4).getX(),
-				RoomInfos.TILE_SIZE.scalarMultiplication(0.4).getY());
+		StdDraw.picture(0.05, 0.9, ImagePaths.DIME, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
+				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
 		StdDraw.setPenRadius();
-		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(0.8, 0.9, ": " + hero.getStackArgent() + "");
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.text(0.1, 0.9, ": " + hero.getStackArgent() + "");
 		// ----------------------------------------------------------------
 		StdDraw.setPenRadius();
 		int pointVieView = this.hero.getpointVie();
 		if (pointVieView % 2 == 0) {
-			double x = 0.1;
+			double x = 0.05;
 			while (pointVieView != 0) {
-				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+				StdDraw.picture(x, 0.95, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
 						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 
-				x += 0.1;
+				x += 0.05;
 				pointVieView -= 2;
 			}
 
 		} else {
-			double x = 0.1;
+			double x = 0.05;
 			while (pointVieView != 1) {
-				StdDraw.picture(x, 0.9, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+				StdDraw.picture(x, 0.95, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
 						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 
-				x += 0.1;
+				x += 0.05;
 				pointVieView -= 2;
 
 			}
