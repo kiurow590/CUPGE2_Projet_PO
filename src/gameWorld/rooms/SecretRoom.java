@@ -50,7 +50,6 @@ public class SecretRoom extends Room {
         // }
         StdDraw.picture(0.5, 0.5, ImagePaths.SECRET_ROOM, 1, 1);
 
-        // this.drawWall();
         dessinePorte();
         hero.drawGameObject();
         dessinePorte();

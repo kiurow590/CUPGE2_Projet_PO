@@ -57,8 +57,6 @@ public class BossRoom extends Room {
 
         StdDraw.picture(0.5, 0.5, ImagePaths.BOSS_ROOM, 1, 1);
 
-        // this.drawWall();
-
         hero.drawGameObject();
         dessinePorte();
 

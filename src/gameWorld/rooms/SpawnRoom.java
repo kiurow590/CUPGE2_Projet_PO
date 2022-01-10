@@ -47,7 +47,6 @@ public class SpawnRoom extends Room {
         StdDraw.picture(0.5, 0.5, ImagePaths.SPAWN_ROOM, 1, 1);
 
         dessinePorte();
-        // this.drawWall();
 
         hero.drawGameObject();
         dessinePorte();

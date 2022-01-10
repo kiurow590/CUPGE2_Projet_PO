@@ -13,7 +13,7 @@ import resources.RoomInfos;
 public abstract class Door {
 
     private Vector2 position;
-    private Vector2 size;
+    protected Vector2 size;
     private int idSalle;
     private int rotation;
 

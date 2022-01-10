@@ -48,8 +48,6 @@ public class ShopRoom extends Room {
 
         StdDraw.picture(0.5, 0.5, ImagePaths.SHOP_ROOM, 1, 1);
 
-        // this.drawWall();
-
         hero.drawGameObject();
 
         dessinePorte();

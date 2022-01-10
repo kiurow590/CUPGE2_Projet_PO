@@ -51,8 +51,6 @@ public class MonsterRoom extends Room {
 
         StdDraw.picture(0.5, 0.5, ImagePaths.MONSTER_ROOM, 1, 1);
 
-        // this.drawWall();
-
         hero.drawGameObject();
         dessinePorte();
 
