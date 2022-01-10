@@ -96,4 +96,14 @@ III - ETAPE DU PROJET :
             b) BloodOfMartyr
                 Le bloodOfMartyr a pour capacité d'augmenter les dégats du joueur.
                 
-    E) ...    
+    E) Creation des obstacles
+    
+    1) creation de la structure des obstacles (Poop , Spikes , Rock)
+    
+    	a) creation des differentes class sous classe de obstacle
+    	les Spikes font des degats au joueur , les poop sont destructible a l'aide des larmes du joueur .
+    	
+    2) gerer les collisions avec les obstacles .
+    	a) creation des 
+    
+    	    
