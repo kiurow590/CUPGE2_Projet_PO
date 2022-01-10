@@ -8,6 +8,9 @@ import resources.DisplaySettings;
 import resources.ImagePaths;
 import resources.MonstreInfo;
 
+/**
+ * classe d'araignee
+ */
 public class Spider extends Monster {
 
 	private int compteur;
@@ -27,8 +30,7 @@ public class Spider extends Monster {
 
 	@Override
 	public void retirepointVie(int i) {
-		// TODO: rajouter parametre pour retirer n pointVie
-		setPointVie(super.getPointVie() - i);
+		setPointVie(getPointVie() - i);
 	}
 
 	@Override
@@ -44,6 +46,9 @@ public class Spider extends Monster {
 
 	}
 
+	/**
+	 * gestion des deplacement de l'arraigne
+	 */
 	private void deplacementMonstre() {
 
 		double i = Math.random();

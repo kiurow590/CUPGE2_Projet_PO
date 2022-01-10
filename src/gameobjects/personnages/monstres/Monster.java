@@ -8,6 +8,9 @@ import gameobjects.personnages.Hero;
 import gameobjects.projectiles.Projectile;
 import libraries.Vector2;
 
+/**
+ * Classe de monstre
+ */
 public abstract class Monster extends Entity {
 
 	// caracteristique ajout
@@ -37,7 +40,7 @@ public abstract class Monster extends Entity {
 	}
 
 	/**
-	 * Methode qui retire les point de vie d'un monstre
+	 * retire les point de vie d'un monstre
 	 * 
 	 * @param i le nb de pointVie a retiré
 	 * 
@@ -45,7 +48,7 @@ public abstract class Monster extends Entity {
 	public abstract void retirepointVie(int i);
 
 	/**
-	 * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
+	 * mets a jour l'objet du jeu (position vitesse ...etc.)
 	 * 
 	 * @param lsMonster
 	 */

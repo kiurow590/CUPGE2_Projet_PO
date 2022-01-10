@@ -35,14 +35,14 @@ public class GameWorld {
 	 */
 	public GameWorld(Hero hero) {
 		this.hero = hero;
-
+		// generation de la map
 		mapDeRoom = new Etage(mapDeRoom, hero).getMapDeRoom();
 
 		currentRoom = mapDeRoom.get(0);
 	}
 
 	/**
-	 * Methode qui gere les entree de l'utilisateur
+	 * gere les entree de l'utilisateur
 	 */
 	public void processUserInput() {
 		processKeysForMovement();
@@ -52,7 +52,7 @@ public class GameWorld {
 	}
 
 	/**
-	 * Methode qui permet de modifier la room lors du passage d'un porte
+	 * permet de modifier la room lors du passage d'un porte
 	 */
 	private void changeCurrentRoom() {
 
@@ -80,6 +80,9 @@ public class GameWorld {
 
 	}
 
+	/**
+	 * gestion CheatCode
+	 */
 	private void cheatCode() {
 		if (StdDraw.isKeyPressed(Controls.invincible)) {
 			hero.modeInvincible();
@@ -110,7 +113,7 @@ public class GameWorld {
 	}
 
 	/**
-	 * Methode qui gere si le jeu est perdu ou pas
+	 * gere si le jeu est perdu ou pas
 	 * 
 	 * @return </br>
 	 * 
@@ -138,7 +141,7 @@ public class GameWorld {
 	}
 
 	/**
-	 * Methode qui gère les entre pour mettre en mouvement le personnage <br/>
+	 * gère les entre pour mettre en mouvement le personnage <br/>
 	 * Managed <i>keys</i> :
 	 * <ul>
 	 * <li>key UP</li>
@@ -168,7 +171,7 @@ public class GameWorld {
 	}
 
 	/**
-	 * Methode qui gère les entre pour mettre tiré une larme <br/>
+	 * gère les entre pour mettre tiré une larme <br/>
 	 * Managed <i>keys</i> :
 	 * <ul>
 	 * <li>key UP</li>
@@ -202,6 +205,10 @@ public class GameWorld {
 					ImagePaths.TEAR, new Vector2(1, 0));
 		}
 	}
+
+	/*
+	 * Getters Setters
+	 */
 
 	public Room getCurrentRoom() {
 		return this.currentRoom;

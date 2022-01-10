@@ -1,13 +1,12 @@
 package gameWorld.rooms;
 
+import gameobjects.obstacles.Poop;
 import gameobjects.obstacles.Rock;
+import gameobjects.obstacles.Spikes;
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
-import resources.RoomInfos;
-import gameobjects.obstacles.Spikes;
-import gameobjects.obstacles.Poop;
 
 /**
  * Room avec des monstres dedans.
@@ -16,10 +15,15 @@ public class MonsterRoom extends Room {
 
 	private static final String MON_TYPE = "MONSTER_ROOM";
 
+	/**
+	 * Constructeur de monsterRoom
+	 * 
+	 * @param hero hero de la partie
+	 * @param id   identification
+	 */
 	public MonsterRoom(Hero hero, Integer id) {
 		super(hero, id);
 		this.type = MON_TYPE;
-		this.bgColor = StdDraw.PINK;
 		initMonster();
 		this.lstObjet.add(initObjectGift());
 		// choixpatternObstacle();
@@ -39,16 +43,6 @@ public class MonsterRoom extends Room {
 
 	@Override
 	public void drawRoom() {
-		// For every tile, set background color.
-		// StdDraw.setPenColor(this.bgColor);
-		// for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-		// for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-		// Vector2 position = positionFromTileIndex(i, j);
-		// StdDraw.filledRectangle(position.getX(), position.getY(),
-		// RoomInfos.HALF_TILE_SIZE.getX(),
-		// RoomInfos.HALF_TILE_SIZE.getY());
-		// }
-		// }
 
 		StdDraw.picture(0.5, 0.5, ImagePaths.MONSTER_ROOM, 1, 1);
 

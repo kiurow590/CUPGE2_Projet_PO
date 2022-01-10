@@ -21,11 +21,12 @@ public class FlyProjectile extends Projectile {
      *                  <li>(0,1) --> la larme sera en mouvement vers le haut</li>
      *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
      *                  </ul>
+     * 
+     * @param damage    dommage que peut cause la larme
      */
     public FlyProjectile(Vector2 position, String imagePath, Vector2 direction, int damage) {
         super(position, imagePath, direction, damage);
         this.size = new Vector2(0.045, 0.045);
-        // TODO Auto-generated constructor stub
     }
 
 }

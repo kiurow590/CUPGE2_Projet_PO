@@ -48,7 +48,7 @@ public class Vector2 {
 	}
 
 	/**
-	 * methode qui verifie si 2 vecteur sont egaux
+	 * verifie si 2 vecteur sont egaux
 	 * 
 	 * @param p un vecteur
 	 * @return un boolean
@@ -74,7 +74,7 @@ public class Vector2 {
 	}
 
 	/**
-	 * Methode qui additionne this vecteur a un 2e vecteur
+	 * additionne this vecteur a un 2e vecteur
 	 * 
 	 * @param v un vecteur a ajouter
 	 * @return la somme des deux vecteur sous forme de vecteur
@@ -99,7 +99,7 @@ public class Vector2 {
 	}
 
 	/**
-	 * Methode qui retourne le vecteur inverse
+	 * retourne le vecteur inverse
 	 * 
 	 * @return le vecteur inverse
 	 */
@@ -111,7 +111,7 @@ public class Vector2 {
 	}
 
 	/**
-	 * methode qui retourne la valeur absolue du vecteur
+	 * retourne la valeur absolue du vecteur
 	 * 
 	 * @return la valeur absolue du vecteur
 	 */
@@ -128,7 +128,7 @@ public class Vector2 {
 	}
 
 	/**
-	 * Methode qui calcul la norme du vecteur
+	 * calcul la norme du vecteur
 	 * 
 	 * @return un double representant la norme du vecteur
 	 */
@@ -149,7 +149,7 @@ public class Vector2 {
 	}
 
 	/**
-	 * Methode qui retourne la distance entre 2 vecteurs
+	 * retourne la distance entre 2 vecteurs
 	 * 
 	 * @param vector un deuxieme vecteur
 	 * @return un double representant la distance entre 2 vecteurs

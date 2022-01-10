@@ -1,6 +1,7 @@
 package gameobjects.objets;
 
 import gameobjects.personnages.Hero;
+import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
 
@@ -18,6 +19,8 @@ public abstract class GenericObject {
     protected int prix;
     protected int value;
 
+    protected String imagePath;
+
     /**
      * Constructeur d'objet
      * 
@@ -33,12 +36,18 @@ public abstract class GenericObject {
     }
 
     /**
-     * Methode qui dessine l'objet dans le jeu
+     * dessine l'objet dans le jeu
      */
-    public abstract void drawGameObject();
+    public void drawGameObject() {
+        StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(),
+                getSize().getY(),
+                0);
+        StdDraw.setPenColor();
+        StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
+    }
 
     /**
-     * Methode qui gere les performance du hero
+     * gere les performance du hero
      * 
      * @param e le hero
      */
