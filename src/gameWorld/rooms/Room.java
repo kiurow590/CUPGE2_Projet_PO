@@ -186,17 +186,17 @@ public abstract class Room {
 			while (jeSuisSurUnobstacle == true) {
 				x = Math.random();
 				y = Math.random();
-				if (x < 0.08) {
-					x += 0.3;
+				if (x < 0.2) {
+					x += 0.1;
 				}
-				if (x > 0.92) {
-					x -= 0.3;
+				if (x > 0.75) {
+					x -= 0.2;
 				}
-				if (y < 0.08) {
-					y += 0.25;
+				if (y < 0.3) {
+					y += 0.1;
 				}
-				if (y > 0.92) {
-					y -= 0.25;
+				if (y > 0.75) {
+					y -= 0.2;
 
 				}
 				Vector2 vecteurTampon = new Vector2(x, y);

@@ -30,7 +30,7 @@ public class Projectile extends Entity {
      */
     public Projectile(Vector2 position, String imagePath, Vector2 direction, int damage) {
 
-        super(position, RoomInfos.TILE_SIZE.scalarMultiplication(0.2), imagePath, 0.01, direction, 0, 0);
+        super(position, RoomInfos.TILE_SIZE.scalarMultiplication(0.2), imagePath, 0.0075, direction, 0, 0);
 
         this.portee = 40;
         this.damage = damage;

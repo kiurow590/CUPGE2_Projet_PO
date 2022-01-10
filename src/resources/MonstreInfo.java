@@ -8,10 +8,10 @@ public class MonstreInfo {
      * FLY
      */
 
-    public static final double FLY_SPEED = 0.005;
+    public static final double FLY_SPEED = 0.003;
     public static final int FLY_pointVie = 3;
     public static final int FLY_DAMMAGE = 1;
-    public static final Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
+    public static final Vector2 FLY_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.3);
 
     /**
      * SPIDER
