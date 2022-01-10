@@ -164,16 +164,28 @@ public abstract class Room {
 	 * Methode qui initialise le nb de monstre au demarrage de la room
 	 */
 	void initMonster() {
-		for (int i = 0; i < 4; i++) {
+		int nbMonstre;
+
+		if (this.id <= 5) {
+			nbMonstre = 4;
+		} else if (this.id > 5 && this.id <= 14) {
+			nbMonstre = 8;
+
+		} else {
+			nbMonstre = 10;
+
+		}
+
+		for (int i = 0; i < nbMonstre; i++) {
 			// on evite que un monstre spawn sur un obstacle
 			// ainsi lors de la g�n�ration on fait en sorte que la position du monstre
 			// n'est jamais la m�me que celui d'un obstacle.
 			double x = Math.random();
 			double y = Math.random();
 			boolean jeSuisSurUnobstacle = false;
-			while (jeSuisSurUnobstacle ==  true) {
-				 x = Math.random();
-				 y = Math.random();
+			while (jeSuisSurUnobstacle == true) {
+				x = Math.random();
+				y = Math.random();
 				if (x < 0.08) {
 					x += 0.3;
 				}
@@ -201,8 +213,30 @@ public abstract class Room {
 			if (Math.random() < 0.5) {
 
 				this.lsMonster.add(new Spider(new Vector2(x, y)));
+
+				if (nbMonstre == 4) {
+					this.lsMonster.get(i).setDegatCorpsACorps(1);
+
+				} else if (nbMonstre == 8) {
+					this.lsMonster.get(i).setDegatCorpsACorps(2);
+
+				} else {
+					this.lsMonster.get(i).setDegatCorpsACorps(4);
+
+				}
+
 			} else {
 				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
+				if (nbMonstre == 4) {
+					this.lsMonster.get(i).setDegatCorpsACorps(1);
+
+				} else if (nbMonstre == 8) {
+					this.lsMonster.get(i).setDegatCorpsACorps(2);
+
+				} else {
+					this.lsMonster.get(i).setDegatCorpsACorps(4);
+
+				}
 			}
 
 		}
@@ -418,9 +452,10 @@ public abstract class Room {
 		// obstacles et tout les monstres
 		for (int numeroObstacles = 0; !lsObstacle.isEmpty() && numeroObstacles < lsObstacle.size(); numeroObstacles++) {
 			for (int numeroMonstre = 0; !lsMonster.isEmpty() && numeroMonstre < lsMonster.size(); numeroMonstre++) {
-				if (lsMonster.get(numeroMonstre)!= null && Physics.rectangleCollision(lsMonster.get(numeroMonstre).getPosition(),
-						lsMonster.get(numeroMonstre).getSize(), lsObstacle.get(numeroObstacles).getPosition(),
-						lsObstacle.get(numeroObstacles).getSize())) {
+				if (lsMonster.get(numeroMonstre) != null
+						&& Physics.rectangleCollision(lsMonster.get(numeroMonstre).getPosition(),
+								lsMonster.get(numeroMonstre).getSize(), lsObstacle.get(numeroObstacles).getPosition(),
+								lsObstacle.get(numeroObstacles).getSize())) {
 					if (lsObstacle.get(numeroObstacles) instanceof Poop
 							|| lsObstacle.get(numeroObstacles) instanceof Rock) {
 						if (lsMonster.get(numeroMonstre) instanceof Spider

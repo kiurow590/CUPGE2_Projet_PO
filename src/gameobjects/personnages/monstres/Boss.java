@@ -32,6 +32,18 @@ public class Boss extends Monster {
         this.compteurDeplacement = MonstreInfo.BOSS_Move_Delay;
         this.currentRoom = currentRoom;
         this.compteurGeneration = 120;
+
+        if (this.currentRoom.getId() <= 5) {
+
+            pointVie = 20;
+
+        } else if (this.currentRoom.getId() > 5 && this.currentRoom.getId() <= 14) {
+            pointVie = 40;
+
+        } else {
+            pointVie = 60;
+
+        }
     }
 
     @Override
@@ -51,7 +63,18 @@ public class Boss extends Monster {
         }
         if (compteurGeneration <= 0) {
             GenereMonstre();
-            compteurGeneration = 200;
+
+            if (this.currentRoom.getId() <= 5) {
+
+                compteurGeneration = 160;
+
+            } else if (this.currentRoom.getId() > 5 && this.currentRoom.getId() <= 14) {
+                compteurGeneration = 120;
+
+            } else {
+                compteurGeneration = 80;
+
+            }
         } else {
             compteurGeneration--;
         }
