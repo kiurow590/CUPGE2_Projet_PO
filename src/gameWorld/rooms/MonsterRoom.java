@@ -23,6 +23,7 @@ public class MonsterRoom extends Room {
         this.bgColor = StdDraw.PINK;
         initMonster();
         this.lstObjet.add(initObjectGift());
+        choixpatternObstacle();
 
     }
 
