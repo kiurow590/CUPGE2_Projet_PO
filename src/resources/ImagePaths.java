@@ -47,6 +47,14 @@ public class ImagePaths {
 
 	public static final String FLYPROJECTILE = "images/flyProjectile.png";
 
-	public static final String SECRET_ENTRY = "images/secretEntry.png";
+	public static final String SECRET_ENTRY = "images/The_Pony_Icon.png";
+
+	public static final String BOSS_ROOM = "images/BossRoom.png";
+	public static final String MONSTER_ROOM = "images/MonsterRoom.png";
+	public static final String SECRET_ROOM = "images/SecretRoom.png";
+	public static final String SHOP_ROOM = "images/ShopRoom.png";
+	public static final String SPAWN_ROOM = "images/SpawnRoom.png";
+
+	public static final String BOX_WIN = "images/BoxWin.png";
 
 }
