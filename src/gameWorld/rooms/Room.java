@@ -190,7 +190,6 @@ public abstract class Room {
 				Vector2 vecteurTampon = new Vector2(x, y);
 				for (int numeroObstacle = 0; !lsObstacle.isEmpty()
 						&& numeroObstacle < lsObstacle.size(); numeroObstacle++) {
-
 					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon) || vecteurTampon == null) {
 						jeSuisSurUnobstacle = true;
 					} else {
