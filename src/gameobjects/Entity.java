@@ -3,6 +3,9 @@ package gameobjects;
 import libraries.StdDraw;
 import libraries.Vector2;
 
+/**
+ * Constructeur d'entite
+ */
 public abstract class Entity {
 
     /**
@@ -18,6 +21,17 @@ public abstract class Entity {
     protected int pointVie;
     protected int maxpointVie;
 
+    /**
+     * Constructeur d'entitie
+     * 
+     * @param position    position
+     * @param size        la taille
+     * @param imagePath   son image
+     * @param speed       sa vitesse
+     * @param direction   la direction de deplacement
+     * @param pointVie    les pv
+     * @param maxpointVie les pv max
+     */
     public Entity(Vector2 position, Vector2 size, String imagePath, double speed, Vector2 direction, int pointVie,
             int maxpointVie) {
         this.position = position;
@@ -27,11 +41,11 @@ public abstract class Entity {
         this.direction = direction;
         this.pointVie = pointVie;
         this.maxpointVie = maxpointVie;
-        
+
     }
 
     /**
-     * Methode qui calcul si une mouche est morte
+     * calcul si une mouche est morte
      * 
      * @return un boolean </br>
      *         <ul>
@@ -44,7 +58,7 @@ public abstract class Entity {
     }
 
     /**
-     * Methode qui ajoute des pointVie au personnage
+     * ajoute des pointVie au personnage
      * 
      * @param i la valeur de pointVie a rajouter
      */
@@ -53,7 +67,7 @@ public abstract class Entity {
     }
 
     /**
-     * Methode qui retire les point de vie
+     * retire les point de vie
      * 
      * @param i le nombre de point de vie retiré
      */
@@ -62,7 +76,7 @@ public abstract class Entity {
     }
 
     /**
-     * Methode qui mets en mouvement l'objet
+     * mets en mouvement l'objet
      */
     protected void move() {
         Vector2 normalizedDirection = getNormalizedDirection();
@@ -74,7 +88,7 @@ public abstract class Entity {
     }
 
     /**
-     * Methode qui dessine l'objet dans le jeu
+     * dessine l'objet dans le jeu
      */
     public void drawGameObject() {
         StdDraw.picture(this.position.getX(), this.position.getY(), this.imagePath, this.size.getX(), this.size.getY(),
@@ -84,7 +98,7 @@ public abstract class Entity {
     }
 
     /**
-     * Methode qui normalise le vecteur direction de l'objet
+     * normalise le vecteur direction de l'objet
      * 
      * @return le vexteur normaliser
      */
@@ -172,12 +186,13 @@ public abstract class Entity {
     public void setMaxpointVie(int maxpointVie) {
         this.maxpointVie = maxpointVie;
     }
-    public Vector2 getLastposition() {
-		return lastPosition;
-	}
 
-	public void setLastposition(Vector2 position) {
-		this.lastPosition = position;
-	}
+    public Vector2 getLastposition() {
+        return lastPosition;
+    }
+
+    public void setLastposition(Vector2 position) {
+        this.lastPosition = position;
+    }
 
 }

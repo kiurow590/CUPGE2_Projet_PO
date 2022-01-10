@@ -2,9 +2,7 @@ package gameWorld.rooms;
 
 import gameobjects.personnages.Hero;
 import libraries.StdDraw;
-import libraries.Vector2;
 import resources.ImagePaths;
-import resources.RoomInfos;
 
 /**
  * Room de depart.
@@ -16,13 +14,13 @@ public class SpawnRoom extends Room {
     /**
      * Constructeur de Spawn
      * 
-     * @param hero
+     * @param hero hero du jeu
+     * @param id   identfaiant de la room
      */
     public SpawnRoom(Hero hero, int id) {
         super(hero, id);
         this.type = MON_TYPE;
 
-        this.bgColor = StdDraw.GREEN;
     }
 
     @Override
@@ -34,16 +32,7 @@ public class SpawnRoom extends Room {
 
     @Override
     public void drawRoom() {
-        // For every tile, set background color.
-        // StdDraw.setPenColor(this.bgColor);
-        // for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-        // for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-        // Vector2 position = positionFromTileIndex(i, j);
-        // StdDraw.filledRectangle(position.getX(), position.getY(),
-        // RoomInfos.HALF_TILE_SIZE.getX(),
-        // RoomInfos.HALF_TILE_SIZE.getY());
-        // }
-        // }
+        // on affiche le fond
         StdDraw.picture(0.5, 0.5, ImagePaths.SPAWN_ROOM, 1, 1);
 
         dessinePorte();

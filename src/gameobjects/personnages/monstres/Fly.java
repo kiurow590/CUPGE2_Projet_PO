@@ -8,6 +8,9 @@ import libraries.Vector2;
 import resources.ImagePaths;
 import resources.MonstreInfo;
 
+/**
+ * Class de mouche
+ */
 public class Fly extends Monster {
 
 	private int countDownTir;
@@ -51,7 +54,7 @@ public class Fly extends Monster {
 	}
 
 	/**
-	 * Methode qui creer une larme et qui la stock dans la liste de larme du
+	 * creer une larme et qui la stock dans la liste de larme du
 	 * personnage
 	 * 
 	 * @param e larme
@@ -65,7 +68,7 @@ public class Fly extends Monster {
 	}
 
 	/**
-	 * Methode qui mets en mouvement le monstre
+	 * mets en mouvement le monstre
 	 */
 	public void move(Hero e, List<Monster> lsMonster) {
 		/**

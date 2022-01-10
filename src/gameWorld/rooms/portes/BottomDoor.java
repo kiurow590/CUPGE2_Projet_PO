@@ -13,7 +13,6 @@ public class BottomDoor extends Door {
      */
     public BottomDoor(int idSalle) {
         super(new Vector2(0.5, 0.11), idSalle, 180);
-        // TODO Auto-generated constructor stub
     }
 
 }

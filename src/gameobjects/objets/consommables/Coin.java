@@ -1,7 +1,6 @@
 package gameobjects.objets.consommables;
 
 import gameobjects.personnages.Hero;
-import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
@@ -9,11 +8,6 @@ import resources.ImagePaths;
  * Class generatrice de piece d'argent
  */
 public class Coin extends ConsommableObject {
-
-    /**
-     * Attribut
-     */
-    private String imagePath;
 
     /**
      * Constructeur de piece
@@ -38,17 +32,9 @@ public class Coin extends ConsommableObject {
     }
 
     @Override
-    public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(),
-                getSize().getY(),
-                0);
-        StdDraw.setPenColor();
-        StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
-    }
-
-    @Override
     public void updateHeroPerf(Hero e) {
-
+        // si je peux encore stocker de l'argent dans ma stack et que l'objet est pas
+        // encore ramasser
         if (e.getStackArgent() + value <= e.getsoldeStackMax() && super.EstRamasser() == false) {
             e.AjoutStackArgent(value);
             super.setEstRamasser(true);

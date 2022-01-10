@@ -57,4 +57,6 @@ public class ImagePaths {
 
 	public static final String BOX_WIN = "images/BoxWin.png";
 
+	public static final String STRENGTH = "images/Strength.png";
+
 }

@@ -1,7 +1,6 @@
 package gameobjects.objets.consommables;
 
 import gameobjects.personnages.Hero;
-import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
@@ -9,10 +8,6 @@ import resources.ImagePaths;
  * Class generatrice de Point de Vie
  */
 public class Life extends ConsommableObject {
-    /**
-     * Attribut
-     */
-    private String imagePath;
 
     public Life(int value, Vector2 position) {
 
@@ -26,15 +21,6 @@ public class Life extends ConsommableObject {
             this.prix = 4;
 
         }
-    }
-
-    @Override
-    public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), imagePath, getSize().getX(),
-                getSize().getY(),
-                0);
-        StdDraw.setPenColor();
-        StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
     }
 
     @Override

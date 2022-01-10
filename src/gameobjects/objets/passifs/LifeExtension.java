@@ -1,31 +1,24 @@
 package gameobjects.objets.passifs;
 
 import gameobjects.personnages.Hero;
-import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
+/**
+ * Class generatrice d'extension de vie
+ */
 public class LifeExtension extends PassifObject {
 
     /**
-     * Attribut
+     * constructeur d'extension de vie
+     * 
+     * @param position
      */
-    private String imagePath;
-
     public LifeExtension(Vector2 position) {
         super(position, 20, 2);
 
         this.imagePath = ImagePaths.HP_UP;
 
-    }
-
-    @Override
-    public void drawGameObject() {
-        StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(),
-                getSize().getY(),
-                0);
-        StdDraw.setPenColor();
-        StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class Etage {
     }
 
     /**
-     * Methode qui genere le premiere etage du jeu
+     * genere le premiere etage du jeu
      */
     public void generateStage1() {
         // Generation des rooms
@@ -87,7 +87,7 @@ public class Etage {
     }
 
     /**
-     * Methode qui genere le deuxieme etage du jeu
+     * genere le deuxieme etage du jeu
      */
     public void generateStage2() {
         // Generation des rooms
@@ -157,7 +157,7 @@ public class Etage {
     }
 
     /**
-     * Methode qui genere le troisieme etage du jeu
+     * genere le troisieme etage du jeu
      */
     public void generateStage3() {
         // Generation des rooms
@@ -251,6 +251,10 @@ public class Etage {
         mapDeRoom.put(commerce2.getId(), commerce2);
         mapDeRoom.put(boss.getId(), boss);
     }
+
+    /**
+     * GETTER SETTER
+     */
 
     public Map<Integer, Room> getMapDeRoom() {
         return this.mapDeRoom;

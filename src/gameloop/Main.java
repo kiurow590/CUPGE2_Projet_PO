@@ -41,7 +41,7 @@ public class Main {
 	}
 
 	/**
-	 * Methode qui affiche la suite de la map
+	 * affiche la suite de la map
 	 * 
 	 * @param world monde actuel
 	 */

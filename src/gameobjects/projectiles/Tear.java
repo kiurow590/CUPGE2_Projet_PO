@@ -21,6 +21,8 @@ public class Tear extends Projectile {
      *                  <li>(0,1) --> la larme sera en mouvement vers le haut</li>
      *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
      *                  </ul>
+     * 
+     * @param damage    dommage que peut faire la larme
      */
     public Tear(Vector2 position, String imagePath, Vector2 direction, int damage) {
         super(position, imagePath, direction, damage);

@@ -35,7 +35,7 @@ public abstract class Door {
     }
 
     /**
-     * Methode qui dessine l'objet dans le jeu
+     * dessine l'objet dans le jeu
      */
     public void drawGameObject() {
 

@@ -27,17 +27,19 @@ public class Projectile extends Entity {
      *                  <li>(0,1) --> la larme sera en mouvement vers le haut</li>
      *                  <li>(0,-1) --> la larme sera en mouvement vers la bas</li>
      *                  </ul>
+     * 
+     * @param damage    dommage que peut causer le projectile
      */
     public Projectile(Vector2 position, String imagePath, Vector2 direction, int damage) {
 
-        super(position, RoomInfos.TILE_SIZE.scalarMultiplication(0.2), imagePath, 0.01, direction, 0, 0);
+        super(position, RoomInfos.TILE_SIZE.scalarMultiplication(0.2), imagePath, 0.0075, direction, 0, 0);
 
         this.portee = 40;
         this.damage = damage;
     }
 
     /**
-     * Methode qui mets a jour l'objet du jeu (position vitesse ...etc.)
+     * mets a jour l'objet du jeu (position vitesse ...etc.)
      */
     public void updateGameObject() {
         if (this.portee > 0) {
@@ -48,7 +50,7 @@ public class Projectile extends Entity {
     }
 
     /**
-     * Methode qui verifie si le projectile n'est pas hors de l'ecran
+     * verifie si le projectile n'est pas hors de l'ecran
      */
     private void verifPositionValide() {
         if (getPosition().getX() < 0.08 || getPosition().getX() > 0.92 || getPosition().getY() < 0.08

@@ -10,6 +10,9 @@ import libraries.Vector2;
 import resources.HeroInfos;
 import resources.ImagePaths;
 
+/**
+ * Classe de hero
+ */
 public class Hero extends Entity {
 	/**
 	 * Attribut
@@ -25,7 +28,6 @@ public class Hero extends Entity {
 	private int countDownSpped;
 	private int countDownTir;
 	private int countDownPower;
-	
 
 	private int stackArgent;
 	private int soldeStackMax;
@@ -59,11 +61,11 @@ public class Hero extends Entity {
 
 		this.stackArgent = 0;
 		soldeStackMax = HeroInfos.ISAAC_MAX_STACK;
-		
+
 	}
 
 	/**
-	 * Methode qui mets a jour l'objet du jeu (position, vitesse, Compteurs ...etc.)
+	 * mets a jour l'objet du jeu (position, vitesse, Compteurs ...etc.)
 	 */
 	public void updateGameObject() {
 		move();
@@ -98,7 +100,7 @@ public class Hero extends Entity {
 	}
 
 	/**
-	 * Methode qui ajoute dix piece au personnage
+	 * ajoute dix piece au personnage
 	 * 
 	 */
 	public void addArgentTriche() {
@@ -110,7 +112,7 @@ public class Hero extends Entity {
 	}
 
 	/**
-	 * Methode qui calcul si une mouche est morte
+	 * calcul si une mouche est morte
 	 * 
 	 * @return un boolean </br>
 	 *         <ul>
@@ -123,7 +125,7 @@ public class Hero extends Entity {
 	}
 
 	/**
-	 * Methode qui creer une larme et qui la stock dans la liste de larme du
+	 * creer une larme et qui la stock dans la liste de larme du
 	 * personnage
 	 * 
 	 * @param e larme
@@ -177,12 +179,10 @@ public class Hero extends Entity {
 			this.estPuissant = true;
 			this.countDownPower = 40;
 			this.damage = 5000000;
-			System.out.println("Dobby Pete des cul");
 		} else if (this.estPuissant && this.countDownPower == 0) {
 			this.estPuissant = false;
 			this.countDownPower = 40;
 			this.damage = 1;
-			System.out.println("Dobby est une merde");
 
 		}
 

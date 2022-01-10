@@ -1,6 +1,5 @@
 package gameWorld.rooms;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +26,9 @@ import libraries.Vector2;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
+/**
+ * Methode abstraite de generation de room
+ */
 public abstract class Room {
 
 	/**
@@ -35,8 +37,6 @@ public abstract class Room {
 	Hero hero;
 
 	String type;
-
-	Color bgColor;
 
 	Integer id;
 
@@ -66,8 +66,6 @@ public abstract class Room {
 		this.compteurInvincibiliteHero = 10;
 		this.type = "DEFAULT_ROOM";
 
-		this.bgColor = StdDraw.GRAY;
-
 		this.lstPorte = new ArrayList<>();
 
 		this.lstObjet = new ArrayList<>();
@@ -83,11 +81,14 @@ public abstract class Room {
 	 */
 	public abstract void updateRoom();
 
-	/*
-	 * Drawing
+	/**
+	 * dessine la room
 	 */
 	public abstract void drawRoom();
 
+	/**
+	 * dessine les porte de la room
+	 */
 	public void dessinePorte() {
 
 		for (int i = 0; i < lstPorte.size(); i++) {
@@ -101,7 +102,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui génère une objet random en respectant les probabilité
+	 * génère une objet random en respectant les probabilité
 	 * d'apparition
 	 */
 	public GenericObject initObjectGift() {
@@ -161,30 +162,42 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui initialise le nb de monstre au demarrage de la room
+	 * initialise le nb de monstre au demarrage de la room
 	 */
 	void initMonster() {
-		for (int i = 0; i < 4; i++) {
+		int nbMonstre;
+
+		if (this.id <= 5) {
+			nbMonstre = 4;
+		} else if (this.id > 5 && this.id <= 14) {
+			nbMonstre = 8;
+
+		} else {
+			nbMonstre = 10;
+
+		}
+
+		for (int i = 0; i < nbMonstre; i++) {
 			// on evite que un monstre spawn sur un obstacle
 			// ainsi lors de la g�n�ration on fait en sorte que la position du monstre
 			// n'est jamais la m�me que celui d'un obstacle.
 			double x = Math.random();
 			double y = Math.random();
 			boolean jeSuisSurUnobstacle = false;
-			while (jeSuisSurUnobstacle ==  true) {
-				 x = Math.random();
-				 y = Math.random();
-				if (x < 0.08) {
-					x += 0.3;
+			while (jeSuisSurUnobstacle == true) {
+				x = Math.random();
+				y = Math.random();
+				if (x < 0.2) {
+					x += 0.1;
 				}
-				if (x > 0.92) {
-					x -= 0.3;
+				if (x > 0.75) {
+					x -= 0.2;
 				}
-				if (y < 0.08) {
-					y += 0.25;
+				if (y < 0.3) {
+					y += 0.1;
 				}
-				if (y > 0.92) {
-					y -= 0.25;
+				if (y > 0.75) {
+					y -= 0.2;
 
 				}
 				Vector2 vecteurTampon = new Vector2(x, y);
@@ -201,8 +214,30 @@ public abstract class Room {
 			if (Math.random() < 0.5) {
 
 				this.lsMonster.add(new Spider(new Vector2(x, y)));
+
+				if (nbMonstre == 4) {
+					this.lsMonster.get(i).setDegatCorpsACorps(1);
+
+				} else if (nbMonstre == 8) {
+					this.lsMonster.get(i).setDegatCorpsACorps(2);
+
+				} else {
+					this.lsMonster.get(i).setDegatCorpsACorps(4);
+
+				}
+
 			} else {
 				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
+				if (nbMonstre == 4) {
+					this.lsMonster.get(i).setDegatCorpsACorps(1);
+
+				} else if (nbMonstre == 8) {
+					this.lsMonster.get(i).setDegatCorpsACorps(2);
+
+				} else {
+					this.lsMonster.get(i).setDegatCorpsACorps(4);
+
+				}
 			}
 
 		}
@@ -240,7 +275,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui retire des listes tous les monstre qui sont supposer mort
+	 * retire des listes tous les monstre qui sont supposer mort
 	 */
 	public void rammasseMonstreMort() {
 
@@ -254,7 +289,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui nettoie de l'afficheage les larme
+	 * nettoie de l'afficheage les larme
 	 */
 	public void nettoyageLarme() {
 		for (int k = 0; k < hero.getLstLarme().size(); k++) {
@@ -268,7 +303,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui nettoie de l'afficheage les larme
+	 * nettoie de l'afficheage les larme
 	 */
 	void nettoyageProj() {
 		for (int k = 0; this.lsMonster != null && k < this.lsMonster.size(); k++) {
@@ -286,7 +321,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui gere les collision entre differente entité
+	 * gere les collision entre differente entité
 	 */
 	void collisionReport() {
 
@@ -303,7 +338,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui calcul les collision entre le personnage et les objet
+	 * calcul les collision entre le personnage et les objet
 	 */
 	public void collisionObjet() {
 		// pour chacun de mes objet
@@ -335,7 +370,6 @@ public abstract class Room {
 					} else if ((lstObjet.get(i) instanceof Life)
 							&& lstObjet.get(i).getValue() + hero.getPointVie() <= hero.getMaxpointVie()) {
 						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
-						System.out.println("Rend l'argent des pieces !");
 					}
 					countDownObject = 20;
 				}
@@ -350,7 +384,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui gere la collision entre monstre et le Hero
+	 * gere la collision entre monstre et le Hero
 	 * 
 	 * @param monstre monstre avec lequel la colision est possible
 	 */
@@ -370,7 +404,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui gere la collision entre les monstre et les larmes
+	 * gere la collision entre les monstre et les larmes
 	 * 
 	 * @param monstre
 	 */
@@ -383,7 +417,6 @@ public abstract class Room {
 					this.hero.getLstLarme().get(j).getSize(), monstre.getPosition(), monstre.getSize())) {
 				monstre.retirepointVie(this.hero.getLstLarme().get(j).getdamage());
 				this.hero.getLstLarme().get(j).setPortee(0);
-				System.out.println(monstre.getPointVie());
 			}
 
 		}
@@ -391,7 +424,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui gere la collision entre le hero est les projectile lancer par des
+	 * gere la collision entre le hero est les projectile lancer par des
 	 * monstres
 	 * 
 	 * @param monstre
@@ -408,6 +441,11 @@ public abstract class Room {
 		}
 	}
 
+	/**
+	 * gestion de la collision contre un obstable
+	 * 
+	 * @param lsObstacle
+	 */
 	public void collisionObstacle(List<GenericObstacle> lsObstacle) {
 		// On d�cremante le potentielle compteur d'invisibilit� du personnage si il a
 		// touch� des pikes
@@ -418,9 +456,10 @@ public abstract class Room {
 		// obstacles et tout les monstres
 		for (int numeroObstacles = 0; !lsObstacle.isEmpty() && numeroObstacles < lsObstacle.size(); numeroObstacles++) {
 			for (int numeroMonstre = 0; !lsMonster.isEmpty() && numeroMonstre < lsMonster.size(); numeroMonstre++) {
-				if (lsMonster.get(numeroMonstre)!= null && Physics.rectangleCollision(lsMonster.get(numeroMonstre).getPosition(),
-						lsMonster.get(numeroMonstre).getSize(), lsObstacle.get(numeroObstacles).getPosition(),
-						lsObstacle.get(numeroObstacles).getSize())) {
+				if (lsMonster.get(numeroMonstre) != null
+						&& Physics.rectangleCollision(lsMonster.get(numeroMonstre).getPosition(),
+								lsMonster.get(numeroMonstre).getSize(), lsObstacle.get(numeroObstacles).getPosition(),
+								lsObstacle.get(numeroObstacles).getSize())) {
 					if (lsObstacle.get(numeroObstacles) instanceof Poop
 							|| lsObstacle.get(numeroObstacles) instanceof Rock) {
 						if (lsMonster.get(numeroMonstre) instanceof Spider
@@ -477,7 +516,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui affiche les information du joueur
+	 * affiche les information du joueur
 	 */
 	public void affichageViePiece() {
 		// Affichage nb piece
@@ -486,6 +525,12 @@ public abstract class Room {
 		StdDraw.setPenRadius();
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.text(0.1, 0.9, ": " + hero.getStackArgent() + "");
+		// affiche puissance
+		StdDraw.picture(0.05, 0.85, ImagePaths.STRENGTH, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
+				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
+		StdDraw.setPenRadius();
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.text(0.1, 0.85, ": " + hero.getdamage() + "");
 		// ----------------------------------------------------------------
 		StdDraw.setPenRadius();
 		int pointVieView = this.hero.getpointVie();
@@ -516,7 +561,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui dessine les monstre
+	 * dessine les monstre
 	 */
 	void dessineMonstre() {
 
@@ -538,7 +583,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Methode qui dessine les larmes
+	 * dessine les larmes
 	 */
 	void dessineLarme() {
 		for (int i = 0; i < hero.getLstLarme().size(); i++) {
@@ -563,6 +608,10 @@ public abstract class Room {
 		return new Vector2(indexX * RoomInfos.TILE_WIDTH + RoomInfos.HALF_TILE_SIZE.getX(),
 				indexY * RoomInfos.TILE_HEIGHT + RoomInfos.HALF_TILE_SIZE.getY());
 	}
+
+	/**
+	 * GETTERS SETTERS
+	 */
 
 	public List<GenericObstacle> getLsObstacle() {
 		return lsObstacle;
