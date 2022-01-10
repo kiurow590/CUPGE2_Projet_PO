@@ -170,7 +170,7 @@ public abstract class Room {
 			// n'est jamais la m�me que celui d'un obstacle.
 			double x = Math.random();
 			double y = Math.random();
-			boolean jeSuisSurUnobstacle = true;
+			boolean jeSuisSurUnobstacle = false;
 			while (jeSuisSurUnobstacle ==  true) {
 				 x = Math.random();
 				 y = Math.random();
