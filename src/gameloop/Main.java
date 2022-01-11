@@ -8,6 +8,8 @@ import resources.DisplaySettings;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
+import java.awt.Font;
+
 public class Main {
 	public static void main(String[] args) {
 		// Hero, world and display initialisation.
@@ -25,11 +27,41 @@ public class Main {
 		}
 		// Si isaac est mort
 		if (isaac.isDead()) {
-			// on affiche une image indiquant que la partie est perdu
-			StdDraw.clear();
-			StdDraw.picture(0.5, 0.5, ImagePaths.LOSE_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,
-					RoomInfos.TILE_SIZE.getY() * 9, 0);
-			StdDraw.show();
+
+			while (true) {
+				// on affiche une image indiquant que la partie est perdu
+				StdDraw.clear();
+				StdDraw.picture(0.5, 0.5, ImagePaths.LOSE_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,
+						RoomInfos.TILE_SIZE.getY() * 9, 0);
+				Font fonte = new Font(" TimesRoman ", Font.BOLD, 30);
+				StdDraw.setFont(fonte);
+				StdDraw.setPenColor(StdDraw.WHITE);
+
+				StdDraw.filledRectangle(0.5, 0.4, 0.2, 0.05);
+
+				StdDraw.filledRectangle(0.5, 0.3, 0.2, 0.05);
+
+				StdDraw.setPenColor(StdDraw.BLACK);
+
+				StdDraw.text(0.5, 0.4, "Rejouer");
+				StdDraw.text(0.5, 0.3, "QUITTER");
+
+				if (StdDraw.isMousePressed()) {
+					System.out.println("Josie la best");
+					if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
+							&& (StdDraw.mouseY() >= 0.35 && StdDraw.mouseY() <= 0.45)) {
+						main(new String[0]);
+					}
+					if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
+							&& (StdDraw.mouseY() >= 0.25 && StdDraw.mouseY() <= 0.35)) {
+						System.exit(0);
+					}
+				}
+
+				StdDraw.show();
+
+			}
+
 			// Sinon
 		} else {
 			// on affiche l'image indiquant que la partie est gagnee
