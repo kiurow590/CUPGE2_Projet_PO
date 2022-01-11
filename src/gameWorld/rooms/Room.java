@@ -183,34 +183,49 @@ public abstract class Room {
 			// n'est jamais la m�me que celui d'un obstacle.
 			double x = Math.random();
 			double y = Math.random();
-			boolean jeSuisSurUnobstacle = false;
-			while (jeSuisSurUnobstacle == true) {
-				x = Math.random();
-				y = Math.random();
-				if (x < 0.2) {
-					x += 0.1;
-				}
-				if (x > 0.75) {
-					x -= 0.2;
-				}
-				if (y < 0.3) {
-					y += 0.1;
-				}
-				if (y > 0.75) {
-					y -= 0.2;
 
-				}
-				Vector2 vecteurTampon = new Vector2(x, y);
-				for (int numeroObstacle = 0; !lsObstacle.isEmpty()
-						&& numeroObstacle < lsObstacle.size(); numeroObstacle++) {
-
-					if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon) || vecteurTampon == null) {
-						jeSuisSurUnobstacle = true;
-					} else {
-						jeSuisSurUnobstacle = false;
-					}
-				}
+			if (x < 0.3) {
+				x += 0.1;
 			}
+			if (x > 0.7) {
+				x -= 0.2;
+			}
+			if (y < 0.35) {
+				y += 0.14;
+			}
+			if (y > 0.75) {
+				y -= 0.2;
+
+			}
+			// boolean jeSuisSurUnobstacle = false;
+			// while (jeSuisSurUnobstacle == true) {
+			// x = Math.random();
+			// y = Math.random();
+			// if (x < 0.2) {
+			// x += 0.1;
+			// }
+			// if (x > 0.75) {
+			// x -= 0.2;
+			// }
+			// if (y < 0.3) {
+			// y += 0.1;
+			// }
+			// if (y > 0.75) {
+			// y -= 0.2;
+
+			// }
+			// Vector2 vecteurTampon = new Vector2(x, y);
+			// for (int numeroObstacle = 0; !lsObstacle.isEmpty()
+			// && numeroObstacle < lsObstacle.size(); numeroObstacle++) {
+
+			// if (!(lsObstacle.get(numeroObstacle).getPosition() == vecteurTampon) ||
+			// vecteurTampon == null) {
+			// jeSuisSurUnobstacle = true;
+			// } else {
+			// jeSuisSurUnobstacle = false;
+			// }
+			// }
+			// }
 			if (Math.random() < 0.5) {
 
 				this.lsMonster.add(new Spider(new Vector2(x, y)));
@@ -555,7 +570,7 @@ public abstract class Room {
 
 			}
 
-			StdDraw.picture(x, 0.9, ImagePaths.HALF_HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+			StdDraw.picture(x, 0.95, ImagePaths.HALF_HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
 					RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 		}
 	}

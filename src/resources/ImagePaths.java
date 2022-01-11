@@ -59,4 +59,6 @@ public class ImagePaths {
 
 	public static final String STRENGTH = "images/Strength.png";
 
+	public static final String LAUNCHMENU = "images/binding_of_isaac_rebirth_title.png";
+
 }
