@@ -555,7 +555,7 @@ public abstract class Room {
 
 			}
 
-			StdDraw.picture(x, 0.9, ImagePaths.HALF_HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+			StdDraw.picture(x, 0.95, ImagePaths.HALF_HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
 					RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 		}
 	}

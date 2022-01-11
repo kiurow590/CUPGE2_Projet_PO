@@ -28,28 +28,28 @@ public class Main {
 			StdDraw.setFont(fonte);
 			StdDraw.setPenColor(StdDraw.WHITE);
 
-			StdDraw.filledRectangle(0.5, 0.4, 0.2, 0.05);
+			StdDraw.filledRectangle(0.1, 0.5, 0.1, 0.05);
 
-			StdDraw.filledRectangle(0.5, 0.3, 0.2, 0.05);
+			StdDraw.filledRectangle(0.85, 0.5, 0.15, 0.05);
 
 			StdDraw.setPenColor(StdDraw.BLACK);
 
-			StdDraw.text(0.5, 0.4, "Jouer");
-			StdDraw.text(0.5, 0.3, "QUITTER");
+			StdDraw.text(0.1, 0.5, "Jouer");
+			StdDraw.text(0.85, 0.5, "Quitter");
 
 			if (StdDraw.isMousePressed()) {
 				System.out.println("Josie la best");
-				if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
-						&& (StdDraw.mouseY() >= 0.35 && StdDraw.mouseY() <= 0.45)) {
+				if ((StdDraw.mouseX() >= 0 && StdDraw.mouseX() <= 0.2)
+						&& (StdDraw.mouseY() >= 0.45 && StdDraw.mouseY() <= 0.55)) {
 					break;
 				}
-				if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
-						&& (StdDraw.mouseY() >= 0.25 && StdDraw.mouseY() <= 0.35)) {
+				if ((StdDraw.mouseX() >= 0.7 && StdDraw.mouseX() <= 1)
+						&& (StdDraw.mouseY() >= 0.45 && StdDraw.mouseY() <= 0.55)) {
 					System.exit(0);
 				}
 			}
-			StdDraw.picture(StdDraw.mouseX(), StdDraw.mouseY(), ImagePaths.STRENGTH, 0.1,
-					0.1, 0);
+			StdDraw.picture(StdDraw.mouseX() - 0.025, StdDraw.mouseY() - 0.025, ImagePaths.STRENGTH, 0.05,
+					0.05, 0);
 			StdDraw.show();
 
 		}
@@ -74,28 +74,27 @@ public class Main {
 				StdDraw.setFont(fonte);
 				StdDraw.setPenColor(StdDraw.WHITE);
 
-				StdDraw.filledRectangle(0.5, 0.4, 0.2, 0.05);
+				StdDraw.filledRectangle(0.1, 0.5, 0.1, 0.05);
 
-				StdDraw.filledRectangle(0.5, 0.3, 0.2, 0.05);
+				StdDraw.filledRectangle(0.85, 0.5, 0.15, 0.05);
 
 				StdDraw.setPenColor(StdDraw.BLACK);
 
-				StdDraw.text(0.5, 0.4, "Rejouer");
-				StdDraw.text(0.5, 0.3, "QUITTER");
-
+				StdDraw.text(0.1, 0.5, "Rejouer");
+				StdDraw.text(0.85, 0.5, "Quitter");
 				if (StdDraw.isMousePressed()) {
 					System.out.println("Josie la best");
-					if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
-							&& (StdDraw.mouseY() >= 0.35 && StdDraw.mouseY() <= 0.45)) {
-						main(new String[0]);
+					if ((StdDraw.mouseX() >= 0 && StdDraw.mouseX() <= 0.2)
+							&& (StdDraw.mouseY() >= 0.45 && StdDraw.mouseY() <= 0.55)) {
+						break;
 					}
-					if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
-							&& (StdDraw.mouseY() >= 0.25 && StdDraw.mouseY() <= 0.35)) {
+					if ((StdDraw.mouseX() >= 0.7 && StdDraw.mouseX() <= 1)
+							&& (StdDraw.mouseY() >= 0.45 && StdDraw.mouseY() <= 0.55)) {
 						System.exit(0);
 					}
 				}
-				StdDraw.picture(StdDraw.mouseX(), StdDraw.mouseY(), ImagePaths.STRENGTH, 0.1,
-						0.1, 0);
+				StdDraw.picture(StdDraw.mouseX() - 0.025, StdDraw.mouseY() - 0.025, ImagePaths.STRENGTH, 0.05,
+						0.05, 0);
 				StdDraw.show();
 
 			}
@@ -110,28 +109,27 @@ public class Main {
 			StdDraw.setFont(fonte);
 			StdDraw.setPenColor(StdDraw.WHITE);
 
-			StdDraw.filledRectangle(0.5, 0.4, 0.2, 0.05);
+			StdDraw.filledRectangle(0.1, 0.5, 0.1, 0.05);
 
-			StdDraw.filledRectangle(0.5, 0.3, 0.2, 0.05);
+			StdDraw.filledRectangle(0.85, 0.5, 0.15, 0.05);
 
 			StdDraw.setPenColor(StdDraw.BLACK);
 
-			StdDraw.text(0.5, 0.4, "Rejouer");
-			StdDraw.text(0.5, 0.3, "QUITTER");
-
+			StdDraw.text(0.1, 0.5, "Rejouer");
+			StdDraw.text(0.85, 0.5, "QUITTER");
 			if (StdDraw.isMousePressed()) {
 				System.out.println("Josie la best");
-				if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
-						&& (StdDraw.mouseY() >= 0.35 && StdDraw.mouseY() <= 0.45)) {
+				if ((StdDraw.mouseX() >= 0 && StdDraw.mouseX() <= 0.2)
+						&& (StdDraw.mouseY() >= 0.45 && StdDraw.mouseY() <= 0.55)) {
 					main(new String[0]);
 				}
-				if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
-						&& (StdDraw.mouseY() >= 0.25 && StdDraw.mouseY() <= 0.35)) {
+				if ((StdDraw.mouseX() >= 0.7 && StdDraw.mouseX() <= 1)
+						&& (StdDraw.mouseY() >= 0.45 && StdDraw.mouseY() <= 0.55)) {
 					System.exit(0);
 				}
 			}
-			StdDraw.picture(StdDraw.mouseX(), StdDraw.mouseY(), ImagePaths.STRENGTH, 0.1,
-					0.1, 0);
+			StdDraw.picture(StdDraw.mouseX() - 0.025, StdDraw.mouseY() - 0.025, ImagePaths.STRENGTH, 0.05,
+					0.05, 0);
 			StdDraw.show();
 		}
 	}
