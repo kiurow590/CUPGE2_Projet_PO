@@ -67,13 +67,13 @@ public class Main {
 		if (isaac.isDead()) {
 
 			while (true) {
-				AffichageMenu(ImagePaths.WIN_SCREEN);
+				AffichageMenu(ImagePaths.LOSE_SCREEN);
 			}
 
 			// Sinon
 		} else {
 			while (true) {
-				AffichageMenu(ImagePaths.LOSE_SCREEN);
+				AffichageMenu(ImagePaths.WIN_SCREEN);
 			}
 		}
 
