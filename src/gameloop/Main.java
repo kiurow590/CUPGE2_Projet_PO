@@ -20,8 +20,45 @@ public class Main {
 		initializeDisplay();
 
 		// Tant que le jeu n'est pas fini ou que isaac n'as pas gagne
+		while (true) {
+			StdDraw.clear();
+			StdDraw.picture(0.5, 0.5, ImagePaths.LAUNCHMENU, RoomInfos.TILE_SIZE.getX() * 9,
+					RoomInfos.TILE_SIZE.getY() * 9, 0);
+			Font fonte = new Font(" TimesRoman ", Font.BOLD, 30);
+			StdDraw.setFont(fonte);
+			StdDraw.setPenColor(StdDraw.WHITE);
+
+			StdDraw.filledRectangle(0.5, 0.4, 0.2, 0.05);
+
+			StdDraw.filledRectangle(0.5, 0.3, 0.2, 0.05);
+
+			StdDraw.setPenColor(StdDraw.BLACK);
+
+			StdDraw.text(0.5, 0.4, "Jouer");
+			StdDraw.text(0.5, 0.3, "QUITTER");
+
+			if (StdDraw.isMousePressed()) {
+				System.out.println("Josie la best");
+				if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
+						&& (StdDraw.mouseY() >= 0.35 && StdDraw.mouseY() <= 0.45)) {
+					break;
+				}
+				if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
+						&& (StdDraw.mouseY() >= 0.25 && StdDraw.mouseY() <= 0.35)) {
+					System.exit(0);
+				}
+			}
+			StdDraw.picture(StdDraw.mouseX(), StdDraw.mouseY(), ImagePaths.STRENGTH, 0.1,
+					0.1, 0);
+			StdDraw.show();
+
+		}
+
+		// Tant que le jeu n'est pas fini ou que isaac n'as pas gagne
 		while (!world.gameOver() && world.getCurrentRoom().getAGagner() == false) {
 			// le jeu continue de tourner
+			StdDraw.setFont();
+
 			processNextStep(world);
 
 		}
@@ -57,7 +94,8 @@ public class Main {
 						System.exit(0);
 					}
 				}
-
+				StdDraw.picture(StdDraw.mouseX(), StdDraw.mouseY(), ImagePaths.STRENGTH, 0.1,
+						0.1, 0);
 				StdDraw.show();
 
 			}
@@ -68,6 +106,32 @@ public class Main {
 			StdDraw.clear();
 			StdDraw.picture(0.5, 0.5, ImagePaths.WIN_SCREEN, RoomInfos.TILE_SIZE.getX() * 9,
 					RoomInfos.TILE_SIZE.getY() * 9, 0);
+			Font fonte = new Font(" TimesRoman ", Font.BOLD, 30);
+			StdDraw.setFont(fonte);
+			StdDraw.setPenColor(StdDraw.WHITE);
+
+			StdDraw.filledRectangle(0.5, 0.4, 0.2, 0.05);
+
+			StdDraw.filledRectangle(0.5, 0.3, 0.2, 0.05);
+
+			StdDraw.setPenColor(StdDraw.BLACK);
+
+			StdDraw.text(0.5, 0.4, "Rejouer");
+			StdDraw.text(0.5, 0.3, "QUITTER");
+
+			if (StdDraw.isMousePressed()) {
+				System.out.println("Josie la best");
+				if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
+						&& (StdDraw.mouseY() >= 0.35 && StdDraw.mouseY() <= 0.45)) {
+					main(new String[0]);
+				}
+				if ((StdDraw.mouseX() >= 0.4 && StdDraw.mouseX() <= 0.6)
+						&& (StdDraw.mouseY() >= 0.25 && StdDraw.mouseY() <= 0.35)) {
+					System.exit(0);
+				}
+			}
+			StdDraw.picture(StdDraw.mouseX(), StdDraw.mouseY(), ImagePaths.STRENGTH, 0.1,
+					0.1, 0);
 			StdDraw.show();
 		}
 	}
