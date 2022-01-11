@@ -19,7 +19,7 @@ public class Main {
 		// on initialise l'affichage
 		initializeDisplay();
 
-		// Tant que le jeu n'est pas fini ou que isaac n'as pas gagne
+		// affichage du menu au demarrage
 		while (true) {
 			StdDraw.clear();
 			StdDraw.picture(0.5, 0.5, ImagePaths.LAUNCHMENU, RoomInfos.TILE_SIZE.getX() * 9,
@@ -36,7 +36,7 @@ public class Main {
 
 			StdDraw.text(0.1, 0.5, "Jouer");
 			StdDraw.text(0.85, 0.5, "Quitter");
-
+			// gestion du click dans les "zone"
 			if (StdDraw.isMousePressed()) {
 				System.out.println("Josie la best");
 				if ((StdDraw.mouseX() >= 0 && StdDraw.mouseX() <= 0.2)
@@ -48,6 +48,7 @@ public class Main {
 					System.exit(0);
 				}
 			}
+			// affichage de curseur
 			StdDraw.picture(StdDraw.mouseX() - 0.025, StdDraw.mouseY() - 0.025, ImagePaths.STRENGTH, 0.05,
 					0.05, 0);
 			StdDraw.show();
@@ -56,7 +57,7 @@ public class Main {
 
 		// Tant que le jeu n'est pas fini ou que isaac n'as pas gagne
 		while (!world.gameOver() && world.getCurrentRoom().getAGagner() == false) {
-			// le jeu continue de tourner
+
 			StdDraw.setFont();
 
 			processNextStep(world);
