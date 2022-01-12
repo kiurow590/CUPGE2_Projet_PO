@@ -2,6 +2,7 @@ package gameloop;
 
 import gameWorld.GameWorld;
 import gameobjects.personnages.Hero;
+import gameobjects.personnages.Isaac;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
@@ -13,7 +14,7 @@ import java.awt.Font;
 public class Main {
 	public static void main(String[] args) {
 		// Hero, world and display initialisation.
-		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM);
+		Hero isaac = new Isaac(RoomInfos.POSITION_CENTER_OF_ROOM);
 		// on genere un nouveau gameWorld
 		GameWorld world = new GameWorld(isaac);
 		// on initialise l'affichage

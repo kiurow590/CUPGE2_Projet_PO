@@ -13,7 +13,7 @@ import resources.ImagePaths;
 /**
  * Classe de hero
  */
-public class Hero extends Entity {
+public abstract class Hero extends Entity {
 	/**
 	 * Attribut
 	 */
@@ -38,11 +38,15 @@ public class Hero extends Entity {
 	 * Constructeur de hero
 	 * 
 	 * @param position position initiale du Hero
+	 * @param image
+	 * @param speed
+	 * @param vie
+	 * @param maxlife
 	 */
-	public Hero(Vector2 position) {
+	public Hero(Vector2 position, String image, double speed, int vie, int maxlife) {
 
-		super(position, HeroInfos.ISAAC_SIZE, ImagePaths.ISAAC, HeroInfos.ISAAC_SPEED, new Vector2(),
-				HeroInfos.ISAAC_LIFE, HeroInfos.ISAAC_LIFE);
+		super(position, HeroInfos.ISAAC_SIZE, image, speed, new Vector2(),
+				vie, maxlife);
 
 		this.estInvincible = false;
 
