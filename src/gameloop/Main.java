@@ -16,9 +16,9 @@ import java.awt.Font;
 public class Main {
 	public static void main(String[] args) {
 		// Hero, world and display initialisation.
-		// Hero isaac = new Isaac(RoomInfos.POSITION_CENTER_OF_ROOM);
+		Hero isaac = new Isaac(RoomInfos.POSITION_CENTER_OF_ROOM);
 		// Hero isaac = new Magdalene(RoomInfos.POSITION_CENTER_OF_ROOM);
-		Hero isaac = new PyroBarbare(RoomInfos.POSITION_CENTER_OF_ROOM);
+		// Hero isaac = new PyroBarbare(RoomInfos.POSITION_CENTER_OF_ROOM);
 
 		// on genere un nouveau gameWorld
 		GameWorld world = new GameWorld(isaac);
@@ -35,12 +35,15 @@ public class Main {
 			StdDraw.setPenColor(StdDraw.WHITE);
 
 			StdDraw.filledRectangle(0.1, 0.5, 0.1, 0.05);
+			StdDraw.filledRectangle(0.5, 0.2, 0.15, 0.05);
 
-			StdDraw.filledRectangle(0.85, 0.5, 0.15, 0.05);
+			StdDraw.filledRectangle(0.85, 0.5, 0.2, 0.05);
 
 			StdDraw.setPenColor(StdDraw.BLACK);
 
 			StdDraw.text(0.1, 0.5, "Jouer");
+			StdDraw.text(0.5, 0.2, "Personnages");
+
 			StdDraw.text(0.85, 0.5, "Quitter");
 			// gestion du click dans les "zone"
 			if (StdDraw.isMousePressed()) {
