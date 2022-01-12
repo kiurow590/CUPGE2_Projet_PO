@@ -18,21 +18,21 @@ public abstract class Hero extends Entity {
 	 * Attribut
 	 */
 
-	private List<Projectile> lstLarme;
-	private int damage;
+	List<Projectile> lstLarme;
+	int damage;
 
-	private boolean estInvincible;
-	private boolean estRapide;
-	private boolean estPuissant;
-	private int countDownInvincible;
-	private int countDownSpped;
-	private int countDownTir;
-	private int countDownPower;
+	boolean estInvincible;
+	boolean estRapide;
+	boolean estPuissant;
+	int countDownInvincible;
+	int countDownSpped;
+	int countDownTir;
+	int countDownPower;
 
-	private int stackArgent;
-	private int soldeStackMax;
+	int stackArgent;
+	int soldeStackMax;
 
-	private int countDownGiveStack;
+	int countDownGiveStack;
 
 	/**
 	 * Constructeur de hero
@@ -134,13 +134,7 @@ public abstract class Hero extends Entity {
 	 * 
 	 * @param e larme
 	 */
-	public void creeLarme(Vector2 position, String imagePath, Vector2 direction) {
-		if (this.countDownTir <= 0) {
-			this.lstLarme.add(new Tear(position, imagePath, direction, damage));
-			this.countDownTir = 20;
-		}
-
-	}
+	public abstract void creeLarme(Vector2 position, String imagePath, Vector2 direction);
 
 	/**
 	 * Passe le hero en mode invincible ou pas

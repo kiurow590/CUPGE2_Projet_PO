@@ -1,0 +1,23 @@
+package gameobjects.personnages;
+
+import gameobjects.projectiles.Bomb;
+import libraries.Vector2;
+import resources.HeroInfos;
+import resources.ImagePaths;
+
+public class PyroBarbare extends Hero {
+
+    public PyroBarbare(Vector2 position) {
+        super(position, ImagePaths.PYROBARBARE, HeroInfos.ISAAC_SPEED * 3, 2, 2);
+        damage = 1;
+    }
+
+    @Override
+    public void creeLarme(Vector2 position, String imagePath, Vector2 direction) {
+        if (this.countDownTir <= 0) {
+            this.lstLarme.add(new Bomb(position, ImagePaths.BOMB, direction, damage));
+            this.countDownTir = 15;
+        }
+    }
+
+}

@@ -61,4 +61,6 @@ public class ImagePaths {
 
 	public static final String LAUNCHMENU = "images/binding_of_isaac_rebirth_title.png";
 
+	public static final String PYROBARBARE = "images/Pyro_Barbare.png";
+
 }
