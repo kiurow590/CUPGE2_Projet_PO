@@ -64,7 +64,7 @@ public class MonsterRoom extends Room {
 	}
 
 	public void choixpatternObstacle() {
-		// on choisi un pattern possible parmis les 6 ( construit a la main
+		// on choisi un pattern possible parmis les 6 ( construit a la main)
 		Double numeropattern = Math.random() * 6;
 		if (numeropattern <= 1) {
 			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.22), new Vector2(0.09, 0.09)));
