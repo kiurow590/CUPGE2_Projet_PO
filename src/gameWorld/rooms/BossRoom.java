@@ -34,6 +34,7 @@ public class BossRoom extends Room {
         this.lsMonster.add(new Boss(new Vector2(0.5, 0.5), this));
 
         this.lstObjet.add(new BoxWin(new Vector2(0.5, 0.5), this));
+        choixpattern();
     }
 
     @Override

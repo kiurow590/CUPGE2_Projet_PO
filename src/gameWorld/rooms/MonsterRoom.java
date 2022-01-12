@@ -135,10 +135,10 @@ public class MonsterRoom extends Room {
 			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.6), new Vector2(0.09, 0.09)));
 			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.4), new Vector2(0.09, 0.09)));
 			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.22), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.8, 0.8), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.8, 0.6), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.8, 0.4), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.8, 0.22), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.8), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.6), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.4), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.22), new Vector2(0.09, 0.09)));
 		} else if (numeropattern > 5 && numeropattern <= 6) {
 			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.78), new Vector2(0.09, 0.09)));
 			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.69), new Vector2(0.09, 0.09)));
