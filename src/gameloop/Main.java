@@ -2,9 +2,13 @@ package gameloop;
 
 import gameWorld.GameWorld;
 import gameobjects.personnages.Hero;
+import gameobjects.personnages.Isaac;
+import gameobjects.personnages.Magdalene;
+import gameobjects.personnages.PyroBarbare;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
+import resources.HeroInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
@@ -13,9 +17,7 @@ import java.awt.Font;
 public class Main {
 	public static void main(String[] args) {
 		// Hero, world and display initialisation.
-		Hero isaac = new Hero(RoomInfos.POSITION_CENTER_OF_ROOM);
-		// on genere un nouveau gameWorld
-		GameWorld world = new GameWorld(isaac);
+		Hero hero = new Isaac(RoomInfos.POSITION_CENTER_OF_ROOM);
 		// on initialise l'affichage
 		initializeDisplay();
 
@@ -29,13 +31,22 @@ public class Main {
 			StdDraw.setPenColor(StdDraw.WHITE);
 
 			StdDraw.filledRectangle(0.1, 0.5, 0.1, 0.05);
+			StdDraw.filledRectangle(0.5, 0.2, 0.2, 0.06);
 
 			StdDraw.filledRectangle(0.85, 0.5, 0.15, 0.05);
 
 			StdDraw.setPenColor(StdDraw.BLACK);
 
 			StdDraw.text(0.1, 0.5, "Jouer");
+			StdDraw.text(0.5, 0.2, "Personnages");
+
 			StdDraw.text(0.85, 0.5, "Quitter");
+
+			// affichage de curseur
+			StdDraw.picture(StdDraw.mouseX() - 0.025, StdDraw.mouseY() - 0.025, ImagePaths.STRENGTH, 0.05,
+					0.05, 0);
+			StdDraw.show();
+
 			// gestion du click dans les "zone"
 			if (StdDraw.isMousePressed()) {
 				System.out.println("Josie la best");
@@ -43,18 +54,87 @@ public class Main {
 						&& (StdDraw.mouseY() >= 0.45 && StdDraw.mouseY() <= 0.55)) {
 					break;
 				}
+				if ((StdDraw.mouseX() >= 0.35 && StdDraw.mouseX() <= 0.65)
+						&& (StdDraw.mouseY() >= 0.15 && StdDraw.mouseY() <= 0.25)) {
+
+					while (true) {
+						StdDraw.clear();
+						StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+
+						StdDraw.picture(0.5, 0.5, ImagePaths.MENUPERSO, RoomInfos.TILE_SIZE.getX() * 9,
+								RoomInfos.TILE_SIZE.getY() * 9, 0);
+
+						StdDraw.picture(0.3, 0.8, ImagePaths.ISAAC, RoomInfos.TILE_SIZE.getX(),
+								RoomInfos.TILE_SIZE.getY(), 0);
+						StdDraw.filledRectangle(0.3, 0.55, 0.08, 0.15);
+
+						StdDraw.picture(0.5, 0.8, ImagePaths.MAGDALENE, RoomInfos.TILE_SIZE.getX(),
+								RoomInfos.TILE_SIZE.getY(), 0);
+						StdDraw.filledRectangle(0.5, 0.55, 0.08, 0.15);
+
+						StdDraw.picture(0.7, 0.8, ImagePaths.PYROBARBARE, RoomInfos.TILE_SIZE.getX(),
+								RoomInfos.TILE_SIZE.getY(), 0);
+						StdDraw.filledRectangle(0.7, 0.55, 0.08, 0.15);
+
+						StdDraw.setPenColor(StdDraw.BLACK);
+						StdDraw.setFont(new Font(" TimesRoman ", Font.BOLD, 12));
+
+						StdDraw.text(0.3, 0.65, "ISAAC");
+						StdDraw.text(0.3, 0.60, "LIFE : 6");
+						StdDraw.text(0.3, 0.55, "DAMMAGE : 1");
+						StdDraw.text(0.3, 0.5, "SPEED : " + HeroInfos.ISAAC_SPEED);
+
+						StdDraw.text(0.5, 0.65, "MAGDELENE");
+						StdDraw.text(0.5, 0.60, "LIFE : 8");
+						StdDraw.text(0.5, 0.55, "DAMMAGE : 4");
+						StdDraw.text(0.5, 0.5, "SPEED : " + HeroInfos.ISAAC_SPEED);
+
+						StdDraw.text(0.7, 0.65, "LILITH");
+						StdDraw.text(0.7, 0.60, "LIFE : 2");
+						StdDraw.text(0.7, 0.55, "DAMMAGE : 1");
+						StdDraw.text(0.7, 0.5, "SPEED : " + HeroInfos.ISAAC_SPEED);
+						// affichage de curseur
+						StdDraw.picture(StdDraw.mouseX() - 0.025, StdDraw.mouseY() - 0.025, ImagePaths.STRENGTH, 0.05,
+								0.05, 0);
+						StdDraw.show();
+						if (StdDraw.isMousePressed()) {
+							if ((StdDraw.mouseX() >= 0.3 - RoomInfos.TILE_SIZE.getX()
+									&& StdDraw.mouseX() <= 0.3 + RoomInfos.TILE_SIZE.getX())
+									&& (StdDraw.mouseY() >= 0.8 - RoomInfos.TILE_SIZE.getX()
+											&& StdDraw.mouseY() <= 0.8 + RoomInfos.TILE_SIZE.getX())) {
+								hero = new Isaac(RoomInfos.POSITION_CENTER_OF_ROOM);
+								break;
+							}
+							if ((StdDraw.mouseX() >= 0.5 - RoomInfos.TILE_SIZE.getX()
+									&& StdDraw.mouseX() <= 0.5 + RoomInfos.TILE_SIZE.getX())
+									&& (StdDraw.mouseY() >= 0.8 - RoomInfos.TILE_SIZE.getX()
+											&& StdDraw.mouseY() <= 0.8 + RoomInfos.TILE_SIZE.getX())) {
+								hero = new Magdalene(RoomInfos.POSITION_CENTER_OF_ROOM);
+
+								break;
+							}
+							if ((StdDraw.mouseX() >= 0.7 - RoomInfos.TILE_SIZE.getX()
+									&& StdDraw.mouseX() <= 0.7 + RoomInfos.TILE_SIZE.getX())
+									&& (StdDraw.mouseY() >= 0.8 - RoomInfos.TILE_SIZE.getX()
+											&& StdDraw.mouseY() <= 0.8 + RoomInfos.TILE_SIZE.getX())) {
+								hero = new PyroBarbare(RoomInfos.POSITION_CENTER_OF_ROOM);
+
+								break;
+							}
+						}
+					}
+				}
+
 				if ((StdDraw.mouseX() >= 0.7 && StdDraw.mouseX() <= 1)
 						&& (StdDraw.mouseY() >= 0.45 && StdDraw.mouseY() <= 0.55)) {
 					System.exit(0);
 				}
+
 			}
-			// affichage de curseur
-			StdDraw.picture(StdDraw.mouseX() - 0.025, StdDraw.mouseY() - 0.025, ImagePaths.STRENGTH, 0.05,
-					0.05, 0);
-			StdDraw.show();
 
 		}
-
+		// on genere un nouveau gameWorld
+		GameWorld world = new GameWorld(hero);
 		// Tant que le jeu n'est pas fini ou que isaac n'as pas gagne
 		while (!world.gameOver() && world.getCurrentRoom().getAGagner() == false) {
 
@@ -64,7 +144,7 @@ public class Main {
 
 		}
 		// Si isaac est mort
-		if (isaac.isDead()) {
+		if (hero.isDead()) {
 
 			while (true) {
 				AffichageMenu(ImagePaths.LOSE_SCREEN);
