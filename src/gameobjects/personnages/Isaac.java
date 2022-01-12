@@ -6,8 +6,15 @@ import resources.HeroInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
 
+/**
+ * Class generant le hero isaac
+ */
 public class Isaac extends Hero {
-
+    /**
+     * Constructeur de isaac
+     * 
+     * @param position
+     */
     public Isaac(Vector2 position) {
         super(position, ImagePaths.ISAAC, HeroInfos.ISAAC_SPEED, HeroInfos.ISAAC_LIFE, HeroInfos.ISAAC_LIFE);
     }

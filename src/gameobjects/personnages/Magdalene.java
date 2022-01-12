@@ -4,8 +4,15 @@ import gameobjects.projectiles.BabyProjectile;
 import libraries.Vector2;
 import resources.ImagePaths;
 
+/**
+ * Class de hero magdelene
+ */
 public class Magdalene extends Hero {
-
+    /**
+     * Constructeur
+     * 
+     * @param position
+     */
     public Magdalene(Vector2 position) {
         super(position, ImagePaths.MAGDALENE, 0.0085, 8, 8);
         damage = 4;
