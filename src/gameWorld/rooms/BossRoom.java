@@ -91,8 +91,10 @@ public class BossRoom extends Room {
 		if (numeropattern > 1 && numeropattern <= 2) {
 			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.22), new Vector2(0.09, 0.09)));
 			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.22), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Poop(new Vector2(0.5, 0.78), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Poop(new Vector2(0.5, 0.22), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Poop(new Vector2(0.3, 0.78), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Poop(new Vector2(0.7, 0.78), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Poop(new Vector2(0.7, 0.22), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Poop(new Vector2(0.3, 0.22), new Vector2(0.09, 0.09)));
 			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.78), new Vector2(0.09, 0.09)));
 			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.78), new Vector2(0.09, 0.09)));
 			this.lsObstacle.add(new Spikes(new Vector2(0.4, 0.5), new Vector2(0.07, 0.07)));
