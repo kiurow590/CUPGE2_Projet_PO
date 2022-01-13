@@ -87,7 +87,7 @@ public class Boss extends Monster {
     private void move(Hero e, List<Monster> lstMonstreBoss) {
         this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
                 this.getPosition().getY() - e.getPosition().getY()).reverse());
-
+        this.setLastposition(this.getPosition());
         Vector2 normalizedDirection = getNormalizedDirection();
         Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);
         setPosition(positionAfterMoving);
