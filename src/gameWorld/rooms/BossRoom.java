@@ -28,7 +28,7 @@ public class BossRoom extends Room {
 		super(hero, id);
 		// TODO Auto-generated constructor stub
 		this.type = MON_TYPE;
-		this.bgColor = StdDraw.GRAY;
+		
 
 		this.lsMonster.add(new Boss(new Vector2(0.5, 0.5), this));
 

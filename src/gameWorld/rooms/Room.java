@@ -196,19 +196,6 @@ public abstract class Room {
 				y -= 0.2;
 
 			}
-			if (x < 0.08) {
-				x += 0.3;
-			}
-			if (x > 0.92) {
-				x -= 0.3;
-			}
-			if (y < 0.08) {
-				y += 0.25;
-			}
-			if (y > 0.92) {
-				y -= 0.25;
-
-			}
 			if (Math.random() < 0.5) {
 
 				this.lsMonster.add(new Spider(new Vector2(x, y)));
@@ -226,7 +213,7 @@ public abstract class Room {
 
 			} else {
 
-				this.lsMonster.add(new Fly(new Vector2(Math.random(), Math.random())));
+				this.lsMonster.add(new Fly(new Vector2(x, y)));
 				if (nbMonstre == 4) {
 					this.lsMonster.get(i).setDegatCorpsACorps(1);
 
@@ -336,8 +323,6 @@ public abstract class Room {
 		}
 		collisionObstacleLarmeHero();
 		collisionObstacleHero();
-		// 1 - gere la collision du hero seul avec les obstacle
-		// 2 - monstres et les obstable
 		collisionObjet();
 	}
 
