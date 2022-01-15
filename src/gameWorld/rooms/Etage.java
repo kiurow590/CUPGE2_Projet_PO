@@ -72,7 +72,9 @@ public class Etage {
         commerce1.getLstPorte().add(new TopDoor(monster3.getId()));
 
         commerce1.getLstPorte().add(new RightDoor(boss.getId()));
+        commerce1.getLstPorte().get(1).setImagePaths(ImagePaths.PORTEBOSSOUVERTE);
         boss.getLstPorte().add(new LeftDoor(commerce1.getId()));
+        boss.getLstPorte().get(0).setImagePaths(ImagePaths.PORTEBOSSOUVERTE);
         boss.getLstObjet().remove(0);
 
         // on ajoute a la map
@@ -137,7 +139,9 @@ public class Etage {
         commerce2.getLstPorte().add(new TopDoor(monster5.getId()));
 
         commerce2.getLstPorte().add(new BottomDoor(boss.getId()));
+        commerce2.getLstPorte().get(1).setImagePaths(ImagePaths.PORTEBOSSOUVERTE);
         boss.getLstPorte().add(new TopDoor(commerce2.getId()));
+        boss.getLstPorte().get(0).setImagePaths(ImagePaths.PORTEBOSSOUVERTE);
         boss.getLstObjet().remove(0);
 
         // on ajoute a la map

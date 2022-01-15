@@ -12,6 +12,7 @@ public class Controls {
 	public static int vitesse = Keybinding.keycodeOf('l');
 	public static int killMonster = Keybinding.keycodeOf('k');
 	public static int addMoney = Keybinding.keycodeOf('o');
+	public static int numberOne = Keybinding.keycodeOf('n');
 
 	public static int puissance = Keybinding.keycodeOf('p');
 

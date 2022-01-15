@@ -64,5 +64,7 @@ public class ImagePaths {
 	public static final String PYROBARBARE = "images/Pyro_Barbare.png";
 
 	public static final String MENUPERSO = "images/menuPerso.jpg";
+	public static final String PORTEBOSSOUVERTE = "images/bossDoors.png";
+	public static final String NUMBER_ONE = "images/number_One.PNG";
 
 }

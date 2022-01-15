@@ -110,6 +110,13 @@ public class GameWorld {
 			hero.addArgentTriche();
 
 		}
+		if (StdDraw.isKeyPressed(Controls.numberOne)) {
+			if(hero.numberOne==true) {
+				hero.numberOne=false;
+			}
+			hero.numberOne=true;
+			
+		}
 	}
 
 	/**

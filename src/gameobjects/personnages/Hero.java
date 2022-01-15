@@ -24,6 +24,7 @@ public abstract class Hero extends Entity {
 	boolean estInvincible;
 	boolean estRapide;
 	boolean estPuissant;
+	 public boolean numberOne;
 	int countDownInvincible;
 	int countDownSpped;
 	int countDownTir;
@@ -60,6 +61,7 @@ public abstract class Hero extends Entity {
 
 		this.estPuissant = false;
 		this.countDownPower = 0;
+		this.numberOne= false;
 
 		this.damage = HeroInfos.ATTACK;
 
