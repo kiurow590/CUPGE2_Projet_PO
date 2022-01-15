@@ -1,7 +1,8 @@
-package gameobjects.personnages;
+package gameobjects.personnages.hero;
 
 import gameobjects.projectiles.BabyProjectile;
 import libraries.Vector2;
+import resources.HeroInfos;
 import resources.ImagePaths;
 
 /**
@@ -14,11 +15,13 @@ public class Magdalene extends Hero {
      * @param position
      */
     public Magdalene(Vector2 position) {
-        super(position, ImagePaths.MAGDALENE, 0.0085, 8, 8);
-        damage = 4;
+        super(position, ImagePaths.MAGDALENE, HeroInfos.MAGDELENE_SPEED, HeroInfos.MAGDELENE_LIFE,
+                HeroInfos.MAGDELENE_LIFE);
+        damage = HeroInfos.MAGDELENE_ATTACK;
     }
 
-    public void creeLarme(Vector2 position, String imagePath, Vector2 direction) {
+    @Override
+    public void creeProjectile(Vector2 position, Vector2 direction) {
         if (this.countDownTir <= 0) {
             this.lstLarme.add(new BabyProjectile(position, direction, damage));
             this.countDownTir = 50;

@@ -1,4 +1,4 @@
-package gameobjects.personnages;
+package gameobjects.personnages.hero;
 
 import gameobjects.projectiles.Bomb;
 import libraries.Vector2;
@@ -15,14 +15,15 @@ public class PyroBarbare extends Hero {
      * @param position
      */
     public PyroBarbare(Vector2 position) {
-        super(position, ImagePaths.PYROBARBARE, HeroInfos.ISAAC_SPEED * 3, 2, 2);
-        damage = 1;
+        super(position, ImagePaths.PYROBARBARE, HeroInfos.LILITH_SPEED * 2.5, HeroInfos.LILITH_LIFE,
+                HeroInfos.LILITH_LIFE);
+        damage = HeroInfos.LILITH_ATTACK;
     }
 
     @Override
-    public void creeLarme(Vector2 position, String imagePath, Vector2 direction) {
+    public void creeProjectile(Vector2 position, Vector2 direction) {
         if (this.countDownTir <= 0) {
-            this.lstLarme.add(new Bomb(position, ImagePaths.BOMB, direction, damage));
+            this.lstLarme.add(new Bomb(position, direction, damage));
             this.countDownTir = 15;
         }
     }

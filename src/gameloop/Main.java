@@ -1,10 +1,10 @@
 package gameloop;
 
 import gameWorld.GameWorld;
-import gameobjects.personnages.Hero;
-import gameobjects.personnages.Isaac;
-import gameobjects.personnages.Magdalene;
-import gameobjects.personnages.PyroBarbare;
+import gameobjects.personnages.hero.Hero;
+import gameobjects.personnages.hero.Isaac;
+import gameobjects.personnages.hero.Magdalene;
+import gameobjects.personnages.hero.PyroBarbare;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;

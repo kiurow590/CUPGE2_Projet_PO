@@ -10,12 +10,11 @@ import gameWorld.rooms.portes.Door;
 import gameWorld.rooms.portes.LeftDoor;
 import gameWorld.rooms.portes.RightDoor;
 import gameWorld.rooms.portes.TopDoor;
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.Physics;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.Controls;
-import resources.ImagePaths;
 
 /**
  * 
@@ -183,26 +182,24 @@ public class GameWorld {
 	public void processTire() {
 		if (StdDraw.isKeyPressed(Controls.hitUp)) {
 
-			hero.creeLarme(hero.getPosition(), ImagePaths.TEAR, new Vector2(0, 1));
+			hero.creeProjectile(hero.getPosition(), new Vector2(0, 1));
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitDown)) {
 
-			hero.creeLarme(hero.getPosition(),
-					ImagePaths.TEAR,
+			hero.creeProjectile(hero.getPosition(),
 					new Vector2(0, -1));
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
 
-			hero.creeLarme(hero.getPosition(),
-					ImagePaths.TEAR,
+			hero.creeProjectile(hero.getPosition(),
 					new Vector2(-1, 0));
 		}
 		if (StdDraw.isKeyPressed(Controls.hitRight)) {
 
-			hero.creeLarme(hero.getPosition(),
-					ImagePaths.TEAR, new Vector2(1, 0));
+			hero.creeProjectile(hero.getPosition(),
+					new Vector2(1, 0));
 		}
 	}
 

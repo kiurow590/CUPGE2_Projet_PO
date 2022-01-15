@@ -2,7 +2,7 @@ package gameobjects.personnages.monstres;
 
 import java.util.List;
 
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.Vector2;
 import resources.DisplaySettings;
 import resources.ImagePaths;
@@ -25,7 +25,7 @@ public class Spider extends Monster {
 				MonstreInfo.SPIDER_pointVie,
 				MonstreInfo.SPIDER_DAMMAGE);
 		this.compteur = DisplaySettings.FRAME_PER_SECOND;
-		this.setLastposition(new Vector2(0.5,0.5));
+		this.setLastposition(new Vector2(0.5, 0.5));
 
 	}
 
@@ -48,10 +48,10 @@ public class Spider extends Monster {
 	}
 
 	/**
-	 * gestion des deplacement de l'arraigne
+	 * gestion des deplacement aleatoire de l'arraigne
 	 */
 	private void deplacementMonstre() {
-		
+
 		double i = Math.random();
 		if (i >= 0 && i < 0.25 && getPosition().getY() < 0.9) {
 			goUpNext();
@@ -61,8 +61,9 @@ public class Spider extends Monster {
 			goLeftNext();
 		} else if (i >= 0.75 && i < 1 && getPosition().getX() < 0.9) {
 			goRightNext();
-		}this.setLastposition(this.getPosition());
-		
+		}
+		this.setLastposition(this.getPosition());
+
 	}
 
 }

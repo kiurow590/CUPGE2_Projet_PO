@@ -1,6 +1,6 @@
 package gameWorld.rooms;
 
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;

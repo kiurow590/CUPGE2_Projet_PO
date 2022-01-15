@@ -1,6 +1,6 @@
 package gameobjects.objets.consommables;
 
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.Vector2;
 import resources.ImagePaths;
 

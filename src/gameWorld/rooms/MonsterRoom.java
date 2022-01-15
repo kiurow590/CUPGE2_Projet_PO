@@ -3,7 +3,7 @@ package gameWorld.rooms;
 import gameobjects.obstacles.Poop;
 import gameobjects.obstacles.Rock;
 import gameobjects.obstacles.Spikes;
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
@@ -14,7 +14,6 @@ import resources.ImagePaths;
 public class MonsterRoom extends Room {
 
 	private static final String MON_TYPE = "MONSTER_ROOM";
-
 
 	/**
 	 * Constructeur de monsterRoom
@@ -57,6 +56,7 @@ public class MonsterRoom extends Room {
 		affichageObjets();
 
 	}
+
 	public void choixpatternObstacle() {
 		// on choisi un pattern possible parmis les 6 ( construit a la main)
 		Double numeropattern = Math.random() * 6;

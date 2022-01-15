@@ -2,10 +2,10 @@ package gameloop;
 
 import java.awt.Font;
 
-import gameobjects.personnages.Hero;
-import gameobjects.personnages.Isaac;
-import gameobjects.personnages.Magdalene;
-import gameobjects.personnages.PyroBarbare;
+import gameobjects.personnages.hero.Hero;
+import gameobjects.personnages.hero.Isaac;
+import gameobjects.personnages.hero.Magdalene;
+import gameobjects.personnages.hero.PyroBarbare;
 import libraries.StdDraw;
 import resources.HeroInfos;
 import resources.ImagePaths;
@@ -126,19 +126,19 @@ public class Menu {
             StdDraw.setFont(new Font(" TimesRoman ", Font.BOLD, 12));
 
             StdDraw.text(0.3, 0.65, "ISAAC");
-            StdDraw.text(0.3, 0.60, "LIFE : 6");
-            StdDraw.text(0.3, 0.55, "DAMMAGE : 1");
+            StdDraw.text(0.3, 0.60, "LIFE : " + HeroInfos.ISAAC_LIFE);
+            StdDraw.text(0.3, 0.55, "DAMMAGE : " + HeroInfos.ISAAC_ATTACK);
             StdDraw.text(0.3, 0.5, "SPEED : " + HeroInfos.ISAAC_SPEED);
 
             StdDraw.text(0.5, 0.65, "MAGDELENE");
-            StdDraw.text(0.5, 0.60, "LIFE : 8");
-            StdDraw.text(0.5, 0.55, "DAMMAGE : 4");
-            StdDraw.text(0.5, 0.5, "SPEED : " + 0.0085);
+            StdDraw.text(0.5, 0.60, "LIFE : " + HeroInfos.MAGDELENE_LIFE);
+            StdDraw.text(0.5, 0.55, "DAMMAGE : 4" + HeroInfos.MAGDELENE_ATTACK);
+            StdDraw.text(0.5, 0.5, "SPEED : " + HeroInfos.MAGDELENE_SPEED);
 
             StdDraw.text(0.7, 0.65, "LILITH");
-            StdDraw.text(0.7, 0.60, "LIFE : 2");
-            StdDraw.text(0.7, 0.55, "DAMMAGE : 1");
-            StdDraw.text(0.7, 0.5, "SPEED : " + HeroInfos.ISAAC_SPEED);
+            StdDraw.text(0.7, 0.60, "LIFE : " + HeroInfos.LILITH_LIFE);
+            StdDraw.text(0.7, 0.55, "DAMMAGE : " + HeroInfos.LILITH_ATTACK);
+            StdDraw.text(0.7, 0.5, "SPEED : " + HeroInfos.LILITH_SPEED);
             // affichage de curseur
             StdDraw.picture(StdDraw.mouseX() - 0.025, StdDraw.mouseY() - 0.025, ImagePaths.STRENGTH, 0.05,
                     0.05, 0);

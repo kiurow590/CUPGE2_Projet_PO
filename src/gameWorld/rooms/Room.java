@@ -15,7 +15,7 @@ import gameobjects.obstacles.GenericObstacle;
 import gameobjects.obstacles.Poop;
 import gameobjects.obstacles.Rock;
 import gameobjects.obstacles.Spikes;
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import gameobjects.personnages.monstres.Boss;
 import gameobjects.personnages.monstres.Fly;
 import gameobjects.personnages.monstres.Monster;
@@ -382,7 +382,7 @@ public abstract class Room {
 				this.hero.getSize(), monstre.getPosition(), monstre.getSize())) {
 			this.hero.retirepointVie(monstre.getDegatCorpsACorps());
 			this.compteurInvincibiliteHero = 50;
-			monstre.setImmobilus(35);
+			monstre.setfreezeMouvement(35);
 
 			// Decrementation du compteur d'invicibilite d'Isaac
 		} else if (this.compteurInvincibiliteHero > 0) {
@@ -442,6 +442,7 @@ public abstract class Room {
 			}
 		}
 	}
+
 	public void collisionObstacleHero() {
 		for (int numeroObstacles = 0; !this.lsObstacle.isEmpty()
 				&& numeroObstacles < this.lsObstacle.size(); numeroObstacles++) {
@@ -477,7 +478,6 @@ public abstract class Room {
 					if (this.lsObstacle.get(numeroObstacles) instanceof Rock
 							|| this.lsObstacle.get(numeroObstacles) instanceof Poop) {
 						monster.setPosition(monster.getLastposition());
-						
 
 					}
 				}

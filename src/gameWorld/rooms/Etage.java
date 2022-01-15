@@ -8,7 +8,7 @@ import gameWorld.rooms.portes.CarriesAway;
 import gameWorld.rooms.portes.LeftDoor;
 import gameWorld.rooms.portes.RightDoor;
 import gameWorld.rooms.portes.TopDoor;
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import resources.ImagePaths;
 
 /**

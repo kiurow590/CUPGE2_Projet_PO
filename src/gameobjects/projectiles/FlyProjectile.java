@@ -1,6 +1,7 @@
 package gameobjects.projectiles;
 
 import libraries.Vector2;
+import resources.ImagePaths;
 
 /**
  * Class projectile
@@ -24,8 +25,8 @@ public class FlyProjectile extends Projectile {
      * 
      * @param damage    dommage que peut cause la larme
      */
-    public FlyProjectile(Vector2 position, String imagePath, Vector2 direction, int damage) {
-        super(position, imagePath, direction, damage);
+    public FlyProjectile(Vector2 position, Vector2 direction, int damage) {
+        super(position, ImagePaths.FLYPROJECTILE, direction, damage);
         this.size = new Vector2(0.045, 0.045);
     }
 

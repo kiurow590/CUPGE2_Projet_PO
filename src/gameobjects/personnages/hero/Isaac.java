@@ -1,10 +1,9 @@
-package gameobjects.personnages;
+package gameobjects.personnages.hero;
 
 import gameobjects.projectiles.Tear;
 import libraries.Vector2;
 import resources.HeroInfos;
 import resources.ImagePaths;
-import resources.RoomInfos;
 
 /**
  * Class generant le hero isaac
@@ -20,9 +19,9 @@ public class Isaac extends Hero {
     }
 
     @Override
-    public void creeLarme(Vector2 position, String imagePath, Vector2 direction) {
+    public void creeProjectile(Vector2 position, Vector2 direction) {
         if (this.countDownTir <= 0) {
-            this.lstLarme.add(new Tear(position, imagePath, direction, damage));
+            this.lstLarme.add(new Tear(position, direction, damage));
             this.countDownTir = 20;
         }
     }

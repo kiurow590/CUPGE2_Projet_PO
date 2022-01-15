@@ -1,6 +1,7 @@
 package gameobjects.projectiles;
 
 import libraries.Vector2;
+import resources.ImagePaths;
 
 /**
  * constructeur de larmes
@@ -24,9 +25,8 @@ public class Tear extends Projectile {
      * 
      * @param damage    dommage que peut faire la larme
      */
-    public Tear(Vector2 position, String imagePath, Vector2 direction, int damage) {
-        super(position, imagePath, direction, damage);
-        // TODO Auto-generated constructor stub
+    public Tear(Vector2 position, Vector2 direction, int damage) {
+        super(position, ImagePaths.TEAR, direction, damage);
     }
 
 }

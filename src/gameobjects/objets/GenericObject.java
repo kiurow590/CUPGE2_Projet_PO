@@ -1,6 +1,6 @@
 package gameobjects.objets;
 
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
@@ -69,10 +69,6 @@ public abstract class GenericObject {
         return this.size;
     }
 
-    public void setSize(Vector2 size) {
-        this.size = size;
-    }
-
     public boolean EstRamasser() {
         return this.estRamasser;
     }
@@ -85,24 +81,12 @@ public abstract class GenericObject {
         return this.estRamasser;
     }
 
-    public boolean getEstRamasser() {
-        return this.estRamasser;
-    }
-
     public int getPrix() {
         return this.prix;
     }
 
-    public void setPrix(int prix) {
-        this.prix = prix;
-    }
-
     public int getValue() {
         return this.value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
 }
