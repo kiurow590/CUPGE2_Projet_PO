@@ -93,8 +93,6 @@ public abstract class Entity {
     public void drawGameObject() {
         StdDraw.picture(this.position.getX(), this.position.getY(), this.imagePath, this.size.getX(), this.size.getY(),
                 0);
-        StdDraw.setPenColor();
-        StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
     }
 
     /**

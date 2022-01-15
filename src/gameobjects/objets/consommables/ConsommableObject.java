@@ -11,12 +11,12 @@ public abstract class ConsommableObject extends GenericObject {
      * Constructeur d'Objet consommable
      * 
      * @param position position dans la room
-     * @param prix     prix de l'objets
+     * @param price    price de l'objets
      * @param value    valeur de l'objet
      * 
      */
-    public ConsommableObject(Vector2 position, int prix, int value) {
-        super(position, prix, value);
+    public ConsommableObject(Vector2 position, int price, int value) {
+        super(position, price, value);
     }
 
 }

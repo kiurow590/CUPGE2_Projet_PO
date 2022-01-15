@@ -15,10 +15,10 @@ public class Life extends ConsommableObject {
 
         if (this.value == 1) {
             imagePath = ImagePaths.HALF_HEART_HUD;
-            this.prix = 2;
+            this.price = 2;
         } else if (this.value == 2) {
             imagePath = ImagePaths.HEART_HUD;
-            this.prix = 4;
+            this.price = 4;
 
         }
     }

@@ -252,7 +252,7 @@ public abstract class Room {
 					StdDraw.setPenRadius();
 					StdDraw.setPenColor(StdDraw.BLACK);
 					StdDraw.text(lstObjet.get(i).getPosition().getX() + 0.02,
-							lstObjet.get(i).getPosition().getY() + 0.02, +lstObjet.get(i).getPrix() + "");
+							lstObjet.get(i).getPosition().getY() + 0.02, +lstObjet.get(i).getprice() + "");
 
 				}
 			}
@@ -346,18 +346,18 @@ public abstract class Room {
 				if (this.countDownObject == 0 && this.lsMonster.isEmpty()
 						&& Physics.rectangleCollision(hero.getPosition(), hero.getSize(), lstObjet.get(i).getPosition(),
 								lstObjet.get(i).getSize())
-						&& hero.getStackArgent() >= lstObjet.get(i).getPrix()
+						&& hero.getStackArgent() >= lstObjet.get(i).getprice()
 						&& (lstObjet.get(i).EstRamasser() == false)) {
 					// je mets a jour mes perf
 					lstObjet.get(i).updateHeroPerf(hero);
 					// si mon objet c'est pas de l'ajout de vie
 					if (!(lstObjet.get(i) instanceof Life)) {
-						// je retire de l'argetnt au hero a hauteur du prix de l'objet prix
-						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+						// je retire de l'argetnt au hero a hauteur du price de l'objet price
+						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getprice());
 						// si mon objet c'est de la vie et que l'ajout de pv ne depasse pas les pc Max
 					} else if ((lstObjet.get(i) instanceof Life)
 							&& lstObjet.get(i).getValue() + hero.getPointVie() <= hero.getMaxpointVie()) {
-						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getprice());
 					}
 					countDownObject = 20;
 				}

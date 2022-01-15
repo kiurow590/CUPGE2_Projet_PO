@@ -43,8 +43,6 @@ public abstract class GenericObstacle {
 	public void drawGameObject() {
 		StdDraw.picture(getPosition().getX(), getPosition().getY(), getimagePaths(), getSize().getX(), getSize().getY(),
 				0);
-		StdDraw.setPenColor();
-		StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
 	}
 
 	/*
