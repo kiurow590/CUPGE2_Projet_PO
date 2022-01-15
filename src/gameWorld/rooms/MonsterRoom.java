@@ -32,7 +32,6 @@ public class MonsterRoom extends Room {
 
 	@Override
 	public void updateRoom() {
-		// TODO Auto-generated method stub
 		makeHeroPlay();
 		makeMonsterPlay();
 		collisionReport();

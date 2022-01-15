@@ -3,16 +3,11 @@ package gameloop;
 import gameWorld.GameWorld;
 import gameobjects.personnages.hero.Hero;
 import gameobjects.personnages.hero.Isaac;
-import gameobjects.personnages.hero.Magdalene;
-import gameobjects.personnages.hero.PyroBarbare;
 import libraries.StdDraw;
 import libraries.Timer;
 import resources.DisplaySettings;
-import resources.HeroInfos;
 import resources.ImagePaths;
 import resources.RoomInfos;
-
-import java.awt.Font;
 
 /**
  * Class moteur du jeu

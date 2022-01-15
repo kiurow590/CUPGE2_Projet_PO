@@ -25,7 +25,6 @@ public class BossRoom extends Room {
 	 */
 	public BossRoom(Hero hero, Integer id) {
 		super(hero, id);
-		// TODO Auto-generated constructor stub
 		this.type = MON_TYPE;
 
 		this.lsMonster.add(new Boss(new Vector2(0.5, 0.5), this));
