@@ -94,8 +94,8 @@ public abstract class Room {
 		for (int i = 0; i < lstPorte.size(); i++) {
 			if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
 					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
-				if (lstPorte.get(i).getImagePaths().compareTo(ImagePaths.PORTEBOSSOUVERTE)==1) {
-					lstPorte.get(i).setImagePaths(ImagePaths.PORTEBOSSOUVERTE);
+				if (lstPorte.get(i).getImagePaths().compareTo(ImagePaths.PORTE_BOSS_OUVERTE)==1) {
+					lstPorte.get(i).setImagePaths(ImagePaths.PORTE_BOSS_OUVERTE);
 				}
 				else {
 				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
