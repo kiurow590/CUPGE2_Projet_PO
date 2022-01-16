@@ -4,7 +4,7 @@ import libraries.Vector2;
 import resources.ImagePaths;
 
 public class Rock extends GenericObstacle {
-	/*
+	/**
 	 * constructeur de Rock
 	 * 
 	 * @param position position de l'obstacle
@@ -13,15 +13,15 @@ public class Rock extends GenericObstacle {
 	 * 
 	 * @param imagePaths image de l'obstacle (ici le rocher )
 	 * 
-	 * @param pointDeVie ici fixé a 1 (cassable que par les bombes )
+	 * @param pointDeVie ici fixe a 1 (incassable aucune fonction de r�duction de PV)
 	 * 
-	 * @param degats ici fixé a 0 car ils ne font pas de degats
+	 * @param degats ici fixe a 0 car ils ne font pas de degats
 	 * 
-	 * @param collision fixé a true
+	 * 
 	 */
 
 	public Rock(Vector2 position, Vector2 size) {
-		super(position, size, ImagePaths.ROCK, 1, 0, true);
+		super(position, size, ImagePaths.ROCK, 1, 0);
 	}
 
 }

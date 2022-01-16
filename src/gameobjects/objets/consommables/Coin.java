@@ -18,7 +18,7 @@ public class Coin extends ConsommableObject {
     public Coin(int value, Vector2 position) {
 
         super(position, 0, value);
-
+        // selon la valeur de la piece , l'image n'est pas la même
         if (this.value == 1) {
             this.imagePath = ImagePaths.COIN;
         } else if (this.value == 5) {

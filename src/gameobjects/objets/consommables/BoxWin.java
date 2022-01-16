@@ -27,7 +27,10 @@ public class BoxWin extends ConsommableObject {
         this.imagePath = ImagePaths.BOX_WIN;
         this.currentRoom = currentRoom;
     }
-
+/**
+ * met a jour le hero en fonction des caracteristique de l'objet , ici la victoire
+ * @param Hero le hero sur qui l'objet serra actif
+ */
     @Override
     public void updateHeroPerf(Hero e) {
 
@@ -35,7 +38,9 @@ public class BoxWin extends ConsommableObject {
         roomWon();
 
     }
-
+/**
+ * change le statut de la partie en gagne en appelant SetAGagner
+ */
     private void roomWon() {
         currentRoom.setAGagner(true);
     }

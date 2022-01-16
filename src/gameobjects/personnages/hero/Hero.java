@@ -39,15 +39,14 @@ public abstract class Hero extends Entity {
 	 * Constructeur de hero
 	 * 
 	 * @param position position initiale du Hero
-	 * @param image
-	 * @param speed
-	 * @param vie
-	 * @param maxlife
+	 * @param image    image du hero
+	 * @param speed    vitesse du hero
+	 * @param vie      le nombre de point de vie du hero
+	 * @param maxlife  le nombre maximum de point de vie
 	 */
 	public Hero(Vector2 position, String image, double speed, int vie, int maxlife) {
 
-		super(position, HeroInfos.ISAAC_SIZE, image, speed, new Vector2(),
-				vie, maxlife);
+		super(position, HeroInfos.ISAAC_SIZE, image, speed, new Vector2(), vie, maxlife);
 
 		this.estInvincible = false;
 
@@ -119,12 +118,12 @@ public abstract class Hero extends Entity {
 	}
 
 	/**
-	 * calcul si une mouche est morte
+	 * calcul si le hero est vivant
 	 * 
 	 * @return un boolean </br>
 	 *         <ul>
-	 *         <li>true - la mouche est morte</li>
-	 *         <li>false - la mouche est vivante</li>
+	 *         <li>true - le heros est mort</li>
+	 *         <li>false - le heros est vivant</li>
 	 *         </ul>
 	 */
 	public boolean isDead() {
@@ -132,8 +131,7 @@ public abstract class Hero extends Entity {
 	}
 
 	/**
-	 * creer une larme et qui la stock dans la liste de larme du
-	 * personnage
+	 * creer une larme et qui la stock dans la liste de larme du personnage
 	 * 
 	 * @param position  position initiale larme
 	 * @param direction direction du projectile
@@ -150,8 +148,15 @@ public abstract class Hero extends Entity {
 			this.countDownInvincible = 40;
 		} else if (this.estInvincible && this.countDownInvincible == 0) {
 			this.estInvincible = false;
-			this.imagePath = ImagePaths.GAPER;
-
+			if (this instanceof Isaac ) {
+				this.imagePath = ImagePaths.ISAAC;
+			}
+			if (this instanceof Magdalene ) {
+				this.imagePath = ImagePaths.MAGDALENE;
+			}
+			if (this instanceof PyroBarbare ) {
+				this.imagePath = ImagePaths.PYROBARBARE;
+			}
 			this.countDownInvincible = 40;
 		}
 

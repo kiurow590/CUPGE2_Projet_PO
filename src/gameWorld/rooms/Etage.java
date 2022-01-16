@@ -153,7 +153,6 @@ public class Etage {
         commerce2.getLstPorte().add(new BottomDoor(boss.getId()));
         commerce2.getLstPorte().get(1).setImagePaths(ImagePaths.PORTE_BOSS_FERME);
         boss.getLstPorte().add(new TopDoor(commerce2.getId()));
-        // boss.getLstPorte().get(0).setImagePaths(ImagePaths.PORTE_BOSS_FERME);
         boss.getLstObjet().remove(0);
 
         // on ajoute a la map

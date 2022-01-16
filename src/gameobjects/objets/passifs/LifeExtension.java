@@ -12,7 +12,7 @@ public class LifeExtension extends PassifObject {
     /**
      * constructeur d'extension de vie
      * 
-     * @param position
+     * @param position position dans l'espace
      */
     public LifeExtension(Vector2 position) {
         super(position, 20, 2);

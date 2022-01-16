@@ -18,7 +18,7 @@ public class BossRoom extends Room {
 	private static final String MON_TYPE = "BossRoom";
 
 	/**
-	 * Constructeur de Boss Romm
+	 * Constructeur de Boss Room
 	 * 
 	 * @param hero le hero
 	 * @param id   id de la room
@@ -32,7 +32,9 @@ public class BossRoom extends Room {
 		this.lstObjet.add(new BoxWin(new Vector2(0.5, 0.5), this));
 		choixpattern();
 	}
-
+/**
+ * met a jour la room
+ */
 	@Override
 	public void updateRoom() {
 		makeHeroPlay();
@@ -45,16 +47,6 @@ public class BossRoom extends Room {
 
 	@Override
 	public void drawRoom() {
-		// For every tile, set background color.
-		// StdDraw.setPenColor(this.bgColor);
-		// for (int i = 0; i < RoomInfos.NB_TILES; i++) {
-		// for (int j = 0; j < RoomInfos.NB_TILES; j++) {
-		// Vector2 position = positionFromTileIndex(i, j);
-		// StdDraw.filledRectangle(position.getX(), position.getY(),
-		// RoomInfos.HALF_TILE_SIZE.getX(),
-		// RoomInfos.HALF_TILE_SIZE.getY());
-		// }
-		// }
 
 		StdDraw.picture(0.5, 0.5, ImagePaths.BOSS_ROOM, 1, 1);
 
@@ -68,7 +60,9 @@ public class BossRoom extends Room {
 		affichageObjets();
 
 	}
-
+/**
+ * gere aleatoirement les pattern d'obstacles possible
+ */
 	public void choixpattern() {
 		double numeropattern = Math.random() * 3;
 		if (numeropattern <= 1) {

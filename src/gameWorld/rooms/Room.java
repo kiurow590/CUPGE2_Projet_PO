@@ -80,8 +80,9 @@ public abstract class Room {
 		this.countDownObject = 0;
 	}
 
-	/*
-	 * Make every entity that compose a room process one step
+	/**
+	 * met a jour la Room (toutes les entité se déplace si elles sont censé le
+	 * faire)
 	 */
 	public abstract void updateRoom();
 
@@ -95,15 +96,19 @@ public abstract class Room {
 	 */
 	public void dessinePorte() {
 		for (int i = 0; i < lstPorte.size(); i++) {
+			// si elle a un certain id alors la porte est différente
 			if (lsMonster.isEmpty() && (lstPorte.get(i).getIdSalle() == 5 || lstPorte.get(i).getIdSalle() == 14
 					|| lstPorte.get(i).getIdSalle() == 27)) {
 				lstPorte.get(i).setImagePaths(ImagePaths.PORTE_BOSS_OUVERTE);
 			} else if (lsMonster.isEmpty()
 					&& ((lstPorte.get(i) instanceof RightKeyDoor) || lstPorte.get(i) instanceof LeftKeyDoor
 							|| lstPorte.get(i) instanceof BottomKeyDoor || lstPorte.get(i) instanceof TopKeyDoor)) {
+				// si nous avons des portes a clef alors , il faut une image de porte
+				// particuliere
 				if (lstPorte.get(i).isEstOuvert()) {
 					lstPorte.get(i).setImagePaths(ImagePaths.PORTE_OBJET_OUVERTE);
 				}
+				// sinon on met des porte normal
 			} else if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
 					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
 
@@ -116,7 +121,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * gÃ©nÃ¨re une objet random en respectant les probabilitÃ© d'apparition
+	 * genere une objet random en respectant les probabilite d'apparition
 	 */
 	public GenericObject initObjectGift() {
 		double objectRandom = Math.random();
@@ -191,9 +196,6 @@ public abstract class Room {
 		}
 
 		for (int i = 0; i < nbMonstre; i++) {
-			// on evite que un monstre spawn sur un obstacle
-			// ainsi lors de la gï¿½nï¿½ration on fait en sorte que la position du monstre
-			// n'est jamais la mï¿½me que celui d'un obstacle.
 			double x = Math.random();
 			double y = Math.random();
 			if (x < 0.3) {
@@ -244,7 +246,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * Affiche l'objet en rÃ©compense de la salle
+	 * Affiche l'objet en recompense de la salle
 	 */
 	public void affichageObjets() {
 
@@ -289,7 +291,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * nettoie de l'afficheage les larme
+	 * nettoie de l'affichage les larme (hero)
 	 */
 	public void nettoyageLarme() {
 		for (int k = 0; k < hero.getLstLarme().size(); k++) {
@@ -303,7 +305,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * nettoie de l'afficheage les larme
+	 * nettoie de l'afficheage les larme (monstre)
 	 */
 	void nettoyageProj() {
 		for (int k = 0; this.lsMonster != null && k < this.lsMonster.size(); k++) {
@@ -326,7 +328,7 @@ public abstract class Room {
 	void collisionReport() {
 
 		// Pour chaque monstre (vivant ou mort)
-		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
+		for (int i = 0; i < this.lsMonster.size() & this.lsMonster != null; i++) {
 
 			collisionHero(this.lsMonster.get(i));
 			collisionLarme(this.lsMonster.get(i));
@@ -441,6 +443,8 @@ public abstract class Room {
 			// gestion collision projectileFly avec les obstacles
 			for (int numeroObstacles = 0; !this.lsObstacle.isEmpty()
 					&& numeroObstacles < this.lsObstacle.size(); numeroObstacles++) {
+				// en cas de collision on gere ce que cela fait celon les obstacles , on
+				// traverse les spikes mais pas les poop et rock
 				if (this.lsObstacle.get(numeroObstacles) instanceof Poop
 						|| this.lsObstacle.get(numeroObstacles) instanceof Rock) {
 
@@ -448,6 +452,7 @@ public abstract class Room {
 							this.lsObstacle.get(numeroObstacles).getSize(),
 							monstre.getLstProjectile().get(j).getPosition(),
 							monstre.getLstProjectile().get(j).getSize())) {
+						// lorsque on touche l'obstacle , le projectiles se déttruit
 						monstre.getLstProjectile().get(j).setPortee(0);
 					}
 				}
@@ -507,7 +512,7 @@ public abstract class Room {
 				// obstacles )
 				if (monster instanceof Spider || monster instanceof Boss) {
 					// uniquement les Rocks et les Poops car les Spikes n'inflige pas de degats au
-					// monstre
+					// monstre et ils passent à travers
 					if (this.lsObstacle.get(numeroObstacles) instanceof Rock
 							|| this.lsObstacle.get(numeroObstacles) instanceof Poop) {
 						monster.setPosition(monster.getLastposition());
@@ -519,8 +524,8 @@ public abstract class Room {
 		}
 	}
 
-	/*
-	 * collision larme et obstacles .
+	/**
+	 * collision larme du joueur (proche de celle de fly) et obstacles .
 	 */
 	public void collisionObstacleLarmeHero() {
 		for (int numeroObstacles = 0; !this.lsObstacle.isEmpty()
@@ -534,6 +539,7 @@ public abstract class Room {
 					if (this.lsObstacle.get(numeroObstacles) instanceof Rock) {
 						this.hero.getLstLarme().remove(numeroLarmeHero);
 					}
+					//si c'est un Poop comme obstacles , alors on peut le détruire , il perds donc de la vie 
 					if (this.lsObstacle.get(numeroObstacles) instanceof Poop) {
 						this.lsObstacle.get(numeroObstacles).retirepointVie(this.hero.getdamage());
 						this.hero.getLstLarme().remove(numeroLarmeHero);

@@ -4,7 +4,7 @@ import libraries.StdDraw;
 import libraries.Vector2;
 
 /**
- * Constructeur d'entite
+ * Constructeur d'entity
  */
 public abstract class Entity {
 
@@ -22,7 +22,7 @@ public abstract class Entity {
     protected int maxpointVie;
 
     /**
-     * Constructeur d'entitie
+     * Constructeur d'entity
      * 
      * @param position    position
      * @param size        la taille
@@ -69,7 +69,7 @@ public abstract class Entity {
     /**
      * retire les point de vie
      * 
-     * @param i le nombre de point de vie retiré
+     * @param i le nombre de point de vie retire
      */
     public void retirepointVie(int i) {
         this.setPointVie(pointVie - i);

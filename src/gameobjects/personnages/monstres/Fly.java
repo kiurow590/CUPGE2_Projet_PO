@@ -45,17 +45,14 @@ public class Fly extends Monster {
 
 		} else {
 
-			creeProjectileFly(
-					getPosition(), ImagePaths.FLYPROJECTILE,
-					new Vector2(e.getPosition().getX() - getPosition().getX(),
-							e.getPosition().getY() - getPosition().getY()));
+			creeProjectileFly(getPosition(), ImagePaths.FLYPROJECTILE, new Vector2(
+					e.getPosition().getX() - getPosition().getX(), e.getPosition().getY() - getPosition().getY()));
 			this.countDownTir = 50;
 		}
 	}
 
 	/**
-	 * creer une larme et qui la stock dans la liste de larme du
-	 * personnage
+	 * creer une larme et qui la stock dans la liste de larme du personnage
 	 * 
 	 * @param e larme
 	 */
@@ -74,6 +71,7 @@ public class Fly extends Monster {
 
 		this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
 				this.getPosition().getY() - e.getPosition().getY()).reverse());
+		// on recupere l'ancien vecteur utilse pour les collision
 		this.setLastposition(this.getPosition());
 		Vector2 normalizedDirection = getNormalizedDirection();
 		Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);

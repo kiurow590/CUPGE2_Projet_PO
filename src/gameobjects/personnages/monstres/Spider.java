@@ -18,13 +18,14 @@ public class Spider extends Monster {
 	/**
 	 * Constructeur de Spider
 	 * 
-	 * @param position position initiale de l'araignÃ©
+	 * @param position position initiale de l'araigne
 	 */
 	public Spider(Vector2 position) {
 		super(position, MonstreInfo.SPIDER_SIZE, ImagePaths.SPIDER, MonstreInfo.SPIDER_SPEED,
 				MonstreInfo.SPIDER_pointVie,
 				MonstreInfo.SPIDER_DAMMAGE);
 		this.compteur = DisplaySettings.FRAME_PER_SECOND;
+		// si jamais on tombe lors de la création sur un obstacles, alors on le met au centre de la room
 		this.setLastposition(new Vector2(0.5, 0.5));
 
 	}
@@ -48,7 +49,7 @@ public class Spider extends Monster {
 	}
 
 	/**
-	 * gestion des deplacement aleatoire de l'arraigne
+	 * gestion des deplacement aleatoire de l'araignee
 	 */
 	private void deplacementMonstre() {
 

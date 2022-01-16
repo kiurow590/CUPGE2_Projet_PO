@@ -8,11 +8,11 @@ import resources.ImagePaths;
  */
 public class BabyProjectile extends Projectile {
     /**
-     * Constructeur
+     * Constructeur de BabyProjectile
      * 
-     * @param position
-     * @param direction
-     * @param damage
+     * @param position position initiale de l'objet 
+     * @param direction direction du projectile
+     * @param damage damage du projectiles
      */
     public BabyProjectile(Vector2 position, Vector2 direction, int damage) {
         super(position, ImagePaths.GAPER, direction, damage);

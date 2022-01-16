@@ -1,7 +1,7 @@
 Nom Eudiants : 
 
 - TONNERRE Aubry - 20202706
-- VINCENT Théo - ********
+- VINCENT Theo - 20203516
 
 
 I- CONTROLE DU JEU :
@@ -25,7 +25,9 @@ I- CONTROLE DU JEU :
         <l> : Le Hero est plus rapide
         <k> : Tous les monstres de la salle meurt instentanément
         <p> : Le Hero est puissant et One Shot les monstres
-        <o> : Offre 10 pièces aux Hero
+        <o> : Offre 10 pieces aux Hero
+        <n> : change le Hero en mode "number one" ( voir bonus plus bas)
+        <m> : ajoute des clee au joueur 
 
 II - BONUS :
     A) Personnages

@@ -56,7 +56,10 @@ public class MonsterRoom extends Room {
 		affichageObjets();
 
 	}
-
+/**
+ * gere le choix aleatoire de pattern a choisir pour la room actuelle (il en existe 6)
+ * ces pattern on ete fait a la main
+ */
 	public void choixpatternObstacle() {
 		// on choisi un pattern possible parmis les 6 ( construit a la main)
 		Double numeropattern = Math.random() * 6;
@@ -117,22 +120,22 @@ public class MonsterRoom extends Room {
 			this.lsObstacle.add(new Spikes(new Vector2(0.77, 0.29), new Vector2(0.07, 0.07)));
 
 		} else if (numeropattern > 4 && numeropattern <= 5) {
-			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.8), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.6), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.4), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.22), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.8), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.6), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.4), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.22), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.8), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.6), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.4), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.22), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.8), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.6), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.4), new Vector2(0.09, 0.09)));
-			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.22), new Vector2(0.09, 0.09)));
+			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.8), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.6), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.4), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.22), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.8), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.6), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.4), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.4, 0.22), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.8), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.6), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.4), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.6, 0.22), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.8), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.6), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.4), new Vector2(0.07, 0.07)));
+			this.lsObstacle.add(new Rock(new Vector2(0.84, 0.22), new Vector2(0.07, 0.07)));
 		} else if (numeropattern > 5 && numeropattern <= 6) {
 			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.78), new Vector2(0.09, 0.09)));
 			this.lsObstacle.add(new Rock(new Vector2(0.16, 0.69), new Vector2(0.09, 0.09)));

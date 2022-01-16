@@ -8,12 +8,12 @@ import resources.ImagePaths;
  */
 public class Bomb extends Projectile {
     /**
-     * Constructeur
+     * Constructeur de Bomb
      * 
-     * @param position
-     * @param imagePath
-     * @param direction
-     * @param damage
+     * @param position position initiale de l'objet
+     * @param imagePath image du projectile
+     * @param direction direction du projectile
+     * @param damage damage du projectile
      */
     public Bomb(Vector2 position, Vector2 direction, int damage) {
         super(position, ImagePaths.BOMB, direction, damage);

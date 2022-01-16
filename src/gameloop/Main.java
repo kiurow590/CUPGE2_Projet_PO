@@ -74,13 +74,10 @@ public class Main {
 	 * Initialise le canvas de jeu
 	 */
 	private static void initializeDisplay() {
-		// Set the window's size, in pixels.
-		// It is strongly recommended to keep a square window.
 		StdDraw.setCanvasSize(RoomInfos.NB_TILES * DisplaySettings.PIXEL_PER_TILE,
 				RoomInfos.NB_TILES * DisplaySettings.PIXEL_PER_TILE);
 
-		// Enables double-buffering.
-		// https://en.wikipedia.org/wiki/Multiple_buffering#Double_buffering_in_computer_graphics
+		
 		StdDraw.enableDoubleBuffering();
 	}
 }

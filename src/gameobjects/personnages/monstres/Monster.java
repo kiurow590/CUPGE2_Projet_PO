@@ -42,7 +42,7 @@ public abstract class Monster extends Entity {
 	/**
 	 * retire les point de vie d'un monstre
 	 * 
-	 * @param i le nb de pointVie a retiré
+	 * @param i le nb de pointVie a retire
 	 * 
 	 */
 	public abstract void retirepointVie(int i);

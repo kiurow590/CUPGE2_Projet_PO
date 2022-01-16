@@ -5,17 +5,18 @@ import libraries.Vector2;
 import resources.ImagePaths;
 
 public class Key extends ConsommableObject {
-	/*constructeur de clef 
+	/**
+	 * constructeur de clee 
 	 * @param position , la position de l'objet
 	 * @param prix	 , le prix de la clé
-	 * @param value , la valeur de l'objet
+	 * @param value , la valeur additionel de l'objet
 	 */
 	public Key (Vector2 position, int prix, int value){
 		super(position, prix,value);
 		this.imagePath=ImagePaths.KEY;
 	}
-	/*
-	 * fonction qui gère l'incrémentation du compteur quand on la récupère
+	/**
+	 * gère l'incrémentation du compteur quand on la récupère (la clee)
 	 * @param hero e , le hero qui joue 
 	 */
 	 @Override

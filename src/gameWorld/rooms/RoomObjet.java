@@ -7,12 +7,22 @@ import libraries.StdDraw;
 import libraries.Vector2;
 import resources.ImagePaths;
 
+/**
+ * class de Roomobjet
+ */
 public class RoomObjet extends Room {
 	private static final String MON_TYPE = "OBJECT_ROOM";
 
+	/**
+	 * constructeur de RoomObjet
+	 * 
+	 * @param hero    le hero qui joue
+	 * @param idSalle id de la salle
+	 */
 	public RoomObjet(Hero hero, Integer idSalle) {
 		super(hero, idSalle);
 		this.type = MON_TYPE;
+		// une chance sur 2 par objet
 		if (Math.random() <= 0.5) {
 			this.lstObjet.add(new NumberOne(new Vector2(0.5, 0.5)));
 

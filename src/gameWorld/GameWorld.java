@@ -7,6 +7,7 @@ import gameWorld.rooms.Etage;
 import gameWorld.rooms.Room;
 import gameWorld.rooms.portes.BottomDoor;
 import gameWorld.rooms.portes.BottomKeyDoor;
+import gameWorld.rooms.portes.CarriesAway;
 import gameWorld.rooms.portes.Door;
 import gameWorld.rooms.portes.LeftDoor;
 import gameWorld.rooms.portes.LeftKeyDoor;
@@ -22,7 +23,7 @@ import resources.Controls;
 
 /**
  * 
- * classqui genere le monde
+ * class qui genere le monde
  *
  */
 public class GameWorld {
@@ -58,14 +59,14 @@ public class GameWorld {
 	 * permet de modifier la room lors du passage d'un porte
 	 */
 	private void changeCurrentRoom() {
-
+		// uniquement si tout les monstres sont mort
 		if (currentRoom.getLsMonster().isEmpty()) {
 
 			for (Door door : currentRoom.getLstPorte()) {
-
+// si on est en collision avec une porte
 				if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(), door.getPosition(),
 						door.getSize())) {
-
+// si on a une instance de simple door , quel soit a gauche, a droite, en haut, en bas
 					if (door instanceof BottomDoor && !(door instanceof BottomKeyDoor)) {
 						hero.setPosition(new Vector2(0.5, 0.78));
 						currentRoom = mapDeRoom.get(door.getIdSalle());
@@ -79,7 +80,10 @@ public class GameWorld {
 						hero.setPosition(new Vector2(0.16, 0.5));
 						currentRoom = mapDeRoom.get(door.getIdSalle());
 					}
+					//si la on a des clef , ou que la porte est deja ouverte.
 					if (hero.getsoldeKey() > 0 || door.isEstOuvert()) {
+						// si on a une instance de Key door , quel soit a gauche, a droite, en haut, en bas
+						//on consomme une clef et on ouvre la porte
 						if (door instanceof BottomKeyDoor) {
 							hero.setPosition(new Vector2(0.5, 0.78));
 							if (!door.isEstOuvert()) {
@@ -111,6 +115,10 @@ public class GameWorld {
 							currentRoom = mapDeRoom.get(door.getIdSalle());
 						}
 						// currentRoom = mapDeRoom.get(door.getIdSalle());
+					}
+					// on prends en consid�ration le porte loin
+					if (door instanceof CarriesAway) {
+						currentRoom = mapDeRoom.get(door.getIdSalle());
 					}
 
 				}
@@ -158,8 +166,8 @@ public class GameWorld {
 			}
 
 		}
-		if(StdDraw.isKeyPressed(Controls.keyUp)) {
-			hero.setsoldeKey(hero.getsoldeKey()+1);
+		if (StdDraw.isKeyPressed(Controls.keyUp)) {
+			hero.setsoldeKey(hero.getsoldeKey() + 1);
 		}
 	}
 
@@ -222,7 +230,7 @@ public class GameWorld {
 	}
 
 	/**
-	 * gère les entre pour mettre tiré une larme <br/>
+	 * gere les entre pour mettre tire une larme <br/>
 	 * Managed <i>keys</i> :
 	 * <ul>
 	 * <li>key UP</li>
