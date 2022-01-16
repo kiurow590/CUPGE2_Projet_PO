@@ -2,7 +2,7 @@ package gameobjects.personnages.monstres;
 
 import java.util.List;
 
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import gameobjects.projectiles.FlyProjectile;
 import libraries.Vector2;
 import resources.ImagePaths;
@@ -34,18 +34,18 @@ public class Fly extends Monster {
 	@Override
 	public void updateGameObject(Hero e, List<Monster> lsMonster) {
 
-		if (this.getImmobilus() <= 0) {
+		if (this.freezeMouvement <= 0) {
 			move(e, lsMonster);
 
 		} else {
-			this.setImmobilus(getImmobilus() - 1);
+			this.setfreezeMouvement(freezeMouvement - 1);
 		}
 		if (this.countDownTir > 0) {
 			this.countDownTir--;
 
 		} else {
 
-			creeLarmeFly(
+			creeProjectileFly(
 					getPosition(), ImagePaths.FLYPROJECTILE,
 					new Vector2(e.getPosition().getX() - getPosition().getX(),
 							e.getPosition().getY() - getPosition().getY()));
@@ -59,9 +59,9 @@ public class Fly extends Monster {
 	 * 
 	 * @param e larme
 	 */
-	public void creeLarmeFly(Vector2 position, String imagePath, Vector2 direction) {
+	public void creeProjectileFly(Vector2 position, String imagePath, Vector2 direction) {
 		if (this.countDownTir <= 0) {
-			super.getLstProjectile().add(new FlyProjectile(position, imagePath, direction, degatCorpsACorps));
+			super.getLstProjectile().add(new FlyProjectile(position, direction, degatCorpsACorps));
 			this.countDownTir = 50;
 		}
 
@@ -71,9 +71,6 @@ public class Fly extends Monster {
 	 * mets en mouvement le monstre
 	 */
 	public void move(Hero e, List<Monster> lsMonster) {
-		/**
-		 * Collision entre mob ici !
-		 */
 
 		this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
 				this.getPosition().getY() - e.getPosition().getY()).reverse());

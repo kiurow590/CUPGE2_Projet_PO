@@ -1,11 +1,10 @@
-package gameobjects.personnages;
+package gameobjects.personnages.hero;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import gameobjects.Entity;
 import gameobjects.projectiles.Projectile;
-import gameobjects.projectiles.Tear;
 import libraries.Vector2;
 import resources.HeroInfos;
 import resources.ImagePaths;
@@ -24,7 +23,7 @@ public abstract class Hero extends Entity {
 	boolean estInvincible;
 	boolean estRapide;
 	boolean estPuissant;
-	 public boolean numberOne;
+	public boolean numberOne;
 	int countDownInvincible;
 	int countDownSpped;
 	int countDownTir;
@@ -35,7 +34,6 @@ public abstract class Hero extends Entity {
 	int soldeKey;
 
 	int countDownGiveStack;
-	
 
 	/**
 	 * Constructeur de hero
@@ -53,7 +51,7 @@ public abstract class Hero extends Entity {
 
 		this.estInvincible = false;
 
-		this.countDownInvincible = HeroInfos.ISAAC_INVINCIBILITY_DELAY;
+		this.countDownInvincible = HeroInfos.HERO_INVINCIBILITY_DELAY;
 		this.countDownTir = HeroInfos.ISAAC_TIR_DELAY;
 
 		lstLarme = new ArrayList<Projectile>();
@@ -63,13 +61,13 @@ public abstract class Hero extends Entity {
 
 		this.estPuissant = false;
 		this.countDownPower = 0;
-		this.numberOne= false;
+		this.numberOne = false;
 
-		this.damage = HeroInfos.ATTACK;
+		this.damage = HeroInfos.ISAAC_ATTACK;
 
 		this.stackArgent = 0;
-		soldeStackMax = HeroInfos.ISAAC_MAX_STACK;
-		this.soldeKey=0;
+		soldeStackMax = HeroInfos.HERO_MAX_STACK;
+		this.soldeKey = 0;
 
 	}
 
@@ -137,9 +135,10 @@ public abstract class Hero extends Entity {
 	 * creer une larme et qui la stock dans la liste de larme du
 	 * personnage
 	 * 
-	 * @param e larme
+	 * @param position  position initiale larme
+	 * @param direction direction du projectile
 	 */
-	public abstract void creeLarme(Vector2 position, String imagePath, Vector2 direction);
+	public abstract void creeProjectile(Vector2 position, Vector2 direction);
 
 	/**
 	 * Passe le hero en mode invincible ou pas
@@ -191,6 +190,10 @@ public abstract class Hero extends Entity {
 
 	}
 
+	/**
+	 * Getters / Setters
+	 */
+
 	public List<Projectile> getLstLarme() {
 		return lstLarme;
 	}
@@ -235,9 +238,11 @@ public abstract class Hero extends Entity {
 	public int getsoldeStackMax() {
 		return this.soldeStackMax;
 	}
+
 	public void setsoldeKey(int nombreDeKey) {
-		this.soldeKey= nombreDeKey;
+		this.soldeKey = nombreDeKey;
 	}
+
 	public int getsoldeKey() {
 		return this.soldeKey;
 	}

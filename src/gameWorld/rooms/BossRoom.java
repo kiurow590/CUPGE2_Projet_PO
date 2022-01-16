@@ -4,7 +4,7 @@ import gameobjects.objets.consommables.BoxWin;
 import gameobjects.obstacles.Poop;
 import gameobjects.obstacles.Rock;
 import gameobjects.obstacles.Spikes;
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import gameobjects.personnages.monstres.Boss;
 import libraries.StdDraw;
 import libraries.Vector2;
@@ -14,7 +14,6 @@ import resources.ImagePaths;
  * Class qui genere une room avec un boss dedans
  */
 public class BossRoom extends Room {
-
 
 	private static final String MON_TYPE = "BossRoom";
 
@@ -26,9 +25,7 @@ public class BossRoom extends Room {
 	 */
 	public BossRoom(Hero hero, Integer id) {
 		super(hero, id);
-		// TODO Auto-generated constructor stub
 		this.type = MON_TYPE;
-		
 
 		this.lsMonster.add(new Boss(new Vector2(0.5, 0.5), this));
 
@@ -45,7 +42,6 @@ public class BossRoom extends Room {
 		nettoyageLarme();
 		nettoyageProj();
 	}
-
 
 	@Override
 	public void drawRoom() {
@@ -72,7 +68,6 @@ public class BossRoom extends Room {
 		affichageObjets();
 
 	}
-
 
 	public void choixpattern() {
 		double numeropattern = Math.random() * 3;

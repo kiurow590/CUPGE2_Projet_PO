@@ -1,6 +1,6 @@
 package gameWorld.rooms;
 
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.StdDraw;
 import resources.ImagePaths;
 
@@ -25,7 +25,6 @@ public class SpawnRoom extends Room {
 
     @Override
     public void updateRoom() {
-        // TODO Auto-generated method stub
         makeHeroPlay();
         nettoyageProj();
     }

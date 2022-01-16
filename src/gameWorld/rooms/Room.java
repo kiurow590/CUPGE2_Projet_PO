@@ -19,7 +19,7 @@ import gameobjects.obstacles.GenericObstacle;
 import gameobjects.obstacles.Poop;
 import gameobjects.obstacles.Rock;
 import gameobjects.obstacles.Spikes;
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import gameobjects.personnages.monstres.Boss;
 import gameobjects.personnages.monstres.Fly;
 import gameobjects.personnages.monstres.Monster;
@@ -265,7 +265,7 @@ public abstract class Room {
 					StdDraw.setPenRadius();
 					StdDraw.setPenColor(StdDraw.BLACK);
 					StdDraw.text(lstObjet.get(i).getPosition().getX() + 0.02,
-							lstObjet.get(i).getPosition().getY() + 0.02, +lstObjet.get(i).getPrix() + "");
+							lstObjet.get(i).getPosition().getY() + 0.02, +lstObjet.get(i).getprice() + "");
 
 				}
 			}
@@ -359,18 +359,18 @@ public abstract class Room {
 				if (this.countDownObject == 0 && this.lsMonster.isEmpty()
 						&& Physics.rectangleCollision(hero.getPosition(), hero.getSize(), lstObjet.get(i).getPosition(),
 								lstObjet.get(i).getSize())
-						&& hero.getStackArgent() >= lstObjet.get(i).getPrix()
+						&& hero.getStackArgent() >= lstObjet.get(i).getprice()
 						&& (lstObjet.get(i).EstRamasser() == false)) {
 					// je mets a jour mes perf
 					lstObjet.get(i).updateHeroPerf(hero);
 					// si mon objet c'est pas de l'ajout de vie
 					if (!(lstObjet.get(i) instanceof Life)) {
-						// je retire de l'argetnt au hero a hauteur du prix de l'objet prix
-						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+						// je retire de l'argetnt au hero a hauteur du price de l'objet price
+						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getprice());
 						// si mon objet c'est de la vie et que l'ajout de pv ne depasse pas les pc Max
 					} else if ((lstObjet.get(i) instanceof Life)
 							&& lstObjet.get(i).getValue() + hero.getPointVie() <= hero.getMaxpointVie()) {
-						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getPrix());
+						hero.setStackArgent(hero.getStackArgent() - lstObjet.get(i).getprice());
 					}
 					countDownObject = 20;
 				}
@@ -395,7 +395,7 @@ public abstract class Room {
 				this.hero.getSize(), monstre.getPosition(), monstre.getSize())) {
 			this.hero.retirepointVie(monstre.getDegatCorpsACorps());
 			this.compteurInvincibiliteHero = 50;
-			monstre.setImmobilus(35);
+			monstre.setfreezeMouvement(35);
 
 			// Decrementation du compteur d'invicibilite d'Isaac
 		} else if (this.compteurInvincibiliteHero > 0) {
@@ -475,9 +475,9 @@ public abstract class Room {
 				if (this.lsObstacle.get(numeroObstacles) instanceof Spikes && this.compteurInvincibiliteHero == 0) {
 					this.hero.retirepointVie(this.lsObstacle.get(numeroObstacles).getDegats());
 					this.compteurInvincibiliteHero = 40;
-					// si c'est Poop ou rock on ne peut pas passer et on retourne a la dernière
+					// si c'est Poop ou rock on ne peut pas passer et on retourne a la derniï¿½re
 					// position
-					// ce qui créer un effet de collision
+					// ce qui crï¿½er un effet de collision
 				} else if (lsObstacle.get(numeroObstacles) instanceof Poop
 						|| lsObstacle.get(numeroObstacles) instanceof Rock) {
 

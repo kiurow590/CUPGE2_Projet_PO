@@ -3,7 +3,7 @@ package gameobjects.personnages.monstres;
 import java.util.List;
 
 import gameWorld.rooms.Room;
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.Vector2;
 import resources.ImagePaths;
 import resources.MonstreInfo;
@@ -85,6 +85,8 @@ public class Boss extends Monster {
      * mets en mouvement le boss
      */
     private void move(Hero e, List<Monster> lstMonstreBoss) {
+
+        // on calcul un vecteur pour que le monstre suive le hero
         this.setDirection(new Vector2(this.getPosition().getX() - e.getPosition().getX(),
                 this.getPosition().getY() - e.getPosition().getY()).reverse());
         this.setLastposition(this.getPosition());

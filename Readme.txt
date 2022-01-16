@@ -28,6 +28,27 @@ I- CONTROLE DU JEU :
         <o> : Offre 10 pièces aux Hero
 
 II - BONUS :
+    A) Personnages
+        1) Isaac
+            La protagoniste principale de l'histoire
+                PV : 6
+                Degat : 1
+                vitesse : 0.01
+                tmpRecharge : 0.5 cycle
+
+        2) Magdelene
+                PV : 8
+                Degat : 4
+                vitesse : 0.0085
+                tmpRecharge : 1.25 cycle
+
+        3) Lilith
+                PV : 2
+                Degat : 4
+                vitesse : 0.025
+                tmpRecharge : 0.38 cycle
+
+    B) Menu
 
 
 III - ETAPE DU PROJET :
@@ -44,11 +65,12 @@ III - ETAPE DU PROJET :
             L'araignée se mets en mouvement tout les cycle suivant un paterne aléatoire. Déterminé a l'aide d'un entier random. Elle fera cependant des dégats aux Hero que au corps a corps. 
         3) Boss
             Le boss est une arraignée spéciale qui bouge a chaque cycle en direction du Hero en générant de maniere aléatoire un monstre différents.
+    
     B) Generation de la Map
 
         1) Creation de different type de room
             
-            Il existe 4 type de room differentes
+            Il existe 5 types de room differentes
             
             a) SpawnRoom
                 Cette room est la room d'aparition du joueur. il n'as pas de comportement particulier. elle ne fait apparaitre aucun objet ni aucun monstre
@@ -61,26 +83,32 @@ III - ETAPE DU PROJET :
 
             d) BossRoom
                 Cette room a la meme comportement que la Monster Room. la seul difference c'est le monstre creer qui est le boss. Le boss a pour particularité de generer des monstre de maniere aléatoire.
+                De plus, la salle de boss peut ou etre la derniere de la partie ou la derniere de l'etage de jeu
+                    - Si c'est la derniere de l'etage : elle donnera acces a un porte-loins
+                    - Si c'est la derniere du jeu : elle donnera acces a un coffre au tresor
 
-
-            e) [secretRoom]
+            e) SecretRoom
+                une room cacher qui permet au joueur de récupérer un objet pour l'épauler dans sa quète
+                l'acces a cette salle se fait en traversant un mur
 
         2) Creation des Etages
 
             Les Rooms sont stocké dans une map de room. elle sont accesible avec un identifiant quelles ont.
             Chaque salle possede une liste de porte qui permet au joueur de se déplacer d'une room a l'autre. 
 
-      
-
-        [prevoir l'ajout d'etage]
     
     C) Creation des Projectile
 
-        1) Larmes
+        1) Tear
             Une larmes ne pourra etre tiré que pars le Hero et ne pourra entrée en collision que avec un monstre ou un mur.
             Elle a une porté qui defini sa "durée de vie"; Elle retira au monstre touchée l'equivalent des dégats du héro
         2) FlyProjectile
             Ce projectile ne pourra etre tiré que par les monstres et plus particulierement par les mouches.
+        3) Bomb
+            Lilith a pour capacité de pouvoir lancer des bomb qui font plus de degats que les larmes
+        4) BabyProjectile
+            Magdelene combats les monstres en lançant des bébés
+    
     D) Creation des Objets
 
         1) ConsommableObject

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gameobjects.Entity;
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import gameobjects.projectiles.Projectile;
 import libraries.Vector2;
 
@@ -18,7 +18,7 @@ public abstract class Monster extends Entity {
 
 	List<Projectile> lstProjectile;
 
-	int immobilus;
+	int freezeMouvement;
 
 	/**
 	 * Constructeur de monstre
@@ -34,7 +34,7 @@ public abstract class Monster extends Entity {
 		super(position, size, imagePath, speed, new Vector2(), ptDeVie, ptDeVie);
 
 		this.degatCorpsACorps = degatCorpsACorps;
-		this.immobilus = 0;
+		this.freezeMouvement = 0;
 		lstProjectile = new ArrayList<Projectile>();
 
 	}
@@ -66,20 +66,12 @@ public abstract class Monster extends Entity {
 		this.degatCorpsACorps = degatCorpsACorps;
 	}
 
-	public int getImmobilus() {
-		return immobilus;
-	}
-
-	public void setImmobilus(int immobilus) {
-		this.immobilus = immobilus;
+	public void setfreezeMouvement(int freezeMouvement) {
+		this.freezeMouvement = freezeMouvement;
 	}
 
 	public List<Projectile> getLstProjectile() {
 		return lstProjectile;
-	}
-
-	public void setLstProjectile(List<Projectile> lstProjectile) {
-		this.lstProjectile = lstProjectile;
 	}
 
 }

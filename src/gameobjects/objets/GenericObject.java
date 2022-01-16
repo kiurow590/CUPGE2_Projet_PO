@@ -1,6 +1,6 @@
 package gameobjects.objets;
 
-import gameobjects.personnages.Hero;
+import gameobjects.personnages.hero.Hero;
 import libraries.StdDraw;
 import libraries.Vector2;
 import resources.RoomInfos;
@@ -16,7 +16,7 @@ public abstract class GenericObject {
     Vector2 position;
     protected Vector2 size;
     boolean estRamasser;
-    protected int prix;
+    protected int price;
     protected int value;
 
     protected String imagePath;
@@ -26,11 +26,11 @@ public abstract class GenericObject {
      * 
      * @param position la position de l'objet dans la salle
      */
-    public GenericObject(Vector2 position, int prix, int value) {
+    public GenericObject(Vector2 position, int price, int value) {
         this.position = position;
         this.size = RoomInfos.TILE_SIZE.scalarMultiplication(0.4);
         this.estRamasser = false;
-        this.prix = prix;
+        this.price = price;
 
         this.value = value;
     }
@@ -42,8 +42,6 @@ public abstract class GenericObject {
         StdDraw.picture(getPosition().getX(), getPosition().getY(), this.imagePath, getSize().getX(),
                 getSize().getY(),
                 0);
-        StdDraw.setPenColor();
-        StdDraw.rectangle(getPosition().getX(), getPosition().getY(), getSize().getX() / 2, getSize().getY() / 2);
     }
 
     /**
@@ -69,10 +67,6 @@ public abstract class GenericObject {
         return this.size;
     }
 
-    public void setSize(Vector2 size) {
-        this.size = size;
-    }
-
     public boolean EstRamasser() {
         return this.estRamasser;
     }
@@ -85,24 +79,12 @@ public abstract class GenericObject {
         return this.estRamasser;
     }
 
-    public boolean getEstRamasser() {
-        return this.estRamasser;
-    }
-
-    public int getPrix() {
-        return this.prix;
-    }
-
-    public void setPrix(int prix) {
-        this.prix = prix;
+    public int getprice() {
+        return this.price;
     }
 
     public int getValue() {
         return this.value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
 }

@@ -45,8 +45,6 @@ public abstract class Door {
                 this.rotation);
         ;
 
-        StdDraw.setPenColor();
-        StdDraw.rectangle(position.getX(), position.getY(), size.getX() / 2, size.getY() / 2);
     }
 
     public int getIdSalle() {
