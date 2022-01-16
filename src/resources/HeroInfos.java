@@ -13,7 +13,7 @@ public class HeroInfos {
 	// Magdelene
 	public static Vector2 MAGDELENE_SIZE = RoomInfos.TILE_SIZE.scalarMultiplication(0.7);
 	public static final double MAGDELENE_SPEED = 0.0085;
-	public static final int MAGDELENE_ATTACK = 1;
+	public static final int MAGDELENE_ATTACK = 4;
 	public static final int MAGDELENE_TIR_DELAY = 20;
 	public static final int MAGDELENE_LIFE = 8;
 	// Lilith

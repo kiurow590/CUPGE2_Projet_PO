@@ -167,6 +167,10 @@ III - COMPOSITION DU PROJET :
         Un bug majeur a ete trouver (peu frequent) : 
             - lors de la mort du hero : si elle se passe trop vite (supposition) le menu de fin n'apparait pas et le jeu se fige. 
               On suppose que c'est STDdraw qui provoque cela cependant on en connait pas la raison de ce bug.
+
+        La difficulte n'est pas toujours evidente, n'hesitez pas a utiliser les cheatCode mis a disposition
+
+Thanks for playing and have fun !
     		
     
     
