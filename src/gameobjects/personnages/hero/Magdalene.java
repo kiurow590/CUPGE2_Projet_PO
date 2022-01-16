@@ -2,7 +2,6 @@ package gameobjects.personnages.hero;
 
 import gameobjects.projectiles.BabyProjectile;
 import gameobjects.projectiles.NumberOne_projectiles;
-import gameobjects.projectiles.Tear;
 import libraries.Vector2;
 import resources.HeroInfos;
 import resources.ImagePaths;
@@ -25,13 +24,13 @@ public class Magdalene extends Hero {
     @Override
     public void creeProjectile(Vector2 position, Vector2 direction) {
         if (this.countDownTir <= 0) {
-        	if (this.numberOne) {
-        		this.lstLarme.add(new NumberOne_projectiles(position, ImagePaths.NUMBER_ONE, direction, damage));
-        		 this.countDownTir = 30;
-        	} else {
-            this.lstLarme.add(new BabyProjectile(position, direction, damage));
-            this.countDownTir = 50;
-        	}
+            if (this.numberOne) {
+                this.lstLarme.add(new NumberOne_projectiles(position, ImagePaths.NUMBER_ONE, direction, damage));
+                this.countDownTir = 30;
+            } else {
+                this.lstLarme.add(new BabyProjectile(position, direction, damage));
+                this.countDownTir = 50;
+            }
         }
 
     }
