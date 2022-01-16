@@ -82,24 +82,32 @@ public class GameWorld {
 					if (hero.getsoldeKey() > 0 || door.isEstOuvert()) {
 						if (door instanceof BottomKeyDoor) {
 							hero.setPosition(new Vector2(0.5, 0.78));
-							door.setEstOuvert(true);
-							hero.setsoldeKey(hero.getsoldeKey() - 1);
+							if (!door.isEstOuvert()) {
+								door.setEstOuvert(true);
+								hero.setsoldeKey(hero.getsoldeKey() - 1);
+							}
 							currentRoom = mapDeRoom.get(door.getIdSalle());
 						} else if (door instanceof TopKeyDoor) {
 							hero.setPosition(new Vector2(0.5, 0.22));
-							door.setEstOuvert(true);
-							hero.setsoldeKey(hero.getsoldeKey() - 1);
+							if (!door.isEstOuvert()) {
+								door.setEstOuvert(true);
+								hero.setsoldeKey(hero.getsoldeKey() - 1);
+							}
 							currentRoom = mapDeRoom.get(door.getIdSalle());
 						} else if (door instanceof LeftKeyDoor) {
 							hero.setPosition(new Vector2(0.84, 0.5));
+							if (!door.isEstOuvert()) {
+								door.setEstOuvert(true);
+								hero.setsoldeKey(hero.getsoldeKey() - 1);
+							}
 
-							door.setEstOuvert(true);
-							hero.setsoldeKey(hero.getsoldeKey() - 1);
 							currentRoom = mapDeRoom.get(door.getIdSalle());
 						} else if (door instanceof RightKeyDoor) {
 							hero.setPosition(new Vector2(0.16, 0.5));
-							door.setEstOuvert(true);
-							hero.setsoldeKey(hero.getsoldeKey() - 1);
+							if (!door.isEstOuvert()) {
+								door.setEstOuvert(true);
+								hero.setsoldeKey(hero.getsoldeKey() - 1);
+							}
 							currentRoom = mapDeRoom.get(door.getIdSalle());
 						}
 						// currentRoom = mapDeRoom.get(door.getIdSalle());
@@ -228,19 +236,16 @@ public class GameWorld {
 		}
 		if (StdDraw.isKeyPressed(Controls.hitDown)) {
 
-			hero.creeProjectile(hero.getPosition(),
-					new Vector2(0, -1));
+			hero.creeProjectile(hero.getPosition(), new Vector2(0, -1));
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
 
-			hero.creeProjectile(hero.getPosition(),
-					new Vector2(-1, 0));
+			hero.creeProjectile(hero.getPosition(), new Vector2(-1, 0));
 		}
 		if (StdDraw.isKeyPressed(Controls.hitRight)) {
 
-			hero.creeProjectile(hero.getPosition(),
-					new Vector2(1, 0));
+			hero.creeProjectile(hero.getPosition(), new Vector2(1, 0));
 
 		}
 	}
