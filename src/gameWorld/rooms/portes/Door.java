@@ -79,13 +79,12 @@ public abstract class Door {
         return this.imagePaths;
     }
 
-	public boolean isEstOuvert() {
-		return estOuvert;
-	}
+    public boolean isEstOuvert() {
+        return estOuvert;
+    }
 
-	public void setEstOuvert(boolean estOuvert) {
-		this.estOuvert = estOuvert;
-	}
-
+    public void setEstOuvert(boolean estOuvert) {
+        this.estOuvert = estOuvert;
+    }
 
 }

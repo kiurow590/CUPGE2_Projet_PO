@@ -77,7 +77,6 @@ public class Main {
 		StdDraw.setCanvasSize(RoomInfos.NB_TILES * DisplaySettings.PIXEL_PER_TILE,
 				RoomInfos.NB_TILES * DisplaySettings.PIXEL_PER_TILE);
 
-		
 		StdDraw.enableDoubleBuffering();
 	}
 }

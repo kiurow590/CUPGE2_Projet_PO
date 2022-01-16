@@ -7,7 +7,7 @@ import resources.ImagePaths;
  */
 public class RightKeyDoor extends RightDoor {
 	/**
-	 * constructeur de porte avec necessité d'une clee a droite de la room
+	 * constructeur de porte avec necessitï¿½ d'une clee a droite de la room
 	 * 
 	 * @param idSalle identifiant de la salle vers qui mene la porte
 	 */

@@ -25,8 +25,8 @@ public abstract class GenericObject {
      * Constructeur d'objet
      * 
      * @param position la position de l'objet dans la salle
-     * @param price sa valeur en terme de piece
-     * @param value valeur des caractestiques additionel de l'objet
+     * @param price    sa valeur en terme de piece
+     * @param value    valeur des caractestiques additionel de l'objet
      */
     public GenericObject(Vector2 position, int price, int value) {
         this.position = position;

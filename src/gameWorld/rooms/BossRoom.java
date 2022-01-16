@@ -32,9 +32,10 @@ public class BossRoom extends Room {
 		this.lstObjet.add(new BoxWin(new Vector2(0.5, 0.5), this));
 		choixpattern();
 	}
-/**
- * met a jour la room
- */
+
+	/**
+	 * met a jour la room
+	 */
 	@Override
 	public void updateRoom() {
 		makeHeroPlay();
@@ -60,9 +61,10 @@ public class BossRoom extends Room {
 		affichageObjets();
 
 	}
-/**
- * gere aleatoirement les pattern d'obstacles possible
- */
+
+	/**
+	 * gere aleatoirement les pattern d'obstacles possible
+	 */
 	public void choixpattern() {
 		double numeropattern = Math.random() * 3;
 		if (numeropattern <= 1) {

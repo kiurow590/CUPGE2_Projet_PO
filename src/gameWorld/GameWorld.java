@@ -63,10 +63,11 @@ public class GameWorld {
 		if (currentRoom.getLsMonster().isEmpty()) {
 
 			for (Door door : currentRoom.getLstPorte()) {
-// si on est en collision avec une porte
+				// si on est en collision avec une porte
 				if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(), door.getPosition(),
 						door.getSize())) {
-// si on a une instance de simple door , quel soit a gauche, a droite, en haut, en bas
+					// si on a une instance de simple door , quel soit a gauche, a droite, en haut,
+					// en bas
 					if (door instanceof BottomDoor && !(door instanceof BottomKeyDoor)) {
 						hero.setPosition(new Vector2(0.5, 0.78));
 						currentRoom = mapDeRoom.get(door.getIdSalle());
@@ -80,10 +81,11 @@ public class GameWorld {
 						hero.setPosition(new Vector2(0.16, 0.5));
 						currentRoom = mapDeRoom.get(door.getIdSalle());
 					}
-					//si la on a des clef , ou que la porte est deja ouverte.
+					// si la on a des clef , ou que la porte est deja ouverte.
 					if (hero.getsoldeKey() > 0 || door.isEstOuvert()) {
-						// si on a une instance de Key door , quel soit a gauche, a droite, en haut, en bas
-						//on consomme une clef et on ouvre la porte
+						// si on a une instance de Key door , quel soit a gauche, a droite, en haut, en
+						// bas
+						// on consomme une clef et on ouvre la porte
 						if (door instanceof BottomKeyDoor) {
 							hero.setPosition(new Vector2(0.5, 0.78));
 							if (!door.isEstOuvert()) {
@@ -116,7 +118,7 @@ public class GameWorld {
 						}
 						// currentRoom = mapDeRoom.get(door.getIdSalle());
 					}
-					// on prends en considération le porte loin
+					// on prends en considï¿½ration le porte loin
 					if (door instanceof CarriesAway) {
 						currentRoom = mapDeRoom.get(door.getIdSalle());
 					}

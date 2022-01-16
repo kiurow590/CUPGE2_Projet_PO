@@ -158,6 +158,15 @@ III - COMPOSITION DU PROJET :
     		Pour eviter de mourir trop rapidement une invincibilite temporaire a ete mis en place .
     	3) Poop
     		Les Poop sont des obstacles au meme titre que les Rock mais ils sont destructible par le joueur
+
+
+    G) Critique generale de notre projet
+
+        On a pris du plaisir a programmer ce jeu, motivation plus importante qu'en tp.
+        Cependant, on aurait aimee ameliorer certains point comme la generation automatise des room qui a ete commencee mais qui n'as pas abouti.
+        Un bug majeur a ete trouver (peu frequent) : 
+            - lors de la mort du hero : si elle se passe trop vite (supposition) le menu de fin n'apparait pas et le jeu se fige. 
+              On suppose que c'est STDdraw qui provoque cela cependant on en connait pas la raison de ce bug.
     		
     
     

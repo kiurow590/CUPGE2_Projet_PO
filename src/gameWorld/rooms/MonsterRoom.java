@@ -48,7 +48,6 @@ public class MonsterRoom extends Room {
 		hero.drawGameObject();
 		dessinePorte();
 
-		
 		dessineLarme();
 		dessineObstacles();
 		dessineMonstre();
@@ -56,10 +55,12 @@ public class MonsterRoom extends Room {
 		affichageObjets();
 
 	}
-/**
- * gere le choix aleatoire de pattern a choisir pour la room actuelle (il en existe 6)
- * ces pattern on ete fait a la main
- */
+
+	/**
+	 * gere le choix aleatoire de pattern a choisir pour la room actuelle (il en
+	 * existe 6)
+	 * ces pattern on ete fait a la main
+	 */
 	public void choixpatternObstacle() {
 		// on choisi un pattern possible parmis les 6 ( construit a la main)
 		Double numeropattern = Math.random() * 6;

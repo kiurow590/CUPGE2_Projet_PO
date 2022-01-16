@@ -1,4 +1,5 @@
-package gameobjects.objets.consommables; 
+package gameobjects.objets.consommables;
+
 import gameobjects.personnages.hero.Hero;
 import libraries.Vector2;
 import resources.ImagePaths;
@@ -7,11 +8,12 @@ import resources.ImagePaths;
  * Class generatrice de Point de Vie
  */
 public class Life extends ConsommableObject {
-	/**
-	 * constructeur de point de vie a recuperer pour se soigner
-	 * @param value       valeur des caracteristiques de l'objet 
-	 * @param position		position de l'objet dans l'espace
-	 */
+    /**
+     * constructeur de point de vie a recuperer pour se soigner
+     * 
+     * @param value    valeur des caracteristiques de l'objet
+     * @param position position de l'objet dans l'espace
+     */
     public Life(int value, Vector2 position) {
 
         super(position, 0, value);

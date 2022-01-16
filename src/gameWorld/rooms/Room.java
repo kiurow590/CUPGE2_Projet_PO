@@ -81,7 +81,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * met a jour la Room (toutes les entité se déplace si elles sont censé le
+	 * met a jour la Room (toutes les entitï¿½ se dï¿½place si elles sont censï¿½ le
 	 * faire)
 	 */
 	public abstract void updateRoom();
@@ -96,7 +96,7 @@ public abstract class Room {
 	 */
 	public void dessinePorte() {
 		for (int i = 0; i < lstPorte.size(); i++) {
-			// si elle a un certain id alors la porte est différente
+			// si elle a un certain id alors la porte est diffï¿½rente
 			if (lsMonster.isEmpty() && (lstPorte.get(i).getIdSalle() == 5 || lstPorte.get(i).getIdSalle() == 14
 					|| lstPorte.get(i).getIdSalle() == 27)) {
 				lstPorte.get(i).setImagePaths(ImagePaths.PORTE_BOSS_OUVERTE);
@@ -452,7 +452,7 @@ public abstract class Room {
 							this.lsObstacle.get(numeroObstacles).getSize(),
 							monstre.getLstProjectile().get(j).getPosition(),
 							monstre.getLstProjectile().get(j).getSize())) {
-						// lorsque on touche l'obstacle , le projectiles se déttruit
+						// lorsque on touche l'obstacle , le projectiles se dï¿½ttruit
 						monstre.getLstProjectile().get(j).setPortee(0);
 					}
 				}
@@ -512,7 +512,7 @@ public abstract class Room {
 				// obstacles )
 				if (monster instanceof Spider || monster instanceof Boss) {
 					// uniquement les Rocks et les Poops car les Spikes n'inflige pas de degats au
-					// monstre et ils passent à travers
+					// monstre et ils passent ï¿½ travers
 					if (this.lsObstacle.get(numeroObstacles) instanceof Rock
 							|| this.lsObstacle.get(numeroObstacles) instanceof Poop) {
 						monster.setPosition(monster.getLastposition());
@@ -539,7 +539,8 @@ public abstract class Room {
 					if (this.lsObstacle.get(numeroObstacles) instanceof Rock) {
 						this.hero.getLstLarme().remove(numeroLarmeHero);
 					}
-					//si c'est un Poop comme obstacles , alors on peut le détruire , il perds donc de la vie 
+					// si c'est un Poop comme obstacles , alors on peut le dï¿½truire , il perds donc
+					// de la vie
 					if (this.lsObstacle.get(numeroObstacles) instanceof Poop) {
 						this.lsObstacle.get(numeroObstacles).retirepointVie(this.hero.getdamage());
 						this.hero.getLstLarme().remove(numeroLarmeHero);
