@@ -33,9 +33,6 @@ public class BossRoom extends Room {
 		choixpattern();
 	}
 
-	/**
-	 * met a jour la room
-	 */
 	@Override
 	public void updateRoom() {
 		makeHeroPlay();
@@ -55,10 +52,10 @@ public class BossRoom extends Room {
 		dessinePorte();
 		dessineObstacles();
 		dessineLarme();
-		affichageViePiece();
+		dessineCaracteristique();
 		dessineMonstre();
 
-		affichageObjets();
+		dessineObjet();
 
 	}
 

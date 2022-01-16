@@ -59,9 +59,11 @@ public class Projectile extends Entity {
         }
 
     }
-/**
- * met en mouvement les projectiles à l'aide des cycles ( la portee est enfaites une durée) .
- */
+
+    /**
+     * met en mouvement les projectiles a l'aide des cycles ( la portee est enfaites
+     * une duree) .
+     */
     protected void move() {
         Vector2 normalizedDirection = getNormalizedDirection();
         Vector2 positionAfterMoving = getPosition().addVector(normalizedDirection);

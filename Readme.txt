@@ -144,12 +144,14 @@ III - COMPOSITION DU PROJET :
             c) Number_one 
             	Le number_one a pour capacite de changer la porte ( de facon negative) mais d'augmenter la cadance des tire
             	. De plus il change les larmes en projectiles de numberOne
+                Les effets ne se cummule pas.
                 
     F) Creation des obstacles
     
     	il existe 3 obstacles different
     	a noter que seulement les spider, boss et heros on des collision avec les obstacle 
     	En effet les mouches passent au-dessus
+        Les obstacles sont genere a l'aide de pattern predefinie de facon aleatoire.
     	
     	1) Rock ou rocher
     		ce dernier est indestructible , de taille variables.

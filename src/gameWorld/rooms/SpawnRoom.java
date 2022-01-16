@@ -39,7 +39,7 @@ public class SpawnRoom extends Room {
         hero.drawGameObject();
         dessinePorte();
         dessineLarme();
-        affichageViePiece();
+        dessineCaracteristique();
     }
 
 }

@@ -81,105 +81,6 @@ public abstract class Room {
 	}
 
 	/**
-	 * met a jour la Room (toutes les entit� se d�place si elles sont cens� le
-	 * faire)
-	 */
-	public abstract void updateRoom();
-
-	/**
-	 * dessine la room
-	 */
-	public abstract void drawRoom();
-
-	/**
-	 * dessine les porte de la room
-	 */
-	public void dessinePorte() {
-		for (int i = 0; i < lstPorte.size(); i++) {
-			// si elle a un certain id alors la porte est diff�rente
-			if (lsMonster.isEmpty() && (lstPorte.get(i).getIdSalle() == 5 || lstPorte.get(i).getIdSalle() == 14
-					|| lstPorte.get(i).getIdSalle() == 27)) {
-				lstPorte.get(i).setImagePaths(ImagePaths.PORTE_BOSS_OUVERTE);
-			} else if (lsMonster.isEmpty()
-					&& ((lstPorte.get(i) instanceof RightKeyDoor) || lstPorte.get(i) instanceof LeftKeyDoor
-							|| lstPorte.get(i) instanceof BottomKeyDoor || lstPorte.get(i) instanceof TopKeyDoor)) {
-				// si nous avons des portes a clef alors , il faut une image de porte
-				// particuliere
-				if (lstPorte.get(i).isEstOuvert()) {
-					lstPorte.get(i).setImagePaths(ImagePaths.PORTE_OBJET_OUVERTE);
-				}
-				// sinon on met des porte normal
-			} else if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
-					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
-
-				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
-			}
-			lstPorte.get(i).drawGameObject();
-
-		}
-
-	}
-
-	/**
-	 * genere une objet random en respectant les probabilite d'apparition
-	 */
-	public GenericObject initObjectGift() {
-		double objectRandom = Math.random();
-		GenericObject objectReturn = new BoxWin(RoomInfos.POSITION_CENTER_OF_ROOM, this);
-		if (objectRandom < 0.35) {
-			double randomPiece = Math.random();
-			if (randomPiece < 0.45) {
-				objectReturn = new Coin(1, RoomInfos.POSITION_CENTER_OF_ROOM);
-			} else if (randomPiece >= 0.45 && randomPiece < 0.8) {
-				objectReturn = new Coin(5, RoomInfos.POSITION_CENTER_OF_ROOM);
-
-			} else {
-				objectReturn = new Coin(10, RoomInfos.POSITION_CENTER_OF_ROOM);
-
-			}
-		} else if (objectRandom >= 0.35 && objectRandom < 0.75) {
-			double randomCoeur = Math.random();
-
-			if (randomCoeur < 0.6) {
-				objectReturn = new Life(1, RoomInfos.POSITION_CENTER_OF_ROOM);
-
-			} else {
-				objectReturn = new Life(2, RoomInfos.POSITION_CENTER_OF_ROOM);
-
-			}
-		} else if (objectRandom >= 0.75 && objectRandom < 0.875) {
-			objectReturn = new BloodOfMartyr(RoomInfos.POSITION_CENTER_OF_ROOM);
-		} else if (objectRandom >= 0.875) {
-			objectReturn = new LifeExtension(RoomInfos.POSITION_CENTER_OF_ROOM);
-		}
-
-		return objectReturn;
-
-	}
-
-	/**
-	 * met a jour le hero
-	 */
-	void makeHeroPlay() {
-		hero.updateGameObject();
-	}
-
-	/**
-	 * affiche les obstacles
-	 */
-	public void dessineObstacles() {
-		if (!lsObstacle.isEmpty()) {
-			for (int i = 0; i < lsObstacle.size(); i++) {
-				if (!lsObstacle.get(i).estVivant()) {
-					lsObstacle.remove(i);
-				} else {
-					lsObstacle.get(i).drawGameObject();
-				}
-			}
-		}
-	}
-
-	/**
 	 * initialise le nb de monstre au demarrage de la room
 	 */
 	void initMonster() {
@@ -246,9 +147,119 @@ public abstract class Room {
 	}
 
 	/**
+	 * genere une objet random en respectant les probabilite d'apparition
+	 */
+	public GenericObject initObjectGift() {
+		double objectRandom = Math.random();
+		GenericObject objectReturn = new BoxWin(RoomInfos.POSITION_CENTER_OF_ROOM, this);
+		if (objectRandom < 0.35) {
+			double randomPiece = Math.random();
+			if (randomPiece < 0.45) {
+				objectReturn = new Coin(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+			} else if (randomPiece >= 0.45 && randomPiece < 0.8) {
+				objectReturn = new Coin(5, RoomInfos.POSITION_CENTER_OF_ROOM);
+
+			} else {
+				objectReturn = new Coin(10, RoomInfos.POSITION_CENTER_OF_ROOM);
+
+			}
+		} else if (objectRandom >= 0.35 && objectRandom < 0.75) {
+			double randomCoeur = Math.random();
+
+			if (randomCoeur < 0.6) {
+				objectReturn = new Life(1, RoomInfos.POSITION_CENTER_OF_ROOM);
+
+			} else {
+				objectReturn = new Life(2, RoomInfos.POSITION_CENTER_OF_ROOM);
+
+			}
+		} else if (objectRandom >= 0.75 && objectRandom < 0.875) {
+			objectReturn = new BloodOfMartyr(RoomInfos.POSITION_CENTER_OF_ROOM);
+		} else if (objectRandom >= 0.875) {
+			objectReturn = new LifeExtension(RoomInfos.POSITION_CENTER_OF_ROOM);
+		}
+
+		return objectReturn;
+
+	}
+
+	/**
+	 * met a jour la Room (toutes les entit� se d�place si elles sont cens� le
+	 * faire)
+	 */
+	public abstract void updateRoom();
+
+	/**
+	 * dessine la room
+	 */
+	public abstract void drawRoom();
+
+	/**
+	 * met a jour le hero
+	 */
+	void makeHeroPlay() {
+		hero.updateGameObject();
+	}
+
+	/**
+	 * met a jour le monstre
+	 */
+	void makeMonsterPlay() {
+
+		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
+			this.lsMonster.get(i).updateGameObject(this.hero, lsMonster);
+		}
+
+	}
+
+	/**
+	 * dessine les porte de la room
+	 */
+	public void dessinePorte() {
+		for (int i = 0; i < lstPorte.size(); i++) {
+			// si elle a un certain id alors la porte est diff�rente
+			if (lsMonster.isEmpty() && (lstPorte.get(i).getIdSalle() == 5 || lstPorte.get(i).getIdSalle() == 14
+					|| lstPorte.get(i).getIdSalle() == 27)) {
+				lstPorte.get(i).setImagePaths(ImagePaths.PORTE_BOSS_OUVERTE);
+			} else if (lsMonster.isEmpty()
+					&& ((lstPorte.get(i) instanceof RightKeyDoor) || lstPorte.get(i) instanceof LeftKeyDoor
+							|| lstPorte.get(i) instanceof BottomKeyDoor || lstPorte.get(i) instanceof TopKeyDoor)) {
+				// si nous avons des portes a clef alors , il faut une image de porte
+				// particuliere
+				if (lstPorte.get(i).isEstOuvert()) {
+					lstPorte.get(i).setImagePaths(ImagePaths.PORTE_OBJET_OUVERTE);
+				}
+				// sinon on met des porte normal
+			} else if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
+					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
+
+				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
+			}
+			lstPorte.get(i).drawGameObject();
+
+		}
+
+	}
+
+	/**
+	 * affiche les obstacles
+	 */
+	public void dessineObstacles() {
+		if (!lsObstacle.isEmpty()) {
+			for (int i = 0; i < lsObstacle.size(); i++) {
+				if (!lsObstacle.get(i).estVivant()) {
+					lsObstacle.remove(i);
+				} else {
+					lsObstacle.get(i).drawGameObject();
+				}
+			}
+		}
+	}
+
+	/**
 	 * Affiche l'objet en recompense de la salle
 	 */
-	public void affichageObjets() {
+	public void dessineObjet() {
 
 		for (int i = 0; i < lstObjet.size(); i++) {
 			if (!(this instanceof ShopRoom)) {
@@ -277,46 +288,89 @@ public abstract class Room {
 	}
 
 	/**
-	 * retire des listes tous les monstre qui sont supposer mort
+	 * affiche les information du joueur
 	 */
-	public void rammasseMonstreMort() {
+	public void dessineCaracteristique() {
+		// Affichage nb piece
+		StdDraw.picture(0.05, 0.9, ImagePaths.DIME, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
+				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
+		StdDraw.setPenRadius();
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.text(0.1, 0.9, ": " + hero.getStackArgent() + "");
+		// affiche puissance
+		StdDraw.picture(0.05, 0.85, ImagePaths.STRENGTH, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
+				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
+		StdDraw.setPenRadius();
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.text(0.1, 0.85, ": " + hero.getdamage() + "");
+		// ------------------------------affichage key---------------------------------
+		StdDraw.picture(0.05, 0.80, ImagePaths.KEY, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
+				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
+		StdDraw.setPenRadius();
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.text(0.1, 0.80, ": " + hero.getsoldeKey() + "");
+		// ----------------------------------------------------------------
+		StdDraw.setPenRadius();
+		int pointVieView = this.hero.getpointVie();
+		if (pointVieView % 2 == 0) {
+			double x = 0.05;
+			while (pointVieView != 0) {
+				StdDraw.picture(x, 0.95, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 
-		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
-			if (this.lsMonster.get(i).isDead()) {
-
-				this.lsMonster.remove(i);
+				x += 0.05;
+				pointVieView -= 2;
 			}
-		}
 
+		} else {
+			double x = 0.05;
+			while (pointVieView != 1) {
+				StdDraw.picture(x, 0.95, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
+
+				x += 0.05;
+				pointVieView -= 2;
+
+			}
+
+			StdDraw.picture(x, 0.95, ImagePaths.HALF_HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
+					RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
+		}
 	}
 
 	/**
-	 * nettoie de l'affichage les larme (hero)
+	 * dessine les monstre
 	 */
-	public void nettoyageLarme() {
-		for (int k = 0; k < hero.getLstLarme().size(); k++) {
+	void dessineMonstre() {
 
-			if (this.hero.getLstLarme().get(k).getPortee() <= 0) {
-				this.hero.getLstLarme().remove(k);
-
+		for (int i = 0; !this.lsMonster.isEmpty() && i < this.lsMonster.size(); i++) {
+			if (this.lsMonster.get(i) != null) {
+				this.lsMonster.get(i).drawGameObject();
 			}
-
-		}
-	}
-
-	/**
-	 * nettoie de l'afficheage les larme (monstre)
-	 */
-	void nettoyageProj() {
-		for (int k = 0; this.lsMonster != null && k < this.lsMonster.size(); k++) {
-			if (this.lsMonster.get(k) instanceof Fly) {
-				Fly f = (Fly) this.lsMonster.get(k);
-				for (int i = 0; i < f.getLstProjectile().size(); i++) {
-					if (f.getLstProjectile().get(i).getPortee() <= 0) {
-						f.getLstProjectile().remove(i);
-
-					}
+			for (int j = 0; this.lsMonster.get(i).getLstProjectile() != null
+					&& j < this.lsMonster.get(i).getLstProjectile().size(); j++) {
+				if (this.lsMonster.get(i).getLstProjectile().get(j).getPortee() > 0) {
+					this.lsMonster.get(i).getLstProjectile().get(j).updateGameObject();
+					this.lsMonster.get(i).getLstProjectile().get(j).drawGameObject();
+				} else {
+					this.lsMonster.get(i).getLstProjectile().remove(j);
 				}
+			}
+
+		}
+
+	}
+
+	/**
+	 * dessine les larmes
+	 */
+	void dessineLarme() {
+		for (int i = 0; i < hero.getLstLarme().size(); i++) {
+			if (hero.getLstLarme().get(i).getPortee() > 0) {
+				hero.getLstLarme().get(i).updateGameObject();
+				hero.getLstLarme().get(i).drawGameObject();
+			} else {
+				hero.getLstLarme().remove(i);
 			}
 
 		}
@@ -552,100 +606,46 @@ public abstract class Room {
 	}
 
 	/**
-	 * met a jour le monstre
+	 * retire des listes tous les monstre qui sont supposer mort
 	 */
-	void makeMonsterPlay() {
+	public void rammasseMonstreMort() {
 
 		for (int i = 0; this.lsMonster != null && i < this.lsMonster.size(); i++) {
-			this.lsMonster.get(i).updateGameObject(this.hero, lsMonster);
+			if (this.lsMonster.get(i).isDead()) {
+
+				this.lsMonster.remove(i);
+			}
 		}
 
 	}
 
 	/**
-	 * affiche les information du joueur
+	 * nettoie de l'affichage les larme (hero)
 	 */
-	public void affichageViePiece() {
-		// Affichage nb piece
-		StdDraw.picture(0.05, 0.9, ImagePaths.DIME, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
-				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
-		StdDraw.setPenRadius();
-		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.text(0.1, 0.9, ": " + hero.getStackArgent() + "");
-		// affiche puissance
-		StdDraw.picture(0.05, 0.85, ImagePaths.STRENGTH, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
-				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
-		StdDraw.setPenRadius();
-		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.text(0.1, 0.85, ": " + hero.getdamage() + "");
-		// ------------------------------affichage key---------------------------------
-		StdDraw.picture(0.05, 0.80, ImagePaths.KEY, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
-				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
-		StdDraw.setPenRadius();
-		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.text(0.1, 0.80, ": " + hero.getsoldeKey() + "");
-		// ----------------------------------------------------------------
-		StdDraw.setPenRadius();
-		int pointVieView = this.hero.getpointVie();
-		if (pointVieView % 2 == 0) {
-			double x = 0.05;
-			while (pointVieView != 0) {
-				StdDraw.picture(x, 0.95, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
-						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
+	public void nettoyageLarme() {
+		for (int k = 0; k < hero.getLstLarme().size(); k++) {
 
-				x += 0.05;
-				pointVieView -= 2;
-			}
-
-		} else {
-			double x = 0.05;
-			while (pointVieView != 1) {
-				StdDraw.picture(x, 0.95, ImagePaths.HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
-						RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
-
-				x += 0.05;
-				pointVieView -= 2;
+			if (this.hero.getLstLarme().get(k).getPortee() <= 0) {
+				this.hero.getLstLarme().remove(k);
 
 			}
 
-			StdDraw.picture(x, 0.95, ImagePaths.HALF_HEART_HUD, RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getX(),
-					RoomInfos.TILE_SIZE.scalarMultiplication(0.5).getY());
 		}
 	}
 
 	/**
-	 * dessine les monstre
+	 * nettoie de l'afficheage les larme (monstre)
 	 */
-	void dessineMonstre() {
+	void nettoyageProj() {
+		for (int k = 0; this.lsMonster != null && k < this.lsMonster.size(); k++) {
+			if (this.lsMonster.get(k) instanceof Fly) {
+				Fly f = (Fly) this.lsMonster.get(k);
+				for (int i = 0; i < f.getLstProjectile().size(); i++) {
+					if (f.getLstProjectile().get(i).getPortee() <= 0) {
+						f.getLstProjectile().remove(i);
 
-		for (int i = 0; !this.lsMonster.isEmpty() && i < this.lsMonster.size(); i++) {
-			if (this.lsMonster.get(i) != null) {
-				this.lsMonster.get(i).drawGameObject();
-			}
-			for (int j = 0; this.lsMonster.get(i).getLstProjectile() != null
-					&& j < this.lsMonster.get(i).getLstProjectile().size(); j++) {
-				if (this.lsMonster.get(i).getLstProjectile().get(j).getPortee() > 0) {
-					this.lsMonster.get(i).getLstProjectile().get(j).updateGameObject();
-					this.lsMonster.get(i).getLstProjectile().get(j).drawGameObject();
-				} else {
-					this.lsMonster.get(i).getLstProjectile().remove(j);
+					}
 				}
-			}
-
-		}
-
-	}
-
-	/**
-	 * dessine les larmes
-	 */
-	void dessineLarme() {
-		for (int i = 0; i < hero.getLstLarme().size(); i++) {
-			if (hero.getLstLarme().get(i).getPortee() > 0) {
-				hero.getLstLarme().get(i).updateGameObject();
-				hero.getLstLarme().get(i).drawGameObject();
-			} else {
-				hero.getLstLarme().remove(i);
 			}
 
 		}

@@ -47,9 +47,9 @@ public class ShopRoom extends Room {
 
         dessineMonstre();
         dessineLarme();
-        affichageViePiece();
+        dessineCaracteristique();
 
-        affichageObjets();
+        dessineObjet();
     }
 
 }

@@ -106,18 +106,6 @@ public abstract class Hero extends Entity {
 	}
 
 	/**
-	 * ajoute dix piece au personnage
-	 * 
-	 */
-	public void addArgentTriche() {
-		if (this.countDownGiveStack <= 0) {
-			this.stackArgent += 10;
-			this.countDownGiveStack = 50;
-		}
-
-	}
-
-	/**
 	 * calcul si le hero est vivant
 	 * 
 	 * @return un boolean </br>
@@ -128,6 +116,18 @@ public abstract class Hero extends Entity {
 	 */
 	public boolean isDead() {
 		return this.pointVie <= 0;
+	}
+
+	/**
+	 * ajoute dix piece au personnage
+	 * 
+	 */
+	public void addArgentTriche() {
+		if (this.countDownGiveStack <= 0) {
+			this.stackArgent += 10;
+			this.countDownGiveStack = 50;
+		}
+
 	}
 
 	/**
@@ -148,13 +148,13 @@ public abstract class Hero extends Entity {
 			this.countDownInvincible = 40;
 		} else if (this.estInvincible && this.countDownInvincible == 0) {
 			this.estInvincible = false;
-			if (this instanceof Isaac ) {
+			if (this instanceof Isaac) {
 				this.imagePath = ImagePaths.ISAAC;
 			}
-			if (this instanceof Magdalene ) {
+			if (this instanceof Magdalene) {
 				this.imagePath = ImagePaths.MAGDALENE;
 			}
-			if (this instanceof PyroBarbare ) {
+			if (this instanceof PyroBarbare) {
 				this.imagePath = ImagePaths.PYROBARBARE;
 			}
 			this.countDownInvincible = 40;

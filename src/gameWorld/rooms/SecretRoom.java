@@ -42,8 +42,8 @@ public class SecretRoom extends Room {
         hero.drawGameObject();
         dessinePorte();
         dessineLarme();
-        affichageViePiece();
-        affichageObjets();
+        dessineCaracteristique();
+        dessineObjet();
 
     }
 

@@ -51,8 +51,8 @@ public class MonsterRoom extends Room {
 		dessineLarme();
 		dessineObstacles();
 		dessineMonstre();
-		affichageViePiece();
-		affichageObjets();
+		dessineCaracteristique();
+		dessineObjet();
 
 	}
 
