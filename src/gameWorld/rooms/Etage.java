@@ -231,7 +231,7 @@ public class Etage {
         spawn.getLstPorte().add(new TopDoor(monster1.getId()));
         monster1.getLstPorte().add(new BottomDoor(spawn.getId()));
 
-        monster1.getLstObjet().add(new Key(new Vector2(0.22 , 0.5), 0, 0));
+        monster1.getLstObjet().add(new Key(new Vector2(0.16 , 0.5), 0, 0));
         
         monster1.getLstPorte().add(new RightDoor(monster2.getId()));
         monster2.getLstPorte().add(new LeftDoor(monster1.getId()));
