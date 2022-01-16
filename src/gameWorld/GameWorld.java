@@ -60,8 +60,8 @@ public class GameWorld {
 
 			for (Door door : currentRoom.getLstPorte()) {
 
-				if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(),
-						door.getPosition(), door.getSize())) {
+				if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(), door.getPosition(),
+						door.getSize())) {
 
 					if (door instanceof BottomDoor) {
 						hero.setPosition(new Vector2(0.5, 0.78));
@@ -111,11 +111,12 @@ public class GameWorld {
 
 		}
 		if (StdDraw.isKeyPressed(Controls.numberOne)) {
-			if(hero.numberOne==true) {
-				hero.numberOne=false;
+			if (hero.numberOne == true) {
+				hero.numberOne = false;
+			} else {
+				hero.numberOne = true;
 			}
-			hero.numberOne=true;
-			
+
 		}
 	}
 
@@ -195,21 +196,16 @@ public class GameWorld {
 		}
 		if (StdDraw.isKeyPressed(Controls.hitDown)) {
 
-			hero.creeLarme(hero.getPosition(),
-					ImagePaths.TEAR,
-					new Vector2(0, -1));
+			hero.creeLarme(hero.getPosition(), ImagePaths.TEAR, new Vector2(0, -1));
 
 		}
 		if (StdDraw.isKeyPressed(Controls.hitLeft)) {
 
-			hero.creeLarme(hero.getPosition(),
-					ImagePaths.TEAR,
-					new Vector2(-1, 0));
+			hero.creeLarme(hero.getPosition(), ImagePaths.TEAR, new Vector2(-1, 0));
 		}
 		if (StdDraw.isKeyPressed(Controls.hitRight)) {
 
-			hero.creeLarme(hero.getPosition(),
-					ImagePaths.TEAR, new Vector2(1, 0));
+			hero.creeLarme(hero.getPosition(), ImagePaths.TEAR, new Vector2(1, 0));
 		}
 	}
 

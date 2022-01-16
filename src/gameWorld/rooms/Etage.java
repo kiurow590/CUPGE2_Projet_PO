@@ -9,7 +9,9 @@ import gameWorld.rooms.portes.LeftDoor;
 import gameWorld.rooms.portes.RightDoor;
 import gameWorld.rooms.portes.TopDoor;
 import gameobjects.personnages.Hero;
+import libraries.Vector2;
 import resources.ImagePaths;
+import gameobjects.objets.consommables.Key;
 
 /**
  * Classe qui genere les etage du jeu
@@ -63,6 +65,7 @@ public class Etage {
         monster1.getLstPorte().add(new RightDoor(spawn.getId()));
         monster1.getLstPorte().add(new LeftDoor(monster2.getId()));
         monster2.getLstPorte().add(new RightDoor(monster1.getId()));
+        monster2.getLstObjet().add(new Key(new Vector2(0.5,0.5),0,0));
         monster2.getLstPorte().add(new RightDoor(monster1.getId()));
 
         monster1.getLstPorte().add(new BottomDoor(monster3.getId()));

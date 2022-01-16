@@ -35,6 +35,7 @@ public abstract class Hero extends Entity {
 	int soldeKey;
 
 	int countDownGiveStack;
+	
 
 	/**
 	 * Constructeur de hero
@@ -233,6 +234,9 @@ public abstract class Hero extends Entity {
 
 	public int getsoldeStackMax() {
 		return this.soldeStackMax;
+	}
+	public void setsoldeKey(int nombreDeKey) {
+		this.soldeKey= nombreDeKey;
 	}
 	public int getsoldeKey() {
 		return this.soldeKey;
