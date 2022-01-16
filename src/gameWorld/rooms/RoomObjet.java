@@ -34,7 +34,7 @@ public class RoomObjet extends Room {
 	public RoomObjet (Hero hero , Integer idSalle) {
 		super(hero, idSalle);
 		this.type=MON_TYPE;
-		if(Math.random()<0.5) {
+		if(Math.random()<=0.5) {
 			this.lstObjet.add(new NumberOne(new Vector2(0.5,0.5)));
 			
 		}else {

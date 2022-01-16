@@ -6,10 +6,14 @@ import java.util.Map;
 import gameWorld.rooms.Etage;
 import gameWorld.rooms.Room;
 import gameWorld.rooms.portes.BottomDoor;
+import gameWorld.rooms.portes.BottomKeyDoor;
 import gameWorld.rooms.portes.Door;
 import gameWorld.rooms.portes.LeftDoor;
+import gameWorld.rooms.portes.LeftKeyDoor;
 import gameWorld.rooms.portes.RightDoor;
+import gameWorld.rooms.portes.RightKeyDoor;
 import gameWorld.rooms.portes.TopDoor;
+import gameWorld.rooms.portes.TopKeyDoor;
 import gameobjects.personnages.Hero;
 import libraries.Physics;
 import libraries.StdDraw;
@@ -63,16 +67,45 @@ public class GameWorld {
 				if (Physics.rectangleCollision(hero.getPosition(), hero.getSize(), door.getPosition(),
 						door.getSize())) {
 
-					if (door instanceof BottomDoor) {
+					if (door instanceof BottomDoor && !(door instanceof BottomKeyDoor)) {
 						hero.setPosition(new Vector2(0.5, 0.78));
-					} else if (door instanceof TopDoor) {
+						currentRoom = mapDeRoom.get(door.getIdSalle());
+					} else if (door instanceof TopDoor && !(door instanceof TopKeyDoor)) {
 						hero.setPosition(new Vector2(0.5, 0.22));
-					} else if (door instanceof LeftDoor) {
+						currentRoom = mapDeRoom.get(door.getIdSalle());
+					} else if (door instanceof LeftDoor && !(door instanceof LeftKeyDoor)) {
 						hero.setPosition(new Vector2(0.84, 0.5));
-					} else if (door instanceof RightDoor) {
+						currentRoom = mapDeRoom.get(door.getIdSalle());
+					} else if (door instanceof RightDoor && !(door instanceof RightKeyDoor)) {
 						hero.setPosition(new Vector2(0.16, 0.5));
+						currentRoom = mapDeRoom.get(door.getIdSalle());
 					}
-					currentRoom = mapDeRoom.get(door.getIdSalle());
+					if (hero.getsoldeKey() > 0 || door.isEstOuvert()) {
+						if (door instanceof BottomKeyDoor) {
+							hero.setPosition(new Vector2(0.5, 0.78));
+							door.setEstOuvert(true);
+							hero.setsoldeKey(hero.getsoldeKey() - 1);
+							currentRoom = mapDeRoom.get(door.getIdSalle());
+						} else if (door instanceof TopKeyDoor) {
+							hero.setPosition(new Vector2(0.5, 0.22));
+							door.setEstOuvert(true);
+							hero.setsoldeKey(hero.getsoldeKey() - 1);
+							currentRoom = mapDeRoom.get(door.getIdSalle());
+						} else if (door instanceof LeftKeyDoor) {
+							hero.setPosition(new Vector2(0.84, 0.5));
+
+							door.setEstOuvert(true);
+							hero.setsoldeKey(hero.getsoldeKey() - 1);
+							currentRoom = mapDeRoom.get(door.getIdSalle());
+						} else if (door instanceof RightKeyDoor) {
+							hero.setPosition(new Vector2(0.16, 0.5));
+							door.setEstOuvert(true);
+							hero.setsoldeKey(hero.getsoldeKey() - 1);
+							currentRoom = mapDeRoom.get(door.getIdSalle());
+						}
+						// currentRoom = mapDeRoom.get(door.getIdSalle());
+					}
+
 				}
 			}
 

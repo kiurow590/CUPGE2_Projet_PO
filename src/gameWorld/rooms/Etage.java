@@ -7,11 +7,12 @@ import gameWorld.rooms.portes.BottomDoor;
 import gameWorld.rooms.portes.CarriesAway;
 import gameWorld.rooms.portes.LeftDoor;
 import gameWorld.rooms.portes.RightDoor;
+import gameWorld.rooms.portes.RightKeyDoor;
 import gameWorld.rooms.portes.TopDoor;
+import gameobjects.objets.consommables.Key;
 import gameobjects.personnages.Hero;
 import libraries.Vector2;
 import resources.ImagePaths;
-import gameobjects.objets.consommables.Key;
 
 /**
  * Classe qui genere les etage du jeu
@@ -72,15 +73,15 @@ public class Etage {
 
         monster3.getLstPorte().add(new TopDoor(monster1.getId()));
         monster3.getLstPorte().add(new BottomDoor(commerce1.getId()));
-        monster3.getLstPorte().get(1).setImagePaths(ImagePaths.PORTE_OBJET_FERME);
-        monster3.getLstPorte().add(new RightDoor(objet.getId()));
-
+        
+        monster3.getLstPorte().add(new RightKeyDoor(objet.getId()));
+        objet.getLstPorte().add(new LeftDoor(monster3.getId()));
         commerce1.getLstPorte().add(new TopDoor(monster3.getId()));
 
         commerce1.getLstPorte().add(new RightDoor(boss.getId()));
         commerce1.getLstPorte().get(1).setImagePaths(ImagePaths.PORTE_BOSS_FERME);
         boss.getLstPorte().add(new LeftDoor(commerce1.getId()));
-        boss.getLstPorte().get(0).setImagePaths(ImagePaths.PORTE_BOSS_FERME);
+        //boss.getLstPorte().get(0).setImagePaths(ImagePaths.PORTE_BOSS_FERME);
         boss.getLstObjet().remove(0);
 
         // on ajoute a la map
@@ -91,6 +92,7 @@ public class Etage {
         mapDeRoom.put(monster2.getId(), monster2);
         mapDeRoom.put(monster3.getId(), monster3);
         mapDeRoom.put(commerce1.getId(), commerce1);
+        mapDeRoom.put(objet.getId(), objet);
         mapDeRoom.put(boss.getId(), boss);
     }
 
@@ -147,7 +149,7 @@ public class Etage {
         commerce2.getLstPorte().add(new BottomDoor(boss.getId()));
         commerce2.getLstPorte().get(1).setImagePaths(ImagePaths.PORTE_BOSS_FERME);
         boss.getLstPorte().add(new TopDoor(commerce2.getId()));
-        boss.getLstPorte().get(0).setImagePaths(ImagePaths.PORTE_BOSS_FERME);
+        //boss.getLstPorte().get(0).setImagePaths(ImagePaths.PORTE_BOSS_FERME);
         boss.getLstObjet().remove(0);
 
         // on ajoute a la map

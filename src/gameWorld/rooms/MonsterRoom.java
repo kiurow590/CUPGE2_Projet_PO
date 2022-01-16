@@ -50,9 +50,10 @@ public class MonsterRoom extends Room {
 		hero.drawGameObject();
 		dessinePorte();
 
-		dessineMonstre();
+		
 		dessineLarme();
 		dessineObstacles();
+		dessineMonstre();
 		affichageViePiece();
 		affichageObjets();
 

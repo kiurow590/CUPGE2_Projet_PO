@@ -16,6 +16,7 @@ public abstract class Door {
     protected Vector2 size;
     private int idSalle;
     private int rotation;
+    protected boolean estOuvert;
 
     String imagePaths;
 
@@ -79,5 +80,14 @@ public abstract class Door {
     public String getImagePaths() {
         return this.imagePaths;
     }
+
+	public boolean isEstOuvert() {
+		return estOuvert;
+	}
+
+	public void setEstOuvert(boolean estOuvert) {
+		this.estOuvert = estOuvert;
+	}
+
 
 }

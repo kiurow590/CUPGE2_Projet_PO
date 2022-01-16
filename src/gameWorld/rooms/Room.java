@@ -3,8 +3,12 @@ package gameWorld.rooms;
 import java.util.ArrayList;
 import java.util.List;
 
+import gameWorld.rooms.portes.BottomKeyDoor;
 import gameWorld.rooms.portes.CarriesAway;
 import gameWorld.rooms.portes.Door;
+import gameWorld.rooms.portes.LeftKeyDoor;
+import gameWorld.rooms.portes.RightKeyDoor;
+import gameWorld.rooms.portes.TopKeyDoor;
 import gameobjects.objets.GenericObject;
 import gameobjects.objets.consommables.BoxWin;
 import gameobjects.objets.consommables.Coin;
@@ -90,26 +94,29 @@ public abstract class Room {
 	 * dessine les porte de la room
 	 */
 	public void dessinePorte() {
-
 		for (int i = 0; i < lstPorte.size(); i++) {
-			if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
-					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
-				if (lstPorte.get(i).getImagePaths().compareTo(ImagePaths.PORTE_BOSS_OUVERTE)==1) {
-					lstPorte.get(i).setImagePaths(ImagePaths.PORTE_BOSS_OUVERTE);
+			if (lsMonster.isEmpty() && (lstPorte.get(i).getIdSalle() == 5 || lstPorte.get(i).getIdSalle() == 14
+					|| lstPorte.get(i).getIdSalle() == 27)) {
+				lstPorte.get(i).setImagePaths(ImagePaths.PORTE_BOSS_OUVERTE);
+			} else if (lsMonster.isEmpty()
+					&& ((lstPorte.get(i) instanceof RightKeyDoor) || lstPorte.get(i) instanceof LeftKeyDoor
+							|| lstPorte.get(i) instanceof BottomKeyDoor || lstPorte.get(i) instanceof TopKeyDoor)) {
+				if (lstPorte.get(i).isEstOuvert()) {
+					lstPorte.get(i).setImagePaths(ImagePaths.PORTE_OBJET_OUVERTE);
 				}
-				else {
+			} else if (lsMonster.isEmpty() && !(lstPorte.get(i) instanceof CarriesAway)
+					&& !(lstPorte.get(i).getImagePaths().equals(ImagePaths.SECRET_ENTRY))) {
+
 				lstPorte.get(i).setImagePaths(ImagePaths.OPENED_DOOR);
-				
 			}
 			lstPorte.get(i).drawGameObject();
-			}
 
 		}
+
 	}
 
 	/**
-	 * génère une objet random en respectant les probabilité
-	 * d'apparition
+	 * génère une objet random en respectant les probabilité d'apparition
 	 */
 	public GenericObject initObjectGift() {
 		double objectRandom = Math.random();
@@ -314,7 +321,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * gere les collision entre differente entité
+	 * gere les collision entre differente entite
 	 */
 	void collisionReport() {
 
@@ -418,8 +425,7 @@ public abstract class Room {
 	}
 
 	/**
-	 * gere la collision entre le hero est les projectile lancer par des
-	 * monstres
+	 * gere la collision entre le hero est les projectile lancer par des monstres
 	 * 
 	 * @param monstre
 	 */
@@ -448,17 +454,30 @@ public abstract class Room {
 			}
 		}
 	}
+
+	/**
+	 * gere les collision entre le hero et les obstacles
+	 */
 	public void collisionObstacleHero() {
+		// compteur d'invincibilite du hero lorsque il prends des degats du Spikes
+		if (this.compteurInvincibiliteHero > 0) {
+			this.compteurInvincibiliteHero--;
+		}
+		// on parcours tout les obstacles
 		for (int numeroObstacles = 0; !this.lsObstacle.isEmpty()
 				&& numeroObstacles < this.lsObstacle.size(); numeroObstacles++) {
-
+			// si on touche un obstacles ( avec le hero)
 			if (Physics.rectangleCollision(this.hero.getPosition(), this.hero.getSize(),
 					this.lsObstacle.get(numeroObstacles).getPosition(),
 					this.lsObstacle.get(numeroObstacles).getSize())) {
-
+				// si c'est des piques , et que je ne suis pas invincible , je prends des degats
+				// ,mais je deviens temporairement invincible
 				if (this.lsObstacle.get(numeroObstacles) instanceof Spikes && this.compteurInvincibiliteHero == 0) {
 					this.hero.retirepointVie(this.lsObstacle.get(numeroObstacles).getDegats());
-					this.compteurInvincibiliteHero = 50;
+					this.compteurInvincibiliteHero = 40;
+					// si c'est Poop ou rock on ne peut pas passer et on retourne a la derni�re
+					// position
+					// ce qui cr�er un effet de collision
 				} else if (lsObstacle.get(numeroObstacles) instanceof Poop
 						|| lsObstacle.get(numeroObstacles) instanceof Rock) {
 
@@ -468,10 +487,18 @@ public abstract class Room {
 		}
 	}
 
+	/**
+	 * gere les collision entre les obstacles et les monstres
+	 * 
+	 * @param monster le monstre en question
+	 * 
+	 * 
+	 */
 	public void collisionObstacleMonstre(Monster monster) {
+		// on parcours tout les monstre de la room
 		for (int numeroObstacles = 0; !this.lsObstacle.isEmpty()
 				&& numeroObstacles < this.lsObstacle.size(); numeroObstacles++) {
-
+			// si il touche un obstacle
 			if (Physics.rectangleCollision(monster.getPosition(), monster.getSize(),
 					this.lsObstacle.get(numeroObstacles).getPosition(),
 					this.lsObstacle.get(numeroObstacles).getSize())) {
@@ -479,11 +506,11 @@ public abstract class Room {
 				// pour les Spider et boss uniquement ( les mouches passent au dessus des
 				// obstacles )
 				if (monster instanceof Spider || monster instanceof Boss) {
-					// uniquement les Rocks et les Poops
+					// uniquement les Rocks et les Poops car les Spikes n'inflige pas de degats au
+					// monstre
 					if (this.lsObstacle.get(numeroObstacles) instanceof Rock
 							|| this.lsObstacle.get(numeroObstacles) instanceof Poop) {
 						monster.setPosition(monster.getLastposition());
-						
 
 					}
 				}
@@ -544,7 +571,7 @@ public abstract class Room {
 		StdDraw.setPenRadius();
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.text(0.1, 0.85, ": " + hero.getdamage() + "");
-		//------------------------------affichage key---------------------------------
+		// ------------------------------affichage key---------------------------------
 		StdDraw.picture(0.05, 0.80, ImagePaths.KEY, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
 				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
 		StdDraw.setPenRadius();
