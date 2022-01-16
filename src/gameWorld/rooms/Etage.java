@@ -4,18 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gameWorld.rooms.portes.BottomDoor;
+import gameWorld.rooms.portes.BottomKeyDoor;
 import gameWorld.rooms.portes.CarriesAway;
 import gameWorld.rooms.portes.LeftDoor;
+import gameWorld.rooms.portes.LeftKeyDoor;
 import gameWorld.rooms.portes.RightDoor;
 import gameWorld.rooms.portes.RightKeyDoor;
 import gameWorld.rooms.portes.TopDoor;
-
+import gameWorld.rooms.portes.TopKeyDoor;
 import gameobjects.objets.consommables.Key;
-
-import libraries.Vector2;
-
 import gameobjects.personnages.hero.Hero;
-
+import libraries.Vector2;
 import resources.ImagePaths;
 
 /**
@@ -114,6 +113,8 @@ public class Etage {
         Room monster5 = new MonsterRoom(hero, 12);
         Room commerce2 = new ShopRoom(hero, 13);
         Room boss = new BossRoom(hero, 14);
+        Room objet1 = new RoomObjet(hero,-13);
+        Room objet2= new RoomObjet(hero, -14);
 
         Room secretRoom1 = new SecretRoom(hero, -2);
         Room secretRoom2 = new SecretRoom(hero, -3);
@@ -131,9 +132,14 @@ public class Etage {
         // on ajoute les porte au differente salle
         spawn.getLstPorte().add(new RightDoor(monster1.getId()));
         monster1.getLstPorte().add(new LeftDoor(spawn.getId()));
-
+        
+        monster1.getLstObjet().add(new Key(new Vector2(0.84,0.5), 0, 0));
+        
         monster1.getLstPorte().add(new BottomDoor(monster2.getId()));
         monster2.getLstPorte().add(new TopDoor(monster1.getId()));
+        
+        monster2.getLstPorte().add(new BottomKeyDoor(objet1.getId()));
+        objet1.getLstPorte().add(new TopDoor(monster2.getId()));
 
         monster2.getLstPorte().add(new RightDoor(monster3.getId()));
         monster3.getLstPorte().add(new LeftDoor(monster2.getId()));
@@ -143,11 +149,17 @@ public class Etage {
 
         commerce1.getLstPorte().add(new BottomDoor(monster4.getId()));
         monster4.getLstPorte().add(new TopDoor(commerce1.getId()));
-
+        
+        monster4.getLstPorte().add(new RightKeyDoor(objet2.getId()));
+        objet2.getLstPorte().add(new LeftDoor(monster4.getId()));
+        
         monster4.getLstPorte().add(new LeftDoor(monster5.getId()));
         monster5.getLstPorte().add(new RightDoor(monster4.getId()));
+        
+        monster5.getLstObjet().add(new Key(new Vector2(0.5,0.82), 0, 0));
 
         monster5.getLstPorte().add(new BottomDoor(commerce2.getId()));
+        
         commerce2.getLstPorte().add(new TopDoor(monster5.getId()));
 
         commerce2.getLstPorte().add(new BottomDoor(boss.getId()));
@@ -160,6 +172,9 @@ public class Etage {
 
         mapDeRoom.put(secretRoom1.getId(), secretRoom1);
         mapDeRoom.put(secretRoom2.getId(), secretRoom2);
+        
+        mapDeRoom.put(objet1.getId(), objet1);
+        mapDeRoom.put(objet2.getId(), objet2);
 
         mapDeRoom.put(monster1.getId(), monster1);
         mapDeRoom.put(monster2.getId(), monster2);
@@ -189,6 +204,9 @@ public class Etage {
         Room monster9 = new MonsterRoom(hero, 25);
         Room commerce2 = new ShopRoom(hero, 26);
         Room boss = new BossRoom(hero, 27);
+        Room objet1=new RoomObjet(hero,-15);
+        Room objet2 = new RoomObjet(hero,-16);
+        Room objet3 = new RoomObjet(hero, -17);
 
         Room secretRoom1 = new SecretRoom(hero, -4);
         Room secretRoom2 = new SecretRoom(hero, -5);
@@ -213,12 +231,17 @@ public class Etage {
         spawn.getLstPorte().add(new TopDoor(monster1.getId()));
         monster1.getLstPorte().add(new BottomDoor(spawn.getId()));
 
+        monster1.getLstObjet().add(new Key(new Vector2(0.22 , 0.5), 0, 0));
+        
         monster1.getLstPorte().add(new RightDoor(monster2.getId()));
         monster2.getLstPorte().add(new LeftDoor(monster1.getId()));
 
         monster2.getLstPorte().add(new BottomDoor(monster3.getId()));
         monster3.getLstPorte().add(new TopDoor(monster2.getId()));
-
+        
+        monster3.getLstPorte().add(new LeftKeyDoor(objet1.getId()));
+        objet1.getLstPorte().add(new RightDoor(monster3.getId()));
+        
         monster3.getLstPorte().add(new BottomDoor(monster4.getId()));
         monster4.getLstPorte().add(new TopDoor(monster3.getId()));
 
@@ -230,19 +253,29 @@ public class Etage {
 
         commerce1.getLstPorte().add(new TopDoor(monster6.getId()));
         monster6.getLstPorte().add(new BottomDoor(commerce1.getId()));
+        
+        monster6.getLstPorte().add(new RightKeyDoor(objet2.getId()));
+        objet2.getLstPorte().add(new LeftDoor(monster6.getId()));
 
         monster6.getLstPorte().add(new TopDoor(monster7.getId()));
         monster7.getLstPorte().add(new BottomDoor(monster6.getId()));
+        
+        monster7.getLstObjet().add(new Key(new Vector2(0.84,0.5), 0, 0));
 
         monster7.getLstPorte().add(new TopDoor(monster8.getId()));
         monster8.getLstPorte().add(new BottomDoor(monster7.getId()));
 
         monster8.getLstPorte().add(new RightDoor(monster9.getId()));
         monster9.getLstPorte().add(new LeftDoor(monster8.getId()));
+        
+        monster9.getLstObjet().add(new Key(new Vector2(0.5,0.5), 0, 0));
 
         monster9.getLstPorte().add(new RightDoor(commerce2.getId()));
         commerce2.getLstPorte().add(new LeftDoor(monster9.getId()));
-
+        
+        commerce2.getLstPorte().add(new TopKeyDoor(objet3.getId()));
+        objet3.getLstPorte().add(new BottomDoor(commerce2.getId()));
+        
         commerce2.getLstPorte().add(new RightDoor(boss.getId()));
         boss.getLstPorte().add(new LeftDoor(commerce2.getId()));
 
@@ -252,6 +285,10 @@ public class Etage {
         mapDeRoom.put(secretRoom1.getId(), secretRoom1);
         mapDeRoom.put(secretRoom2.getId(), secretRoom2);
         mapDeRoom.put(secretRoom3.getId(), secretRoom3);
+        
+        mapDeRoom.put(objet1.getId(), objet1);
+        mapDeRoom.put(objet2.getId(), objet2);
+        mapDeRoom.put(objet3.getId(), objet3);
 
         mapDeRoom.put(monster1.getId(), monster1);
         mapDeRoom.put(monster2.getId(), monster2);

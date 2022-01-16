@@ -11,7 +11,6 @@ public class Bomb extends Projectile {
      * Constructeur de Bomb
      * 
      * @param position position initiale de l'objet
-     * @param imagePath image du projectile
      * @param direction direction du projectile
      * @param damage damage du projectile
      */

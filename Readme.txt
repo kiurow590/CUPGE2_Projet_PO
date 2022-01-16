@@ -23,11 +23,11 @@ I- CONTROLE DU JEU :
 
         <i> : Le Hero est invincible
         <l> : Le Hero est plus rapide
-        <k> : Tous les monstres de la salle meurt instentanément
+        <k> : Tous les monstres de la salle meurt instentanement
         <p> : Le Hero est puissant et One Shot les monstres
         <o> : Offre 10 pieces aux Hero
         <n> : change le Hero en mode "number one" ( voir bonus plus bas)
-        <m> : ajoute des clee au joueur 
+        <m> : ajoute des clees au joueur 
 
 II - BONUS :
     A) Personnages
@@ -56,84 +56,101 @@ II - BONUS :
 III - ETAPE DU PROJET :
 
     A) Creation des monstres
-        Les monstres ne seront généré quand dans les salle de monstre ainsi que dans la salle du boss de maniere aléatoire.
+        Les monstres ne seront genere quand dans les salle de monstre ainsi que dans la salle du boss de maniere aleatoire.
 
-        Chaque monstres a ses caractéristiques
+        Chaque monstres a ses caracteristiques
 
         1) Fly
-            La mouche poursuit le Hero. Elle peut lui faire des dégats au corps a corps. Lors de l'impact on remarquera que la mouche arrète de se déplacer mais continue a tiré des projectiles.
-            Elle peut aussi faire des dégats a distance grace a ses projectile.    
+            La mouche poursuit le Hero. Elle peut lui faire des degats au corps a corps. Lors de l'impact on remarquera que la mouche arrète de se deplacer mais continue a tire des projectiles.
+            Elle peut aussi faire des degats a distance grace a ses projectile.    
         2) Spider
-            L'araignée se mets en mouvement tout les cycle suivant un paterne aléatoire. Déterminé a l'aide d'un entier random. Elle fera cependant des dégats aux Hero que au corps a corps. 
+            L'araignee se mets en mouvement tout les cycle suivant un paterne aleatoire. Determine a l'aide d'un entier random. Elle fera cependant des degats aux Hero que au corps a corps. 
         3) Boss
-            Le boss est une arraignée spéciale qui bouge a chaque cycle en direction du Hero en générant de maniere aléatoire un monstre différents.
+            Le boss est une arraignee speciale qui bouge a chaque cycle en direction du Hero en generant de maniere aleatoire un monstre differents.
     
     B) Generation de la Map
 
         1) Creation de different type de room
             
-            Il existe 5 types de room differentes
+            Il existe 6 types de room differentes
             
             a) SpawnRoom
                 Cette room est la room d'aparition du joueur. il n'as pas de comportement particulier. elle ne fait apparaitre aucun objet ni aucun monstre
 
             b) MonsterRoom
-                Dans cette room, on retrouve des monstre generé aleatoirement ainsi que des obstables(Caractéristique décrite dans une prochaine partie)
+                Dans cette room, on retrouve des monstre genere aleatoirement ainsi que des obstables(Caracteristique decrite dans une prochaine partie)
 
             c) ShopRoom
-                Dans cette room aucun monstre ni obstacle apparait. Cependant, 3 objets sont disponible a la vente. Le joueur pourra utilisé ses pices pour les acheter.
+                Dans cette room aucun monstre ni obstacle apparait. Cependant, 3 objets sont disponible a la vente. Le joueur pourra utilise ses pices pour les acheter.
 
             d) BossRoom
-                Cette room a la meme comportement que la Monster Room. la seul difference c'est le monstre creer qui est le boss. Le boss a pour particularité de generer des monstre de maniere aléatoire.
+                Cette room a la meme comportement que la Monster Room. la seul difference c'est le monstre creer qui est le boss. Le boss a pour particularite de generer des monstre de maniere aleatoire.
                 De plus, la salle de boss peut ou etre la derniere de la partie ou la derniere de l'etage de jeu
                     - Si c'est la derniere de l'etage : elle donnera acces a un porte-loins
                     - Si c'est la derniere du jeu : elle donnera acces a un coffre au tresor
 
             e) SecretRoom
-                une room cacher qui permet au joueur de récupérer un objet pour l'épauler dans sa quète
+                une room cacher qui permet au joueur de recuperer un objet pour l'epauler dans sa quète
                 l'acces a cette salle se fait en traversant un mur
+            f)ObjetRoom
+            	une room a objet , elle permet au joueur , si il est dot� d'une clee de pouvoir y rentrer . Il y trouvera un objet
+            	qui serra sois une blood of the martyr ou alors un number one (pr�sent� plus bas)
 
         2) Creation des Etages
 
-            Les Rooms sont stocké dans une map de room. elle sont accesible avec un identifiant quelles ont.
-            Chaque salle possede une liste de porte qui permet au joueur de se déplacer d'une room a l'autre. 
+            Les Rooms sont stocke dans une map de room. elle sont accesible avec un identifiant quelles ont.
+            Chaque salle possede une liste de porte qui permet au joueur de se deplacer d'une room a l'autre. 
 
     
     C) Creation des Projectile
 
         1) Tear
-            Une larmes ne pourra etre tiré que pars le Hero et ne pourra entrée en collision que avec un monstre ou un mur.
-            Elle a une porté qui defini sa "durée de vie"; Elle retira au monstre touchée l'equivalent des dégats du héro
+            Une larmes ne pourra etre tire que pars le Hero et ne pourra entree en collision que avec un monstre ou un mur.
+            Elle a une porte qui defini sa "duree de vie"; Elle retira au monstre touchee l'equivalent des degats du hero
         2) FlyProjectile
-            Ce projectile ne pourra etre tiré que par les monstres et plus particulierement par les mouches.
+            Ce projectile ne pourra etre tire que par les monstres et plus particulierement par les mouches.
         3) Bomb
-            Lilith a pour capacité de pouvoir lancer des bomb qui font plus de degats que les larmes
+            Lilith a pour capacite de pouvoir lancer des bomb qui font plus de degats que les larmes
         4) BabyProjectile
-            Magdelene combats les monstres en lançant des bébés
+            Magdelene combats les monstres en lancant des bebes
+        5)NumberOneprojectile
+        Apres avoir recupere l'objet  number one , le hero tire ces projectiles qui on une cadance plus importante que les larmes 
+        mais qui on une plus petite portee
     
     D) Creation des Objets
 
         1) ConsommableObject
 
             a) Coeur
-                Les coeurs permette au Hero de se régénéré
+                Les coeurs permette au Hero de se regenere
             b) Piece
-                les pièces permette au Hero d'effectuer des achats in game pour augmenter ses performance.
+                les pieces permette au Hero d'effectuer des achats in game pour augmenter ses performance.
+            c)Key
+            les clee servent a ouvrir les portes des salle a objet , on peut observer un compteur
         2) PassifObject
 
             a) CoeurSup 
                 Le coeurSup permet d'augmenter la vie maximale du hero de 2 points (l'equivalent d'un coeurs).
             b) BloodOfMartyr
-                Le bloodOfMartyr a pour capacité d'augmenter les dégats du joueur.
+                Le bloodOfMartyr a pour capacite d'augmenter les degats du joueur.
+            c) Number_one 
+            	Le number_one a pour capacit� de changer la porte ( de fa�on n�gative) mais d'augmenter la cadance des tire
+            	. De plus il change les larmes en projectiles de numberOne
                 
     E) Creation des obstacles
     
-    1) creation de la structure des obstacles (Poop , Spikes , Rock)
-    
-    	a) creation des differentes class sous classe de obstacle
-    	les Spikes font des degats au joueur , les poop sont destructible a l'aide des larmes du joueur .
+    	il existe 3 obstacles different
+    	a noter que seulement les spider, boss et heros on des collision avec les obstacle 
+    	En effet les mouches passent au-dessus
     	
-    2) gerer les collisions avec les obstacles .
-    	a) creation des 
+    	1)Rock ou rocher
+    		ce dernier est indestructible , de taille variables , il bloque Hero , boss et Spider.
+    	2)Spikes 
+    		les spikes ne bloque pas le joueur, cependant lorsqu'il marche dessus il prends des degats 
+    		Pour eviter de mourir trop rapidement une invincibilit� temporaire a �t� mis en place .
+    	3)Poop
+    		Les Poop sont des obstacles au meme titre que les Rock mais ils sont destructible par le joueur
+    		
+    
     
     	    

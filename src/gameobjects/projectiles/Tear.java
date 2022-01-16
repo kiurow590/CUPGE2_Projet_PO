@@ -11,8 +11,7 @@ public class Tear extends Projectile {
 	 * Constructeur de larme
 	 * 
 	 * @param position  position initiale de la larme
-	 * 
-	 * @param imagePath image representant la larme
+	 *
 	 * 
 	 * @param direction direction de la larme --> 4 cas de figure :
 	 *                  <ul>

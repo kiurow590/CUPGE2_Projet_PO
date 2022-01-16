@@ -25,6 +25,7 @@ public class Boss extends Monster {
 	 * Constructeur de boss
 	 * 
 	 * @param position position initiale du Boss
+	 * @param currentRoom Room dans la quel le boss se situe
 	 */
 	public Boss(Vector2 position, Room currentRoom) {
 		super(position, MonstreInfo.BOSS_SIZE, ImagePaths.BLUBBER, MonstreInfo.BOSS_SPEED, MonstreInfo.BOSS_pointVie,

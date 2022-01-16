@@ -10,13 +10,13 @@ public class Spikes extends GenericObstacle {
 	 * @param position   position de l'obstacle
 	 * 
 	 * @param size       taille de l'obstacle
+	 * lors de l'apelle du super
+	 * imagePaths image de l'obstacle
 	 * 
-	 * @param imagePaths image de l'obstacle
-	 * 
-	 * @param pointDeVie ici fixe a 1 (indestructible par le joueur , aucune
+	 * pointDeVie ici fixe a 1 (indestructible par le joueur , aucune
 	 *                   fonction de réduction de point de vie)
 	 * 
-	 * @param degats     ici fixe a 1 car ils font des degats au joueur
+	 * degats     ici fixe a 1 car ils font des degats au joueur
 	 * 
 	 */
 

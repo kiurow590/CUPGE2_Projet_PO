@@ -25,6 +25,7 @@ public abstract class Monster extends Entity {
 	 * 
 	 * @param position         position initiale du monstre
 	 * @param size             taille du monstre
+	 * @param imagePath		   image du monstre
 	 * @param speed            vitesse du monstre
 	 * @param direction        direction initale du monstre --> souvent null
 	 * @param ptDeVie          point de vie du monstre
