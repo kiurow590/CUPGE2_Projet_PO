@@ -48,6 +48,7 @@ public class Etage {
         Room monster3 = new MonsterRoom(hero, 3);
         Room commerce1 = new ShopRoom(hero, 4);
         Room boss = new BossRoom(hero, 5);
+        Room objet = new RoomObjet(hero, -12);
 
         Room secretRoom = new SecretRoom(hero, -1);
 
@@ -68,6 +69,7 @@ public class Etage {
 
         monster3.getLstPorte().add(new TopDoor(monster1.getId()));
         monster3.getLstPorte().add(new BottomDoor(commerce1.getId()));
+        monster3.getLstPorte().add(new RightDoor(objet.getId()));
 
         commerce1.getLstPorte().add(new TopDoor(monster3.getId()));
 

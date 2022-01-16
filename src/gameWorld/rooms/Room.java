@@ -544,6 +544,12 @@ public abstract class Room {
 		StdDraw.setPenRadius();
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.text(0.1, 0.85, ": " + hero.getdamage() + "");
+		//------------------------------affichage key---------------------------------
+		StdDraw.picture(0.05, 0.80, ImagePaths.KEY, RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getX(),
+				RoomInfos.TILE_SIZE.scalarMultiplication(0.3).getY());
+		StdDraw.setPenRadius();
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.text(0.1, 0.80, ": " + hero.getsoldeKey() + "");
 		// ----------------------------------------------------------------
 		StdDraw.setPenRadius();
 		int pointVieView = this.hero.getpointVie();
