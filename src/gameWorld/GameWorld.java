@@ -158,6 +158,9 @@ public class GameWorld {
 			}
 
 		}
+		if(StdDraw.isKeyPressed(Controls.keyUp)) {
+			hero.setsoldeKey(hero.getsoldeKey()+1);
+		}
 	}
 
 	/**

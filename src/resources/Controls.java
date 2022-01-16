@@ -20,4 +20,5 @@ public class Controls {
 	public static int hitDown = Keybinding.keycodeOf(SpecialKeys.DOWN);
 	public static int hitRight = Keybinding.keycodeOf(SpecialKeys.RIGHT);
 	public static int hitLeft = Keybinding.keycodeOf(SpecialKeys.LEFT);
+	public static int keyUp = Keybinding.keycodeOf('l');
 }
