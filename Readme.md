@@ -1,179 +1,140 @@
-Nom Eudiants : 
+# 🎮 Projet de Jeu Vidéo Isaac - ESIR - CUPGE2 (2021)
 
-- TONNERRE Aubry - 20202706
-- VINCENT Theo - 20203516
+**Étudiants :**  
+- TONNERRE Aubry — 20202706  
+- VINCENT Théo — 20203516
 
+---
 
-I- CONTROLE DU JEU :
-    a) controle du personnage :
+## I. Contrôles du jeu
 
-        <z> : mouvement vers le haut 
-        <s> : mouvement vers le bas
-        <q> : mouvement vers la gauche
-        <d> : mouvement vers la droite
+### a) Contrôle du personnage
 
-    b) Controle Tir :
+- `Z` : déplacement vers le haut  
+- `S` : déplacement vers le bas  
+- `Q` : déplacement vers la gauche  
+- `D` : déplacement vers la droite  
 
-        <Fleche Haut>   : Tir vers le haut
-        <Fleche Bas>    : Tir vers le bas
-        <Fleche Gauche> : Tir vers la gauche
-        <Fleche Droite> : Tir vers la droite
+### b) Contrôle des tirs
 
-    c) Code de triche
+- `Flèche Haut` : tir vers le haut  
+- `Flèche Bas` : tir vers le bas  
+- `Flèche Gauche` : tir vers la gauche  
+- `Flèche Droite` : tir vers la droite  
 
-        <i> : Le Hero est invincible
-        <l> : Le Hero est plus rapide
-        <k> : Tous les monstres de la salle meurt instentanement
-        <p> : Le Hero est puissant et One Shot les monstres
-        <o> : Offre 10 pieces aux Hero
-        <n> : change le Hero en mode "number one" ( voir bonus plus bas)
-        <m> : ajoute des clees au joueur 
+### c) Codes de triche
 
-II - BONUS :
-    differents bonus on ete ajoutee et seront decrit dans les parties suivantes :
-        - un Menu 
-        - 2 Personnages supplementaires (Magdelene et Lilith)
-        - des objets (Number One, les key et les projectiles lancee par chaque personnage)
-        - 2 types de salles (Salle secrete, salle objet)
-        - 1 obstacles supplementaire (les poops destructible)
+- `I` : héros invincible  
+- `L` : héros plus rapide  
+- `K` : tue instantanément tous les monstres de la salle  
+- `P` : héros puissant (tue en un coup)  
+- `O` : ajoute 10 pièces au héros  
+- `N` : active le mode "Number One" (voir bonus)  
+- `M` : ajoute des clés au héros  
 
-III - COMPOSITION DU PROJET :
+---
 
-     A) Personnages
-        1) Isaac
-            La protagoniste principale de l'histoire
-                PV : 6
-                Degat : 1
-                vitesse : 0.01
-                tmpRecharge : 0.5 cycle
+## II. Bonus
 
-        2) Magdelene
-                PV : 8
-                Degat : 4
-                vitesse : 0.0085
-                tmpRecharge : 1.25 cycle
+Des bonus supplémentaires ont été ajoutés :
 
-        3) Lilith
-                PV : 2
-                Degat : 4
-                vitesse : 0.025
-                tmpRecharge : 0.38 cycle
+- Un **menu**
+- Deux **personnages supplémentaires** : *Magdelene* et *Lilith*
+- Des **objets spéciaux** : *Number One*, *Blood of the Martyr*, clés, projectiles uniques
+- Deux **types de salles supplémentaires** : *salle secrète* et *salle à objet*
+- Un **obstacle destructible** : *les Poops*
 
+---
 
-    B) Creation des monstres
-        Les monstres ne seront genere que dans les salle de monstre ainsi que dans la salle du boss de maniere aleatoire.
-       
-        Chaque monstres a ses caracteristiques
+## III. Composition du projet
 
-        1) Fly
-            La mouche poursuit le Hero. Elle peut lui faire des degats au corps a corps. Lors de l'impact on remarquera que la mouche arrète de se deplacer mais continue a tire des projectiles.
-            Elle peut aussi faire des degats a distance grace a ses projectiles.
+### A) Personnages jouables
 
-        2) Spider
-            L'araignee se mets en mouvement tout les cycle suivant un paterne aleatoire determine a l'aide d'un entier random. Elle fera cependant des degats aux Hero que au corps a corps. 
-       
-        3) Boss
-            Le boss est un monstre speciale qui bouge a chaque cycle en direction du Hero en generant de maniere aleatoire un monstre differents.
-    
-    C) Generation de la Map
+| Personnage | PV | Dégâts | Vitesse | Temps de recharge |
+|-----------|----|--------|---------|-------------------|
+| Isaac     | 6  | 1      | 0.010   | 0.5 cycle         |
+| Magdelene | 8  | 4      | 0.0085  | 1.25 cycle        |
+| Lilith    | 2  | 4      | 0.025   | 0.38 cycle        |
 
-        1) Creation de different type de room
-            
-            Il existe 6 types de room differentes
-            
-            a) SpawnRoom
-                Cette room est la room d'aparition du joueur. il n'as pas de comportement particulier. elle ne fait apparaitre aucun objet ni aucun monstre
+---
 
-            b) MonsterRoom
-                Dans cette room, on retrouve des monstre genere aleatoirement ainsi que des obstables(Caracteristique decrite dans une prochaine partie)
+### B) Monstres
 
-            c) ShopRoom
-                Dans cette room aucun monstre ni obstacle apparait. Cependant, 3 objets sont disponible a la vente. Le joueur pourra utilise ses pices pour les acheter.
+- **Fly** : suit le héros et attaque au corps-à-corps. Tire aussi des projectiles. Elle cesse de se déplacer à l’impact mais continue à tirer.
+- **Spider** : bouge aléatoirement chaque cycle. Inflige des dégâts uniquement en corps-à-corps.
+- **Boss** : suit le héros et invoque d'autres monstres aléatoirement. Apparaît dans une salle spécifique.
 
-            d) BossRoom
-                Cette room a la meme comportement que la Monster Room. la seul difference c'est le monstre creer qui est le boss. Le boss a pour particularite de generer des monstre de maniere aleatoire.
-                De plus, la salle de boss peut-etre la derniere de la partie ou la derniere de l'etage de jeu
-                    - Si c'est la derniere de l'etage : elle donnera acces a un porte-loins
-                    - Si c'est la derniere du jeu : elle donnera acces a un coffre au tresor
+---
 
-            e) SecretRoom
-                une room cacher qui permet au joueur de recuperer un objet pour l'epauler dans sa quete
-                l'acces a cette salle se fait en traversant un mur
-            f)ObjetRoom
-            	une room a objet , elle permet au joueur , si il est dote d'une clee de pouvoir y rentrer . Il y trouvera un objet
-            	qui sera sois une blood of the martyr ou alors un number one (presente plus bas)
+### C) Génération de la carte
 
-        2) Creation des Etages
+#### 1) Types de salles
 
-            Les Rooms sont stocke dans une map de room. elle sont accesible avec un identifiant.
-            Chaque salle possede une liste de porte qui permet au joueur de se deplacer d'une room a l'autre. 
-            La liaison entre les etage se fais par l'intermediaire d'un porte loin.
+- **SpawnRoom** : salle de départ, vide.
+- **MonsterRoom** : contient des monstres générés aléatoirement et des obstacles.
+- **ShopRoom** : contient 3 objets à acheter (aucun ennemi).
+- **BossRoom** : contient un boss. Peut déboucher sur :
+  - un **portail** vers un autre étage
+  - un **coffre au trésor** en fin de partie
+- **SecretRoom** : salle cachée accessible en traversant un mur. Contient un objet.
+- **ObjetRoom** : nécessite une clé pour y entrer. Contient un objet aléatoire (*Blood of the Martyr* ou *Number One*).
 
-    
-    D) Creation des Projectile
+#### 2) Étages
 
-        1) Tear
-            Une larmes ne pourra etre tire que pars le Hero et ne pourra entree en collision que avec un monstre ou un mur.
-            Elle a une porte qui defini sa "duree de vie"; Elle retira au monstre touchee l'equivalent des degats du hero
-        2) FlyProjectile
-            Ce projectile ne pourra etre tire que par les monstres et plus particulierement par les mouches.
-        3) Bomb
-            Lilith a pour capacite de pouvoir lancer des bomb qui font plus de degats que les larmes
-        4) BabyProjectile
-            Magdelene combats les monstres en lancant des bebes
-        5) NumberOneprojectile
-            Apres avoir recupere l'objet  number one , le hero tire ces projectiles qui on une cadance plus importante que les larmes 
-            mais qui on une plus petite portee
-    
-    E) Creation des Objets
+Les salles sont stockées dans une map identifiée par ID. Chaque salle contient des portes menant à d'autres salles. La progression entre les étages se fait via un *porte-loin*.
 
-        1) ConsommableObject
+---
 
-            a) Coeur
-                Les coeurs permette au Hero de se regenere
-            b) Piece
-                les pieces permette au Hero d'effectuer des achats in game pour augmenter ses performance.
-            c) Key
-                les clee servent a ouvrir les portes des salle a objet , on peut observer un compteur
-        2) PassifObject
+### D) Projectiles
 
-            a) CoeurSup 
-                Le coeurSup permet d'augmenter la vie maximale du hero de 2 points (l'equivalent d'un coeurs).
-            b) BloodOfMartyr
-                Le bloodOfMartyr a pour capacite d'augmenter les degats du joueur.
-            c) Number_one 
-            	Le number_one a pour capacite de changer la porte ( de facon negative) mais d'augmenter la cadance des tire
-            	. De plus il change les larmes en projectiles de numberOne
-                Les effets ne se cummule pas.
-                
-    F) Creation des obstacles
-    
-    	il existe 3 obstacles different
-    	a noter que seulement les spider, boss et heros on des collision avec les obstacle 
-    	En effet les mouches passent au-dessus
-        Les obstacles sont genere a l'aide de pattern predefinie de facon aleatoire.
-    	
-    	1) Rock ou rocher
-    		ce dernier est indestructible , de taille variables.
-    	2) Spikes 
-    		les spikes ne bloque pas le joueur, cependant lorsqu'il marche dessus il prends des degats 
-    		Pour eviter de mourir trop rapidement une invincibilite temporaire a ete mis en place .
-    	3) Poop
-    		Les Poop sont des obstacles au meme titre que les Rock mais ils sont destructible par le joueur
+- **Tear** : projectile de base du héros. Collision avec monstres et murs.
+- **FlyProjectile** : projectile des mouches.
+- **Bomb** : projectile lancé par Lilith, infligeant plus de dégâts.
+- **BabyProjectile** : lancé par Magdelene.
+- **NumberOneProjectile** : activé avec l’objet *Number One*. Portée réduite mais cadence de tir augmentée.
 
+---
 
-    G) Critique generale de notre projet
+### E) Objets
 
-        On a pris du plaisir a programmer ce jeu, motivation plus importante qu'en tp.
-        Cependant, on aurait aimee ameliorer certains point comme la generation automatise des room qui a ete commencee mais qui n'as pas abouti.
-        Un bug majeur a ete trouver (peu frequent) : 
-            - lors de la mort du hero : si elle se passe trop vite (supposition) le menu de fin n'apparait pas et le jeu se fige. 
-              On suppose que c'est STDdraw qui provoque cela cependant on en connait pas la raison de ce bug.
+#### 1) Objets consommables
 
-        La difficulte n'est pas toujours evidente, n'hesitez pas a utiliser les cheatCode mis a disposition
+- **Cœur** : régénère la vie.
+- **Pièce** : monnaie pour les achats.
+- **Clé** : permet d’ouvrir les salles à objets.
 
-Thanks for playing and have fun !
-    		
-    
-    
-    	    
+#### 2) Objets passifs
+
+- **CœurSup** : augmente la vie maximale (+2 PV).
+- **Blood of the Martyr** : augmente les dégâts du héros.
+- **Number One** : réduit la portée mais augmente la cadence de tir. Remplace les larmes par des projectiles spécifiques. Non cumulable.
+
+---
+
+### F) Obstacles
+
+Seuls les spiders, boss et héros ont des collisions avec les obstacles. Les mouches les survolent.
+
+- **Rock** : indestructible, tailles variables.
+- **Spikes** : inflige des dégâts au contact. Une invincibilité temporaire est accordée après impact.
+- **Poop** : semblable au Rock, mais destructible.
+
+---
+
+### G) Retour sur le projet
+
+> Ce projet nous a motivés bien plus que les TP classiques, car il mêle créativité et programmation ludique.  
+> Nous avons pris plaisir à le réaliser.
+
+Cependant, certaines améliorations auraient été bienvenues :
+
+- **Génération automatique des salles** : amorcée mais incomplète.
+- **Bug majeur** (rare) :  
+    - Si le héros meurt trop rapidement, le menu de fin ne s'affiche pas et le jeu se fige.  
+    - Suspect : un souci avec `StdDraw`, mais la cause exacte est inconnue.
+
+> N’hésitez pas à utiliser les codes de triche si la difficulté est trop élevée !
+
+---
+
+**Merci d’avoir joué, amusez-vous bien ! 🎉**
